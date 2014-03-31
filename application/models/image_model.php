@@ -5,24 +5,15 @@ class Image_model extends MY_Model {
 	public function __construct() 	{
 		parent::__construct();
 		$this->load->helper('image');
+		$this->table = "imagem";
 	}
  
 	public function insert($upload_data, $image_data, $thumb_sizes = array() )	{
 		
-		if( empty($image_data["marker_id"]) ) {
-			$image_data["marker_id"] = "0";
-		}
-		
-		if( empty($image_data["comment_id"]) ) {
-			$image_data["comment_id"] = "0";
-		}
-		
 		$insert_data = array(
-			'marker_id' => (int)$image_data["marker_id"],
-			'comment_id' => (int)$image_data["comment_id"],
-			'user_id' => (int)$image_data["user_id"],
-			'filename'     => $upload_data['file_name'],
-			'description'  => $image_data["title"]
+			'item_id' => (int)$image_data["item_id"],
+			'nome_arquivo'     => $upload_data['filename'],
+			'descricao'  => $image_data["desc"]
 		);
 		
 		if( $this->db->insert('image', $insert_data) ) {
@@ -37,8 +28,8 @@ class Image_model extends MY_Model {
 		}
 	}
 	
-	public function get_marker_images( $marker_id ) {
-		$images =  $this->db->get_where('image', array('marker_id'=>$marker_id))->result();
+	public function get_item_images( $item_id ) {
+		$images =  $this->db->get_where('imagem', array('item_id'=>$marker_id))->result();
 		return $images;
 	}
 	
@@ -46,8 +37,8 @@ class Image_model extends MY_Model {
 		if( $id === 0 ) {
 			return false;
 		} else {
-			$thumb_sizes = $this->dist['image_settings']['thumb_sizes'];
-			$path = $this->dist['upload']['path'];
+			$thumb_sizes = $this->params['image_settings']['thumb_sizes'];
+			$path = $this->params['upload']['path'];
 			
 			$image = $this->get_by_id( $id );
 			$filename = "";
@@ -57,7 +48,7 @@ class Image_model extends MY_Model {
 				$filename = $image->filename;
 			}
 			
-			$this->db->delete('image', array('id' => $id) );
+			$this->db->delete('imagem', array('id' => $id) );
 			
 			if( $this->db->affected_rows() ) {
 				@unlink( $path . $filename );

@@ -2262,7 +2262,7 @@ class Googlemaps {
 
 			$CI =& get_instance();
 			$dist = $CI->config->item('dist');
-			$full_path = realpath( $dist['upload']['path'] );
+			$full_path = realpath( $params['upload']['path'] );
 			if( @file_put_contents($full_path."/".$file_name, $data) ) {
 				$status = "OK";
 			} else {

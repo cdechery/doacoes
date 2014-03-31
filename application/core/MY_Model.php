@@ -8,7 +8,7 @@ class MY_Model extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 
-		// paramsribution settings available to all Models
+		// paramss settings available to all Models
 		$this->params = $this->config->item('site_params');
 
 		$this->table = NULL;

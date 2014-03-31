@@ -21,14 +21,14 @@ class Image extends MY_Controller {
 
 		$file_element_name = 'userfile';
 
-		$config['upload_path'] = $this->dist['upload']['path'];
-		$config['allowed_types'] = implode("|",$this->dist['image_settings']['allowed_types']);
-		$config['max_size']  = $this->dist['upload']['max_size'];
+		$config['upload_path'] = $this->params['upload']['path'];
+		$config['allowed_types'] = implode("|",$this->params['image_settings']['allowed_types']);
+		$config['max_size']  = $this->params['upload']['max_size'];
 		$config['encrypt_name'] = TRUE;
 		
 		$this->load->library('upload', $config);
 		
-		$min_image_size = $this->dist['image_settings']['min_image_size'];
+		$min_image_size = $this->params['image_settings']['min_image_size'];
 
 		if ( !$this->upload->do_upload( $file_element_name ) ) 	{
 			$status = "error";
@@ -88,16 +88,16 @@ class Image extends MY_Controller {
 
 		$file_element_name = 'userfile';
 
-		$upload_path = $this->dist['upload']['path'];
+		$upload_path = $this->params['upload']['path'];
 
 		$config['upload_path'] = $upload_path;
-		$config['allowed_types'] = implode("|",$this->dist['image_settings']['allowed_types']);
-		$config['max_size']  = $this->dist['upload']['max_size'];
+		$config['allowed_types'] = implode("|",$this->params['image_settings']['allowed_types']);
+		$config['max_size']  = $this->params['upload']['max_size'];
 		$config['encrypt_name'] = TRUE;
 		
 		$this->load->library('upload', $config);
 		
-		$min_image_size = $this->dist['image_settings']['min_image_size'];
+		$min_image_size = $this->params['image_settings']['min_image_size'];
 
 		if ( !$this->upload->do_upload( $file_element_name ) ) 	{
 			$status = "error";

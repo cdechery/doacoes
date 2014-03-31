@@ -12,7 +12,7 @@
 	if( empty($avatar) ) {
 		$avatar = "images/default_avatar.gif";
 	} else {
-		$avatar = $dist['upload']['path'].$avatar;
+		$avatar = $params['upload']['path'].$avatar;
 	}
 
 	$login_disabled = "";
@@ -30,7 +30,7 @@
 ?>
 	    <form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
-	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$dist['image_settings']['thumb_sizes'])?>"/>
+	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
 		<input type="file" id="userfile" name="userfile" style="display: none;" />
 		<input type="button" value="Browse ..." onclick="document.getElementById('userfile').click();" />
 

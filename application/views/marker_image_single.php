@@ -1,6 +1,6 @@
 <?php
 	$thumb = thumb_filename($image->filename, "150");
-	$path = $dist['upload']['path'];
+	$path = $params['upload']['path'];
 ?>
 <div style="display: inline-block;" align="center">
 	<a href="<?php echo base_url().$path.$image->filename; ?>" class="fancybox" rel="galery1" title="<?php echo $image->description; ?>"><img src="<?php echo base_url().$path.$thumb; ?>"></a><br>

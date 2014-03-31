@@ -4,7 +4,7 @@ class User_model extends MY_Model {
 
 	public function __construct() 	{
 		parent::__construct();
-		$this->load->config('custom_user');
+		$this->table = "usuarios";
 	}
 	
 	public function get_data($userid) {
@@ -37,22 +37,21 @@ class User_model extends MY_Model {
 
 		$insert_data = array(
 			'login' => $user_data['login'],
-			'name' => $user_data['name'],
-			'surname' => $user_data['surname'],
+			'nome' => $user_data['name'],
+			'sobrenome' => $user_data['surname'],
 			'email' => $user_data['email'],
 			'password' => md5( $user_data['password'] )
 		);
 
-		$custfields = $this->config->item('custuser_info');
-		if( count($custfields) ) {
-			foreach ($custfields as $field) {
-				$insert_data[ $field['table_column'] ] = $user_data[ $field['form_name'] ];
-			}
+		if( $user_data['password']=="D" ) {
+			$insert_data['cpf'] = $user_data['cpf'];
+		} else { // == "I"
+			$insert_data['cnpj'] = $user_data['cnpj'];
 		}
 
-		$this->db->set('creation_date', 'NOW()', false);
+		$this->db->set('data_cadastro', 'NOW()', false);
 
-		if( $this->db->insert('user', $insert_data ) ) {
+		if( $this->db->insert('usuario', $insert_data ) ) {
 			return $this->db->insert_id();
 		} else {
 			return 0;
@@ -66,16 +65,19 @@ class User_model extends MY_Model {
 		}
 
 		$upd_data = array(
-			'name' => $user_data['name'],
-			'surname' => $user_data['surname'],
+			'login' => $user_data['login'],
+			'nome' => $user_data['name'],
+			'sobrenome' => $user_data['surname'],
 			'email' => $user_data['email'],
+			'lat' => $user_data['long'],
+			'long' => $user_data['lat'],
+			'avatar' => $user_data['avatar']
 		);
 
-		$custfields = $this->config->item('custuser_info');
-		if( count($custfields) ) {
-			foreach ($custfields as $field) {
-				$upd_data[ $field['table_column'] ] = $user_data[ $field['form_name'] ];
-			}
+		if( $user_data['password']=="D" ) {
+			$insert_data['cpf'] = $user_data['cpf'];
+		} else { // == "I"
+			$insert_data['cnpj'] = $user_data['cnpj'];
 		}
 
 		if( !empty($user_data['password']) ) {

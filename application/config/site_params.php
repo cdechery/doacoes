@@ -10,4 +10,13 @@ $config['site_params'] = array(
 	'validade_interesse_inst' => 360, // dias
 	'erro_generico' => 'Ocorreu um erro inesperado',
 	'titulo_site' => 'QuemPrecisa'
+	'image_settings' => array(
+		'thumb_sizes' => array(80, 150), // size of thumbs to generate
+		'allowed_types' => array('jpeg', 'jpg', 'png'),
+		'min_image_size' => '200'
+	),
+	'upload' => array(
+		'path' => './files/',
+		'max_size' => (8*1024)
+	)
 );

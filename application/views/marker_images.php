@@ -1,6 +1,6 @@
 <?php
 	if (isset($files) && count($files)) {
-		$path = $dist['upload']['path'];
+		$path = $params['upload']['path'];
 ?>
 <?php
 		foreach ($files as $file) {

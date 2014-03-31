@@ -17,14 +17,14 @@ class Map extends MY_Controller {
 		$this->load->library('googlemaps');
 
 		$config = array();
-		$config['center'] = $this->dist['googlemaps']['center'];
-		$config['zoom'] = $this->dist['googlemaps']['zoom'];	
-		$config['geocodeCaching'] = $this->dist['googlemaps']['geocodeCaching'];
-		$config['minifyJS'] = $this->dist['googlemaps']['minifyJS'];
-		$config['places'] = $this->dist['googlemaps']['places'];
-		$config['cluster'] = $this->dist['googlemaps']['cluster'];
-		$config['clusterGridSize'] = $this->dist['googlemaps']['clusterGridSize'];
-		$config['sensor'] = $this->dist['googlemaps']['sensor'];
+		$config['center'] = $this->params['googlemaps']['center'];
+		$config['zoom'] = $this->params['googlemaps']['zoom'];	
+		$config['geocodeCaching'] = $this->params['googlemaps']['geocodeCaching'];
+		$config['minifyJS'] = $this->params['googlemaps']['minifyJS'];
+		$config['places'] = $this->params['googlemaps']['places'];
+		$config['cluster'] = $this->params['googlemaps']['cluster'];
+		$config['clusterGridSize'] = $this->params['googlemaps']['clusterGridSize'];
+		$config['sensor'] = $this->params['googlemaps']['sensor'];
 		
 		$custom_js_global = "";
 		$custom_js_init = "";
@@ -38,7 +38,7 @@ class Map extends MY_Controller {
 
 		$data['marcacoes'] = $this->map_model->get_markers();
 
-		if( $this->dist['use_categories'] ) {
+		if( $this->params['use_categories'] ) {
 			$categories = $this->map_model->get_categories();
 
 			foreach ($categories as $id => $cat) {
@@ -53,8 +53,8 @@ class Map extends MY_Controller {
 			$marker['clickable'] = true;
 			$marker['id'] = $dbMrk['id'];
 
-			if( $this->dist['use_categories'] && 
-				$dbMrk['category_id'] != $this->dist['default_category'] ) {
+			if( $this->params['use_categories'] && 
+				$dbMrk['category_id'] != $this->params['default_category'] ) {
  				$marker['icon'] = base_url() . "icons/".$categories[ $dbMrk['category_id'] ]['icon'];
 				$custom_js_init .= "cat_".$dbMrk['category_id']."_markers.push(marker_".$marker['id'].");\n";
  			}
@@ -75,11 +75,11 @@ class Map extends MY_Controller {
 		
 		$data['map'] = $this->googlemaps->create_map();
 
-		if( $this->dist['use_categories'] ) {
+		if( $this->params['use_categories'] ) {
 			$data['categories'] = $categories;
 		}
 		
-		$head_data = array("title"=>$this->dist['site_title'].": Home");
+		$head_data = array("title"=>$this->params['titulo_site'].": Home");
 		$this->load->view('head', $head_data);
 		$this->load->view('map', $data);
 		$this->load->view('foot');
@@ -89,7 +89,7 @@ class Map extends MY_Controller {
 		$data = $this->map_model->get_marker( $marker_id );
 		$images = $this->image_model->get_marker_images($marker_id);
 		$data['images'] = $images;
-		if( $this->dist['use_categories'] ) {
+		if( $this->params['use_categories'] ) {
 			$data['category'] = $this->map_model->get_category( $data['category_id'] );
 		}
 		
@@ -99,11 +99,11 @@ class Map extends MY_Controller {
 	public function newmarker_infowindow($lat, $long) {
 		$data = array("lat" => $lat, "long" => $long);
 
-		if( $this->dist['use_categories'] ) {
+		if( $this->params['use_categories'] ) {
 			$categories = $this->map_model->get_categories();
 			$data['categories'] = $categories;
 		} else {
-			$data['default_category'] = $this->dist['default_category'];
+			$data['default_category'] = $this->params['default_category'];
 		}
 
 		$this->load->view("newmarker_infowindow", $data);
@@ -112,12 +112,12 @@ class Map extends MY_Controller {
 	public function show_marker( $id ) {
 		$marker_data = $this->map_model->get_marker( $id );
 
-		if( $this->dist['use_categories'] ) {
+		if( $this->params['use_categories'] ) {
 			$category = $this->map_model->get_category( $marker_data['category_id'] );
 			$marker_data['category'] = $category;
 		}
 
-		$this->load->view('head', array("min_template"=>"image_view", "title"=>$this->dist['site_title'].": Marcador"));
+		$this->load->view('head', array("min_template"=>"image_view", "title"=>$this->params['titulo_site'].": Marcador"));
 		$this->load->view('marker_view', $marker_data);
 		$this->load->view('foot');
 	}
@@ -130,7 +130,7 @@ class Map extends MY_Controller {
 		
 		$marker_data = $this->map_model->get_marker($id);
 		
-		$head_data = array("min_template"=>"image_upload", "title"=>$this->dist['site_title'].": Marcador");
+		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site'].": Marcador");
 		$this->load->view('head', $head_data);
 
 		$this->load->view('marker_form', array( 'data'=>$marker_data) );
@@ -217,7 +217,7 @@ class Map extends MY_Controller {
 			/*$data['id'] = $new_marker_id;
 			$data['description'] = "";
 
-			$head_data = array("min_template"=>"image_upload", "title"=>$this->dist['site_title'].": Marcador");
+			$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site'].": Marcador");
 			$this->load->view('head', $head_data);
 				
 			$this->load->view('marker_form', array('data' => $data) );

@@ -18,7 +18,7 @@ class User extends MY_Controller {
 			redirect( base_url() );
 		}
 
-		$head_data = array("title"=>$this->dist['site_title']);
+		$head_data = array("title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
 		$data = array('action' => 'insert');
@@ -78,7 +78,7 @@ class User extends MY_Controller {
 
 		$this->load->helper('image_helper');
 
-		$head_data = array("min_template"=>"image_upload", "title"=>$this->dist['site_title']);
+		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
 		$user_data = $this->user_model->get_data( $this->login_data['user_id'] );
@@ -205,11 +205,11 @@ class User extends MY_Controller {
 	private function send_pwd_email($email, $password) {
 		$this->load->library('email');
 
-		$this->email->from($this->dist['email']['from'], $this->dist['email']['name']);
+		$this->email->from($this->params['email']['from'], $this->params['email']['name']);
 		$this->email->to( $email ); 
 
 		$this->email->subject('Your New Password');
-		$message = 'You requested a password reset at the '.$this->dist['site_title'].' website.
+		$message = 'You requested a password reset at the '.$this->params['titulo_site'].' website.
 
 					Here it is: '.$password.'
 					

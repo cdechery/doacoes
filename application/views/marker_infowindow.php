@@ -1,5 +1,5 @@
 <?php
-	$path = $dist['upload']['path'];
+	$path = $params['upload']['path'];
 	$width = "250";
 	if( isset($data['images']) && count($data['images'])>2 ) {
 		$width = "320";

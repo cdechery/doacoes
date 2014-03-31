@@ -65,7 +65,7 @@ class Map_model extends MY_Model {
 
 	public function get_categories() {
 			$cat_array = array();
-			$ret = $this->db->get_where('category', array('id !='=> $this->dist['default_category']) );
+			$ret = $this->db->get_where('category', array('id !='=> $this->params['default_category']) );
 			
 			foreach ($ret->result() as $cat) {
 				$cat_array[ $cat->id ] = array('name'=>$cat->name,
