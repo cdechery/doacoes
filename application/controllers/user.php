@@ -5,7 +5,7 @@ class User extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('user_model');
-		$this->load->config('custom_user');
+		$this->load->helper('xlang');
 	}
 	
 	public function logout() {
@@ -38,19 +38,15 @@ class User extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('login', xlabel('username'), 'required|min_length[5]|max_length[12]|is_unique[user.login]|xss_clean');
-		$this->form_validation->set_rules('name', xlabel('name'), 'required|min_length[5]|max_length[50]');
-		$this->form_validation->set_rules('surname', xlabel('surname'), 'required|min_length[5]|max_length[50]');
-		$this->form_validation->set_rules('email', xlabel('email'), 'required|is_unique[user.email]|valid_email');
-		$this->form_validation->set_rules('password', xlabel('password'), 'required');
-		$this->form_validation->set_rules('password_2', xlabel('passconf'), 'required|matches[password]');
+		$this->form_validation->set_rules('login', 'Login'
+			'required|min_length[5]|max_length[20]|is_unique[usuario.login]|xss_clean');
+		$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
+		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[user.email]|valid_email');
+		$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]|required');
+		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
 
-		$custfields = $this->config->item('custuser_info');
-		if( count($custfields) ) {
-			foreach ($custfields as $field) {
-				$this->form_validation->set_rules($field['form_name'],
-					$field['label'], $field['form_validation']);
-			}
+		if( $user_data['tipo']=='P' ) { // Pessoa
+			$this->form_validation->set_rules('surname', 'Sobrenome', 'required|min_length[5]|max_length[40]');
 		}
 
 		if ($this->form_validation->run() == FALSE) {
@@ -84,7 +80,6 @@ class User extends MY_Controller {
 		$user_data = $this->user_model->get_data( $this->login_data['user_id'] );
 		$user_data['action'] = 'update';
 
-
 		if( !empty($user_data['avatar']) ) {
 			$user_data['avatar'] = thumb_filename($user_data['avatar'], 200);
 		}
@@ -108,17 +103,13 @@ class User extends MY_Controller {
 
 			$this->form_validation->set_error_delimiters('','</br>');
 
-			$this->form_validation->set_rules('name', xlabel('name'), 'required|min_length[5]|max_length[50]');
-			$this->form_validation->set_rules('surname', xlabel('surname'), 'required|min_length[5]|max_length[50]');
-			$this->form_validation->set_rules('email', xlabel('email'), 'required|valid_email|callback_email_check');
-			$this->form_validation->set_rules('password_2', xlabel('passconf'), 'matches[password]');
+			$this->form_validation->set_rules('name', 'Nome', 'required|min_length[5]|max_length[120]');
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
+			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
+			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
 
-			$custfields = $this->config->item('custuser_info');
-			if( count($custfields) ) {
-				foreach ($custfields as $field) {
-					$this->form_validation->set_rules($field['form_name'],
-						$field['label'], $field['form_validation']);
-				}
+			if( $user_data['tipo']=='P' ) { // Pessoa
+				$this->form_validation->set_rules('surname', 'Sobrenome', 'required|min_length[5]|max_length[40]');
 			}
 
 			if ($this->form_validation->run() == FALSE) {
@@ -220,6 +211,27 @@ class User extends MY_Controller {
 		$this->email->message( $message );	
 
 		$this->email->send();		
+	}
+
+	private function set_location($lat, $long) {
+		$status = "";
+		$msg = "";
+
+		if( !$this->is_user_logged_in ) {
+			$status = "error";
+			$msg = xlang('dist_errsess_expire');
+		} else {
+			$ret = $this->user_model->update_lat_long($this->login_data['user_id'], $lat, $long);
+			if( $ret ) {
+				$status = "OK";
+				$msg = "Localização atualizada com sucesso";
+			} else {
+				$status = "ERRO";
+				$msg = "Não foi possível atualizar a localização";
+			}
+		}
+		
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 }
 ?>

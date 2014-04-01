@@ -12,15 +12,15 @@ class User_model extends MY_Model {
 			return false;
 		}
 		
-		return $this->db->get_where('user', array('id'=>$userid))->row_array();
+		return $this->db->get_where('usuario', array('id'=>$userid))->row_array();
 	}
 
 	public function check_login($login, $password) {
 		$encrypted_pwd = md5($password);
 
-		$ret = $this->db->get_where('user', array('login'=>$login, 'password'=>$encrypted_pwd) );
+		$ret = $this->db->get_where('usuario', array('login'=>$login, 'password'=>$encrypted_pwd) );
 
-		if( $ret->num_rows()>0 ) {
+		if( $ret->num_rows() > 0 ) {
 			return $ret->row_array();
 		} else {
 			return FALSE;
@@ -28,7 +28,7 @@ class User_model extends MY_Model {
 	}
 
 	public function email_exists($email, $except_user_id = 0) {
-		$query = $this->db->get_where('user', array('email'=> $email, 'id !=' => $except_user_id ) );
+		$query = $this->db->get_where('usuario', array('email'=> $email, 'id !=' => $except_user_id ) );
 
 		return $query->num_rows() > 0;
 	}
@@ -43,7 +43,7 @@ class User_model extends MY_Model {
 			'password' => md5( $user_data['password'] )
 		);
 
-		if( $user_data['password']=="D" ) {
+		if( $user_data['tipo']=="P" ) { // Pessoa
 			$insert_data['cpf'] = $user_data['cpf'];
 		} else { // == "I"
 			$insert_data['cnpj'] = $user_data['cnpj'];
@@ -68,13 +68,10 @@ class User_model extends MY_Model {
 			'login' => $user_data['login'],
 			'nome' => $user_data['name'],
 			'sobrenome' => $user_data['surname'],
-			'email' => $user_data['email'],
-			'lat' => $user_data['long'],
-			'long' => $user_data['lat'],
-			'avatar' => $user_data['avatar']
+			'email' => $user_data['email']
 		);
 
-		if( $user_data['password']=="D" ) {
+		if( $user_data['tipo']=="P" ) {
 			$insert_data['cpf'] = $user_data['cpf'];
 		} else { // == "I"
 			$insert_data['cnpj'] = $user_data['cnpj'];
@@ -84,7 +81,20 @@ class User_model extends MY_Model {
 			$upd_data['password'] = md5($user_data['password']);
 		}
 		
-		return( $this->db->update('user', $upd_data, array('id' => $user_id)) );
+		return( $this->db->update('usuario', $upd_data, array('id' => $user_id)) );
+	}
+
+	public function update_lat_long($user_id, $lat, $long) {
+		if( empty($lat) || empty($long) ) {
+			return false;
+		}
+
+		$upd_data = array(
+			'lat' => $lat,
+			'long' => $long
+		);
+
+		return( $this->db->update('usuario', $upd_data, array('id' => $user_id)) );
 	}
 
 	public function update_password($email, $new_pwd) {
@@ -93,7 +103,7 @@ class User_model extends MY_Model {
 		}
 
 		$upd_data = array( 'password'=>md5($new_pwd) );
-		return( $this->db->update('user', $upd_data, array('email' => $email)) );
+		return( $this->db->update('usuario', $upd_data, array('email' => $email)) );
 	}
 
 	public function update_avatar($img_data, $user_id, $thumb_sizes = array() ) {
@@ -112,27 +122,7 @@ class User_model extends MY_Model {
 			}
 		}
 
-		return( $this->db->update('user', $upd_data, array('id' => $user_id)) );
-	}
-
-	public function deactivate($user_id) {
-		$upd_data = array('is_active' => 'N');
-		return( $this->db->update('user', $upd_data, array('id' => $user_id)) );	
-	}
-
-	public function delete_graceful($user_id) {
-		// TODO
-		return 0;
-	}
-
-	public function delete_cascade($user_id) {
-		// TODO
-		return 0;
-	}
-
-	public function get_users($active_only = TRUE) {
-		// TODO
-		return 0;
+		return( $this->db->update('usuario', $upd_data, array('id' => $user_id)) );
 	}
 }
 ?>

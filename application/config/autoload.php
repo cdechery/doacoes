@@ -97,7 +97,7 @@ $autoload['config'] = array('site_params');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('site');
 
 
 /*
