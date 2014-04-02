@@ -4,7 +4,7 @@ class Javascript extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();	
-		$this->output->set_header('Content-type: application/javascript; charset='.$this->config->item('charset'));
+		header('Content-type: application/javascript; charset='.$this->config->item('charset'));
 	}
 
 	public function index() {

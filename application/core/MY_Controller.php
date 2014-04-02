@@ -26,7 +26,7 @@ class MY_Controller extends CI_Controller
 		// load 'login_status' to the views
 		$this->load->vars( array('login_data' => $this->login_data, 'params'=>$this->params)  );
 		
-		//$this->output->set_header('Content-type: text/html; charset='.$this->config->item('charset'));
+		$this->output->set_header('Content-type: text/html; charset='.$this->config->item('charset'));
 	}
 	
 	protected function check_owner( $model, $id ) {
