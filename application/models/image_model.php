@@ -8,7 +8,7 @@ class Image_model extends MY_Model {
 		$this->table = "imagem";
 	}
  
-	public function insert($upload_data, $image_data, $thumb_sizes = array() )	{
+	public function insert($upload_data, $image_data, $thumb_sizes = array())	{
 		
 		$insert_data = array(
 			'item_id' => (int)$image_data["item_id"],

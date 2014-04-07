@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends MY_Controller {
+class Usuario extends MY_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('user_model');
+		$this->load->model('usuario_model');
 		$this->load->helper('xlang');
+		$this->load->helper('form');
 	}
 	
 	public function logout() {
@@ -33,27 +34,26 @@ class User extends MY_Controller {
 
 		$user_data = $this->input->post(NULL, TRUE);
 
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper(array('url'));
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('login', 'Login'
+		$this->form_validation->set_rules('login', 'Login',
 			'required|min_length[5]|max_length[20]|is_unique[usuario.login]|xss_clean');
 		$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
-		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[user.email]|valid_email');
-		$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]|required');
-		$this->form_validation->set_rules('password_2', 'ConfirmaÃ§Ã£o de senha', 'required|matches[password]');
-
 		if( $user_data['tipo']=='P' ) { // Pessoa
-			$this->form_validation->set_rules('surname', 'Sobrenome', 'required|min_length[5]|max_length[40]');
+			$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[5]|max_length[40]');
 		}
+		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[usuario.email]|valid_email');
+		$this->form_validation->set_rules('password', 'Senha', 'required|min_length[6]|max_length[8]');
+		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
 			$msg = validation_errors();
 		} else {
-			$new_id = $this->user_model->insert( $user_data );
+			$new_id = $this->usuario_model->insert( $user_data );
 
 			if( $new_id > 0 ) {
 				$status = "OK";
@@ -77,11 +77,11 @@ class User extends MY_Controller {
 		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$user_data = $this->user_model->get_data( $this->login_data['user_id'] );
+		$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
 		$user_data['action'] = 'update';
 
 		if( !empty($user_data['avatar']) ) {
-			$user_data['avatar'] = thumb_filename($user_data['avatar'], 200);
+			$user_data['avatar'] = thumb_filename($user_data['avatar'], 150);
 		}
 
 		$this->load->view('user_form', array('data'=>$user_data) );
@@ -103,20 +103,20 @@ class User extends MY_Controller {
 
 			$this->form_validation->set_error_delimiters('','</br>');
 
-			$this->form_validation->set_rules('name', 'Nome', 'required|min_length[5]|max_length[120]');
+			$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
 			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
-			$this->form_validation->set_rules('password_2', 'ConfirmaÃ§Ã£o de senha', 'matches[password]');
+			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
 
 			if( $user_data['tipo']=='P' ) { // Pessoa
-				$this->form_validation->set_rules('surname', 'Sobrenome', 'required|min_length[5]|max_length[40]');
+				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[5]|max_length[40]');
 			}
 
 			if ($this->form_validation->run() == FALSE) {
 				$status = "ERROR";
 				$msg = validation_errors();
 			} else {
-				$ret_update = $this->user_model->update( $user_data, $this->login_data['user_id'] );
+				$ret_update = $this->usuario_model->update( $user_data, $this->login_data['user_id'] );
 
 				if( $ret_update ) {
 					$status = "OK";
@@ -141,7 +141,7 @@ class User extends MY_Controller {
 		} else {
 			$email = $this->input->post('email', TRUE);
 
-			if( !$this->user_model->email_exists($email) ) {
+			if( !$this->usuario_model->email_exists($email) ) {
 				$action = "form";
 				$status = "error";
 				$msg = xlang('dist_resetpw_email_nok');
@@ -166,7 +166,7 @@ class User extends MY_Controller {
 					}
 				}
 
-				if( $this->user_model->update_password($email, $new_pwd) ) {
+				if( $this->usuario_model->update_password($email, $new_pwd) ) {
 					$status = "success";
 					$msg = xlang('dist_resetpw_email_ok');
 					$action = "success";
@@ -185,7 +185,7 @@ class User extends MY_Controller {
 	}
 
 	public function email_check( $email ) {
-		if( $this->user_model->email_exists($email, $this->login_data['user_id']) ) {
+		if( $this->usuario_model->email_exists($email, $this->login_data['user_id']) ) {
 			$this->form_validation->set_message('email_check', xlang('dist_upduser_email') );
 			return FALSE;
 		} else {
@@ -221,17 +221,25 @@ class User extends MY_Controller {
 			$status = "error";
 			$msg = xlang('dist_errsess_expire');
 		} else {
-			$ret = $this->user_model->update_lat_long($this->login_data['user_id'], $lat, $long);
+			$ret = $this->usuario_model->update_lat_long($this->login_data['user_id'], $lat, $long);
 			if( $ret ) {
 				$status = "OK";
-				$msg = "LocalizaÃ§Ã£o atualizada com sucesso";
+				$msg = "Localização atualizada com sucesso";
 			} else {
 				$status = "ERRO";
-				$msg = "NÃ£o foi possÃ­vel atualizar a localizaÃ§Ã£o";
+				$msg = "Não foi possível atualizar a localização";
 			}
 		}
 		
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+	}
+
+	public function interesses() {
+		$this->load->model('interesse_model');
+
+		$interesses = $this->interesse_model->get_by_userid( $this->login_data['user_id'] );
+
+		$this->load->view('lista_interesses');
 	}
 }
 ?>
