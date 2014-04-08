@@ -237,9 +237,15 @@ class Usuario extends MY_Controller {
 	public function interesses() {
 		$this->load->model('interesse_model');
 
-		$interesses = $this->interesse_model->get_by_userid( $this->login_data['user_id'] );
+		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
-		$this->load->view('lista_interesses');
+		$this->load->view('head', array('title'=>'Interesses'));
+		$this->load->view('interesse_form');
+		$this->load->view('interesse_lista');
+		foreach ($interesses as $int) {
+			$this->load->view('interesse_single', array('interesse'=>$int));
+		}
+		$this->load->view('foot');
 	}
 }
 ?>

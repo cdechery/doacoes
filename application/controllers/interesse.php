@@ -7,6 +7,11 @@ class Interesse extends MY_Controller {
 		$this->load->model('interesse_model');
 	}
 
+	public function get_single($user_id, $categoria_id) {
+		$int = $this->interesse_model->get($user_id, $categoria_id);
+		$this->load->view( 'interesse_single', array('interesse'=> $int) );
+	}
+
 	public function insert() {
 		$status = "";
 		$msg = "";
@@ -19,33 +24,44 @@ class Interesse extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('categoria_id', 'Categoria', 'required');
+		$this->form_validation->set_rules('categ', 'Categoria', 'required');
 		$this->form_validation->set_rules('raio', 'Raio de Busca', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
 			$msg = validation_errors();
 		} else {
-			$inter_data['user_id'] = $this->login_data['user_id'];
-			$new_id = $this->interesse_model->insert( $inter_data );
+			$existente = $this->interesse_model->get( $this->login_data['user_id'],
+				$inter_data['categ'] );
 
-			if( $new_id > 0 ) {
+			if( $existente ) {
+				$status = "ERROR";
+				$msg = "Já existe um Interesse para esta Categoria";
+				echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+				return;
+			}
+
+			$inter_data['user_id'] = $this->login_data['user_id'];
+
+			if( $this->interesse_model->insert( $inter_data ) ) {
 				$status = "OK";
-				$msg = 'O Interesse foi incluÃ­do com sucesso';
+				$msg = 'O Interesse foi incluído com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'NÃ£o foi possÃ­vel incluir o interesse';
+				$msg = 'Não foi possível incluir o interesse';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg),
+			'user'=>$this->login_data['user_id'],
+			'cat'=>$inter_data['categ']) );
 	}
 
-	public function activate( $id ) {
+	public function activate( $categoria_id, $user_id ) {
 		$status = "";
 		$msg = "";
 
-		if( $this->interesse_model->activate($id) ) {
+		if( $this->interesse_model->activate($categoria_id, $user_id) ) {
 			$status = "OK";
 			$msg = "O Interesse foi ativado com sucesso";
 		} else {
@@ -53,14 +69,14 @@ class Interesse extends MY_Controller {
 			$msg = "Ocorreu uma falha ao ativar o Interesse, tente novamente";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function deactivate( $id ) {
+	public function deactivate( $categoria_id, $user_id ) {
 		$status = "";
 		$msg = "";
 
-		if( $this->interesse_model->deactivate($id) ) {
+		if( $this->interesse_model->deactivate($categoria_id, $user_id) ) {
 			$status = "OK";
 			$msg = "O Interesse foi desativado com sucesso";
 		} else {
@@ -68,7 +84,7 @@ class Interesse extends MY_Controller {
 			$msg = "Ocorreu uma falha ao desativar o Interesse, tente novamente";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
 	public function update( $inter_data ) {
@@ -96,11 +112,11 @@ class Interesse extends MY_Controller {
 				$msg = 'O Interesse foi atualizado com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'NÃ£o foi possÃ­vel atualizar o interesse';
+				$msg = 'Não foi possível atualizar o interesse';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );	}
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );
 	}
 
 	public function delete( $id ) {
@@ -109,13 +125,13 @@ class Interesse extends MY_Controller {
 
 		if( $this->interesse_model->delete( $id ) ) {
 			$status = "OK";
-			$msg = "O Interesse foi excluÃ­do com sucesso";
+			$msg = "O Interesse foi excluído com sucesso";
 		} else {
 			$status = "ERRO";
 			$msg = "Ocorreu uma falha ao excluir o Interesse, tente novamente";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
 } // Image class

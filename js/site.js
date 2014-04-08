@@ -72,40 +72,6 @@ function newmarker_infowindow_content(lat, lng, infowindow) {
 var mrkImagesCount = 0;
 
 $(function() {
-	$('#map_canvas').on('submit', '#new_marker', function( e ) {
-	e.preventDefault();
-	$.post($("#new_marker").attr("action"), $("#new_marker").serialize(), function(data) {
-		var json = myParseJSON( data );
-		if( json.status=="success" ) {
-			new Messi( lang['dist_marker_insertok'], 
-				{title: lang['dist_lbl_success'], titleClass: 'info', modal: true, 
-					buttons: [{id: 0, label: lang['dist_lbl_proceed'], val: 'X'}],
-				callback: function() {
-					location.href = site_root+'map/modify_marker/'+json.marker_id;
-				}
-			});
-		} else {
-			new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
-				buttons: [{id: 0, label: lang['dist_lbl_close'], val: 'X'}]} );
-		}
-	}).fail( function() { general_error(); } );
-	return false;
-	})
-
-	$('#update_marker').submit(function(e) {
-		e.preventDefault();
-		$.post($("#update_marker").attr("action"), $("#update_marker").serialize(), function(data) {
-			var json = myParseJSON( data );
-			if( json.status=="success" ) {
-				new Messi( json.msg );
-			} else {
-				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error',
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-			}
-		}).fail( function() { general_error(); } );
-		return false;
-	});
-
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#usuario_insert").attr("action"), $("#usuario_insert").serialize(), function(data) {
@@ -208,35 +174,73 @@ $(function() {
         return false;
     });
 
+	$('#interesse_insert').submit(function(e) {
+		e.preventDefault();
+		$.post($("#interesse_insert").attr("action"), $("#interesse_insert").serialize(), function(data) {
+			var json = myParseJSON( data );
+			if( json.status=="OK" ) {
+				new Messi(json.msg, {title: 'Interesse incluído com sucesso!',
+					titleClass: 'success', modal: true });
+
+				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
+                interesseData.success(function(data) {
+                    $('#interesses').append(data);
+                });
+
+			} else {
+				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
+		return false;
+	});
+
+	$(document).on('click', '.delete_interesse_btn', function(e) {
+		e.preventDefault();
+		var link = $(this);
+		new Messi('Tem certeza que quer excluir esse Interesse?',
+			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
+			{id: 1, label: 'Não', val: 'N'}], 
+			callback: function(val) { if(val=='S') delete_interesse(link); }});
+
+		return false;
+	}); // delete
+
 	$(document).on('click', '.delete_file_link', function(e) {
-	e.preventDefault();
-	var link = $(this);
-	new Messi(lang['dist_imgdel_confirm'], {modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
-		{id: 1, label: 'Não', val: 'N'}], 
-		callback: function(val) { if(val=='S') delete_image(link); }});
+		e.preventDefault();
+		var btn = $(this);
+		new Messi(lang['dist_imgdel_confirm'], {modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
+			{id: 1, label: 'Não', val: 'N'}], 
+			callback: function(val) { if(val=='S') delete_image(btn); }});
 
-	return false;
+		return false;
 	}); // delete
-
-	$(document).on('click', '.delete_marker_link', function(e) {
-	e.preventDefault();
-	var link = $(this);
-	new Messi(lang['dist_mrkdel_confirm'], {modal: true,
-		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
-		callback: function(val) { if(val=='S') delete_marker_map(link); }});
-	return false;
-	}); // delete
-
-	$(document).on('click', '.delete_marker_btn', function(e) {
-	e.preventDefault();
-	var btn = $(this);
-	new Messi( lang['dist_mrkdel_confirm'], {modal: true,
-		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
-		callback: function(val) { if(val=='S') delete_marker(btn); }});
-	return false;
-	}); // delete
-
 });
+
+function delete_interesse( btn ) {
+	$.ajax({
+		url         : site_root + 'interesse/delete/'+btn.data('cat_id')+'/'+btn.data('user_id'),
+		contentType    : 'charset=utf-8',
+		dataType : 'json',
+		success     : function (data) {
+			var images = $('#interesses');
+			if (data.status === "success") {
+				link.parent('div').fadeOut('fast', function() {
+					$(this).remove();
+					if (images.find('div').length === 0) {
+						images.html('<p>Sem imagens.</p>');
+					}
+				});
+			} else {
+				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		},
+		error : function (data, status, e) {
+			general_error( lang['dist_imgdel_nok'] );
+		}
+	});
+}
 
 function delete_image( link ) {
 	$.ajax({
@@ -260,46 +264,6 @@ function delete_image( link ) {
 		},
 		error : function (data, status, e) {
 			general_error( lang['dist_imgdel_nok'] );
-		}
-	});
-}
-
-function delete_marker_map( link ) {
-	$.ajax({
-		url         : site_root + 'map/delete_marker/' + link.data('marker_id'),
-		contentType    : 'charset=utf-8',
-		dataType : 'json',
-		success : function (data) {
-			if (data.status === "success") {
-				var markerVar = eval('marker_'+link.data('marker_id'));
-				markerVar.setMap(null);
-			} else {
-				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error',
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-			}
-		}, error : function (data, status, e) {
-			general_error( lang['dist_error_mrkdel'] );
-		}
-	});
-}
-
-function delete_marker( btn ) {
-	$.ajax({
-		url         : site_root + 'map/delete_marker/' + btn.data('marker_id'),
-		contentType    : 'charset=utf-8',
-		dataType : 'json',
-		success : function (data) {
-			if (data.status === "success") {
-				new Messi( lang['dist_mrkdel_ok'], {title: lang['success'],
-					titleClass: 'success', modal: true, buttons: [{id: 0, label: 'OK', val: 'S'}],
-					callback: function(val) { go_home(); } });
-			} else {
-				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error',
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-			}
-		},
-		error : function (data, status, e) {
-			general_error( lang['dist_error_mrkdel'] );
 		}
 	});
 }

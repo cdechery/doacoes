@@ -9,7 +9,7 @@ USE `doacoes` ;
 -- Table `doacoes`.`usuario`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL ,
   `sobrenome` VARCHAR(40) NULL ,
   `login` VARCHAR(20) NOT NULL ,
@@ -18,7 +18,7 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
   `cpf` BIGINT NULL ,
   `cnpj` BIGINT NULL ,
   `lat` FLOAT(10,6) NOT NULL ,
-  `long` FLOAT(10,6) NOT NULL ,
+  `lng` FLOAT(10,6) NOT NULL ,
   `avatar` VARCHAR(100) NULL ,
   `data_cadastro` DATETIME NOT NULL ,
   `data_atualizacao` DATETIME NULL ,
@@ -57,7 +57,7 @@ ENGINE = InnoDB;
 -- Table `doacoes`.`item`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `doacoes`.`item` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(200) NOT NULL ,
   `status` CHAR(1) NOT NULL ,
   `data_inclusao` DATETIME NOT NULL ,
@@ -76,7 +76,7 @@ ENGINE = InnoDB;
 -- Table `doacoes`.`imagem`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `doacoes`.`imagem` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome_arquivo` VARCHAR(50) NOT NULL ,
   `descricao` VARCHAR(40) NULL ,
   `item_id` INT NOT NULL ,

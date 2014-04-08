@@ -43,7 +43,7 @@
 <?php
 	if( $action=="update" ) {
 ?>
-	    <form method="post" action="<?php echo base_url();?>image/upload_avatar" id="supload_avatar" enctype="multipart/form-data">
+	    <form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
 	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
 		<input type="file" id="userfile" name="userfile" style="display: none;" />
@@ -57,10 +57,10 @@
 		</td>
 		<td>
 		<form method="POST" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
-		<input type="hidden" name="id" value="<?php echo $id; ?>">
-		<input type="hidden" name="lat" value="<?php echo $lat; ?>">
-		<input type="hidden" name="long" value="<?php echo $lng; ?>">
-		<input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
+		<input type="hidden" name="id" value="<?php echo $id ?>">
+		<input type="hidden" name="lat" value="<?php echo $lat ?>">
+		<input type="hidden" name="long" value="<?php echo $lng ?>">
+		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
 
 		<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login"/><br>
 		<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Name" /><br>
