@@ -15,5 +15,4 @@ class Mapa_model extends MY_Model {
 		$this->db->where('i.status','I'); //Disponivel
 		return $this->db->get()->result();
 	}
-
 }

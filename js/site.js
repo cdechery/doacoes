@@ -69,6 +69,8 @@ function newmarker_infowindow_content(lat, lng, infowindow) {
 	});
 }
 
+var mrkImagesCount = 0;
+
 $(function() {
 	$('#map_canvas').on('submit', '#new_marker', function( e ) {
 	e.preventDefault();
@@ -89,9 +91,7 @@ $(function() {
 	}).fail( function() { general_error(); } );
 	return false;
 	})
-});
 
-$(function() {
 	$('#update_marker').submit(function(e) {
 		e.preventDefault();
 		$.post($("#update_marker").attr("action"), $("#update_marker").serialize(), function(data) {
@@ -105,12 +105,10 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
-});
 
-$(function() {
-	$('#user_insert').submit(function(e) {
+	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#user_insert").attr("action"), $("#user_insert").serialize(), function(data) {
+		$.post($("#usuario_insert").attr("action"), $("#usuario_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
@@ -123,12 +121,10 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
-});
 
-$(function() {
-	$('#user_update').submit(function(e) {
+	$('#usuario_update').submit(function(e) {
 		e.preventDefault();
-		$.post($("#user_update").attr("action"), $("#user_update").serialize(), function(data) {
+		$.post($("#usuario_update").attr("action"), $("#usuario_update").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['success'], titleClass: 'success', modal: true });
@@ -139,9 +135,7 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
-});
 
-$(function() {
 	$('#upload_avatar').submit(function(e) {
 		e.preventDefault();
 		$.ajaxFileUpload({
@@ -169,11 +163,7 @@ $(function() {
 		});
 		return false;
 	});
-});
 
-var mrkImagesCount = 0;
-
-$(function() {
     $('#upload_marker_image').submit(function(e) {
         e.preventDefault();
 
@@ -217,6 +207,35 @@ $(function() {
         });
         return false;
     });
+
+	$(document).on('click', '.delete_file_link', function(e) {
+	e.preventDefault();
+	var link = $(this);
+	new Messi(lang['dist_imgdel_confirm'], {modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
+		{id: 1, label: 'Não', val: 'N'}], 
+		callback: function(val) { if(val=='S') delete_image(link); }});
+
+	return false;
+	}); // delete
+
+	$(document).on('click', '.delete_marker_link', function(e) {
+	e.preventDefault();
+	var link = $(this);
+	new Messi(lang['dist_mrkdel_confirm'], {modal: true,
+		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
+		callback: function(val) { if(val=='S') delete_marker_map(link); }});
+	return false;
+	}); // delete
+
+	$(document).on('click', '.delete_marker_btn', function(e) {
+	e.preventDefault();
+	var btn = $(this);
+	new Messi( lang['dist_mrkdel_confirm'], {modal: true,
+		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
+		callback: function(val) { if(val=='S') delete_marker(btn); }});
+	return false;
+	}); // delete
+
 });
 
 function delete_image( link ) {
@@ -245,18 +264,6 @@ function delete_image( link ) {
 	});
 }
 
-$(function() {
-	$(document).on('click', '.delete_file_link', function(e) {
-	e.preventDefault();
-	var link = $(this);
-	new Messi(lang['dist_imgdel_confirm'], {modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
-		{id: 1, label: 'Não', val: 'N'}], 
-		callback: function(val) { if(val=='S') delete_image(link); }});
-
-	return false;
-	}); // delete
-});
-
 function delete_marker_map( link ) {
 	$.ajax({
 		url         : site_root + 'map/delete_marker/' + link.data('marker_id'),
@@ -275,17 +282,6 @@ function delete_marker_map( link ) {
 		}
 	});
 }
-
-$(function() {
-	$(document).on('click', '.delete_marker_link', function(e) {
-	e.preventDefault();
-	var link = $(this);
-	new Messi(lang['dist_mrkdel_confirm'], {modal: true,
-		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
-		callback: function(val) { if(val=='S') delete_marker_map(link); }});
-	return false;
-	}); // delete
-});
 
 function delete_marker( btn ) {
 	$.ajax({
@@ -308,17 +304,6 @@ function delete_marker( btn ) {
 	});
 }
 
-$(function() {
-	$(document).on('click', '.delete_marker_btn', function(e) {
-	e.preventDefault();
-	var btn = $(this);
-	new Messi( lang['dist_mrkdel_confirm'], {modal: true,
-		buttons: [{id: 0, label: 'Sim', val: 'S'}, {id: 1, label: 'Não', val: 'N'}],
-		callback: function(val) { if(val=='S') delete_marker(btn); }});
-	return false;
-	}); // delete
-});
-
 function refresh_marker_images( marker_id ) {
 	$.get(site_root + 'image/list_marker_images/'+marker_id)
 		.success(function (data) {
@@ -331,6 +316,7 @@ function clearInlineLabels(form) {
 	$('input[title]').each(function() {
 		if($(this).val() === $(this).attr('title')) {
 			$(this).val('');
+			$(this).removeClass('inlinelabel');
 		}
 	});	
 }

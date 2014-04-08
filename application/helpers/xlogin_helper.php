@@ -12,8 +12,8 @@ function set_user_session( $user_id ) {
 		return true;
 	}
 
-	$CI->load->model('user_model');
-	$user_data = $CI->user_model->get_data( $user_id );
+	$CI->load->model('usuario_model');
+	$user_data = $CI->usuario_model->get_data( $user_id );
 
 	if( FALSE!=$user_data ) {
 		$session_data = array('logged_in'=>TRUE,

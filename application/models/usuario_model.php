@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_model extends MY_Model {
+class Usuario_model extends MY_Model {
 
 	public function __construct() 	{
 		parent::__construct();
-		$this->table = "usuarios";
+		$this->table = "usuario";
 	}
 	
-	public function get_data($userid) {
-		if(empty($userid) || $userid==0) {
+	public function get_data( $id ) {
+		if(empty($id) || $id==0) {
 			return false;
 		}
 		
-		return $this->db->get_where('usuario', array('id'=>$userid))->row_array();
+		return $this->db->get_where('usuario', array('id'=>$id))->row_array();
 	}
 
 	public function check_login($login, $password) {
 		$encrypted_pwd = md5($password);
 
-		$ret = $this->db->get_where('usuario', array('login'=>$login, 'password'=>$encrypted_pwd) );
+		$ret = $this->db->get_where('usuario', array('login'=>$login, 'senha'=>$encrypted_pwd) );
 
 		if( $ret->num_rows() > 0 ) {
 			return $ret->row_array();
@@ -37,19 +37,25 @@ class User_model extends MY_Model {
 
 		$insert_data = array(
 			'login' => $user_data['login'],
-			'nome' => $user_data['name'],
-			'sobrenome' => $user_data['surname'],
+			'nome' => $user_data['nome'],
 			'email' => $user_data['email'],
-			'password' => md5( $user_data['password'] )
+			'senha' => md5( $user_data['password'] ),
+			'tipo' => $user_data['tipo'],
 		);
 
-		if( $user_data['tipo']=="P" ) { // Pessoa
+		if( $user_data['tipo']=="P" && !empty($user_data['cpf']) ) { // Pessoa
 			$insert_data['cpf'] = $user_data['cpf'];
+			$insert_data['sobrenome'] = $user_data['sobrenome'];
 		} else { // == "I"
-			$insert_data['cnpj'] = $user_data['cnpj'];
+			if( !empty($user_data['cnpj']) ) {
+				$insert_data['cnpj'] = $user_data['cnpj'];
+			}
+			$this->db->set('sobrenome', 'NULL', false);
 		}
 
 		$this->db->set('data_cadastro', 'NOW()', false);
+		$this->db->set('lat', 'NULL', false);
+		$this->db->set('lng', 'NULL', false);
 
 		if( $this->db->insert('usuario', $insert_data ) ) {
 			return $this->db->insert_id();
@@ -57,44 +63,44 @@ class User_model extends MY_Model {
 			return 0;
 		}
 	}
+	public function update($user_data, $id) {
 
-	public function update($user_data, $user_id) {
-
-		if( empty($user_id) || $user_id==0 ) {
+		if( empty($id) || $id==0 ) {
 			return false;
 		}
 
 		$upd_data = array(
-			'login' => $user_data['login'],
-			'nome' => $user_data['name'],
-			'sobrenome' => $user_data['surname'],
+			'nome' => $user_data['nome'],
 			'email' => $user_data['email']
 		);
 
-		if( $user_data['tipo']=="P" ) {
+		if( $user_data['tipo']=="P" && !empty($user_data['cpf']) ) { // Pessoa
 			$insert_data['cpf'] = $user_data['cpf'];
+			$insert_data['sobrenome'] = $user_data['sobrenome'];
 		} else { // == "I"
-			$insert_data['cnpj'] = $user_data['cnpj'];
+			if( !empty($user_data['cnpj']) ) {
+				$insert_data['cnpj'] = $user_data['cnpj'];
+			}
 		}
 
 		if( !empty($user_data['password']) ) {
-			$upd_data['password'] = md5($user_data['password']);
+			$upd_data['senha'] = md5($user_data['password']);
 		}
 		
-		return( $this->db->update('usuario', $upd_data, array('id' => $user_id)) );
+		return( $this->db->update('usuario', $upd_data, array('id' => $id)) );
 	}
 
-	public function update_lat_long($user_id, $lat, $long) {
+	public function update_lat_long($id, $lat, $long) {
 		if( empty($lat) || empty($long) ) {
 			return false;
 		}
 
 		$upd_data = array(
 			'lat' => $lat,
-			'long' => $long
+			'lng' => $long
 		);
 
-		return( $this->db->update('usuario', $upd_data, array('id' => $user_id)) );
+		return( $this->db->update('usuario', $upd_data, array('id' => $id)) );
 	}
 
 	public function update_password($email, $new_pwd) {

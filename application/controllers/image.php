@@ -5,6 +5,7 @@ class Image extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('image_model');
+		$this->load->helper('xlang');
 	}
 
 	public function upload_marker_image() {
@@ -80,7 +81,7 @@ class Image extends MY_Controller {
 			return;
 		}
 
-		$this->load->model('user_model');
+		$this->load->model('usuario_model');
 
 		$status = "";
 		$msg = "";
@@ -117,7 +118,7 @@ class Image extends MY_Controller {
 
 				$user_id = $this->login_data['user_id'];
 
-				if( $this->user_model->update_avatar( $upload_data, $user_id, $thumbSizes ) ) {
+				if( $this->usuario_model->update_avatar( $upload_data, $user_id, $thumbSizes ) ) {
 					$status = "success";
 					$msg = xlang('dist_imgupload_ok');
 					$img_src = base_url().$upload_path.thumb_filename($upload_data['file_name'], 200);
