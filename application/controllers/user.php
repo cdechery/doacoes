@@ -38,7 +38,7 @@ class User extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('login', 'Login'
+		$this->form_validation->set_rules('login', 'Login',
 			'required|min_length[5]|max_length[20]|is_unique[usuario.login]|xss_clean');
 		$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
 		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[user.email]|valid_email');

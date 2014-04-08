@@ -38,9 +38,15 @@
 |
 */
 
-$route['default_controller'] = "slonga";
-$route['404_override'] = '';
+//$route['default_controller'] = "slonga";
+//$route['404_override'] = '';
 //$route['slonga'] = "slonga";
+
+$route['news/create'] = 'news/create';
+$route['news/(:any)'] = 'news/view/$1';
+$route['news'] = 'news';
+$route['default_controller'] = 'user';
+//$route['(:any)'] = 'pages/view/$1';
 
 
 
