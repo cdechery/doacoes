@@ -1,4 +1,14 @@
-<table width="95%">
+<?php
+	$labelBtn = "Desativar";
+	$cor = "black";
+	if( $interesse->fg_ativo == "N" ) {
+		$labelBtn = "Ativar";
+		$cor = "lightgrey";
+	}
+
+	$user_id = $login_data['user_id'];
+?>
+<table width="95%" style="color: <?php echo $cor?>;">
 	<tr>
 	<td width="25%">
 	<?php echo $interesse->categoria?>
@@ -7,23 +17,13 @@
 	<?php echo $interesse->raio_busca?> km
 	</td>
 	<td width="20%">
-<?php
-	$labelBtn = "Desativar";
-	$actBtn = "desativar";
-	if( $interesse->fg_ativo == "N" ) {
-		$labelBtn = "Ativar";
-		$actBtn = "desativar";
-	}
-
-	$user_id = $login_data['user_id'];
-?>
-	<input type="button" id="<?php echo $actBtn?>_interesse" value="<?php echo $labelBtn?>" data_catid="" data_userid=""/>
+	<input type="button" class="activ_interesse_btn" value="<?php echo $labelBtn?>"  data-catid="<?php echo $interesse->id?>"/>
 	</td>
 	<td width="20%">
 	<?php echo $interesse->data?>
 	</td>
 	<td width="20%">
-	<input type="button" value="Atualizar"> | <input class="delete_interesse_btn" type="button" value="Excluir" data-catid="<?php echo $interesse->id?>" data-userid="<?php echo $user_id?>">
+	<input type="button" value="Atualizar">&nbsp;&nbsp;<input class="delete_interesse_btn" type="button" value="Excluir" data-catid="<?php echo $interesse->id?>"/>
 	</td>
 	</tr>
 </table>

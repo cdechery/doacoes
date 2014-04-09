@@ -57,57 +57,53 @@ class Interesse extends MY_Controller {
 			'cat'=>$inter_data['categ']) );
 	}
 
-	public function activate( $categoria_id, $user_id ) {
+	public function activate( $categoria_id ) {
 		$status = "";
 		$msg = "";
 
+		$user_id = $this->login_data['user_id'];
+
 		if( $this->interesse_model->activate($categoria_id, $user_id) ) {
-			$status = "OK";
+			$status = "success";
 			$msg = "O Interesse foi ativado com sucesso";
 		} else {
-			$status = "ERRO";
+			$status = "error";
 			$msg = "Ocorreu uma falha ao ativar o Interesse, tente novamente";
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function deactivate( $categoria_id, $user_id ) {
+	public function deactivate( $categoria_id ) {
 		$status = "";
 		$msg = "";
 
+		$user_id = $this->login_data['user_id'];
+
 		if( $this->interesse_model->deactivate($categoria_id, $user_id) ) {
-			$status = "OK";
+			$status = "success";
 			$msg = "O Interesse foi desativado com sucesso";
 		} else {
-			$status = "ERRO";
+			$status = "error";
 			$msg = "Ocorreu uma falha ao desativar o Interesse, tente novamente";
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function update( $inter_data ) {
+	public function update( $categoria_id, $raio ) {
 		$status = "";
 		$msg = "";
 
-		$inter_data = $this->input->post(NULL, TRUE);
-
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_error_delimiters('','</br>');
-
-		$this->form_validation->set_rules('raio', 'Raio de Busca', 'required');
-
-		if ($this->form_validation->run() == FALSE) {
-			$status = "ERROR";
-			$msg = validation_errors();
+		if ( empty($raio) ) {
+			$status = "error";
+			$msg = "Selecione um Raio de Busca";
 		} else {
-			$inter_data['user_id'] = $this->login_data['user_id'];
-			$new_id = $this->interesse_model->update( $inter_data );
+			$inter_data = array('user_id'=>$this->login_data['user_id'],
+				'cat_id'=> $categoria_id,
+				'raio'=>$raio );
 
-			if( $new_id > 0 ) {
+			if( $this->interesse_model->update( $inter_data ) ) {
 				$status = "OK";
 				$msg = 'O Interesse foi atualizado com sucesso';
 			} else {
@@ -119,9 +115,11 @@ class Interesse extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );
 	}
 
-	public function delete( $categoria_id, $user_id ) {
+	public function delete( $categoria_id ) {
 		$status = "";
 		$msg = "";
+
+		$user_id = $this->login_data['user_id'];
 
 		if( $this->interesse_model->delete( $categoria_id,$user_id ) ) {
 			$status = "success";

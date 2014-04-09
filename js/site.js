@@ -39,7 +39,7 @@ function countOcurrences(str, value){
 }
 
 function go_home() {
-	location.href=site_root;
+	location.href = site_root;
 }
 
 function general_error( msg ) {
@@ -196,6 +196,17 @@ $(function() {
 		return false;
 	});
 
+	/*$(document).on('click', '.update_interesse_btn', function(e) {
+		e.preventDefault();
+		var btn = $(this);
+		new Messi('Tem certeza que quer excluir esse Interesse?',
+			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
+			{id: 1, label: 'Não', val: 'N'}], 
+			callback: function(val) { if(val=='S') delete_interesse(btn); }});
+
+		return false;
+	});*/
+
 	$(document).on('click', '.delete_interesse_btn', function(e) {
 		e.preventDefault();
 		var btn = $(this);
@@ -203,6 +214,20 @@ $(function() {
 			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
 			{id: 1, label: 'Não', val: 'N'}], 
 			callback: function(val) { if(val=='S') delete_interesse(btn); }});
+
+		return false;
+	}); // delete
+
+	$(document).on('click', '.activ_interesse_btn', function(e) {
+		e.preventDefault();
+		var btn = $(this);
+
+		if( btn.val()=='Ativar' ) {
+			activ_deactiv_interesse(btn, 'activate');
+		} else {
+			if( activ_deactiv_interesse(btn, 'deactivate') ) {
+			}
+		}
 
 		return false;
 	}); // delete
@@ -218,9 +243,38 @@ $(function() {
 	}); // delete
 });
 
+function activ_deactiv_interesse( btn, action ) {
+	$.ajax({
+		url         : site_root + 'interesse/'+action+'/'+btn.data('catid'),
+		contentType    : 'charset=utf-8',
+		dataType : 'json',
+		success     : function (data) {
+			if ( data.status === "success" ) {
+				if( action=='activate' ) {
+					btn.val('Desativar');
+					btn.closest('table').css('color','black');
+				} else {
+					btn.val('Ativar');
+					btn.closest('table').css('color','lightgrey');
+				}
+
+				return true;
+			} else {
+				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});				
+				return false;
+			}
+		},
+		error : function (data, status, e) {
+			general_error( 'Ocorreu uma falha ao Ativar/Desativar o Interesse, tente mais tarde' );
+			return false;
+		}
+	});
+}
+
 function delete_interesse( btn ) {
 	$.ajax({
-		url         : site_root + 'interesse/delete/'+btn.data('catid')+'/'+btn.data('userid'),
+		url         : site_root + 'interesse/delete/'+btn.data('catid'),
 		contentType    : 'charset=utf-8',
 		dataType : 'json',
 		success     : function (data) {

@@ -30,7 +30,7 @@ class Interesse_model extends MY_Model {
 		}
 
 		$upd_data = array('fg_ativo' => 'S');
-		$where = array('categoria_id'=>$categoria_id, 'user_id'=>$user_id);
+		$where = array('categoria_id'=>$categoria_id, 'usuario_id'=>$user_id);
 
 		return( $this->db->update('interesse', $upd_data, $where) );
 	}
@@ -41,7 +41,7 @@ class Interesse_model extends MY_Model {
 		}
 
 		$upd_data = array('fg_ativo'=> 'N');
-		$where = array('categoria_id'=>$categoria_id, 'user_id'=>$user_id);
+		$where = array('categoria_id'=>$categoria_id, 'usuario_id'=>$user_id);
 
 		return( $this->db->update('interesse', $upd_data, $where) );
 	}
@@ -67,13 +67,14 @@ class Interesse_model extends MY_Model {
 			return FALSE;
 		}
 
-		$upd_data = array('raio_busca'=> 'raio');
+		$upd_data = array('raio_busca'=> $inter_data['raio']);
 		$where = array(
-			'categoria_id'=>$inter_data['id'],
+			'categoria_id'=>$inter_data['cat_id'],
 		 	'usuario_id'=>$inter_data['user_id']
 		 );
 
-		return( $this->db->update('interesse', $upd_data, $where) );
+		$this->db->update('interesse', $upd_data, $where);
+		return( $this->db->affected_rows()>0 );
 	}
 
 	public function delete( $categoria_id, $user_id ) {
