@@ -104,15 +104,15 @@ class Interesse extends MY_Controller {
 				'raio'=>$raio );
 
 			if( $this->interesse_model->update( $inter_data ) ) {
-				$status = "OK";
+				$status = "success";
 				$msg = 'O Interesse foi atualizado com sucesso';
 			} else {
-				$status = "ERROR";
+				$status = "error";
 				$msg = 'Não foi possível atualizar o interesse';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
 	public function delete( $categoria_id ) {

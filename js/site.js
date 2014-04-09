@@ -196,16 +196,30 @@ $(function() {
 		return false;
 	});
 
-	/*$(document).on('click', '.update_interesse_btn', function(e) {
+	$(document).on('click', '.update_interesse_btn', function(e) {
 		e.preventDefault();
 		var btn = $(this);
-		new Messi('Tem certeza que quer excluir esse Interesse?',
-			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
-			{id: 1, label: 'Não', val: 'N'}], 
-			callback: function(val) { if(val=='S') delete_interesse(btn); }});
+		var raio = $('#raio_'+btn.data('catid')).val();
 
+		$.ajax({
+			url 		: site_root + 'interesse/update/'+btn.data('catid')+'/'+raio,
+			contentType : 'charset=utf-8',
+			dataType	: 'json',
+			success     : function (data) {
+				if ( data.status === "success" ) {
+					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!',
+						titleClass: 'success', modal: true });
+				} else {			
+					new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
+						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});				
+				}
+			},
+			error : function (data, status, e) {
+				general_error( 'Ocorreu uma falha ao Atualizar o Interesse, tente mais tarde' );
+			}
+		});
 		return false;
-	});*/
+	});
 
 	$(document).on('click', '.delete_interesse_btn', function(e) {
 		e.preventDefault();
@@ -282,7 +296,7 @@ function delete_interesse( btn ) {
 			if ( data.status === "success" ) {
 				btn.closest('table').fadeOut('fast', function() {
 					$(this).remove();
-					if ( inters.find('table').length === 0) {
+					if ( inters.children('table').length === 0) {
 	                    $('#interesses_none').show();
 					}
 				});

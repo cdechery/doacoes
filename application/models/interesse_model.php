@@ -63,10 +63,6 @@ class Interesse_model extends MY_Model {
 	}
 
 	public function update( $inter_data ) {
-		if( empty($categoria_id) || empty($user_id) ) {
-			return FALSE;
-		}
-
 		$upd_data = array('raio_busca'=> $inter_data['raio']);
 		$where = array(
 			'categoria_id'=>$inter_data['cat_id'],
@@ -74,7 +70,7 @@ class Interesse_model extends MY_Model {
 		 );
 
 		$this->db->update('interesse', $upd_data, $where);
-		return( $this->db->affected_rows()>0 );
+		return( $this->db->affected_rows()>=0 );
 	}
 
 	public function delete( $categoria_id, $user_id ) {
