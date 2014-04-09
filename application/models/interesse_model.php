@@ -81,8 +81,9 @@ class Interesse_model extends MY_Model {
 			return FALSE;
 		}
 
-		$where = array('categoria_id'=>$categoria_id, 'user_id'=>$user_id);
+		$where = array('categoria_id'=>$categoria_id, 'usuario_id'=>$user_id);
+		$this->db->delete('interesse', $where);
 
-		return ( $this->db->delete('interesse', $where) );
+		return( $this->db->affected_rows()>0 );
 	}
 }
