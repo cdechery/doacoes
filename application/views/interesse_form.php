@@ -27,3 +27,40 @@
 	</tr>
 </table>
 </form>
+<style>
+.interesse_head {
+	font-weight: bold;
+	font-size: 14px;
+	background-color: lightgray;
+}
+</style>
+<table width="95%" class="interesse_head">
+	<tr>
+	<td width="25%">
+	Categoria
+	</td>
+	<td width="25%">
+	Raio
+	</td>
+	<td width="10%">
+	&nbsp;
+	</td>
+	<td width="20%">
+	Data Inclusão
+	</td>
+	<td width="20%">
+	Ações
+	</td>
+	</tr>
+</table>
+<?php
+	$display_inter_none = "none";
+	if( $int_count==0 ) {
+		$display_inter_none = "box";
+	}
+?>
+<div id="interesses">
+	<div align="center" id="interesses_none" style="display: <?php echo $display_inter_none?>;">
+		Não há nenhum Interesse cadastrado.
+	</div>
+</div>

@@ -184,7 +184,8 @@ $(function() {
 
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
-                    $('#interesses').append(data);
+                    $('#interesses_none').hide();
+                    $('#interesses').append( data );
                 });
 
 			} else {
@@ -197,11 +198,11 @@ $(function() {
 
 	$(document).on('click', '.delete_interesse_btn', function(e) {
 		e.preventDefault();
-		var link = $(this);
+		var btn = $(this);
 		new Messi('Tem certeza que quer excluir esse Interesse?',
 			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
 			{id: 1, label: 'Não', val: 'N'}], 
-			callback: function(val) { if(val=='S') delete_interesse(link); }});
+			callback: function(val) { if(val=='S') delete_interesse(btn); }});
 
 		return false;
 	}); // delete
@@ -219,16 +220,16 @@ $(function() {
 
 function delete_interesse( btn ) {
 	$.ajax({
-		url         : site_root + 'interesse/delete/'+btn.data('cat_id')+'/'+btn.data('user_id'),
+		url         : site_root + 'interesse/delete/'+btn.data('catid')+'/'+btn.data('userid'),
 		contentType    : 'charset=utf-8',
 		dataType : 'json',
 		success     : function (data) {
-			var images = $('#interesses');
-			if (data.status === "success") {
-				link.parent('div').fadeOut('fast', function() {
+			var inters = $('#interesses');
+			if ( data.status === "success" ) {
+				btn.closest('table').fadeOut('fast', function() {
 					$(this).remove();
-					if (images.find('div').length === 0) {
-						images.html('<p>Sem imagens.</p>');
+					if ( inters.find('table').length === 0) {
+	                    $('#interesses_none').show();
 					}
 				});
 			} else {
@@ -237,7 +238,7 @@ function delete_interesse( btn ) {
 			}
 		},
 		error : function (data, status, e) {
-			general_error( lang['dist_imgdel_nok'] );
+			general_error( 'Ocorreu uma falha ao remover o Interesse, tente mais tarde' );
 		}
 	});
 }

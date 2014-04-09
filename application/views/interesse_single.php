@@ -14,14 +14,16 @@
 		$labelBtn = "Ativar";
 		$actBtn = "desativar";
 	}
+
+	$user_id = $login_data['user_id'];
 ?>
-	<input type="button" id="<?php echo $actBtn?>_interesse" value="<?php echo $labelBtn?>"/>
+	<input type="button" id="<?php echo $actBtn?>_interesse" value="<?php echo $labelBtn?>" data_catid="" data_userid=""/>
 	</td>
 	<td width="20%">
 	<?php echo $interesse->data?>
 	</td>
 	<td width="20%">
-	<input type="button" value="Atualizar"> | <input type="button" value="Excluir">
+	<input type="button" value="Atualizar"> | <input class="delete_interesse_btn" type="button" value="Excluir" data-catid="<?php echo $interesse->id?>" data-userid="<?php echo $user_id?>">
 	</td>
 	</tr>
 </table>

@@ -240,8 +240,8 @@ class Usuario extends MY_Controller {
 		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
-		$this->load->view('interesse_form');
-		$this->load->view('interesse_lista');
+
+		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
 		foreach ($interesses as $int) {
 			$this->load->view('interesse_single', array('interesse'=>$int));
 		}

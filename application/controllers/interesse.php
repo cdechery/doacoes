@@ -119,15 +119,15 @@ class Interesse extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg), 'new_id'=>$new_id) );
 	}
 
-	public function delete( $id ) {
+	public function delete( $categoria_id, $user_id ) {
 		$status = "";
 		$msg = "";
 
-		if( $this->interesse_model->delete( $id ) ) {
-			$status = "OK";
+		if( $this->interesse_model->delete( $categoria_id,$user_id ) ) {
+			$status = "success";
 			$msg = "O Interesse foi excluído com sucesso";
 		} else {
-			$status = "ERRO";
+			$status = "error";
 			$msg = "Ocorreu uma falha ao excluir o Interesse, tente novamente";
 		}
 
