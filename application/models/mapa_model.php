@@ -7,7 +7,8 @@ class Mapa_model extends MY_Model {
 	}
 
 	public function get_all() {
-		$this->db->select('u.id, u.lat, u.long, c.id, s.id');
+		$this->db->select('u.id as user_id, u.lat, u.lng, 
+			c.id as cat_id, s.id as sit_id');
 		$this->db->from('usuario u');
 		$this->db->join('item i', 'u.id = i.usuario_id');
 		$this->db->join('categoria c', 'c.id = i.categoria_id');

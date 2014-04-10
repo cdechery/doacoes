@@ -49,8 +49,8 @@ class MY_Controller extends CI_Controller
 		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);
 		if( isset($session["user_id"]) ) {
 			$login_status = array("logged_in"=>TRUE,
-								  "user_id" => $session["user_id"],
-								  "name" => $session["name"] );
+				"user_id" => $session["user_id"],
+				"name" => $session["name"] );
 		}
 		
 		return $login_status;

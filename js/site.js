@@ -51,12 +51,12 @@ function general_error( msg ) {
 }
 
 function load_infowindow_content(infowindow, marker_id){
-		$.ajax({
-		url: site_root +'map/marker_infowindow/' + marker_id,
-		success: function(data) {
-			infowindow.setContent(data);
-		}
-	});
+		//$.ajax({
+		//url: site_root +'map/marker_infowindow/' + marker_id,
+		//success: function(data) {
+			infowindow.setContent('SLONGA!!');
+		//}
+	//});
 }
 
 function newmarker_infowindow_content(lat, lng, infowindow) {
