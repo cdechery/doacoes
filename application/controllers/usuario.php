@@ -7,23 +7,29 @@ class Usuario extends MY_Controller {
 		$this->load->model('usuario_model');
 		$this->load->helper('xlang');
 		$this->load->helper('form');
+		$this->load->helper('cookie');
 	}
 	
 	public function logout() {
 		$this->session->sess_destroy();
+		delete_cookie('DoacoesUserCookie'); //TODO colocar como param
 		redirect( base_url() );
 	}
 
-	public function new_user() {
+	public function new_user($tipo = "P") {
 		if( $this->is_user_logged_in ) {
 			redirect( base_url() );
+		}
+
+		if( $tipo!="P" && $tipo!="I" ) {
+			show_error('Tipo de Usuário inválido');
 		}
 
 		$head_data = array("title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
 		$data = array('action' => 'insert');
-		$this->load->view('user_form', array('data'=>$data) );
+		$this->load->view('user_form', array('data'=>$data, 'tipo'=>$tipo) );
 		$this->load->view('foot');
 	}
 
@@ -48,6 +54,7 @@ class Usuario extends MY_Controller {
 		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[usuario.email]|valid_email');
 		$this->form_validation->set_rules('password', 'Senha', 'required|min_length[6]|max_length[8]');
 		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
+		$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -81,7 +88,7 @@ class Usuario extends MY_Controller {
 		$user_data['action'] = 'update';
 
 		if( !empty($user_data['avatar']) ) {
-			$user_data['avatar'] = thumb_filename($user_data['avatar'], 150);
+			$user_data['avatar'] = thumb_filename($user_data['avatar'], 200);
 		}
 
 		$this->load->view('user_form', array('data'=>$user_data) );
@@ -107,6 +114,7 @@ class Usuario extends MY_Controller {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
 			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
 			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
+			$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
 
 			if( $user_data['tipo']=='P' ) { // Pessoa
 				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[5]|max_length[40]');

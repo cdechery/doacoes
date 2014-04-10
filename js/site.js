@@ -292,11 +292,11 @@ function delete_interesse( btn ) {
 		contentType    : 'charset=utf-8',
 		dataType : 'json',
 		success     : function (data) {
-			var inters = $('#interesses');
 			if ( data.status === "success" ) {
 				btn.closest('table').fadeOut('fast', function() {
 					$(this).remove();
-					if ( inters.children('table').length === 0) {
+					//TODO improve this!!!
+					if ( $(document).find('.interesse_row').length === 0) {
 	                    $('#interesses_none').show();
 					}
 				});

@@ -21,7 +21,7 @@ function set_user_session( $user_id ) {
 		  	'name' => $user_data['name'] );
 
 		$CI->session->set_userdata( $session_data );
-		return true; 
+		return $session; 
 	} else {
 		return false;
 	}

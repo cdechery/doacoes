@@ -41,16 +41,20 @@ class Usuario_model extends MY_Model {
 			'email' => $user_data['email'],
 			'senha' => md5( $user_data['password'] ),
 			'tipo' => $user_data['tipo'],
+			'lat' => $user_data['lat'],
+			'lng' => $user_data['lng']
 		);
 
-		if( $user_data['tipo']=="P" && !empty($user_data['cpf']) ) { // Pessoa
-			$insert_data['cpf'] = $user_data['cpf'];
+		if( $user_data['tipo']=="P" ) { // Pessoa
+			$insert_data['sobrenome'] = $user_data['sobrenome'];
+			if( !empty($user_data['cpf']) ) {
+				$insert_data['cpf'] = $user_data['cpf'];
+			}
 			$insert_data['sobrenome'] = $user_data['sobrenome'];
 		} else { // == "I"
 			if( !empty($user_data['cnpj']) ) {
 				$insert_data['cnpj'] = $user_data['cnpj'];
 			}
-			$this->db->set('sobrenome', 'NULL', false);
 		}
 
 		$this->db->set('data_cadastro', 'NOW()', false);
@@ -71,15 +75,20 @@ class Usuario_model extends MY_Model {
 
 		$upd_data = array(
 			'nome' => $user_data['nome'],
-			'email' => $user_data['email']
+			'email' => $user_data['email'],
+			'lat' => $user_data['lat'],
+			'lng' => $user_data['lng']
 		);
 
-		if( $user_data['tipo']=="P" && !empty($user_data['cpf']) ) { // Pessoa
-			$insert_data['cpf'] = $user_data['cpf'];
+		if( $user_data['tipo']=="P" ) { // Pessoa
+			$upd_data['sobrenome'] = $user_data['sobrenome'];
+			if( !empty($user_data['cpf']) ) {
+				$upd_data['cpf'] = $user_data['cpf'];
+			}
 			$insert_data['sobrenome'] = $user_data['sobrenome'];
 		} else { // == "I"
 			if( !empty($user_data['cnpj']) ) {
-				$insert_data['cnpj'] = $user_data['cnpj'];
+				$upd_data['cnpj'] = $user_data['cnpj'];
 			}
 		}
 

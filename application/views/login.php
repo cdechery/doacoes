@@ -14,7 +14,9 @@
 	<h3>Login</h3>
 <p>Username: <input type="text" name="login" id="login" /></p>
 <p>Password: <input type="password" name="password" id="password"/></p>
-<p><input type="submit" value="Go"/></p>
+<div style="font-size: small; align:left"> Manter conectado? <input type="checkbox" name="lembrar"></div>
+<div align="right"><input type="submit" value="Go"/></div>
+
 <p><a class="various" href="<?php echo base_url()?>user/reset_password" data-fancybox-type="iframe"><?php echo xlang('dist_resetpw_link')?></a></p>
 </form>
 </div>

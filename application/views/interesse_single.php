@@ -8,7 +8,7 @@
 
 	$user_id = $login_data['user_id'];
 ?>
-<table width="95%" style="color: <?php echo $cor?>;">
+<table width="95%" style="color: <?php echo $cor?>;" class="interesse_row">
 	<tr>
 	<td width="25%">
 	<?php echo $interesse->categoria?>

@@ -5,6 +5,7 @@ class Login extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('xlang');	
+		$this->load->helper('cookie');	
 	}
 
 	public function index($msg = "") {
@@ -20,16 +21,28 @@ class Login extends MY_Controller {
 
 		$form_data = $this->input->post(NULL, TRUE);
 
-		$user_data = $this->usuario_model->check_login( $form_data['login'], $form_data['password'] );
+		$user_data = $this->usuario_model->check_login( $form_data['login'],
+			$form_data['password'] );
 
 		if( $user_data ) {
 			$session_data = array('logged_in'=>TRUE,
 					  		'user_id' => $user_data['id'],
-					  		'name' => $user_data['name'] );
+					  		'name' => $user_data['nome'] );
 
 			$this->session->set_userdata( $session_data );
 
-			// TODO - Cookie Support
+
+			if( isset($form_data['lembrar']) ) {
+				$cookie = array(
+				    'name'   => 'DoacoesUserCookie',
+				    'value' => $user_data['id'],
+				    'expire' => '518400',
+				    'secure' => TRUE
+				);
+				set_cookie( $cookie );
+			} else {
+				delete_cookie('DoacoesUserCookie');
+			}
 
 			redirect( base_url() );
 		} else {

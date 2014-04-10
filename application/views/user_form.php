@@ -4,8 +4,6 @@
 	$cpf = $cnpj = $login = $avatar = $action = "";
 	$id = "";
 
-	$tipo = "P";
-
 	if( !empty($data) ) {
 		extract($data);
 	}
@@ -22,16 +20,66 @@
 		$login_disabled = "disabled";
 	}
 
-	$naoMostraSobrenome = $naoMostraCPF = $naoMostraCNPJ = "";
-
+	$doc = "cpf";
 	if( $tipo=="I" ) { // Instituicao
-		$naoMostraSobrenome = "style='display: none;'";
-		$naoMostraCPF = "style='display: none;'";
-	} else { // Pessoa
-		$naoMostraCNPJ = "style='display: none;'";
+		$doc = "cnpj";
 	}
 ?>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript">
+//<![CDATA[
+var map; // Global declaration of the map
+var userLocMarker = null;
 
+function updateFormLatLng(lat, lng) {
+	document.userData.lat.value = lat;
+	document.userData.lng.value = lng;
+}
+
+function createMarker( markerOptions ) {
+	if( userLocMarker!=null ) {
+		return false;
+	}
+
+	var marker = new google.maps.Marker( markerOptions );
+	marker.set("content", "Sua localização");
+
+	userLocMarker = marker;
+	google.maps.event.addListener(marker, "dragend", function(event) {
+		updateFormLatLng(event.latLng.lat(), event.latLng.lng());
+	});
+		
+	updateFormLatLng( marker.getPosition().lat(),
+		marker.getPosition().lng() );
+}
+
+function initialize() {
+	
+	var myLatlng = new google.maps.LatLng(-22.9035,-43.2096);
+	var myOptions = {
+  		zoom: 13,
+		center: myLatlng,
+  		mapTypeId: google.maps.MapTypeId.ROADMAP}
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	google.maps.event.addListener(map, "dblclick", function(event) {
+		createMarker({ map: map, position:event.latLng, draggable: true });
+	});
+
+<?php
+	if( !empty($lat) && !empty($lng) ) {
+?>
+var myLatlng = new google.maps.LatLng(<?php echo $lat?>, <?php echo $lng?>);	
+createMarker( { map: map, position:myLatlng, draggable: true } );
+map.setZoom(15);
+map.setCenter( myLatlng );
+<?php		
+	} // 
+?>
+}
+
+window.onload = initialize;
+//]]>
+</script>
 <table cellpadding=5 cellspacing=5 border=0>
 	<tr>
 		<td>
@@ -56,24 +104,30 @@
 ?>
 		</td>
 		<td>
-		<form method="POST" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
+		<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
 		<input type="hidden" name="id" value="<?php echo $id ?>">
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
-		<input type="hidden" name="long" value="<?php echo $lng ?>">
+		<input type="hidden" name="lng" value="<?php echo $lng ?>">
 		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
 
 		<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login"/><br>
-		<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Name" /><br>
-		<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" <?php echo $naoMostraSobrenome?>/><br>
-		<input type="text" name="email" value="<?php echo $email; ?>" size="50" title="Email" /><br>
-		<input type="text" name="cpf" value="<?php echo $cpf; ?>" size="50" title="CPF" <?php echo $naoMostraCPF?>/><br>
-		<input type="text" name="cnpj" value="<?php echo $cpf; ?>" size="50" title="CNPJ" <?php echo $naoMostraCNPJ?>/><br>
+		<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" /><br>
+<?php
+	if( $tipo=="P") {
+?>		
+		<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome"/><br>
+<?php
+	}
+?>
+		<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" /><br>
+		<input type="text" name="<?php echo ${'doc'}?>" value="<?php echo ${$doc}?>" size="50" title="<?php echo strtoupper($doc)?>"/><br>
 		Senha<br>
 		<input type="password" name="password" value="" size="10"><br>
 		Repita a senha<br>
 		<input type="password" name="password_2" value="" size="10" /><br>
+		<div id="map_canvas" style="width: 420px; height:300px;"></div>		
 
-		<div><input type="submit" value="<?php echo $actions[ $action ]; ?>"/></div>
+		<p><br><input type="submit" value="<?php echo $actions[ $action ]; ?>"/></p>
 		</form>
 		<td>
 		</td>

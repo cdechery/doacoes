@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller
 	public function __construct() {
 
 		parent::__construct();
+		$this->load->helper('xlogin');
 
 		// This header code was necessary due to some issues with AJAX calls. It doesn't work with CI's header
 		// only with PHP's native header() function for some reason
@@ -38,11 +39,15 @@ class MY_Controller extends CI_Controller
 	}
 
 	private function check_session() {
-		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);
-		
+		$cookie = $this->input->cookie('DoacoesUserCookie');
 		$session = $this->session->all_userdata();
 
-		if( isset($session["user_id"]) && $session["user_id"]!= 0 ) {
+		if( $cookie && !isset($session['user_id']) ) {
+			$session = set_user_session( $cookie['value'] );
+		}
+
+		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);
+		if( isset($session["user_id"]) ) {
 			$login_status = array("logged_in"=>TRUE,
 								  "user_id" => $session["user_id"],
 								  "name" => $session["name"] );

@@ -48,12 +48,12 @@ body {
 <?php
 		$user_name = "None";
 		$signup_link = " | <a href='".base_url()."login'>Login</a>";
-		$signup_link .= " | <a href='".base_url()."user/new_user'>Sign up</a>";
+		$signup_link .= " | <a href='".base_url()."usuario/new_user'>Sign up</a>";
 
 
 		if( isset($login_data) && $login_data["logged_in"] ) {
-			$user_name = "<a href='".base_url()."user/modify'>". $login_data["name"]."</a> ";
-			$user_name .= "[<a href='".base_url()."user/logout'>Logout</a>]";
+			$user_name = "<a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
+			$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
 			$signup_link = "";
 		}
 ?>
