@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Situacao extends MY_Model {
+class Situacao_model extends MY_Model {
 	
 	public function __construct() {
 		parent::__construct();
 	}
 
-	public funcition get_all() {
+	public function get_all() {
 		$sits =  $this->db->get('situacao')->result();
 		return $sits;
 	}

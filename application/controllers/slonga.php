@@ -16,8 +16,26 @@ class Slonga extends MY_Controller {
 		$this->load->model('mapa_model');
 		$map_result = $this->mapa_model->get_all();
 
+		$custom_js_global = "";
+		$custom_js_init = "";
+
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
+
+		$this->load->model('situacao_model');
+		$situacoes = $this->situacao_model->get_all();
+
+		$custom_js_global .= "var markers_settings = new Array();\n";
+
+		$markers_created = array();
 		foreach($map_result as $row) {
 			if( $row->user_id == $this->login_data['user_id'] ) {
+				continue;
+			}
+
+			if( in_array($row->user_id, $markers_created) ) {
+				$custom_js_init .= "marker_".$row->user_id."_settings.cats.push('".$row->cat_id."');";
+				$custom_js_init .= "marker_".$row->user_id."_settings.sits.push('".$row->sit_id."');";
 				continue;
 			}
 
@@ -29,6 +47,14 @@ class Slonga extends MY_Controller {
 			$marker['id'] = $row->user_id;
 
 			$this->googlemaps->add_marker($marker);
+
+			$custom_js_global .= "var marker_".$row->user_id."_settings = {};\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings[\"cats\"] = new Array('".$row->cat_id."');\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings[\"sits\"] = new Array('".$row->sit_id."');\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings[\"mrk\"] = marker_".$row->user_id.";";
+			$custom_js_init .= "markers_settings.push( marker_".$row->user_id."_settings );";
+
+			$markers_created[] = $row->user_id;
 		}
 
 		if( $this->is_user_logged_in ) {
@@ -37,7 +63,7 @@ class Slonga extends MY_Controller {
 
 			$marker = array();
 			$marker['position'] = $user_data['lat'].', '.$user_data['lng'];
-			$marker['infowindow_content'] = 'VocÃª';
+			$marker['infowindow_content'] = 'Você';
 			$marker['clickable'] = false;
 			$marker['icon'] = base_url().'icons/yellow-dot.png';
 			$marker['id'] = $user_data['id'];
@@ -47,11 +73,20 @@ class Slonga extends MY_Controller {
 			$config['center'] = $user_data['lat'].', '.$user_data['lng'];
 		}
 
+		$config['custom_js_global'] = $custom_js_global;
+		$config['custom_js_init'] = $custom_js_init;
+
 		$this->googlemaps->initialize($config);
 		$map = $this->googlemaps->create_map();
 
+		$view_data = array('map'=>$map,
+			'categorias'=>$categorias,
+			'situacoes'=>$situacoes );
+
+		//$this->output->enable_profiler(TRUE);
+
 		$this->load->view('head', array('title'=>'Slonga!!!'));
-		$this->load->view("slonga", array('map'=>$map));
+		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');
 	}
 }
