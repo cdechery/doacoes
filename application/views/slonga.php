@@ -26,6 +26,14 @@
 			}
 		}
 	}
+
+	var radiusShown = true;
+	function hideRadiusCircles() {
+		radiusShown = !radiusShown;
+		for(var i=0; i<radiusCircles.length; i++) {
+			radiusCircles[i].setVisible(radiusShown);
+		}
+	}
 </script>
 <p>Filtros</p>
 <table>
@@ -48,3 +56,4 @@
 	<td>
 	</tr>
 </table>
+<input type=button value="Esconder/Mostrar Raios" onClick="hideRadiusCircles();">
