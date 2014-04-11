@@ -50,13 +50,13 @@ function general_error( msg ) {
 		buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 }
 
-function load_infowindow_content(infowindow, marker_id){
-		//$.ajax({
-		//url: site_root +'map/marker_infowindow/' + marker_id,
-		//success: function(data) {
-			infowindow.setContent('SLONGA!!');
-		//}
-	//});
+function load_infowindow_content(infowindow, user_id){
+		$.ajax({
+		url: site_root +'usuario/map_infowindow/' + user_id,
+		success: function(data) {
+			infowindow.setContent(data);
+		}
+	});
 }
 
 function newmarker_infowindow_content(lat, lng, infowindow) {

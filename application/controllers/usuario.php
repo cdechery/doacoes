@@ -16,6 +16,19 @@ class Usuario extends MY_Controller {
 		redirect( base_url() );
 	}
 
+	public function map_infowindow($user_id) {
+		if( empty($user_id) ) {
+			return;
+		}
+
+		$data = $this->usuario_model->get_data($user_id);
+		$this->load->model('image_model');
+		$images = $this->image_model->get_user_item_images( $user_id );
+
+		$this->load->view('usuario_infowindow',
+			array('data'=>$data, 'images'=>$images));
+	}
+
 	public function new_user($tipo = "P") {
 		if( $this->is_user_logged_in ) {
 			redirect( base_url() );

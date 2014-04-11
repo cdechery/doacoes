@@ -16,7 +16,7 @@ class Mapa extends MY_Controller {
 		$config['center'] = '-22.9035,-43.2096';
 		$config['zoom'] = 'auto';	
 		$config['geocodeCaching'] = FALSE;
-		$config['minifyJS'] = FALSE;
+		$config['minifyJS'] = TRUE;
 		$config['places'] = FALSE;
 		$config['cluster'] = FALSE;
 		$config['sensor'] = TRUE;
