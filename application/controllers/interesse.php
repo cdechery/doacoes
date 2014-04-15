@@ -25,7 +25,7 @@ class Interesse extends MY_Controller {
 		$this->form_validation->set_error_delimiters('','</br>');
 
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('raio', 'Raio de Busca', 'required');
+		//$this->form_validation->set_rules('raio', 'Raio de Busca', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";

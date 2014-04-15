@@ -13,7 +13,7 @@
 	<td width="25%">
 	<?php echo $interesse->categoria?>
 	</td>
-	<td width="30%">
+	<td width="25%">
 		<select id="raio_<?php echo $interesse->id?>" style="width: 100px;">
 <?php
 	$raios = $params['raios_busca'];
@@ -23,7 +23,7 @@
 		echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
 	}
 ?>
-		</select> <input type="button" value="Atualizar" class="update_interesse_btn" data-catid="<?php echo $interesse->id?>">
+		</select>
 	</td>
 	<td width="10%">
 	&nbsp;
@@ -31,9 +31,9 @@
 	<td width="15%">
 	<?php echo $interesse->data?>
 	</td>
-	<td width="20%">
+	<td width="25%">
+	<input type="button" value="Atualizar" class="update_interesse_btn" data-catid="<?php echo $interesse->id?>">		
 	<input type="button" class="activ_interesse_btn" value="<?php echo $labelBtn?>" data-catid="<?php echo $interesse->id?>"/>
-	<input class="delete_interesse_btn" type="button" value="Excluir" data-catid="<?php echo $interesse->id?>"/>
 	</td>
 	</tr>
 </table>

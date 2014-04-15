@@ -14,12 +14,11 @@
 	</td>
 	<td>
 	Distância
-		<select id="raio" style="width: 100px;">
+		<select name="raio" style="width: 100px;">
 <?php
 	$raios = $params['raios_busca'];
 	$selected = "";
 	foreach($raios as $raio => $desc) {
-		$selected=($raio==$interesse->raio_busca)?"selected":"";
 		echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
 	}
 ?>

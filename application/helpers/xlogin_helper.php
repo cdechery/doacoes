@@ -8,7 +8,7 @@ function set_user_session( $user_id ) {
 	$CI = & get_instance();
 	
 	$session = $CI->session->all_userdata();
-	if( FALSE!=$session["logged_in"] ) {
+	if( isset($session["logged_in"]) ) {
 		return $session;
 	}
 
