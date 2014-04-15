@@ -77,7 +77,7 @@ class Slonga extends MY_Controller {
 
 			$circle = array();
 			$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
-			$circle['radius'] = '1000';
+			$circle['radius'] = '5000';
 			$circle['fillOpacity'] = '0.3';
 			$circle['fillColor'] = 'yellow';
 			$this->googlemaps->add_circle($circle);
@@ -85,7 +85,7 @@ class Slonga extends MY_Controller {
 			$custom_js_init .= "radiusCircles.push(circle_".$numCircles++.");";
 
 			$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
-			$circle['radius'] = '5000';
+			$circle['radius'] = '10000';
 			$circle['fillOpacity'] = '0.3';
 			$circle['fillColor'] = 'green';
 			$this->googlemaps->add_circle($circle);			
@@ -93,7 +93,7 @@ class Slonga extends MY_Controller {
 			$custom_js_init .= "radiusCircles.push(circle_".$numCircles++.");";
 
 			$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
-			$circle['radius'] = '10000';
+			$circle['radius'] = '25000';
 			$circle['fillOpacity'] = '0.3';
 			$circle['fillColor'] = 'orange';
 			$this->googlemaps->add_circle($circle);			
@@ -101,7 +101,7 @@ class Slonga extends MY_Controller {
 			$custom_js_init .= "radiusCircles.push(circle_".$numCircles++.");";
 
 			$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
-			$circle['radius'] = '25000';
+			$circle['radius'] = '50000';
 			$circle['fillOpacity'] = '0.3';
 			$circle['fillColor'] = 'red';
 			$this->googlemaps->add_circle($circle);			

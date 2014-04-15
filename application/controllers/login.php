@@ -33,13 +33,13 @@ class Login extends MY_Controller {
 
 
 			if( isset($form_data['lembrar']) ) {
-				$cookie = array(
+				/*$cookie = array(
 				    'name'   => 'DoacoesUserCookie',
 				    'value' => $user_data['id'],
-				    'expire' => '518400',
+				    'expire' => '86500',
 				    'secure' => TRUE
-				);
-				set_cookie( $cookie );
+				);*/
+				$this->input->set_cookie('DoacoesUserCookie', $user_data['id'], 259000 );
 			} else {
 				delete_cookie('DoacoesUserCookie');
 			}

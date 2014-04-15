@@ -95,21 +95,16 @@ class Interesse extends MY_Controller {
 		$status = "";
 		$msg = "";
 
-		if ( empty($raio) ) {
-			$status = "error";
-			$msg = "Selecione um Raio de Busca";
-		} else {
-			$inter_data = array('user_id'=>$this->login_data['user_id'],
-				'cat_id'=> $categoria_id,
-				'raio'=>$raio );
+		$inter_data = array('user_id'=>$this->login_data['user_id'],
+			'cat_id'=> $categoria_id,
+			'raio'=>$raio );
 
-			if( $this->interesse_model->update( $inter_data ) ) {
-				$status = "success";
-				$msg = 'O Interesse foi atualizado com sucesso';
-			} else {
-				$status = "error";
-				$msg = 'Não foi possível atualizar o interesse';
-			}
+		if( $this->interesse_model->update( $inter_data ) ) {
+			$status = "success";
+			$msg = 'O Interesse foi atualizado com sucesso';
+		} else {
+			$status = "error";
+			$msg = 'Não foi possível atualizar o interesse';
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );

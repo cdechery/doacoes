@@ -42,8 +42,8 @@ class MY_Controller extends CI_Controller
 		$cookie = $this->input->cookie('DoacoesUserCookie');
 		$session = $this->session->all_userdata();
 
-		if( $cookie && !isset($session['user_id']) ) {
-			$session = set_user_session( $cookie['value'] );
+		if( $cookie!=FALSE && !isset($session['user_id']) ) {
+			$session = set_user_session( $cookie );
 		}
 
 		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);

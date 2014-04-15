@@ -13,13 +13,17 @@
 	</select>
 	</td>
 	<td>
-	Raio
-	<select name="raio">
-		<option value=""></option>
-		<option value="1">1 km</option>
-		<option value="5">5 km</option>
-		<option value="10">10 km</option>
-	</select>
+	Distância
+		<select id="raio" style="width: 100px;">
+<?php
+	$raios = $params['raios_busca'];
+	$selected = "";
+	foreach($raios as $raio => $desc) {
+		$selected=($raio==$interesse->raio_busca)?"selected":"";
+		echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
+	}
+?>
+		</select>
 	</td>
 	<td>
 	<input type="submit" value="Inserir">
@@ -40,7 +44,7 @@
 	Categoria
 	</td>
 	<td width="25%">
-	Raio
+	Distância
 	</td>
 	<td width="10%">
 	&nbsp;

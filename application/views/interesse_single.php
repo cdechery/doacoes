@@ -14,13 +14,13 @@
 	<?php echo $interesse->categoria?>
 	</td>
 	<td width="30%">
-		<select id="raio_<?php echo $interesse->id?>" style="width: 80px;">
+		<select id="raio_<?php echo $interesse->id?>" style="width: 100px;">
 <?php
 	$raios = $params['raios_busca'];
 	$selected = "";
-	foreach($raios as $raio) {
+	foreach($raios as $raio => $desc) {
 		$selected=($raio==$interesse->raio_busca)?"selected":"";
-		echo '<option value="'.$raio.'" '.$selected.'>'.$raio.' km</option>';
+		echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
 	}
 ?>
 		</select> <input type="button" value="Atualizar" class="update_interesse_btn" data-catid="<?php echo $interesse->id?>">
