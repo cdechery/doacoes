@@ -76,15 +76,18 @@ class Slonga extends MY_Controller {
 			$numCircles = 0;
 
 			$raios = $this->params['raios_busca'];
+			$cores = array('blue', 'green', 'yellow', 'orange', 'red');
 			foreach ($raios as $raio => $desc_raio) {
 				$circle = array();
 				$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
 				$circle['radius'] = $raio*1000;
 				$circle['fillOpacity'] = '0.3';
-				$circle['fillColor'] = 'green';
+				$circle['fillColor'] = $cores[ $numCircles ];
 				$this->googlemaps->add_circle($circle);
 
-				$custom_js_init .= "radiusCircles.push(circle_".$numCircles++.");";
+				$custom_js_init .= "radiusCircles.push(circle_".$numCircles.");";
+
+				$numCircles++;
 			}
 		}
 
