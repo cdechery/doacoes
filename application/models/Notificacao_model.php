@@ -51,17 +51,27 @@ class Notificacao_model extends MY_Model {
 				)
 			');
 
+		$num_rows = $this->db->affected_rows();
+
 		if( $q ) {
 			$this->db->where('usuario_id', '-1');
 			$this->db->delete('controle_notif_email');
 		}
+
+		return $num_rows;
 	}
 
 	public function get_pending_notifs() {
-		$this->db->select('item_id, usuario_id');
-		$this->db->from('controle_notif_email');
-		$this->db->where('usuario_id !=', '-1');
-		$this->db->where('fg_email_enviado', 'N');
+		$this->db->select('c.item_id, it.descricao, 
+			im.nome_arquivo, c.usuario_id, 
+			u.nome, u.email');
+		$this->db->from('controle_notif_email c');
+		$this->db->join('item it', 'it.id = c.item_id');
+		$this->db->join('imagem im', 'im.item_id = it.id', 'LEFT');
+		$this->db->join('usuario u', 'u.id=c.usuario_id');
+		$this->db->where('c.usuario_id !=', '-1');
+		$this->db->where('c.fg_email_enviado', 'N');
+		$this->db->order_by('c.usuario_id', 'desc');
 		return $this->db->get()->result();
 	}
 }
