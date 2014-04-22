@@ -18,7 +18,7 @@ class MY_Controller extends CI_Controller
 			header('Access-Control-Allow-Origin: '.$url);
 		}
 		
-		// paramsribution settings available to all Controllers
+		// params settings available to all Controllers
 		$this->params = $this->config->item('site_params');
 		
 		$this->login_data = $this->check_session();
@@ -31,11 +31,16 @@ class MY_Controller extends CI_Controller
 	}
 	
 	protected function check_owner( $model, $id ) {
+		$this->load->helper('xlang');
 		if( !$this->is_user_logged_in ) {
-			return FALSE;
+			return xlang('dist_errsess_expire');
 		}
 		
-		return $model->is_owner( $this->login_data['user_id'], $id );
+		if( $model->is_owner( $this->login_data['user_id'], $id ) ) {
+			return NULL;
+		} else {
+			return xlang('dist_errperm');
+		}
 	}
 
 	private function check_session() {

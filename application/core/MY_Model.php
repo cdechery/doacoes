@@ -3,6 +3,7 @@
 class MY_Model extends CI_Model {
 	
 	protected $table;
+	protected $pk = "id";
 	protected $params;
 	
 	public function __construct() {
@@ -24,7 +25,8 @@ class MY_Model extends CI_Model {
 			return FALSE;
 		}
 		
-		$result = $this->db->get_where($this->table, array('id' => $model_id, 'user_id'=>$user_id));
+		$result = $this->db->get_where($this->table, array($this->pk => $model_id,
+			'usuario_id'=>$user_id));
 		return ( count($result) && $result->num_rows()>0 );
 	}
 }

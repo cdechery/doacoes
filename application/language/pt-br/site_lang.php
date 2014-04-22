@@ -35,8 +35,8 @@ $lang['dist_mrkdel_ok']				= "Marcador excluído com sucesso";
 $lang['dist_error_mrkdel']			= "Ocorreu um erro ao excluir esse marcador";
 $lang['dist_general_error']			= "Tivemos um erro inesperado. Estamos trabalhando para reparar, volte mais tarde.";
 
-$lang['dist_errperm_marker']		= "Você não está autorizado a alterar este Marcador";
-$lang['dist_errsess_expire']		= "Sua sessão expirou. Faça o login e tente novamente";
+$lang['dist_errperm']				= "Você não está autorizado a executar essa ação";
+$lang['dist_errsess_expire']		= "Você precisa estar logado para executar essa ação.<br>Faça o <a href='".base_url()."login'>login</a> e tente novamente";
 
 $lang['dist_lbl_success']			= "Sucesso";
 $lang['dist_lbl_error']				= "Erro";

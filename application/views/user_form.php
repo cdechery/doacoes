@@ -25,11 +25,13 @@
 		$doc = "cnpj";
 	}
 ?>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places"></script>
 <script type="text/javascript">
 //<![CDATA[
 var map; // Global declaration of the map
 var userLocMarker = null;
+var placesService;
+var placesAutocomplete;
 
 function updateFormLatLng(lat, lng) {
 	document.userData.lat.value = lat;
@@ -65,19 +67,39 @@ function initialize() {
 		createMarker({ map: map, position:event.latLng, draggable: true });
 	});
 
+	var autocompleteOptions = { }
+	var autocompleteInput = document.getElementById('myPlaceTextBox');
+				
+	placesAutocomplete = new google.maps.places.Autocomplete(autocompleteInput, autocompleteOptions);
+	placesAutocomplete.bindTo('bounds', map);
+	google.maps.event.addListener(placesAutocomplete, 'place_changed', function() {
+		var loc = placesAutocomplete.getPlace().geometry.location;
+		createMarker({ map: map, position:loc, draggable: true });
+		map.setCenter(loc);
+	});	
+
 <?php
 	if( !empty($lat) && !empty($lng) ) {
 ?>
-var myLatlng = new google.maps.LatLng(<?php echo $lat?>, <?php echo $lng?>);	
-createMarker( { map: map, position:myLatlng, draggable: true } );
-map.setZoom(15);
-map.setCenter( myLatlng );
+	var myLatlng = new google.maps.LatLng(<?php echo $lat?>, <?php echo $lng?>);	
+	createMarker( { map: map, position:myLatlng, draggable: true } );
+	map.setZoom(15);
+	map.setCenter( myLatlng );
 <?php		
-	} // 
+	} 
 ?>
-}
+} // initialize
 
 window.onload = initialize;
+
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
 //]]>
 </script>
 <table cellpadding=5 cellspacing=5 border=0>
@@ -125,6 +147,7 @@ window.onload = initialize;
 		<input type="password" name="password" value="" size="10"><br>
 		Repita a senha<br>
 		<input type="password" name="password_2" value="" size="10" /><br>
+		<div style="margin-bottom:15px"><strong>Encontre sua localização:</strong> <input type="text" id="myPlaceTextBox" /></div>
 		<div id="map_canvas" style="width: 420px; height:300px;"></div>		
 
 		<p><br><input type="submit" value="<?php echo $actions[ $action ]; ?>"/></p>

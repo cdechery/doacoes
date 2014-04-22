@@ -119,7 +119,7 @@ $(function() {
 					new Messi(data.msg, {title: lang['success'], 
 						titleClass: 'success', modal: true });
 				} else {
-					new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error',
+					new Messi(data.msg, {title: lang['dist_lbl_error'], tttleClass: 'anim error',
 						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 				}
 			},
@@ -134,8 +134,8 @@ $(function() {
         e.preventDefault();
 
         if( max_images_marker!=0 && mrkImagesCount>=max_images_marker ) {
-            new Messi(lang['dist_imgupload_max'], {title: lang['error'], tttleClass: 'anim error', 
-            	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+            new Messi(lang['dist_imgupload_max'], {title: lang['dist_lbl_error'],
+            	 tttleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
             return false;
         } 
 
@@ -163,7 +163,7 @@ $(function() {
 	                });
 	                $('#title').val('');
                 } else {
-                    new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
+                    new Messi(data.msg, {title: lang['dist_lbl_error'], tttleClass: 'anim error', 
                     	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
                 }
             },
@@ -210,8 +210,8 @@ $(function() {
 					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!',
 						titleClass: 'success', modal: true });
 				} else {			
-					new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
-						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});				
+					new Messi( data.msg, {title: lang['dist_lbl_error'],
+						titleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 				}
 			},
 			error : function (data, status, e) {
@@ -220,17 +220,6 @@ $(function() {
 		});
 		return false;
 	});
-
-	$(document).on('click', '.delete_interesse_btn', function(e) {
-		e.preventDefault();
-		var btn = $(this);
-		new Messi('Tem certeza que quer excluir esse Interesse?',
-			{modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
-			{id: 1, label: 'Não', val: 'N'}], 
-			callback: function(val) { if(val=='S') delete_interesse(btn); }});
-
-		return false;
-	}); // delete
 
 	$(document).on('click', '.activ_interesse_btn', function(e) {
 		e.preventDefault();
@@ -274,39 +263,15 @@ function activ_deactiv_interesse( btn, action ) {
 
 				return true;
 			} else {
-				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});				
+				new Messi( data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+
 				return false;
 			}
 		},
 		error : function (data, status, e) {
 			general_error( 'Ocorreu uma falha ao Ativar/Desativar o Interesse, tente mais tarde' );
 			return false;
-		}
-	});
-}
-
-function delete_interesse( btn ) {
-	$.ajax({
-		url         : site_root + 'interesse/delete/'+btn.data('catid'),
-		contentType    : 'charset=utf-8',
-		dataType : 'json',
-		success     : function (data) {
-			if ( data.status === "success" ) {
-				btn.closest('table').fadeOut('fast', function() {
-					$(this).remove();
-					//TODO improve this!!!
-					if ( $(document).find('.interesse_row').length === 0) {
-	                    $('#interesses_none').show();
-					}
-				});
-			} else {
-				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-			}
-		},
-		error : function (data, status, e) {
-			general_error( 'Ocorreu uma falha ao remover o Interesse, tente mais tarde' );
 		}
 	});
 }

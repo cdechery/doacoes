@@ -5,6 +5,7 @@ class Interesse_model extends MY_Model {
 	public function __construct() {
 		parent::__construct();
 		$this->table = "interesse";
+		$this->pk = "categoria_id";
 	}
 
 	public function get( $user_id, $categoria_id = 0 ) {

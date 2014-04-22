@@ -61,6 +61,13 @@ class Interesse extends MY_Controller {
 		$status = "";
 		$msg = "";
 
+		$msg = $this->check_owner($this->interesse_model,$categoria_id);
+		if( $msg ) {
+			$status = "error";
+			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			return;
+		}
+
 		$user_id = $this->login_data['user_id'];
 
 		if( $this->interesse_model->activate($categoria_id, $user_id) ) {
@@ -77,6 +84,13 @@ class Interesse extends MY_Controller {
 	public function deactivate( $categoria_id ) {
 		$status = "";
 		$msg = "";
+
+		$msg = $this->check_owner($this->interesse_model,$categoria_id);
+		if( $msg ) {
+			$status = "error";
+			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			return;
+		}
 
 		$user_id = $this->login_data['user_id'];
 
@@ -95,6 +109,13 @@ class Interesse extends MY_Controller {
 		$status = "";
 		$msg = "";
 
+		$msg = $this->check_owner($this->interesse_model,$categoria_id);
+		if( $msg ) {
+			$status = "error";
+			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			return;
+		}
+
 		$inter_data = array('user_id'=>$this->login_data['user_id'],
 			'cat_id'=> $categoria_id,
 			'raio'=>$raio );
@@ -110,7 +131,7 @@ class Interesse extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function delete( $categoria_id ) {
+	/*public function delete( $categoria_id ) {
 		$status = "";
 		$msg = "";
 
@@ -125,6 +146,6 @@ class Interesse extends MY_Controller {
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
-	}
+	}*/
 
 } // Image class

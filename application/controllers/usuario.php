@@ -89,7 +89,7 @@ class Usuario extends MY_Controller {
 
 	public function modify() {
 		if( !$this->is_user_logged_in ) {
-			show_error( xlang('dist_errsess_expire') );
+			redirect( base_url()."login" );
 		}
 
 		$this->load->helper('image_helper');
@@ -256,8 +256,11 @@ class Usuario extends MY_Controller {
 	}
 
 	public function interesses() {
-		$this->load->model('interesse_model');
+		if( !$this->is_user_logged_in ) {
+			redirect( base_url()."login" );
+		}
 
+		$this->load->model('interesse_model');
 		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
