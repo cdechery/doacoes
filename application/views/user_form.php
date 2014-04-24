@@ -9,6 +9,7 @@
 	}
 
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
+
 	if( empty($avatar) ) {
 		$avatar = "images/default_avatar.gif";
 	} else {
@@ -64,6 +65,10 @@ function initialize() {
   		mapTypeId: google.maps.MapTypeId.ROADMAP}
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	google.maps.event.addListener(map, "dblclick", function(event) {
+		if( userLocMarker!=null ) {
+			userLocMarker.setMap(null);
+			userLocMarker = null;
+		}
 		createMarker({ map: map, position:event.latLng, draggable: true });
 	});
 
@@ -91,15 +96,6 @@ function initialize() {
 } // initialize
 
 window.onload = initialize;
-
-$(document).ready(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
 //]]>
 </script>
 <table cellpadding=5 cellspacing=5 border=0>
@@ -161,5 +157,11 @@ $(document).ready(function() {
 <script>
 $( document ).ready(function() {
 	processInLineLabels();
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+			event.preventDefault();
+			return false;
+		}
+	});
 });
 </script>

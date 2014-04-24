@@ -8,7 +8,7 @@ class Image extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
-	public function upload_marker_image() {
+	public function upload_item_image() {
 		$status = "";
 		$msg = "";
 		$file_id = "";
@@ -16,7 +16,8 @@ class Image extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "error";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode(array('status' => $status, 'msg' => utf8_encode($msg), "file_id" => $file_id) );
+			echo json_encode(array('status' => $status,
+				'msg' => utf8_encode($msg), "file_id" => $file_id) );
 			return;
 		}
 
@@ -35,7 +36,7 @@ class Image extends MY_Controller {
 			$status = "error";
 			$msg =  utf8_encode( $this->upload->display_errors('','') );
 		} else {
-			$data = $this->upload->data();
+			$udata = $this->upload->data();
 
 			if( $data['image_height']< $min_image_size || $data['image_width']< $min_image_size ) {
 				$status="error";
@@ -46,16 +47,11 @@ class Image extends MY_Controller {
 					$thumbSizes = explode("|", $thumbSizes );
 				}
 
-				$marker_id = $this->input->post('marker_id');
-				$comment_id = $this->input->post('$comment_id');
-				$user_id = $this->login_data['user_id'];
-				$title = $this->input->post('title');
-				$image_data = array('marker_id'=>$marker_id,
-									'comment_id'=>$comment_id,
-									'user_id'=>$user_id,
-									'title'=> $title);
+				$input = $this->input->post(NULL);
+				$image_data = array('item_id'=>$input['item_id'],
+					'descricao'=>$input['desc'] );
 
-				$file_id = $this->image_model->insert( $data, $image_data, $thumbSizes );
+				$file_id = $this->image_model->insert( $udata, $image_data, $thumbSizes );
 
 				if( $file_id ) {
 					$status = "success";
