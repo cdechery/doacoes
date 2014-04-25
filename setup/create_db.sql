@@ -68,7 +68,8 @@ DROP TABLE IF EXISTS `doacoes`.`item` ;
 
 CREATE  TABLE IF NOT EXISTS `doacoes`.`item` (
   `id` INT NOT NULL ,
-  `descricao` VARCHAR(200) NOT NULL ,
+  `titulo` VARCHAR(70) NOT NULL ,
+  `descricao` VARCHAR(250) NOT NULL ,
   `status` CHAR(1) NOT NULL ,
   `data_inclusao` DATETIME NOT NULL ,
   `data_doacao` DATETIME NULL ,

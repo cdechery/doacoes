@@ -40,7 +40,7 @@ class Image_model extends MY_Model {
 	}
 
 	public function get_item_images( $item_id ) {
-		$images =  $this->db->get_where('imagem', array('item_id'=>$marker_id))->result();
+		$images =  $this->db->get_where('imagem', array('item_id'=>$item_id))->result();
 		return $images;
 	}
 	

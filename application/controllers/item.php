@@ -5,6 +5,16 @@ class Item extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('item_model');
+		$this->load->helper('xlang');
+	}
+
+	public function novo() {
+		$head_data = array("title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+
+		$data = array('action' => 'insert');
+		$this->load->view('item_form', array('data'=>$data) );
+		$this->load->view('foot');
 	}
 
 	public function insert() {
@@ -16,7 +26,7 @@ class Item extends MY_Controller {
 			$status = "ERROR";
 			$msg = xlang('dist_errsess_expire');
 			echo json_encode(array('status' => $status,
-				'msg' => utf8_encode($msg) );
+				'msg' => utf8_encode($msg)) );
 			return;
 		}
 
@@ -27,10 +37,12 @@ class Item extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('desc', 'DescriÃ§Ã£o',
-			'required|min_length[10]|max_length[200]|valid_email');
+		$this->form_validation->set_rules('titulo', 'Título',
+			'required|min_length[10]|max_length[70]');
+		$this->form_validation->set_rules('desc', 'Descrição',
+			'required|min_length[10]|max_length[250]');
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('sit', 'SituaÃ§Ã£o', 'required');
+		$this->form_validation->set_rules('sit', 'Situação', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -42,14 +54,40 @@ class Item extends MY_Controller {
 			$new_id = $this->item_model->insert( $inter_data );
 			if( $new_id ) {
 				$status = "OK";
-				$msg = 'O Item foi incluÃ­do com sucesso';
+				$msg = 'O Item foi incluído com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'NÃ£o foi possÃ­vel incluir o Item';
+				$msg = 'Não foi possível incluir o Item';
 			}
 		}
 
 		echo json_encode( array('status'=>$status,
-			'msg'=>utf8_encode($msg), 'item_id' => $new_id );
+			'msg'=>utf8_encode($msg), 'item_id' => $new_id) );
+	}
+
+	public function modify( $item_id ) {
+		$msg = $this->check_owner($this->item_model, $item_id);
+		if( $msg ) {
+			show_error($msg);
+		}
+
+		$this->load->helper('image_helper');
+
+		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+
+		$item_data = $this->item_model->get( $item_id );
+		$item_data['action'] = 'update';
+
+		$images = $this->get_images( $item_id );
+
+		$this->load->view('item_form',
+			array('data'=>$item_data, 'images'=>$images) );
+		$this->load->view('foot');
+	}
+
+	public function get_images( $item_id ) {
+		$this->load->model('image_model');
+		return $this->image_model->get_item_images( $item_id );
 	}
 }

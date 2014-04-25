@@ -8,11 +8,13 @@ class Item_model extends MY_Model {
 	}
 
 	public function get($item_id) {
-		return $this->db->get_where('item', array('id'=>$id))->row_array();
+		return $this->db->get_where('item',
+			array('id'=>$item_id))->row_array();
 	}
 
 	public function get_user_items($usuario_id) {
-		$items = $this->db->get_where('item', array('id'=>$usuario_id))->result();
+		$items = $this->db->get_where('item',
+			array('id'=>$usuario_id))->result();
 		return $items;
 	}
 

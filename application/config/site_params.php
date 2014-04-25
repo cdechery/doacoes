@@ -22,6 +22,7 @@ $config['site_params'] = array(
 		'allowed_types' => array('jpeg', 'jpg', 'png'),
 		'min_image_size' => '200'
 	),
+	'max_item_imgs' => 3,
 	'upload' => array(
 		'path' => './files/',
 		'max_size' => (8*1024)
