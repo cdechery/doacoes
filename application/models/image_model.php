@@ -12,11 +12,11 @@ class Image_model extends MY_Model {
 		
 		$insert_data = array(
 			'item_id' => (int)$image_data["item_id"],
-			'nome_arquivo'     => $upload_data['filename'],
-			'descricao'  => $image_data["desc"]
+			'nome_arquivo'     => $upload_data['file_name'],
+			'descricao'  => $image_data["descricao"]
 		);
 		
-		if( $this->db->insert('image', $insert_data) ) {
+		if( $this->db->insert('imagem', $insert_data) ) {
 			if( count($thumb_sizes) ) {
 				foreach( $thumb_sizes as $size ) {
 					create_square_cropped_thumb( $upload_data['full_path'], $size );
@@ -77,7 +77,7 @@ class Image_model extends MY_Model {
 		if( $id === 0 ) {
 			return false;
 		} else {
-			return $this->db->get_where('image', array('id' => $id))->row();
+			return $this->db->get_where('imagem', array('id' => $id))->row();
 		}
 	}	
 }

@@ -67,7 +67,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `doacoes`.`item` ;
 
 CREATE  TABLE IF NOT EXISTS `doacoes`.`item` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(70) NOT NULL ,
   `descricao` VARCHAR(250) NOT NULL ,
   `status` CHAR(1) NOT NULL ,
@@ -80,6 +80,19 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`item` (
   INDEX `fk_item_doador_idx` (`usuario_id` ASC) ,
   INDEX `fk_item_categoria1_idx` (`categoria_id` ASC) ,
   INDEX `fk_item_situacao1_idx` (`situacao_id` ASC) )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `doacoes`.`item_temp`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `doacoes`.`item_temp` ;
+
+CREATE TABLE IF NOT EXISTS `doacoes`.`item_temp` (
+  `id` CHAR(36) NOT NULL,
+  `dt_criacao` DATE NOT NULL ,
+  `usuario_id` INT NOT NULL ,
+  PRIMARY KEY (`id`, `usuario_id`) ,
+  INDEX `fk_item_usuario_idx` (`usuario_id` ASC) )
 ENGINE = InnoDB;
 
 

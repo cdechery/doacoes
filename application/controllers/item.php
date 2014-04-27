@@ -9,10 +9,16 @@ class Item extends MY_Controller {
 	}
 
 	public function novo() {
-		$head_data = array("title"=>$this->params['titulo_site']);
+		if( !$this->is_user_logged_in ) {
+			redirect( base_url()."login" );
+		}
+
+		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$data = array('action' => 'insert');
+		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
+
+		$data = array('action' => 'insert', 'id'=>$temp_id);
 		$this->load->view('item_form', array('data'=>$data) );
 		$this->load->view('foot');
 	}

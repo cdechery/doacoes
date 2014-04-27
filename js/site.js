@@ -50,7 +50,7 @@ function general_error( msg ) {
 		buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 }
 
-function load_infowindow_content(infowindow, user_id){
+/*function load_infowindow_content(infowindow, user_id){
 		$.ajax({
 		url: site_root +'usuario/map_infowindow/' + user_id,
 		success: function(data) {
@@ -67,9 +67,7 @@ function newmarker_infowindow_content(lat, lng, infowindow) {
 			processInLineLabels();
 		}
 	});
-}
-
-var mrkImagesCount = 0;
+}*/
 
 $(function() {
 	$('#usuario_insert').submit(function(e) {
@@ -130,25 +128,19 @@ $(function() {
 		return false;
 	});
 
-    $('#upload_marker_image').submit(function(e) {
+    /*$('#upload_item_image').submit(function(e) {
         e.preventDefault();
 
-        if( max_images_marker!=0 && mrkImagesCount>=max_images_marker ) {
-            new Messi(lang['dist_imgupload_max'], {title: lang['dist_lbl_error'],
-            	 tttleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-            return false;
-        } 
-
         $.ajaxFileUpload({
-            url : site_root +'image/upload_marker_image/',
+            url : site_root +'image/upload_item_image/',
             secureuri :false,
             fileElementId :'userfile',
             contentType : 'application/json; charset=utf-8',
             dataType        : 'json',
             data : {
-	            'title' : $('#title').val(),
+	            'id' : $('#id').val(),
 	            'thumbs' : $('#thumbs').val(),
-	            'marker_id' : $('#marker_id').val()
+	            'usuario_id' : $('#usuario_id').val()
             },
             success : function (data) {
                 if( data.status != 'error') {
@@ -172,11 +164,13 @@ $(function() {
 			}
         });
         return false;
-    });
+    });*/
 
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#interesse_insert").attr("action"), $("#interesse_insert").serialize(), function(data) {
+		$.post($("#interesse_insert").attr("action"), 
+			$("#interesse_insert").serialize(), function(data) {
+
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: 'Interesse incluído com sucesso!',
@@ -245,6 +239,53 @@ $(function() {
 		return false;
 	}); // delete
 });
+
+function do_upload_item_image( img_id, isnew ) {
+
+ 	var img_tag_id = 'item_img_'+img_id;
+	var file_tag_id = 'item_file_'+img_id;
+	var item_id = $('#id').val();
+	var temp_id = 0;
+
+	if( isnew ) {
+		img_tag_id = 'img_'+img_id;
+		file_tag_id = 'file_'+img_id;
+		item_id = 0;
+		temp_id = $('#id').val();
+	}
+
+	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader.gif');
+
+    $.ajaxFileUpload({
+        url : site_root +'image/upload_item_image/',
+        secureuri : false,
+        fileElementId : file_tag_id,
+        contentType : 'application/json; charset=utf-8',
+        dataType        : 'json',
+        data : {
+            'id' : item_id
+            'thumbs' : $('#thumbs').val(),
+            'usuario_id' : $('#usuario_id').val(),
+            'file_tag_name': file_tag_id,
+            'temp_id': temp_id
+        },
+        success : function(data) {
+            if( data.status != 'error') {
+                var imageData = $.getJSON( site_root +'image/get_image/'+data.file_id );
+                imageData.success(function(imgdata) {
+	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb200);
+                });
+            } else {
+                new Messi(data.msg, {title: lang['dist_lbl_error'], tttleClass: 'anim error', 
+                	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+            }
+        },
+        error : function (data, status, e) {
+			general_error( lang['dist_error_upload'] );
+		}
+    });
+    return false;
+}
 
 function activ_deactiv_interesse( btn, action ) {
 	$.ajax({

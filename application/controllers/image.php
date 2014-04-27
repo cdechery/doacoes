@@ -8,7 +8,11 @@ class Image extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
-	public function upload_item_image() {
+	public function update_item_image() {
+		$this->upload_item_image(TRUE);
+	}
+
+	public function upload_item_image($isupdate = FALSE) {
 		$status = "";
 		$msg = "";
 		$file_id = "";
@@ -21,7 +25,8 @@ class Image extends MY_Controller {
 			return;
 		}
 
-		$file_element_name = 'userfile';
+		$input = $this->input->post(NULL);
+		$file_element_name = $input['file_tag_name'];
 
 		$config['upload_path'] = $this->params['upload']['path'];
 		$config['allowed_types'] = implode("|",$this->params['image_settings']['allowed_types']);
@@ -38,7 +43,7 @@ class Image extends MY_Controller {
 		} else {
 			$udata = $this->upload->data();
 
-			if( $data['image_height']< $min_image_size || $data['image_width']< $min_image_size ) {
+			if( $udata['image_height'] < $min_image_size || $udata['image_width'] < $min_image_size ) {
 				$status="error";
 				$msg = xlang('dist_min_image_size', $min_image_size);
 			} else {
@@ -47,9 +52,7 @@ class Image extends MY_Controller {
 					$thumbSizes = explode("|", $thumbSizes );
 				}
 
-				$input = $this->input->post(NULL);
-				$image_data = array('item_id'=>$input['item_id'],
-					'descricao'=>$input['desc'] );
+				$image_data = array('item_id'=>$input['id'], 'descricao'=>'' );
 
 				$file_id = $this->image_model->insert( $udata, $image_data, $thumbSizes );
 
@@ -57,7 +60,7 @@ class Image extends MY_Controller {
 					$status = "success";
 					$msg = xlang('dist_imgupload_ok');
 				} else {
-					@unlink( $data['full_path'] );
+					@unlink( $udata['full_path'] );
 					$status = "error";
 					$msg = xlang('dist_imgupload_nok');
 				}
@@ -65,7 +68,8 @@ class Image extends MY_Controller {
 		}
 
 		$msg = utf8_encode($msg);
-		echo json_encode(array('status' => $status, 'msg' => $msg, "file_id" => $file_id) );
+		echo json_encode(array('status' => $status, 'msg' => $msg,
+			"file_id" => $file_id) );
 	} // upload_marker_imagem
 
 	public function upload_avatar() {
@@ -159,7 +163,16 @@ class Image extends MY_Controller {
 
 	public function get_image($image_id) {
 		$image_data = $this->image_model->get_by_id($image_id);
-		$this->load->view("marker_image_single", array("image"=>$image_data));
+		$retJson = array('id'=>$image_data->id,
+			'nome_arquivo'=>$image_data->nome_arquivo,
+			'item_id'=>$image_data->item_id);
+
+		$thumbSizes = $this->params['image_settings']['thumb_sizes'];
+		foreach ($thumbSizes as $size) {
+			$retJson['thumb'.$size] = thumb_filename($image_data->nome_arquivo, $size); 
+		}
+
+		echo json_encode( $retJson );
 	}
 
 } // Image class
