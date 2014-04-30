@@ -20,8 +20,7 @@ class Item_model extends MY_Model {
 			return $item->id;
 		} else {
 			$insert_array = array('usuario_id'=>$usuario_id);
-			$this->db->set('id', uniqid());
-			$this->db->set('dt_criacao', 'NOW()');
+			$this->db->set('dt_criacao', 'NOW()', false);
 			$this->db->insert('item_temp', $insert_array);
 			
 			return $this->get_temp_id($usuario_id);

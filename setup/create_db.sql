@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `doacoes`.`item_temp` ;
 
 CREATE TABLE IF NOT EXISTS `doacoes`.`item_temp` (
-  `id` CHAR(36) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `dt_criacao` DATE NOT NULL ,
   `usuario_id` INT NOT NULL ,
   PRIMARY KEY (`id`, `usuario_id`) ,
@@ -106,10 +106,11 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`imagem` (
   `nome_arquivo` VARCHAR(50) NOT NULL ,
   `descricao` VARCHAR(40) NULL ,
   `item_id` INT NOT NULL ,
+  `temp_item_id` INT NULL,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_imagem_item1_idx` (`item_id` ASC) )
+  INDEX `fk_imagem_item1_idx` (`item_id` ASC),
+  INDEX `fk_imagem_item2_idx` (`temp_item_id` ASC) )
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `doacoes`.`interesse`

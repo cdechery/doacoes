@@ -9,10 +9,14 @@ class Image extends MY_Controller {
 	}
 
 	public function update_item_image() {
-		$this->upload_item_image(TRUE);
+		$this->upload_item_image(FALSE, TRUE);
 	}
 
-	public function upload_item_image($isupdate = FALSE) {
+	public function upload_temp_item_image() {
+		$this->upload_item_image(TRUE, FALSE);
+	}
+
+	public function upload_item_image($istemp=FALSE, $isupdate=FALSE) {
 		$status = "";
 		$msg = "";
 		$file_id = "";
@@ -52,9 +56,22 @@ class Image extends MY_Controller {
 					$thumbSizes = explode("|", $thumbSizes );
 				}
 
-				$image_data = array('item_id'=>$input['id'], 'descricao'=>'' );
-
-				$file_id = $this->image_model->insert( $udata, $image_data, $thumbSizes );
+				$image_data = array('descricao'=>'');
+				if( $isupdate ) {
+					$image_data['item_id'] = $input['id'];
+					$image_data['id'] = $input['img_id'];
+					$this->image_model->update( $udata,
+						$image_data, $thumbSizes );
+				} else if( $istemp ) {
+					$image_data['item_id'] = 0;
+					$image_data['temp_id'] = $input['temp_id'];
+					$file_id = $this->image_model->insert( $udata,
+						$image_data, $thumbSizes );
+				} else {
+					$image_data['item_id'] = $input['id'];
+					$file_id = $this->image_model->insert( $udata,
+						$image_data, $thumbSizes );
+				}
 
 				if( $file_id ) {
 					$status = "success";

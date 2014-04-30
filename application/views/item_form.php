@@ -37,11 +37,15 @@
 	} //images
 
 	// completo as imagens com a "default"
+	$temp = "true";
+	if( $action!="insert" ) {
+		$temp = "false";
+	}
 	for($i=0; $i<$max_imgs-$num_imgs; $i++) {
 ?>		
-		<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);"/>
+		<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i.", ".$temp?>);"/>
 		<a href="#" onclick="document.getElementById('file_<?php echo $i?>').click();"/>
-		<img alt="Enviar imagem" src="<?php echo base_url()."images/default_item_img.jpg"?>" id="img_<?php echo $i?>"/>
+		<img alt="Enviar imagem" src="<?php echo base_url()."images/default_item_img.jpg"?>" id="img_<?php echo $i?>" data-newid="0"/>
 		</a>
 <?php
 	}
@@ -53,6 +57,7 @@
 		<td>
 		<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
 		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+		<input type="hidden" name="id" id="temp_id" value="<?php echo $temp_id ?>">
 		<input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $login_data['user_id'] ?>">
 	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
 
@@ -78,7 +83,6 @@
 </table>
 <a href="<?php echo base_url()?>map">Back to the Map</a>
 </p>
-<div id="error-details"></div>
 <script>
 $( document ).ready(function() {
 	processInLineLabels();

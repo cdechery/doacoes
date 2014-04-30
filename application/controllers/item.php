@@ -18,7 +18,7 @@ class Item extends MY_Controller {
 
 		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
 
-		$data = array('action' => 'insert', 'id'=>$temp_id);
+		$data = array('action' => 'insert', 'temp_id'=>$temp_id);
 		$this->load->view('item_form', array('data'=>$data) );
 		$this->load->view('foot');
 	}

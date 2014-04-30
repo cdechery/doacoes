@@ -8,14 +8,19 @@ class Image_model extends MY_Model {
 		$this->table = "imagem";
 	}
  
-	public function insert($upload_data, $image_data, $thumb_sizes = array())	{
+	public function insert($upload_data,
+		$image_data, $thumb_sizes = array())	{
 		
 		$insert_data = array(
 			'item_id' => (int)$image_data["item_id"],
-			'nome_arquivo'     => $upload_data['file_name'],
+			'nome_arquivo' => $upload_data['file_name'],
 			'descricao'  => $image_data["descricao"]
 		);
-		
+
+		if( isset($image_data['temp_id']) ) {
+			$insert_data['temp_item_id'] = (int)$image_data['temp_id'];
+		}
+
 		if( $this->db->insert('imagem', $insert_data) ) {
 			if( count($thumb_sizes) ) {
 				foreach( $thumb_sizes as $size ) {
@@ -26,6 +31,10 @@ class Image_model extends MY_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function update() {
+		// TODO
 	}
 	
 	public function get_user_item_images( $usuario_id ) {
