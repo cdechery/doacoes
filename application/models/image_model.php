@@ -37,6 +37,16 @@ class Image_model extends MY_Model {
 		// TODO
 	}
 	
+	public function move_temp_images( $usuario_id, $item_id, $temp_id ) {
+		$upd_data = array("item_id"=>$item_id);
+		$this->db->set("temp_item_id", "NULL", false);
+		$this->db->where("temp_item_id", $temp_id);
+		$this->db->limit( $this->params['max_item_imgs'] );
+		$this->db->update("imagem", $upd_data);
+
+		$this->db->delete("item_temp", array("id"=>$temp_id));
+	}
+
 	public function get_user_item_images( $usuario_id ) {
 		$this->db->select('it.id as item_id, im.id, im.nome_arquivo');
 		$this->db->from('imagem im');
@@ -49,7 +59,8 @@ class Image_model extends MY_Model {
 	}
 
 	public function get_item_images( $item_id ) {
-		$images =  $this->db->get_where('imagem', array('item_id'=>$item_id))->result();
+		$images =  $this->db->get_where('imagem',
+			array('item_id'=>$item_id))->result();
 		return $images;
 	}
 	

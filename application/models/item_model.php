@@ -20,7 +20,7 @@ class Item_model extends MY_Model {
 			return $item->id;
 		} else {
 			$insert_array = array('usuario_id'=>$usuario_id);
-			$this->db->set('dt_criacao', 'NOW()', false);
+			$this->db->set('data_criacao', 'NOW()', false);
 			$this->db->insert('item_temp', $insert_array);
 			
 			return $this->get_temp_id($usuario_id);
@@ -42,7 +42,7 @@ class Item_model extends MY_Model {
 			'situacao_id' => $item_data['sit'],
 		);
 
-		$this->db->set('dt_inclusao', 'NOW()', false);
+		$this->db->set('data_inclusao', 'NOW()', false);
 
 		if( $this->db->insert('item', $insert_data ) ) {
 			return $this->db->insert_id();

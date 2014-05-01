@@ -4,6 +4,7 @@
 	$categoria_id = $situacao_id = "";
 	$id = "0";
 
+
 	if( !empty($data) ) {
 		extract($data);
 	}
@@ -57,23 +58,31 @@
 		<td>
 		<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
 		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
-		<input type="hidden" name="id" id="temp_id" value="<?php echo $temp_id ?>">
+		<input type="hidden" name="temp_id" id="temp_id" value="<?php echo $temp_id ?>">
 		<input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $login_data['user_id'] ?>">
 	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
 
 		<input type="text" name="titulo" value="<?php echo $titulo ?>" size="50" title="Título" /><br>
 		<select name="categ">
 			<option value="">Categoria</option>
-			<option value="1">Roupas</option>
-			<option value="2">Móveis</option>
-			<option value="3">Brinquedos</option>
+<?php
+	$selected = "";
+	foreach ($categorias as $cat) {
+		$selected = ($cat->id==$categoria_id)?"selected":"";
+		echo '<option value="'.$cat->id.'" $selected>'.$cat->nome.'</option>\n';
+	}
+?>
 		</select><br>
 		<textarea name="desc" title="Descrição" rows="4" cols="50"/><?php echo $descricao?></textarea><br>
 		<select name="sit">
 			<option value="">Situação</option>
-			<option value="1">Novo</option>
-			<option value="2">Usado</option>
-			<option value="3">Quebrado</option>
+<?php
+	$selected = "";
+	foreach ($situacoes as $sit) {
+		$selected = ($sit->id==$situacao_id)?"selected":"";
+		echo '<option value="'.$sit->id.'" $selected>'.$sit->descricao.'</option>\n';
+	}
+?>
 		</select>
 
 		<p><br><input type="submit" value="<?php echo $actions[ $action ]; ?>"/></p>

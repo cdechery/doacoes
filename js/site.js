@@ -54,7 +54,7 @@ function general_error( msg ) {
 		buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 }
 
-/*function load_infowindow_content(infowindow, user_id){
+function load_infowindow_content(infowindow, user_id){
 		$.ajax({
 		url: site_root +'usuario/map_infowindow/' + user_id,
 		success: function(data) {
@@ -63,7 +63,7 @@ function general_error( msg ) {
 	});
 }
 
-function newmarker_infowindow_content(lat, lng, infowindow) {
+/*function newmarker_infowindow_content(lat, lng, infowindow) {
 		$.ajax({
 		url: site_root +'map/newmarker_infowindow/' + lat +'/' +lng,
 		success: function(data){
@@ -137,6 +137,26 @@ $(function() {
 				general_error( lang['dist_error_upload'] );
 			}
 		});
+		return false;
+	});
+
+	$('#item_insert').submit(function(e) {
+		e.preventDefault();
+		$.post($("#item_insert").attr("action"),
+			$("#item_insert").serialize(), function(data) {
+
+			var json = myParseJSON( data );
+			if( json.status=="OK" ) {
+				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
+					titleClass: 'success', modal: true,
+					buttons: [{id: 0, label: 'OK', val: 'S'}], 
+					callback: function(val) { go_home(); } });
+
+			} else {
+				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
 		return false;
 	});
 

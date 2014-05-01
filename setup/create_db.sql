@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `doacoes`.`item_temp` ;
 
 CREATE TABLE IF NOT EXISTS `doacoes`.`item_temp` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `dt_criacao` DATE NOT NULL ,
+  `data_criacao` DATETIME NOT NULL ,
   `usuario_id` INT NOT NULL ,
   PRIMARY KEY (`id`, `usuario_id`) ,
   INDEX `fk_item_usuario_idx` (`usuario_id` ASC) )
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS `doacoes`.`interesse` ;
 CREATE  TABLE IF NOT EXISTS `doacoes`.`interesse` (
   `categoria_id` INT NOT NULL AUTO_INCREMENT ,
   `usuario_id` INT NOT NULL ,
-  `dt_inclusao` DATETIME NOT NULL ,
+  `data_inclusao` DATETIME NOT NULL ,
   `fg_ativo` CHAR(1) NOT NULL DEFAULT 'S' ,
   `raio_busca` SMALLINT NOT NULL DEFAULT 5 ,
   PRIMARY KEY (`categoria_id`, `usuario_id`) ,
