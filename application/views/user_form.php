@@ -10,10 +10,12 @@
 
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
 
+	$hiddenAvatar = "";
 	if( empty($avatar) ) {
 		$avatar = "images/default_avatar.gif";
 	} else {
 		$avatar = $params['upload']['path'].$avatar;
+		$hiddenAvatar = '<inpyt type="hidden" name="avatar" value="'.$avatar.'">';
 	}
 
 	$login_disabled = "";
@@ -127,6 +129,7 @@ window.onload = initialize;
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
 		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
+		<?php echo $hiddenAvatar?>
 
 		<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login"/><br>
 		<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" /><br>

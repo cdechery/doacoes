@@ -66,6 +66,10 @@ class Usuario_model extends MY_Model {
 			}
 		}
 
+		if( !empty($user_data['avatar']) ) {
+			$insert_data['avatar'] = $user_data['avatar'];
+		}
+
 		$this->db->set('data_cadastro', 'NOW()', false);
 		$this->db->set('lat', 'NULL', false);
 		$this->db->set('lng', 'NULL', false);

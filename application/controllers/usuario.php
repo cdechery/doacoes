@@ -42,12 +42,6 @@ class Usuario extends MY_Controller {
 		delete_cookie('FbRegPending');
 
 		redirect( base_url() );
-
-		/*if( $logoutFB ) {
-			redirect( $logoutURL ); 
-		} else {
-			redirect( base_url() );
-		}*/
 	}
 
 	public function map_infowindow($user_id) {
@@ -84,6 +78,7 @@ class Usuario extends MY_Controller {
 			$data['nome'] = $fbdata['first_name'];
 			$data['sobrenome'] = $fbdata['last_name'];
 			$data['email'] = $fbdata['email'];
+			$data['avatar'] = $fbdata['avatar'];
 		}
 
 		$this->load->view('user_form', array('data'=>$data, 'tipo'=>$tipo) );

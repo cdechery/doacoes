@@ -41,8 +41,15 @@ class Login extends MY_Controller {
 
 					redirect( base_url() );
 				} else { //novo
-					$this->session->set_userdata('fbuserdata', $fbuser );
 					$this->input->set_cookie('FbRegPending', "1", 259000 );
+
+					$this->load->model('image_model');
+					$avatar = @$this->image_model->import_fb_avatar( $fbuser['id'] );
+					if( FALSE!=$avatar ) {
+						$fbuser['avatar'] = $avatar;
+					}
+
+					$this->session->set_userdata('fbuserdata', $fbuser );
 					$tipo = $this->session->userdata('tipo_cadastro');
 					if( $tipo ) {
 						redirect( base_url('usuario/new_user/'.$tipo ) );

@@ -151,12 +151,6 @@ class Image extends MY_Controller {
 		echo json_encode(array('status' => $status, 'msg' => $msg, "img_src" => $img_src) );
 	} // upload_marker_imagem
 
-	public function list_marker_images( $marker_id ) {
-		//$this->load->helper('image_helper');
-		$files = $this->image_model->get_marker_images($marker_id);
-		$this->load->view('marker_images', array('files' => $files));
-	}
-
 	public function delete_image( $id ) {
 		if( !$this->is_user_logged_in ) {
 			$status = "error";
@@ -175,7 +169,8 @@ class Image extends MY_Controller {
 			$msg = xlang('dist_imgdel_ok');
 		}
 		$msg = utf8_encode( $msg );
-		echo json_encode( array('status' => $status, 'msg' => utf8_encode($msg)) );
+		echo json_encode( array('status' => $status,
+			'msg' => utf8_encode($msg)) );
 	}
 
 	public function get_image($image_id) {

@@ -100,4 +100,20 @@ class Image_model extends MY_Model {
 			return $this->db->get_where('imagem', array('id' => $id))->row();
 		}
 	}	
+
+	public function import_fb_avatar( $fid ) {
+		$img = file_get_contents('https://graph.facebook.com/'.$fid.'/picture?type=large');
+		$path = realpath( $this->params['upload']['path'] );
+		$filename = uniqid("fb", true).'.jpg';
+		$ret = file_put_contents($path.$filename, $img);
+		if( $ret>0 ) {
+			$thumbs = $this->params['image_settings']['thumb_sizes'];
+			foreach( $thumbs as $size ) {
+				create_square_cropped_thumb( $path.$filename, $size );
+			}
+			return $filename;
+		} else {
+			return FALSE;
+		}
+	}
 }
