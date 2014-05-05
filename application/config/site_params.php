@@ -26,5 +26,7 @@ $config['site_params'] = array(
 	'upload' => array(
 		'path' => './files/',
 		'max_size' => (8*1024)
-	)
+	),
+	'facebook' => array('appId' => '649645738441266',
+        		'secret' => '8d37a4c4dc26a772b0d9cafffab5169e')
 );

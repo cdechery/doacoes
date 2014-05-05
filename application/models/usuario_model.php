@@ -12,13 +12,20 @@ class Usuario_model extends MY_Model {
 			return false;
 		}
 		
-		return $this->db->get_where('usuario', array('id'=>$id))->row_array();
+		return $this->db->get_where('usuario',
+			array('id'=>$id))->row_array();
+	}
+
+	public function get_data_email( $email ) {
+		return $this->db->get_where('usuario',
+			array('email'=>$email))->row_array();
 	}
 
 	public function check_login($login, $password) {
 		$encrypted_pwd = md5($password);
 
-		$ret = $this->db->get_where('usuario', array('login'=>$login, 'senha'=>$encrypted_pwd) );
+		$ret = $this->db->get_where('usuario', array('login'=>$login,
+			'senha'=>$encrypted_pwd) );
 
 		if( $ret->num_rows() > 0 ) {
 			return $ret->row_array();
@@ -28,7 +35,9 @@ class Usuario_model extends MY_Model {
 	}
 
 	public function email_exists($email, $except_user_id = 0) {
-		$query = $this->db->get_where('usuario', array('email'=> $email, 'id !=' => $except_user_id ) );
+		$query = $this->db->get_where('usuario',
+			array('email'=> $email,
+				'id !=' => $except_user_id ) );
 
 		return $query->num_rows() > 0;
 	}

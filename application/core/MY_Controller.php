@@ -43,7 +43,7 @@ class MY_Controller extends CI_Controller
 		}
 	}
 
-	private function check_session() {
+	protected function check_session() {
 		$cookie = $this->input->cookie('DoacoesUserCookie');
 		$session = $this->session->all_userdata();
 

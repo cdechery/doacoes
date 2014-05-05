@@ -9,11 +9,45 @@ class Usuario extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->helper('cookie');
 	}
+
+	public function tipo() {
+		$head_data = array("title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+		$this->load->view('tipo_usuario');
+		$this->load->view('foot');
+	}
 	
 	public function logout() {
+		$logoutFB = false;
+		$logoutURL = "";
+
+        $this->load->library("facebook", $this->params['facebook'] );
+        $fbuser = $this->facebook->getUser();
+
+        if( $fbuser ) {
+        	$logoutFB = true;
+			try {
+	        	$fbuser = $this->facebook->api('/me');
+	        	$revoke = $this->facebook->api("/me/permissions", "DELETE");
+				//$logoutURL = $this->facebook->getLogoutUrl( array('acess_token'=>$fbuser['id'],
+				//	'next'=>base_url()) );
+			} catch (FacebookApiException $e) {
+				error_log($e);
+				$fbuser = null;
+			}
+        }
+
 		$this->session->sess_destroy();
 		delete_cookie('DoacoesUserCookie'); //TODO colocar como param
+		delete_cookie('FbRegPending');
+
 		redirect( base_url() );
+
+		/*if( $logoutFB ) {
+			redirect( $logoutURL ); 
+		} else {
+			redirect( base_url() );
+		}*/
 	}
 
 	public function map_infowindow($user_id) {
@@ -34,6 +68,8 @@ class Usuario extends MY_Controller {
 			redirect( base_url() );
 		}
 
+		$this->session->set_userdata('tipo_cadastro', $tipo);
+
 		if( $tipo!="P" && $tipo!="I" ) {
 			show_error('Tipo de Usuário inválido');
 		}
@@ -42,6 +78,14 @@ class Usuario extends MY_Controller {
 		$this->load->view('head', $head_data);
 
 		$data = array('action' => 'insert');
+		$fbReg = $this->input->cookie('FbRegPending');
+		if( $fbReg ) {
+			$fbdata = $this->session->userdata('fbuserdata');
+			$data['nome'] = $fbdata['first_name'];
+			$data['sobrenome'] = $fbdata['last_name'];
+			$data['email'] = $fbdata['email'];
+		}
+
 		$this->load->view('user_form', array('data'=>$data, 'tipo'=>$tipo) );
 		$this->load->view('foot');
 	}
@@ -82,6 +126,11 @@ class Usuario extends MY_Controller {
 				$status = "ERROR";
 				$msg = xlang('dist_newuser_nok');
 			}
+		}
+
+		$fbReg = $this->input->cookie('FbRegPending');
+		if( $fbReg ) {
+			delete_cookie('FbRegPending');
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
