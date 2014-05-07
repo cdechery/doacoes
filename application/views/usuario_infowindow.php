@@ -17,8 +17,12 @@
 </div>
 
 <?php
+	$maxImages = 3;
+	$numImages = 0;
 	if( $images ) {
 		foreach ($images as $img) {
+			$numImages++;
+			if( $numImages>$maxImages ) break;
 			$thumb = thumb_filename($img->nome_arquivo, 80);
 			echo "<img src='".base_url()."files/".$thumb."''>";
 		}

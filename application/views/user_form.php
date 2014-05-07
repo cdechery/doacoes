@@ -11,9 +11,12 @@
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
 
 	$hiddenAvatar = "";
+	$fromFacebook = false;
 	if( empty($avatar) ) {
 		$avatar = "images/default_avatar.gif";
 	} else {
+		// veio do facebook
+		$fromFacebook = true;
 		$avatar = $params['upload']['path'].$avatar;
 		$hiddenAvatar = '<inpyt type="hidden" name="avatar" value="'.$avatar.'">';
 	}
@@ -99,6 +102,13 @@ function initialize() {
 
 window.onload = initialize;
 //]]>
+<?php
+	if( $fromFacebook ) {
+?>
+	new Messi('Para finalizar o cadastro, precisamos de mais algumas informações');
+<?		
+	}
+?>
 </script>
 <table cellpadding=5 cellspacing=5 border=0>
 	<tr>

@@ -28,9 +28,9 @@ class Usuario extends MY_Controller {
         	$logoutFB = true;
 			try {
 	        	$fbuser = $this->facebook->api('/me');
-	        	$revoke = $this->facebook->api("/me/permissions", "DELETE");
-				//$logoutURL = $this->facebook->getLogoutUrl( array('acess_token'=>$fbuser['id'],
-				//	'next'=>base_url()) );
+	        	//$revoke = $this->facebook->api("/me/permissions", "DELETE");
+				$logoutURL = $this->facebook->getLogoutUrl( array('acess_token'=>$fbuser['id'],
+					'next'=>base_url()) );
 			} catch (FacebookApiException $e) {
 				error_log($e);
 				$fbuser = null;
@@ -41,7 +41,11 @@ class Usuario extends MY_Controller {
 		delete_cookie('DoacoesUserCookie'); //TODO colocar como param
 		delete_cookie('FbRegPending');
 
-		redirect( base_url() );
+		if( $logoutFB ) {
+			redirect( $logoutURL );
+		} else {
+			redirect( base_url() );
+		}
 	}
 
 	public function map_infowindow($user_id) {
