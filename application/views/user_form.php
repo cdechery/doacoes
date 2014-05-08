@@ -17,8 +17,8 @@
 	} else {
 		// veio do facebook
 		$fromFacebook = true;
+		$hiddenAvatar = '<input type="hidden" name="avatar" value="'.$avatar.'">';
 		$avatar = $params['upload']['path'].$avatar;
-		$hiddenAvatar = '<inpyt type="hidden" name="avatar" value="'.$avatar.'">';
 	}
 
 	$login_disabled = "";

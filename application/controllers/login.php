@@ -45,9 +45,7 @@ class Login extends MY_Controller {
 
 					$this->load->model('image_model');
 					$avatar = @$this->image_model->import_fb_avatar( $fbuser['id'] );
-					if( FALSE!=$avatar ) {
-						$fbuser['avatar'] = $avatar;
-					}
+					$fbuser['avatar'] = ( FALSE!=$avatar )?$avatar:"";
 
 					$this->session->set_userdata('fbuserdata', $fbuser );
 					$tipo = $this->session->userdata('tipo_cadastro');
