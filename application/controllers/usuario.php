@@ -139,7 +139,7 @@ class Usuario extends MY_Controller {
 
 	public function modify() {
 		if( !$this->is_user_logged_in ) {
-			redirect( base_url()."login" );
+			$this->show_access_error();
 		}
 
 		$this->load->helper('image_helper');
@@ -307,7 +307,7 @@ class Usuario extends MY_Controller {
 
 	public function interesses() {
 		if( !$this->is_user_logged_in ) {
-			redirect( base_url()."login" );
+			$this->show_access_error();
 		}
 
 		$this->load->model('interesse_model');

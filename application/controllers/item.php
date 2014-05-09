@@ -10,7 +10,7 @@ class Item extends MY_Controller {
 
 	public function novo() {
 		if( !$this->is_user_logged_in ) {
-			redirect( base_url()."login" );
+			$this->show_access_error();
 		}
 
 		$this->load->model('categoria_model');

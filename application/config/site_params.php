@@ -16,6 +16,7 @@ $config['site_params'] = array(
 		'50' => '50 km'
 		),
 	'erro_generico' => 'Ocorreu um erro inesperado',
+	'erro_acesso' => 'Acesso negado',
 	'titulo_site' => 'QuemPrecisa',
 	'image_settings' => array(
 		'thumb_sizes' => array(80, 200), // size of thumbs to generate

@@ -82,4 +82,9 @@ class MY_Controller extends CI_Controller
 			return $out;
 		}
 	}
+
+	public function show_access_error() {
+		show_error(xlang('dist_errsess_expire'), 403, $this->params['erro_acesso']);
+	}
 }
+
