@@ -5,6 +5,8 @@ class MY_Controller extends CI_Controller
 	protected $login_data = array();
 	protected $params = array();
 	protected $is_user_logged_in = FALSE;
+
+	private $head_loaded = FALSE;
 	
 	public function __construct() {
 
@@ -68,5 +70,16 @@ class MY_Controller extends CI_Controller
 			$alurls = array_merge( $alurls, $this->config->item('allowed_urls') );
 		}
 		return $alurls;
+	}
+
+	protected function load_iframe($view_name, $data = array(), $return = FALSE) {
+		if( !$return ) {
+			$this->load->view('mini_head', $data, FALSE);
+			$this->load->view($view_name, $data, FALSE);
+		} else {
+			$out = $this->load->view('mini_head', $data, TRUE);
+			$out .= $this->load->view($view_name, $data, TRUE);
+			return $out;
+		}
 	}
 }

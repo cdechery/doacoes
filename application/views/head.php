@@ -4,7 +4,7 @@
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
 
-	if( false==$login_data['logged_in'] && false==$fbReg ) {
+	if( false==$login_data['logged_in'] && false==$fbReg && false ) {
 ?>
 <script>
    window.fbAsyncInit = function() {
@@ -42,8 +42,8 @@
 <?php
 	}
 ?>
-<meta http-equiv="Content-Type" content="text/html; <?php echo $this->config->item('charset');?>"/>
-<meta charset="<?php echo $this->config->item('charset');?>"/>
+<!--meta http-equiv="Content-Type" content="text/html; <?php echo $this->config->item('charset');?>"/-->
+<!--meta charset="<?php echo $this->config->item('charset');?>"/-->
 <?php
 	if( !isset($title) ) {
 		echo "ERROR: Title not defined!";

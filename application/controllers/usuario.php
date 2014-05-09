@@ -53,12 +53,14 @@ class Usuario extends MY_Controller {
 			return;
 		}
 
-		$data = $this->usuario_model->get_data($user_id);
-		$this->load->model('image_model');
-		$images = $this->image_model->get_user_item_images( $user_id );
+		$udata = $this->usuario_model->get_data($user_id);
+		$this->load->model('item_model');
+		$items = $this->item_model->get_user_items( $user_id );
+
+		$this->load->helper('image');
 
 		$this->load->view('usuario_infowindow',
-			array('data'=>$data, 'images'=>$images));
+			array('udata'=>$udata, 'items'=>$items));
 	}
 
 	public function new_user($tipo = "P") {
@@ -250,7 +252,7 @@ class Usuario extends MY_Controller {
 		}
 
 		$view_params = array('action'=>$action, 'msg'=>$msg, 'status'=>$status);
-		$this->load->view('reset_password', $view_params);
+		$this->load_iframe('reset_password', $view_params);
 	}
 
 	public function email_check( $email ) {

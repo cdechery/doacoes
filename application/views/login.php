@@ -17,17 +17,17 @@
 <div style="font-size: small; align:left"> Manter conectado? <input type="checkbox" name="lembrar"></div>
 <div align="right"><input type="submit" value="Go"/></div>
 
-<p><a class="various" href="<?php echo base_url()?>user/reset_password" data-fancybox-type="iframe"><?php echo xlang('dist_resetpw_link')?></a></p>
+<p><a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe"><?php echo xlang('dist_resetpw_link')?></a></p>
 </form>
 </div>
 <script>
 $(document).ready(function() {
 	$(".various").fancybox({
-		maxWidth	: 300,
-		maxHeight	: 100,
+		maxWidth	: 320,
+		maxHeight	: 129,
 		fitToView	: false,
-		width		: '70%',
-		height		: '70%',
+		width		: '90%',
+		height		: '90%',
 		autoSize	: false,
 		closeClick	: false,
 		openEffect	: 'none',

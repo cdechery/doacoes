@@ -27,9 +27,13 @@ class Item_model extends MY_Model {
 		}
 	}
 
-	public function get_user_items($usuario_id) {
-		$items = $this->db->get_where('item',
-			array('id'=>$usuario_id))->result();
+	public function get_user_items( $usuario_id ) {
+		$this->db->select('it.id item_id, it.titulo, im.id imagem_id, im.nome_arquivo');
+		$this->db->from('item it');
+		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
+		$this->db->where('it.usuario_id', $usuario_id);
+		$items = $this->db->get()->result();
+
 		return $items;
 	}
 

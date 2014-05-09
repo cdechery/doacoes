@@ -105,7 +105,7 @@ class Slonga extends MY_Controller {
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes );
 
-		$this->load->view('head', array('title'=>'Slonga!!!'));
+		$this->load->view('head', array('title'=>'Slonga!!!', 'min_template'=>'image_view'));
 		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');
 	}

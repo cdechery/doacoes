@@ -108,4 +108,12 @@ class Item extends MY_Controller {
 		$this->load->model('image_model');
 		return $this->image_model->get_item_images( $item_id );
 	}
+
+	public function map_view( $item_id ) {
+		$item_data = $this->item_model->get( $item_id );
+		$img_data = $this->get_images( $item_id );
+
+		$this->load_iframe('item_view', 
+			array('idata'=>$item_data, 'imgdata'=>$img_data));
+	}
 }

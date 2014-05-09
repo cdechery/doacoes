@@ -47,17 +47,6 @@ class Image_model extends MY_Model {
 		$this->db->delete("item_temp", array("id"=>$temp_id));
 	}
 
-	public function get_user_item_images( $usuario_id ) {
-		$this->db->select('it.id as item_id, im.id, im.nome_arquivo');
-		$this->db->from('imagem im');
-		$this->db->join('item it', 'it.id = im.item_id');
-		$this->db->join('usuario u','u.id = it.usuario_id');
-		$this->db->where('u.id', $usuario_id);
-		$images = $this->db->get()->result();
-
-		return $images;
-	}
-
 	public function get_item_images( $item_id ) {
 		$images =  $this->db->get_where('imagem',
 			array('item_id'=>$item_id))->result();

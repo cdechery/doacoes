@@ -9,4 +9,19 @@
 	} // if ENV
 ?>
 </body>
+<script>
+$(document).ready(function() {
+	$(".itembox").fancybox({
+		maxWidth	: 500,
+		maxHeight	: 400,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		closeClick	: true,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+})
+</script>
 </html>
