@@ -22,7 +22,8 @@ class MY_Exceptions extends CI_Exceptions {
 		$head_data = array("title"=>$this->params['titulo_site'].": Erro");
 		$head = $this->CI->load->view('head', $head_data, TRUE);
 
-		$err_body = $this->CI->load->view('error', array('message'=>$message, 'heading'=>$heading), TRUE);
+		$err_body = $this->CI->load->view('error',
+			array('message'=>$message, 'heading'=>$heading), TRUE);
 		$foot = $this->CI->load->view('foot', TRUE);
 		
 		if (ob_get_level() > $this->ob_level + 1) {

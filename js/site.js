@@ -8,11 +8,15 @@ $.ajaxSetup({
 jQuery.extend({
     handleError: function( s, xhr, status, e ) {
         // If a local callback was specified, fire it
-        if ( s.error )
+        if ( s.error ) {
             s.error( xhr, status, e );
+        	setErrorDiv( xhr.responseText );
+        }
         // If we have some XML response text (e.g. from an AJAX call) then log it in the console
-        else if(xhr.responseText)
-           console.log(xhr.responseText);
+        else if(xhr.responseText) {
+        	console.log(xhr.responseText);
+			setErrorDiv( xhr.responseText );
+		}
     }
 });
 
@@ -59,7 +63,7 @@ function load_infowindow_content(infowindow, user_id){
 	});
 }
 
-function newmarker_infowindow_content(lat, lng, infowindow) {
+/*function newmarker_infowindow_content(lat, lng, infowindow) {
 		$.ajax({
 		url: site_root +'map/newmarker_infowindow/' + lat +'/' +lng,
 		success: function(data){
@@ -67,19 +71,21 @@ function newmarker_infowindow_content(lat, lng, infowindow) {
 			processInLineLabels();
 		}
 	});
-}
-
-var mrkImagesCount = 0;
+}*/
 
 $(function() {
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#usuario_insert").attr("action"), $("#usuario_insert").serialize(), function(data) {
+		$.post($("#usuario_insert").attr("action"),
+			$("#usuario_insert").serialize(), function(data) {
+
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
-					titleClass: 'success', modal: true, buttons: [{id: 0, label: 'OK', val: 'S'}], 
+					titleClass: 'success', modal: true,
+					buttons: [{id: 0, label: 'OK', val: 'S'}], 
 					callback: function(val) { go_home(); } });
+
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -90,10 +96,13 @@ $(function() {
 
 	$('#usuario_update').submit(function(e) {
 		e.preventDefault();
-		$.post($("#usuario_update").attr("action"), $("#usuario_update").serialize(), function(data) {
+		$.post($("#usuario_update").attr("action"),
+			$("#usuario_update").serialize(), function(data) {
+
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['success'], titleClass: 'success', modal: true });
+				new Messi(json.msg, {title: lang['success'],
+					titleClass: 'success', modal: true });
 			} else {
 				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -119,7 +128,8 @@ $(function() {
 					new Messi(data.msg, {title: lang['success'], 
 						titleClass: 'success', modal: true });
 				} else {
-					new Messi(data.msg, {title: lang['dist_lbl_error'], tttleClass: 'anim error',
+					new Messi(data.msg, {title: lang['dist_lbl_error'],
+						titleClass: 'anim error',
 						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 				}
 			},
@@ -130,25 +140,39 @@ $(function() {
 		return false;
 	});
 
-    $('#upload_marker_image').submit(function(e) {
+	$('#item_insert').submit(function(e) {
+		e.preventDefault();
+		$.post($("#item_insert").attr("action"),
+			$("#item_insert").serialize(), function(data) {
+
+			var json = myParseJSON( data );
+			if( json.status=="OK" ) {
+				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
+					titleClass: 'success', modal: true,
+					buttons: [{id: 0, label: 'OK', val: 'S'}], 
+					callback: function(val) { go_home(); } });
+
+			} else {
+				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
+		return false;
+	});
+
+    /*$('#upload_item_image').submit(function(e) {
         e.preventDefault();
 
-        if( max_images_marker!=0 && mrkImagesCount>=max_images_marker ) {
-            new Messi(lang['dist_imgupload_max'], {title: lang['dist_lbl_error'],
-            	 tttleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-            return false;
-        } 
-
         $.ajaxFileUpload({
-            url : site_root +'image/upload_marker_image/',
+            url : site_root +'image/upload_item_image/',
             secureuri :false,
             fileElementId :'userfile',
             contentType : 'application/json; charset=utf-8',
             dataType        : 'json',
             data : {
-	            'title' : $('#title').val(),
+	            'id' : $('#id').val(),
 	            'thumbs' : $('#thumbs').val(),
-	            'marker_id' : $('#marker_id').val()
+	            'usuario_id' : $('#usuario_id').val()
             },
             success : function (data) {
                 if( data.status != 'error') {
@@ -163,7 +187,7 @@ $(function() {
 	                });
 	                $('#title').val('');
                 } else {
-                    new Messi(data.msg, {title: lang['dist_lbl_error'], tttleClass: 'anim error', 
+                    new Messi(data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', 
                     	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
                 }
             },
@@ -172,11 +196,13 @@ $(function() {
 			}
         });
         return false;
-    });
+    });*/
 
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#interesse_insert").attr("action"), $("#interesse_insert").serialize(), function(data) {
+		$.post($("#interesse_insert").attr("action"), 
+			$("#interesse_insert").serialize(), function(data) {
+
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: 'Interesse incluído com sucesso!',
@@ -211,7 +237,8 @@ $(function() {
 						titleClass: 'success', modal: true });
 				} else {			
 					new Messi( data.msg, {title: lang['dist_lbl_error'],
-						titleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+						titleClass: 'anim error',
+						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 				}
 			},
 			error : function (data, status, e) {
@@ -238,13 +265,70 @@ $(function() {
 	$(document).on('click', '.delete_file_link', function(e) {
 		e.preventDefault();
 		var btn = $(this);
-		new Messi(lang['dist_imgdel_confirm'], {modal: true, buttons: [{id: 0, label: 'Sim', val: 'S'},
+		new Messi(lang['dist_imgdel_confirm'], {modal: true,
+			buttons: [{id: 0, label: 'Sim', val: 'S'},
 			{id: 1, label: 'Não', val: 'N'}], 
 			callback: function(val) { if(val=='S') delete_image(btn); }});
 
 		return false;
 	}); // delete
 });
+
+function do_upload_item_image( img_id, isnew ) {
+
+ 	var img_tag_id = 'item_img_'+img_id;
+	var file_tag_id = 'item_file_'+img_id;
+	var action = '';
+
+	if( isnew ) {
+		img_tag_id = 'img_'+img_id;
+		file_tag_id = 'file_'+img_id;
+	}
+
+	if( $('#id').val()==0 && isnew ) {
+		action = 'upload_temp_item_image';
+	} else if( $('#id').val()!=0 && isnew ) {
+		action = 'upload_item_image';
+	} else {
+		action = 'update_item_image';
+	}
+
+	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader.gif');
+
+    $.ajaxFileUpload({
+        url : site_root +'image/'+action+'/',
+        secureuri : false,
+        fileElementId : file_tag_id,
+        contentType : 'application/json; charset=utf-8',
+        dataType        : 'json',
+        data : {
+            'id' : $('#id').val(),
+            'thumbs' : $('#thumbs').val(),
+            'file_tag_name': file_tag_id,
+            'temp_id': $('#temp_id').val(),
+            'img_id': img_id
+        },
+        success : function(data) {
+            if( data.status != 'error') {
+                var imageData = $.getJSON( site_root + 'image/get_image/'+data.file_id );
+                imageData.success(function(imgdata) {
+	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb200);
+	                if( isnew ) {
+	                	$('#'+img_tag_id).data('newid', data.file_id);
+	                }
+                });
+            } else {
+                new Messi(data.msg, {title: lang['dist_lbl_error'],
+                	titleClass: 'anim error', 
+                	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+            }
+        },
+        error : function (data, status, e) {
+			general_error( lang['dist_error_upload'] );
+		}
+    });
+    return false;
+}
 
 function activ_deactiv_interesse( btn, action ) {
 	$.ajax({
@@ -263,7 +347,8 @@ function activ_deactiv_interesse( btn, action ) {
 
 				return true;
 			} else {
-				new Messi( data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', 
+				new Messi( data.msg, {title: lang['dist_lbl_error'],
+					titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 
 				return false;
@@ -292,7 +377,7 @@ function delete_image( link ) {
 				});
 				mrkImagesCount--;
 			} else {
-				new Messi(data.msg, {title: lang['error'], tttleClass: 'anim error', 
+				new Messi(data.msg, {title: lang['error'], titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 			}
 		},

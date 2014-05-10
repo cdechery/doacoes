@@ -12,9 +12,28 @@ class Item_model extends MY_Model {
 			array('id'=>$item_id))->row_array();
 	}
 
-	public function get_user_items($usuario_id) {
-		$items = $this->db->get_where('item',
-			array('id'=>$usuario_id))->result();
+	public function get_temp_id($usuario_id) {
+		$item = $this->db->get_where('item_temp',
+			array('usuario_id'=>$usuario_id))->row();
+
+		if( count($item) ) {
+			return $item->id;
+		} else {
+			$insert_array = array('usuario_id'=>$usuario_id);
+			$this->db->set('data_criacao', 'NOW()', false);
+			$this->db->insert('item_temp', $insert_array);
+			
+			return $this->get_temp_id($usuario_id);
+		}
+	}
+
+	public function get_user_items( $usuario_id ) {
+		$this->db->select('it.id item_id, it.titulo, im.id imagem_id, im.nome_arquivo');
+		$this->db->from('item it');
+		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
+		$this->db->where('it.usuario_id', $usuario_id);
+		$items = $this->db->get()->result();
+
 		return $items;
 	}
 
@@ -27,7 +46,7 @@ class Item_model extends MY_Model {
 			'situacao_id' => $item_data['sit'],
 		);
 
-		$this->db->set('dt_inclusao', 'NOW()', false);
+		$this->db->set('data_inclusao', 'NOW()', false);
 
 		if( $this->db->insert('item', $insert_data ) ) {
 			return $this->db->insert_id();

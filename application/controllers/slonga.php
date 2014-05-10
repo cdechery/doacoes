@@ -78,6 +78,8 @@ class Slonga extends MY_Controller {
 			$raios = $this->params['raios_busca'];
 			$cores = array('blue', 'green', 'yellow', 'orange', 'red');
 			foreach ($raios as $raio => $desc_raio) {
+				if($raio==0) continue;
+
 				$circle = array();
 				$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
 				$circle['radius'] = $raio*1000;
@@ -103,7 +105,7 @@ class Slonga extends MY_Controller {
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes );
 
-		$this->load->view('head', array('title'=>'Slonga!!!'));
+		$this->load->view('head', array('title'=>'Slonga!!!', 'min_template'=>'image_view'));
 		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');
 	}

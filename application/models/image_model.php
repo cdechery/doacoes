@@ -8,15 +8,20 @@ class Image_model extends MY_Model {
 		$this->table = "imagem";
 	}
  
-	public function insert($upload_data, $image_data, $thumb_sizes = array())	{
+	public function insert($upload_data,
+		$image_data, $thumb_sizes = array())	{
 		
 		$insert_data = array(
 			'item_id' => (int)$image_data["item_id"],
-			'nome_arquivo'     => $upload_data['filename'],
-			'descricao'  => $image_data["desc"]
+			'nome_arquivo' => $upload_data['file_name'],
+			'descricao'  => $image_data["descricao"]
 		);
-		
-		if( $this->db->insert('image', $insert_data) ) {
+
+		if( isset($image_data['temp_id']) ) {
+			$insert_data['temp_item_id'] = (int)$image_data['temp_id'];
+		}
+
+		if( $this->db->insert('imagem', $insert_data) ) {
 			if( count($thumb_sizes) ) {
 				foreach( $thumb_sizes as $size ) {
 					create_square_cropped_thumb( $upload_data['full_path'], $size );
@@ -27,20 +32,24 @@ class Image_model extends MY_Model {
 			return false;
 		}
 	}
-	
-	public function get_user_item_images( $usuario_id ) {
-		$this->db->select('it.id as item_id, im.id, im.nome_arquivo');
-		$this->db->from('imagem im');
-		$this->db->join('item it', 'it.id = im.item_id');
-		$this->db->join('usuario u','u.id = it.usuario_id');
-		$this->db->where('u.id', $usuario_id);
-		$images = $this->db->get()->result();
 
-		return $images;
+	public function update() {
+		// TODO
+	}
+	
+	public function move_temp_images( $usuario_id, $item_id, $temp_id ) {
+		$upd_data = array("item_id"=>$item_id);
+		$this->db->set("temp_item_id", "NULL", false);
+		$this->db->where("temp_item_id", $temp_id);
+		$this->db->limit( $this->params['max_item_imgs'] );
+		$this->db->update("imagem", $upd_data);
+
+		$this->db->delete("item_temp", array("id"=>$temp_id));
 	}
 
 	public function get_item_images( $item_id ) {
-		$images =  $this->db->get_where('imagem', array('item_id'=>$item_id))->result();
+		$images =  $this->db->get_where('imagem',
+			array('item_id'=>$item_id))->result();
 		return $images;
 	}
 	
@@ -77,7 +86,23 @@ class Image_model extends MY_Model {
 		if( $id === 0 ) {
 			return false;
 		} else {
-			return $this->db->get_where('image', array('id' => $id))->row();
+			return $this->db->get_where('imagem', array('id' => $id))->row();
 		}
 	}	
+
+	public function import_fb_avatar( $fid ) {
+		$img = file_get_contents('https://graph.facebook.com/'.$fid.'/picture?type=large');
+		$path = realpath( $this->params['upload']['path'] );
+		$filename = uniqid("fb").'.jpg';
+		$ret = file_put_contents($path."/".$filename, $img);
+		if( $ret>0 ) {
+			$thumbs = $this->params['image_settings']['thumb_sizes'];
+			foreach( $thumbs as $size ) {
+				create_square_cropped_thumb( $path."/".$filename, $size );
+			}
+			return $filename;
+		} else {
+			return FALSE;
+		}
+	}
 }

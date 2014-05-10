@@ -8,7 +8,15 @@ class Image extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
-	public function upload_item_image() {
+	public function update_item_image() {
+		$this->upload_item_image(FALSE, TRUE);
+	}
+
+	public function upload_temp_item_image() {
+		$this->upload_item_image(TRUE, FALSE);
+	}
+
+	public function upload_item_image($istemp=FALSE, $isupdate=FALSE) {
 		$status = "";
 		$msg = "";
 		$file_id = "";
@@ -21,7 +29,8 @@ class Image extends MY_Controller {
 			return;
 		}
 
-		$file_element_name = 'userfile';
+		$input = $this->input->post(NULL);
+		$file_element_name = $input['file_tag_name'];
 
 		$config['upload_path'] = $this->params['upload']['path'];
 		$config['allowed_types'] = implode("|",$this->params['image_settings']['allowed_types']);
@@ -38,7 +47,7 @@ class Image extends MY_Controller {
 		} else {
 			$udata = $this->upload->data();
 
-			if( $data['image_height']< $min_image_size || $data['image_width']< $min_image_size ) {
+			if( $udata['image_height'] < $min_image_size || $udata['image_width'] < $min_image_size ) {
 				$status="error";
 				$msg = xlang('dist_min_image_size', $min_image_size);
 			} else {
@@ -47,17 +56,28 @@ class Image extends MY_Controller {
 					$thumbSizes = explode("|", $thumbSizes );
 				}
 
-				$input = $this->input->post(NULL);
-				$image_data = array('item_id'=>$input['item_id'],
-					'descricao'=>$input['desc'] );
-
-				$file_id = $this->image_model->insert( $udata, $image_data, $thumbSizes );
+				$image_data = array('descricao'=>'');
+				if( $isupdate ) {
+					$image_data['item_id'] = $input['id'];
+					$image_data['id'] = $input['img_id'];
+					$this->image_model->update( $udata,
+						$image_data, $thumbSizes );
+				} else if( $istemp ) {
+					$image_data['item_id'] = 0;
+					$image_data['temp_id'] = $input['temp_id'];
+					$file_id = $this->image_model->insert( $udata,
+						$image_data, $thumbSizes );
+				} else {
+					$image_data['item_id'] = $input['id'];
+					$file_id = $this->image_model->insert( $udata,
+						$image_data, $thumbSizes );
+				}
 
 				if( $file_id ) {
 					$status = "success";
 					$msg = xlang('dist_imgupload_ok');
 				} else {
-					@unlink( $data['full_path'] );
+					@unlink( $udata['full_path'] );
 					$status = "error";
 					$msg = xlang('dist_imgupload_nok');
 				}
@@ -65,7 +85,8 @@ class Image extends MY_Controller {
 		}
 
 		$msg = utf8_encode($msg);
-		echo json_encode(array('status' => $status, 'msg' => $msg, "file_id" => $file_id) );
+		echo json_encode(array('status' => $status, 'msg' => $msg,
+			"file_id" => $file_id) );
 	} // upload_marker_imagem
 
 	public function upload_avatar() {
@@ -130,12 +151,6 @@ class Image extends MY_Controller {
 		echo json_encode(array('status' => $status, 'msg' => $msg, "img_src" => $img_src) );
 	} // upload_marker_imagem
 
-	public function list_marker_images( $marker_id ) {
-		//$this->load->helper('image_helper');
-		$files = $this->image_model->get_marker_images($marker_id);
-		$this->load->view('marker_images', array('files' => $files));
-	}
-
 	public function delete_image( $id ) {
 		if( !$this->is_user_logged_in ) {
 			$status = "error";
@@ -154,12 +169,22 @@ class Image extends MY_Controller {
 			$msg = xlang('dist_imgdel_ok');
 		}
 		$msg = utf8_encode( $msg );
-		echo json_encode( array('status' => $status, 'msg' => utf8_encode($msg)) );
+		echo json_encode( array('status' => $status,
+			'msg' => utf8_encode($msg)) );
 	}
 
 	public function get_image($image_id) {
 		$image_data = $this->image_model->get_by_id($image_id);
-		$this->load->view("marker_image_single", array("image"=>$image_data));
+		$retJson = array('id'=>$image_data->id,
+			'nome_arquivo'=>$image_data->nome_arquivo,
+			'item_id'=>$image_data->item_id);
+
+		$thumbSizes = $this->params['image_settings']['thumb_sizes'];
+		foreach ($thumbSizes as $size) {
+			$retJson['thumb'.$size] = thumb_filename($image_data->nome_arquivo, $size); 
+		}
+
+		echo json_encode( $retJson );
 	}
 
 } // Image class

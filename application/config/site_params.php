@@ -16,6 +16,7 @@ $config['site_params'] = array(
 		'50' => '50 km'
 		),
 	'erro_generico' => 'Ocorreu um erro inesperado',
+	'erro_acesso' => 'Acesso negado',
 	'titulo_site' => 'QuemPrecisa',
 	'image_settings' => array(
 		'thumb_sizes' => array(80, 200), // size of thumbs to generate
@@ -26,5 +27,7 @@ $config['site_params'] = array(
 	'upload' => array(
 		'path' => './files/',
 		'max_size' => (8*1024)
-	)
+	),
+	'facebook' => array('appId' => '649645738441266',
+        		'secret' => '8d37a4c4dc26a772b0d9cafffab5169e')
 );

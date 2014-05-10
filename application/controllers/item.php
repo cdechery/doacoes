@@ -9,10 +9,25 @@ class Item extends MY_Controller {
 	}
 
 	public function novo() {
-		$head_data = array("title"=>$this->params['titulo_site']);
+		if( !$this->is_user_logged_in ) {
+			$this->show_access_error();
+		}
+
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
+
+		$this->load->model('situacao_model');
+		$situacoes = $this->situacao_model->get_all();
+
+		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$data = array('action' => 'insert');
+		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
+
+		$data = array('action' => 'insert',
+			'temp_id'=>$temp_id,
+			'situacoes'=>$situacoes,
+			'categorias'=>$categorias);
 		$this->load->view('item_form', array('data'=>$data) );
 		$this->load->view('foot');
 	}
@@ -30,7 +45,7 @@ class Item extends MY_Controller {
 			return;
 		}
 
-		$inter_data = $this->input->post(NULL, TRUE);
+		$input = $this->input->post(NULL, TRUE);
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -51,8 +66,11 @@ class Item extends MY_Controller {
 
 			$item_data['usuario_id'] = $this->login_data['user_id'];
 
-			$new_id = $this->item_model->insert( $inter_data );
+			$new_id = $this->item_model->insert( $input );
 			if( $new_id ) {
+				$this->load->model('image_model');
+				$this->image_model->move_temp_images($item_data['usuario_id'],
+					$new_id, $input['temp_id'] );
 				$status = "OK";
 				$msg = 'O Item foi incluído com sucesso';
 			} else {
@@ -89,5 +107,13 @@ class Item extends MY_Controller {
 	public function get_images( $item_id ) {
 		$this->load->model('image_model');
 		return $this->image_model->get_item_images( $item_id );
+	}
+
+	public function map_view( $item_id ) {
+		$item_data = $this->item_model->get( $item_id );
+		$img_data = $this->get_images( $item_id );
+
+		$this->load_iframe('item_view', 
+			array('idata'=>$item_data, 'imgdata'=>$img_data));
 	}
 }

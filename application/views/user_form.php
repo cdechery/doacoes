@@ -10,9 +10,14 @@
 
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
 
+	$hiddenAvatar = "";
+	$fromFacebook = false;
 	if( empty($avatar) ) {
 		$avatar = "images/default_avatar.gif";
 	} else {
+		// veio do facebook
+		$fromFacebook = true;
+		$hiddenAvatar = '<input type="hidden" name="avatar" value="'.$avatar.'">';
 		$avatar = $params['upload']['path'].$avatar;
 	}
 
@@ -97,6 +102,13 @@ function initialize() {
 
 window.onload = initialize;
 //]]>
+<?php
+	if( $fromFacebook ) {
+?>
+	new Messi('Para finalizar o cadastro, precisamos de mais algumas informações');
+<?		
+	}
+?>
 </script>
 <table cellpadding=5 cellspacing=5 border=0>
 	<tr>
@@ -127,6 +139,7 @@ window.onload = initialize;
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
 		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
+		<?php echo $hiddenAvatar?>
 
 		<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login"/><br>
 		<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" /><br>

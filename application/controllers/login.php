@@ -8,8 +8,67 @@ class Login extends MY_Controller {
 		$this->load->helper('cookie');	
 	}
 
+	public function testfb() {
+		$this->load->view('testfb');
+	}
+
+	public function fbchannel() {
+		$this->load->view('fbchannel');
+	}
+
+	public function fblogin() {
+		$fbuser = null;
+		$logoutURL = null;
+		$loginURL = null;
+
+        // load the facebook library
+        $this->load->library("facebook",$this->params['facebook'] );
+
+        // Get User ID
+        $fbuser = $this->facebook->getUser();
+        
+        if( $fbuser ) {
+			try {
+				// Proceed knowing you have a logged in user who's authenticated.
+				$fbuser = $this->facebook->api('/me');
+
+				$this->load->model('usuario_model');
+				$usuario = $this->usuario_model->get_data_email( $fbuser['email'] );
+
+				if( FALSE!=$usuario ) {
+					set_user_session( $usuario['id'] );
+					$this->login_data = $this->check_session();
+
+					redirect( base_url() );
+				} else { //novo
+					$this->input->set_cookie('FbRegPending', "1", 259000 );
+
+					$this->load->model('image_model');
+					$avatar = @$this->image_model->import_fb_avatar( $fbuser['id'] );
+					$fbuser['avatar'] = ( FALSE!=$avatar )?$avatar:"";
+
+					$this->session->set_userdata('fbuserdata', $fbuser );
+					$tipo = $this->session->userdata('tipo_cadastro');
+					if( $tipo ) {
+						redirect( base_url('usuario/new_user/'.$tipo ) );
+					} else {
+						redirect( base_url('usuario/tipo') );
+					}
+				}
+			} catch (FacebookApiException $e) {
+				error_log($e);
+				$fbuser = null;
+				// TODO tratar erro
+			}
+        } else {
+        	$scope = array('scope' => 'email');
+            $loginURL = $this->facebook->getLoginUrl( $scope );
+        }
+	}
+
 	public function index($msg = "") {
-		$head_data = array("min_template"=>"image_view", "title"=>$this->params['titulo_site'].": Login");
+		$head_data = array("min_template"=>"image_view",
+			"title"=>$this->params['titulo_site'].": Login");
 		$this->load->view('head', $head_data);
 		$this->load->view('login', array('msg'=>$msg));
 		$this->load->view('foot');
