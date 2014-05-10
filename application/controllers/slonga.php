@@ -2,8 +2,8 @@
 
 class Slonga extends MY_Controller {
 	public function index() {
+		
 		$this->load->library('googlemaps');
-
 		$config = array();
 		$config['center'] = '-22.9035,-43.2096';
 		$config['zoom'] = 'auto';	
@@ -12,6 +12,10 @@ class Slonga extends MY_Controller {
 		$config['places'] = FALSE;
 		$config['cluster'] = FALSE;
 		$config['sensor'] = TRUE;
+
+		$config['map_width'] = '100%'; // usar 960px para mapa largura fixa (não 100%)
+		$config['map_height'] = '510px';
+		$config['map_div_id'] = 'map_canvas_full'; // para mapa 100% de largura
 
 		$this->load->model('mapa_model');
 		$map_result = $this->mapa_model->get_all();
@@ -29,6 +33,7 @@ class Slonga extends MY_Controller {
 
 		$markers_created = array();
 		foreach($map_result as $row) {
+			
 			if( $row->user_id == $this->login_data['user_id'] ) {
 				continue;
 			}
