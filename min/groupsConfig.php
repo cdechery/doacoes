@@ -18,5 +18,5 @@ return array(
 	'image_view_css' => array('//css/bootstrap.min.css', '//css/style.css','//css/messi.min.css', '//css/jquery.fancybox.css'),
 	'basic_js' => array('//js/jquery-1.10.2.min.js', '//js/bootstrap.min.js','//js/messi.min.js', '//js/site.js'),
 	//'basic_css' => array('//css/style.css', '//css/bootstrap.min.css', '//css/messi.min.css')
-	'basic_css' => array('//css/doacoes.css')
+	'basic_css' => array('//css/doacoes.css', '//css/font-awesome.min.css')
 );

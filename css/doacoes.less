@@ -4,10 +4,58 @@
 
 @verde: #9ba800;
 
+div, h1 {
+	box-sizing: border-box;
+}
+
+/* classe para botões */
+
+.btn {
+	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	user-select: none;
+	> span {
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		border: 1px solid;
+		border-radius: 8px;
+		box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.19); 
+		border-color: #0F80AE #0F80AE #11698D #0F80AE;
+		background: linear-gradient(#169BD0, #0D7FAE);
+		b {
+			padding: 0 50px;
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 20px;
+			font-weight: bold;
+			text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+			color: #fff;
+			line-height: 42px;
+			text-transform: uppercase;
+		}
+	}
+	&:hover > span {
+		border-color: #0F79A3 #0F79A3 #0F6383 #0F79A3;
+		text-decoration: none;
+		background: linear-gradient(#1DA5DB, #0F87BA);
+		box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.24), 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+	}
+	&:active > span {
+		box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.12), inset 0 -1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+		background: linear-gradient(#25A6DA, #209BCE);
+	}
+	&:active b {
+		color: #fff;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35); 
+	}
+}
+
 body {
 	margin:0;
 	padding:0;
-	/*background: url(../images/layout.png) 50% 0 no-repeat;*/
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 	background-color: @verde;
@@ -17,7 +65,6 @@ body {
 div.wrap960 {
 	margin: 0 auto;
 	width: 960px;
-	height: 100px;
 	position: relative;
 }
 
@@ -26,10 +73,19 @@ header {
 	height: 90px;
 	background-color: @azultopo;
 	padding: 1px; /* evitar margin collapsing */
+	#marca {
+		width:120px;
+		height: 90px;
+		background: #007095 url('../images/bonecos.png') 50% 50% no-repeat;
+		float: left;
+		margin-right: 25px;
+	}
 	h1 {
-		margin: 20px 0 0;
+		margin: 25px 0 0;
+		display: inline-block;
 	}
 	#login {
+		margin: 30px 0 0;
 		width: 200px;
 		text-align: right;
 		position: absolute;
@@ -42,6 +98,20 @@ section#map {
 	width: 100%;
 	background-color: @azul;
 	padding: 1px; /* evitar margin collapsing */
+	.wrap960 {
+		/*position: absolute;*/
+		z-index: 1000;
+		background-color: yellow;
+		#filtros {
+			width: 200px;
+			background-color: #000;
+			opacity: 0.6;
+			padding: 20px;
+			position: absolute;
+			right: 0;
+			top: 20px;
+		}
+	}
 	#map_canvas {
 		border: 1px solid red;
 		width: 960px;
@@ -67,6 +137,23 @@ section#contents {
 		font-size: 1.3em;
 		line-height: 1.8em;
 		padding: 0 20px;
+	}
+	#botoes {
+		margin-top: 35px;
+		text-align: center;
+		#tenho {
+			margin-right: 30px;
+			> span {
+				border-color: #ad7e00 #ad7e00 #7d3800 #ad7e00;
+				background: linear-gradient(#fcbd15,#e5a700);
+			}
+		}
+		#preciso {
+			> span {
+				/*border-color: #0F80AE #0F80AE #11698D #0F80AE;
+				background: linear-gradient(#169BD0, #0D7FAE);*/
+			}
+		}
 	}
 }
 

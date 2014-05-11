@@ -47,11 +47,13 @@
 <header>
 
 	<div class="wrap960">
+
+		<div id="marca">&nbsp;</div>
 		
 		<h1>Quem Precisa?</h1>
 
 		<div id="login">
-			Olá <?php echo $user_name;?>
+			Ola <?php echo $user_name;?>
 			<?php echo $signup_link;?>
 		</div>
 
