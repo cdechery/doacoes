@@ -11,8 +11,7 @@
 		return;
 	}
 	
-	//if( !isset($min_template) ) {
-	if(isset($min_template)) {
+	if( !isset($min_template) ) {
 		$min_template = "basic";
 	}
 
@@ -45,19 +44,13 @@
 ?>
 
 <header>
-
 	<div class="wrap960">
-
 		<div id="marca">&nbsp;</div>
-		
 		<h1>Quem Precisa?</h1>
-
 		<div id="login">
 			Ola <?php echo $user_name;?>
 			<?php echo $signup_link;?>
 		</div>
-
 	</div>
-
 </header>
 	

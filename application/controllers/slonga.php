@@ -14,7 +14,7 @@ class Slonga extends MY_Controller {
 		$config['sensor'] = TRUE;
 
 		$config['map_width'] = '100%'; // usar 960px para mapa largura fixa (não 100%)
-		$config['map_height'] = '510px';
+		$config['map_height'] = '400px';
 		$config['map_div_id'] = 'map_canvas_full'; // para mapa 100% de largura
 
 		$this->load->model('mapa_model');
