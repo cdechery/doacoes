@@ -1,0 +1,3 @@
+files/*
+application/logs/*
+application/config/database.php

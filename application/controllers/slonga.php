@@ -48,6 +48,7 @@ class Slonga extends MY_Controller {
 			$marker['position'] = $row->lat.', '.$row->lng;
 			$marker['infowindow_content'] = 'Item';
 			$marker['clickable'] = true;
+			$marker['onclick'] = 'map.setCenter(event.latLng); map.panBy(0, -120);';
 			$marker['icon'] = base_url().'icons/red-dot.png';
 			$marker['id'] = $row->user_id;
 
