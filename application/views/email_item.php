@@ -1,16 +1,7 @@
 <?php
 	$avatar_from = $avatar_to = "";
-	if( empty($from_user['avatar']) ) {
-		$avatar_from = base_url('images/default_avatar_small.gif');
-	} else {
-		$avatar_from = base_url('files/'.thumb_filename($from_user['avatar'], 80));
-	}
-
-	if( empty($to_user['avatar']) ) {
-		$avatar_to = base_url('images/default_avatar_small.gif');
-	} else {
-		$avatar_to = base_url('files/'.thumb_filename($to_user['avatar'], 80));
-	}
+	$avatar_from = user_avatar($from_user['avatar'], 80);
+	$avatar_to = user_avatar($to_user['avatar'], 80);
 ?>
 <script type="application/javascript" src="http://localhost/doacoes/javascript/inherit_css"></script>
 <form name="queroitem" action="<?php echo base_url('email/enviar')?>"?>
@@ -18,10 +9,10 @@
 <input type="hidden" name="para" value="<?php echo $to_user['nome']?>">
 <input type="hidden" name="item_id" value="<?php echo $item['id']?>">
 <p>
-De: <img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
+De: <img src="<?php echo base_url($avatar_from)?>"> <?php echo $from_user['nome']?>
 </p>
 <p>
-Para: <img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
+Para: <img src="<?php echo base_url($avatar_to)?>"> <?php echo $to_user['nome']?>
 </p>
 <p>
 Assunto: <input type="text" name="assunto" value="Eu quero o <?php echo $item['titulo']?>">

@@ -6,12 +6,7 @@
 		$width = "400";
 	}*/
 
-	$avatar = $udata['avatar'];
-	if( empty($avatar) ) {
-		$avatar = base_url("images/default_avatar_small.gif");
-	} else {
-		$avatar = base_url("files/".thumb_filename($avatar, 80));
-	}
+	$avatar = user_avatar($udata['avatar'], 80);
 
 	$arrItems = array();
 	foreach ($items as $item) {

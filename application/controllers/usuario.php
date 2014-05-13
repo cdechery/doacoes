@@ -64,6 +64,8 @@ class Usuario extends MY_Controller {
 	}
 
 	public function new_user($tipo = "P") {
+		$this->load->helper('image_helper');
+	
 		if( $this->is_user_logged_in ) {
 			redirect( base_url() );
 		}
@@ -151,7 +153,7 @@ class Usuario extends MY_Controller {
 		$user_data['action'] = 'update';
 
 		if( !empty($user_data['avatar']) ) {
-			$user_data['avatar'] = thumb_filename($user_data['avatar'], 200);
+			$user_data['avatar'] = $user_data['avatar'];
 		}
 
 		$this->load->view('user_form', array('data'=>$user_data) );

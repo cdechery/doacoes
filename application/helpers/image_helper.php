@@ -15,6 +15,18 @@ function thumb_filename($filename, $thumbSize) {
 	
 }
 
+function user_avatar($avatar, $size) {
+	$default = ($size<100)?'images/default_avatar_small.gif':'images/default_avatar.gif';
+	if( empty($avatar) ) {
+		return $default;
+	} else {
+		$CI =& get_instance();
+		$params = $CI->config->item('site_params');
+		$path = $params['upload']['path'];
+		return $path.thumb_filename($avatar, $size);
+	}
+}
+
 function create_square_cropped_thumb($imgFullPath, $size) {
 
 	// generate thumb

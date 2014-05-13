@@ -9,17 +9,17 @@
 	}
 
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
+	$fbReg = $this->input->cookie('FbRegPending');
 
 	$hiddenAvatar = "";
 	$fromFacebook = false;
-	if( empty($avatar) ) {
-		$avatar = "images/default_avatar.gif";
-	} else {
+	if( $fbReg ) {
 		// veio do facebook
 		$fromFacebook = true;
 		$hiddenAvatar = '<input type="hidden" name="avatar" value="'.$avatar.'">';
-		$avatar = $params['upload']['path'].$avatar;
 	}
+
+	$avatar = user_avatar($avatar, 200);
 
 	$login_disabled = "";
 	if( $action=="update" ) {
@@ -117,7 +117,7 @@ window.onload = initialize;
 	</tr>
 	<tr>
 		<td style="vertical-align:text-top;">
-		<img id="user_avatar" src="<?php echo base_url() . $avatar;?>"/><br>
+		<img id="user_avatar" src="<?php echo base_url($avatar)?>"/><br>
 <?php
 	if( $action=="update" ) {
 ?>
