@@ -26,3 +26,23 @@ function set_user_session( $user_id ) {
 		return false;
 	}
 }
+
+function deauth_facebook() {
+	$CI = & get_instance();
+
+    $params = $CI->config->item('site_params');
+    $CI->load->library("facebook", $params['facebook'] );
+    $fbuser = $CI->facebook->getUser();
+
+    if( $fbuser ) {
+		try {
+        	$revoke = $CI->facebook->api("/me/permissions", "DELETE");
+        	return true;
+		} catch (FacebookApiException $e) {
+			error_log($e);
+			return false;
+		}
+    } else {
+    	return true;
+    }
+}

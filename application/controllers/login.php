@@ -8,14 +8,6 @@ class Login extends MY_Controller {
 		$this->load->helper('cookie');	
 	}
 
-	public function testfb() {
-		$this->load->view('testfb');
-	}
-
-	public function fbchannel() {
-		$this->load->view('fbchannel');
-	}
-
 	public function fblogin() {
 		$fbuser = null;
 		$logoutURL = null;
@@ -35,10 +27,8 @@ class Login extends MY_Controller {
 				$this->load->model('usuario_model');
 				$usuario = $this->usuario_model->get_data_email( $fbuser['email'] );
 
-				if( FALSE!=$usuario ) {
+				if( FALSE!=$usuario ) { 
 					set_user_session( $usuario['id'] );
-					$this->login_data = $this->check_session();
-
 					redirect( base_url() );
 				} else { //novo
 					$this->input->set_cookie('FbRegPending', "1", 259000 );

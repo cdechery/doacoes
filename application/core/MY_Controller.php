@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller
 
 		parent::__construct();
 		$this->load->helper('xlogin');
+		$this->load->helper('cookie');
 
 		// This header code was necessary due to some issues with AJAX calls. It doesn't work with CI's header
 		// only with PHP's native header() function for some reason
@@ -47,10 +48,14 @@ class MY_Controller extends CI_Controller
 
 	protected function check_session() {
 		$cookie = $this->input->cookie('DoacoesUserCookie');
+		$fbReg = $this->input->cookie('FbRegPending');
 		$session = $this->session->all_userdata();
 
 		if( $cookie!=FALSE && !isset($session['user_id']) ) {
 			$session = set_user_session( $cookie );
+		} else if( $fbReg && !isset($session['fbuserdata']) ) {
+			deauth_facebook();
+			delete_cookie('FbRegPending');
 		}
 
 		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);

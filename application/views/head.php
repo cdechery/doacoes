@@ -4,7 +4,7 @@
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
 
-	if( false==$login_data['logged_in'] && false==$fbReg && false ) {
+	if( false==$login_data['logged_in'] && false==$fbReg ) {
 ?>
 <script>
    window.fbAsyncInit = function() {
