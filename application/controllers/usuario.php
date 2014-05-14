@@ -16,7 +16,7 @@ class Usuario extends MY_Controller {
 		$this->load->view('tipo_usuario');
 		$this->load->view('foot');
 	}
-	
+
 	public function logout() {
 		$logoutFB = false;
 		$logoutURL = "";
@@ -53,14 +53,22 @@ class Usuario extends MY_Controller {
 			return;
 		}
 
-		$udata = $this->usuario_model->get_data($user_id);
-		$this->load->model('item_model');
-		$items = $this->item_model->get_user_items( $user_id );
-
 		$this->load->helper('image');
 
-		$this->load->view('usuario_infowindow',
-			array('udata'=>$udata, 'items'=>$items));
+		$udata = $this->usuario_model->get_data($user_id);
+		if( $udata['tipo']=='P' ) { 
+			$this->load->model('item_model');
+			$items = $this->item_model->get_user_items( $user_id );
+
+			$this->load->view('pessoa_infowindow',
+				array('udata'=>$udata, 'items'=>$items));
+		} else {
+			$this->load->model('interesse_model');
+			$inters = $this->interesse_model->get( $user_id );
+			$this->load->view('inst_infowindow',
+				array('udata'=>$udata, 'interesses'=>$inters));
+		}
+
 	}
 
 	public function new_user($tipo = "P") {
