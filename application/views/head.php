@@ -36,7 +36,9 @@
 			window.location = "<?php echo base_url('login/fblogin'); ?>";
 		}
 	</script>
-<? } ?>
+<?php
+	 }
+?>
 
 <meta http-equiv="Content-Type" content="text/html; <?php echo $this->config->item('charset');?>"/>
 <meta charset="<?php echo $this->config->item('charset');?>"/>
