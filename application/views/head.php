@@ -68,13 +68,13 @@
 <body>
 <?php
 
-	$user_name = "None";
-	$signup_link = " | <a href='".base_url()."login'>Login</a>";
-	$signup_link .= " | <a href='".base_url()."usuario/new_user'>Sign up</a>";
+	$user_name = "";
+	$signup_link = "<a href='".base_url()."login'>Login</a>";
+	$signup_link .= " | <a href='".base_url()."usuario/new_user'>Registrar</a>";
 
 
 	if( isset($login_data) && $login_data["logged_in"] ) {
-		$user_name = "<a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
+		$user_name = "Olá <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
 		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
 		$signup_link = "";
 	}
@@ -84,7 +84,7 @@
 		<div id="marca">&nbsp;</div>
 		<h1>Quem Precisa?</h1>
 		<div id="login">
-			Ola <?php echo $user_name;?>
+			<?php echo $user_name;?>
 			<?php echo $signup_link;?>
 			<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
 		</div>

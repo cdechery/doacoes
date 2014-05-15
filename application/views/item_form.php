@@ -56,7 +56,7 @@
 	</tr>
 	<tr>
 		<td>
-		<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
+		<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>">
 		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
 		<input type="hidden" name="temp_id" id="temp_id" value="<?php echo $temp_id ?>">
 		<input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $login_data['user_id'] ?>">
@@ -92,8 +92,3 @@
 </table>
 <a href="<?php echo base_url()?>map">Back to the Map</a>
 </p>
-<script>
-$( document ).ready(function() {
-	processInLineLabels();
-});
-</script>

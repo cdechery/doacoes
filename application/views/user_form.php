@@ -134,7 +134,7 @@ window.onload = initialize;
 ?>
 		</td>
 		<td>
-		<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>" onSubmit="clearInlineLabels(this);">
+		<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
 		<input type="hidden" name="id" value="<?php echo $id ?>">
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
@@ -169,7 +169,6 @@ window.onload = initialize;
 </p>
 <script>
 $( document ).ready(function() {
-	processInLineLabels();
 	$(window).keydown(function(event){
 		if(event.keyCode == 13) {
 			event.preventDefault();
