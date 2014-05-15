@@ -1,25 +1,31 @@
-<style type="text/css">
-#loginbox { 
-	background: #ededed; 
-	margin: 20px auto; 
-	padding: 20px; 
-	width: 240px; 
-}
-</style>
-<div align=center>
-	<h5 style="color: red;"><?php echo $msg?></h5>
-</div>
-<div id="loginbox">
-	<form method="post" action="<?php echo base_url()?>login/verify">
-	<h3>Login</h3>
-<p>Username: <input type="text" name="login" id="login" /></p>
-<p>Password: <input type="password" name="password" id="password"/></p>
-<div style="font-size: small; align:left"> Manter conectado? <input type="checkbox" name="lembrar"></div>
-<div align="right"><input type="submit" value="Go"/></div>
+<section id="contents">
+	<div class="wrap960">
+		<h5><?php echo $msg?></h5>
+		<form method="post" action="<?php echo base_url()?>login/verify">
+			<h3>Login</h3>
+			<div class="form-group">
+				<label>Username: </label>
+				<input type="text" class="form-control" name="login" id="login" />
+			</div>
+			<div class="form-group">
+				<label>Password: </label>
+				<input type="password" class="form-control" name="password" id="password"/>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="lembrar"> Manter conectado?
+				</label>
+			</div>
+			<div class="form-group">
+				<a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe">
+					<?php echo xlang('dist_resetpw_link')?>
+				</a>
+				<button type="submit" class="btn btn-default">Go</button>
+			</div>
+		</form>
+	</div>
+</section>
 
-<p><a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe"><?php echo xlang('dist_resetpw_link')?></a></p>
-</form>
-</div>
 <script>
 $(document).ready(function() {
 	$(".various").fancybox({
