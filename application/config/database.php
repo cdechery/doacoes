@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'quemprecisa';
-$db['default']['password'] = 'abc123';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = 'qpapp';
+$db['default']['password'] = 'qp2014';
 $db['default']['database'] = 'doacoes';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
