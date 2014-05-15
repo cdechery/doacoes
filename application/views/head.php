@@ -3,45 +3,41 @@
 <head>
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
-
 	if( false==$login_data['logged_in'] && false==$fbReg ) {
 ?>
-<script>
-   window.fbAsyncInit = function() {
-   FB.init({
-     appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
-     status     : true, // check login status
-     cookie     : true, // enable cookies to allow the server to access the session
-     xfbml      : true  // parse XFBML
-   });
-    
-   FB.Event.subscribe('auth.authResponseChange', function(response) {
-     if (response.status === 'connected') {
-	   new Messi('Conectando ao Facebook. Aguarde...');
-       logonFB();
-     } else if (response.status === 'not_authorized') {
-       FB.login();
-     } else {
-       FB.login();
-     }
-   });
-   };
-    
-	(function(d){
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement('script'); js.id = id; js.async = true;
-    js.src = "//connect.facebook.net/pt_BR/all.js";
-    ref.parentNode.insertBefore(js, ref);
-   }(document));
-    
-   function logonFB() {
-     window.location = "<?php echo base_url('login/fblogin'); ?>";
-   }
-</script>
-<?php
-	}
-?>
+	<script>
+		window.fbAsyncInit = function() {		
+			FB.init({
+				appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
+				status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : true  // parse XFBML
+			});
+			FB.Event.subscribe('auth.authResponseChange', function(response) {
+				if (response.status === 'connected') {
+					new Messi('Conectando ao Facebook. Aguarde...');
+					logonFB();
+				} else if (response.status === 'not_authorized') {
+					FB.login();
+				} else {
+					FB.login();
+				}
+			});
+		};
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/pt_BR/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+
+		function logonFB() {
+			window.location = "<?php echo base_url('login/fblogin'); ?>";
+		}
+	</script>
+<? } ?>
+
 <meta http-equiv="Content-Type" content="text/html; <?php echo $this->config->item('charset');?>"/>
 <meta charset="<?php echo $this->config->item('charset');?>"/>
 
@@ -81,7 +77,6 @@
 		$signup_link = "";
 	}
 ?>
-<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
 <header>
 	<div class="wrap960">
 		<div id="marca">&nbsp;</div>
@@ -89,6 +84,7 @@
 		<div id="login">
 			Ola <?php echo $user_name;?>
 			<?php echo $signup_link;?>
+			<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
 		</div>
 	</div>
 </header>
