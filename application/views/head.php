@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="<?php echo $this->config->item('charset');?>"/>	
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
 	if( false==$login_data['logged_in'] && false==$fbReg ) {
@@ -40,9 +41,6 @@
 	 }
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; <?php echo $this->config->item('charset');?>"/>
-<meta charset="<?php echo $this->config->item('charset');?>"/>
-
 <?php
 	
 	if( !isset($title) ) {
@@ -74,7 +72,7 @@
 
 
 	if( isset($login_data) && $login_data["logged_in"] ) {
-		$user_name = "Olá <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
+		$user_name = "Ol&aacute; <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
 		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
 		$signup_link = "";
 	}

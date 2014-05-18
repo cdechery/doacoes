@@ -113,7 +113,10 @@ window.onload = initialize;
 
 <section id="user" class="contents">
 	<div class="wrap960">
-		<h2>Cadastro</h2>
+		<h2>
+			Cadastro
+			<?php if($tipo === 'I') echo 'instituição'; ?>
+		</h2>
 		<div id="foto">
 			<img id="user_avatar" src="<?php echo base_url($avatar)?>"/>
 			<?php if( $action=="update" ) { ?>
@@ -139,38 +142,35 @@ window.onload = initialize;
 				<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
 				<?php echo $hiddenAvatar?>
 				<div class="form-group">
-					<label>Seu login</label>
-					<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login"/><br>
+					<label>Login</label>
+					<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
 				</div>
 				<div class="form-group">
-					<label>Seu nome</label>
-					<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" /><br>
+					<label>Nome</label>
+					<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" placeholder="Seu nome" />
 				</div>
 				<?php if( $tipo=="P") { ?>
 					<div class="form-group">
-						<label>Seu sobrenome</label>
-						<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome"/><br>
+						<label>Sobrenome</label>
+						<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" placeholder="Seu sobrenome" />
 					</div>
 				<?php } ?>
 				<div class="form-group">
-					<label>Seu email</label>
-					<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" /><br>
+					<label>Email</label>
+					<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" placeholder="Seu email" />
 				</div>
 				<div class="form-group">
-					<label>Seu CPF</label>
-					<input type="text" name="<?php echo ${'doc'}?>" value="<?php echo ${$doc}?>" size="50" title="<?php echo strtoupper($doc)?>"/>
+					<label>CPF/CNPJ</label>
+					<input type="text" name="<?php echo ${'doc'}?>" value="<?php echo ${$doc}?>" size="50" title="<?php echo strtoupper($doc)?>" placeholder="Seu CPF" />
 				</div>
 				<div class="form-group">
-					<label>Sua senha</label>
-					<input type="password" name="password" value="" size="10">
+					<label>Senha</label>
+					<input type="password" name="password" value="" size="10" placeholder="Escolha uma senha" ><br>
+					<input type="password" name="password_2" value="" size="10" placeholder="Repita a senha" />
 				</div>
 				<div class="form-group">
-					<label>Repita a senha</label>
-					<input type="password" name="password_2" value="" size="10" />
-				</div>
-				<div class="form-group">
-					<label>Digite sua localização</label>
-					<input type="text" id="myPlaceTextBox" />
+					<label>Localização</label>
+					<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
 				</div>
 				<div id="map_canvas"></div>
 				<div class="form-group">
@@ -179,6 +179,9 @@ window.onload = initialize;
 			</form>
 			<div style="text-align: right;"><a href="<?php echo base_url()?>map">Back to the Map</a></div>
 		</div>
+		<aside>
+			Preencha seu formulário rules para poder dar ou ganhar coisas.
+		</aside>
 	</div>
 </section>
 
@@ -189,10 +192,6 @@ $( document ).ready(function() {
 			event.preventDefault();
 			return false;
 		}
-	});
-	$('#user-form .form-group').each(function(){
-		$('label', this).css('display','none');
-		$('input[type=text]', this).add('input[type=password]', this).attr('placeholder', $('label', this).html());
 	});
 });
 </script>
