@@ -10,7 +10,8 @@ class Interesse_model extends MY_Model {
 
 	public function get( $user_id, $categoria_id = 0 ) {
 		$this->db->select('c.id, c.nome as categoria, i.raio_busca, i.fg_ativo');
-		$this->db->select("date_format(i.data_inclusao, '%d/%m/%Y') as data", FALSE);
+		//$this->db->select("date_format(i.data_inclusao, '%d/%m/%Y') as data", FALSE);
+		$this->db->select("date_format(i.dt_inclusao, '%d/%m/%Y') as data", FALSE);
 		$this->db->from('interesse i');
 		$this->db->join('categoria c', 'c.id = i.categoria_id');
 		$this->db->where('i.usuario_id', $user_id);

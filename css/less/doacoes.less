@@ -1,0 +1,185 @@
+@import 'variaveis.less';
+
+/* meu normalize. ver se já não existe isso no normalize.css */
+
+div, h1 {
+	box-sizing: border-box;
+}
+
+header, section, footer {
+	padding: 1px; /* evitar margin collapsing */
+}
+
+section {
+	h2:first-child {
+		margin-top: 0; /* normalizando margem do header */
+	}
+}
+
+/* header da seção */
+h2 {
+	color: @azultopo;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+@import 'grid.less';
+
+@import 'form.less';
+
+/* estrutura */
+
+body {
+	margin:0;
+	padding:0;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	background-color: @azul;
+}
+
+div.wrap960 {
+	margin: 0 auto;
+	width: 960px;
+	position: relative;
+	.clearfix;
+}
+
+/* inicio estilos slonga */
+
+header {
+	width: 100%;
+	height: 90px;
+	background-color: @azultopo;
+	#marca {
+		width:120px;
+		height: 90px;
+		background: #007095 url('../images/bonecos.png') 50% 50% no-repeat;
+		float: left;
+		margin-right: 25px;
+	}
+	h1 {
+		margin: 25px 0 0;
+		display: inline-block;
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+	#login {
+		margin: 30px 0 0;
+		width: 300px;
+		text-align: right;
+		position: absolute;
+		right: 0;
+		top: 0;
+		.fb-login-button {
+			margin-left: 15px;
+		}
+	}
+}
+
+section#map {
+	width: 100%;
+	.wrap960 {
+		/*position: absolute;*/
+		z-index: 1000;
+		background-color: yellow;
+		#filtros {
+			width: 200px;
+			background-color: #000;
+			opacity: 0.6;
+			padding: 20px;
+			position: absolute;
+			right: 0;
+			top: 20px;
+		}
+	}
+	#map_canvas {
+		border: 1px solid red;
+		width: 960px;
+		height: 510px;
+		margin: 35px auto 50px;
+		border: 7px solid #fff;
+		border-radius: 4px;
+		-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
+		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
+	}
+	#map_canvas_full {
+		width: 100%;
+		height: 510px;
+	}
+}
+
+section.contents {
+	width: 100%;
+	padding: 25px 0 60px;
+	min-height: 300px;
+	form {
+		h5:first-child {
+			display: none; /* mensagem de erro */
+		}
+		.form-group {
+			a.various { /* ? */
+				float: right;
+				padding-top: 20px;
+				font-size: .9em;
+			}
+		}
+	}
+}
+
+#home {
+	background-color: @verde;
+	p {
+		font-size: 1.3em;
+		line-height: 1.8em;
+		padding: 0 20px;
+		&:first-child {
+			margin-top: 0;
+			color: #fff;
+		}
+	}
+	#botoes {
+		margin-top: 35px;
+		text-align: center;
+		#tenho {
+			margin-right: 30px;
+			> span {
+				border-color: #ad7e00 #ad7e00 #7d3800 #ad7e00;
+				background: linear-gradient(#fcbd15,#e5a700);
+			}
+		}
+		#preciso {
+			> span {
+				/*border-color: #0F80AE #0F80AE #11698D #0F80AE;
+				background: linear-gradient(#169BD0, #0D7FAE);*/
+			}
+		}
+	}
+}
+
+#login {
+	form {
+		.column(6);
+	}
+}
+
+#user {
+	#foto {
+		.column(3);
+	}
+	#user-form {
+		.column(9);
+		#map_canvas {
+			margin: 30px 0;
+			width: 420px;
+			height:300px;
+		}
+	}
+}
+
+footer {
+	background-color: @verde;
+}
+

@@ -82,7 +82,7 @@
 <header>
 	<div class="wrap960">
 		<div id="marca">&nbsp;</div>
-		<h1>Quem Precisa?</h1>
+		<h1><a href="<?php echo base_url();?>">Quem Precisa?</a></h1>
 		<div id="login">
 			<?php echo $user_name;?>
 			<?php echo $signup_link;?>

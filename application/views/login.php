@@ -1,26 +1,23 @@
-<section id="contents">
+<section id="login" class="contents">
 	<div class="wrap960">
-		<h5><?php echo $msg?></h5>
+		<h2>Login</h2>
 		<form method="post" action="<?php echo base_url()?>login/verify">
-			<h3>Login</h3>
+			<h5><?php echo $msg?></h5>
 			<div class="form-group">
 				<label>Username: </label>
-				<input type="text" class="form-control" name="login" id="login" />
+				<input type="text" name="login" id="login" />
 			</div>
 			<div class="form-group">
 				<label>Password: </label>
-				<input type="password" class="form-control" name="password" id="password"/>
+				<input type="password" name="password" id="password"/>
 			</div>
-			<div class="checkbox">
+			<div class="form-group checkbox">
 				<label>
 					<input type="checkbox" name="lembrar"> Manter conectado?
 				</label>
 			</div>
 			<div class="form-group">
-				<a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe">
-					<?php echo xlang('dist_resetpw_link')?>
-				</a>
-				<button type="submit" class="btn btn-default">Go</button>
+				<input type="submit" value="Enviar">
 			</div>
 		</form>
 	</div>

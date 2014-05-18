@@ -1,0 +1,818 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"az",
+				"azul"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"for",
+				"form-group"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"bar",
+				"background-color"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"acti",
+				"active"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"ver",
+				"vermelho"
+			],
+			[
+				"height",
+				"max-height"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"fou",
+				"fourteen"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"c",
+				"color"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"BA",
+				"background-color"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"toggle",
+				"toggleWidth"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"ov",
+				"overflow"
+			],
+			[
+				"v",
+				"vertical-align"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"borde",
+				"border-radius"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"to",
+				"toggle"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"p",
+				"position"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"bor",
+				"bordeaux"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"lis",
+				"list-style"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "css/less/doacoes.less",
+			"settings":
+			{
+				"buffer_size": 2439,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/less/grid.less",
+			"settings":
+			{
+				"buffer_size": 2031,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.less",
+			"settings":
+			{
+				"buffer_size": 630,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/less/form.less",
+			"settings":
+			{
+				"buffer_size": 2324,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/less/variaveis.less",
+			"settings":
+			{
+				"buffer_size": 410,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/utilities.less",
+			"settings":
+			{
+				"buffer_size": 780,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pa",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/doacoes/css/less/boostrap/buttons.less",
+		"/Applications/MAMP/htdocs/doacoes/css/normalize.css",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/variables.less",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/grid.less",
+		"/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.html",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/mixins.less",
+		"/Applications/MAMP/htdocs/doacoes/css/less/boostrap/forms.less",
+		"/Applications/MAMP/htdocs/doacoes/css/less/form.less",
+		"/Applications/MAMP/htdocs/doacoes/application/views/login.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/user_form.php",
+		"/Applications/MAMP/htdocs/doacoes/css/less/forms.less",
+		"/Applications/MAMP/htdocs/doacoes/css/doacoes.less",
+		"/Applications/MAMP/htdocs/doacoes/css/form.less",
+		"/Applications/MAMP/htdocs/doacoes/css/forms.less",
+		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/min/groupsConfig.php",
+		"/Applications/MAMP/htdocs/doacoes/css/bootstrap.css",
+		"/Applications/MAMP/htdocs/doacoes/css/buttons.less",
+		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/tipo_usuario.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/interesse.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/interesse_model.php",
+		"/Applications/MAMP/htdocs/doacoes/.gitignore",
+		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
+		"/Applications/MAMP/htdocs/doacoes/css/forms.css",
+		"/Users/Admin/Downloads/bootstrap/css/bootstrap-theme.css",
+		"/Applications/MAMP/htdocs/doacoes/.htaccess",
+		"/Applications/MAMP/htdocs/doacoes/system/core/Router.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/routes.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/site_params.php",
+		"/Applications/MAMP/htdocs/doacoes/min/config-test.php",
+		"/Applications/MAMP/htdocs/doacoes/min/config.php",
+		"/Applications/MAMP/htdocs/doacoes/min/lib/CSSmin.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/email.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/database.php",
+		"/Applications/MAMP/htdocs/doacoes/css/font-awesome.min.css",
+		"/Applications/MAMP/htdocs/doacoes/application/libraries/Googlemaps.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/foot.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/map.php",
+		"/Applications/MAMP/htdocs/doacoes/system/core/Config.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/image.php",
+		"/Applications/MAMP/htdocs/doacoes/application/language/english/site_lang.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/autoload.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/user.php",
+		"/Applications/MAMP/htdocs/doacoes/system/core/CodeIgniter.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/user_model.php",
+		"/Applications/MAMP/htdocs/doacoes/application/core/MY_Controller.php",
+		"/Applications/MAMP/htdocs/doacoes/system/core/Controller.php",
+		"/Applications/MAMP/htdocs/doacoes/application/core/MY_Model.php",
+		"/Applications/MAMP/htdocs/doacoes/system/core/Model.php",
+		"/Applications/MAMP/htdocs/doacoes/system/database/DB_active_rec.php",
+		"/Applications/MAMP/htdocs/doacoes/application/helpers/xlogin_helper.php",
+		"/Applications/MAMP/htdocs/doacoes/application/helpers/javascript_helper.php",
+		"/Applications/MAMP/htdocs/xumb/application/config/database.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/constants.php",
+		"/Applications/MAMP/htdocs/xumb/README.md",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-config.php",
+		"/Applications/MAMP/htdocs/xumb/application/views/map.php",
+		"/Applications/MAMP/htdocs/xumb/application/controllers/map.php",
+		"/Applications/MAMP/htdocs/xumb/application/models/map_model.php",
+		"/Applications/MAMP/htdocs/xumb/application/libraries/Googlemaps.php",
+		"/Applications/MAMP/htdocs/xumb/application/views/newmarker_infowindow.php",
+		"/Applications/MAMP/htdocs/xumb/js/site.js",
+		"/Applications/MAMP/htdocs/xumb/application/views/marker_form.php",
+		"/Applications/MAMP/htdocs/xumb/application/views/reset_password.php",
+		"/Applications/MAMP/htdocs/xumb/application/config/dist.php",
+		"/Applications/MAMP/htdocs/xumb/application/config/config.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/publicacoes/publicacoes.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/home/home.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/sidebar/sidebar.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/publicacoes/publicacoes-resultados.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/noticias/noticias_single.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/noticias/noticias.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/newsletters/newsletters_single.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/paginas/newsletters/newsletters.php",
+		"/Applications/MAMP/htdocs/promundo-en/promundo-2012/sidebar/nao_bata_eduque.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/redes/redes-sifr.js",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/home/home.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/audiovisuais/galeria_de_fotos.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/audiovisuais/galeria_de_fotos_listagem.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/publicacoes/publicacoes.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/___home.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/em_destaque.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/newsletters/newsletters.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/newsletters/newsletters_single.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/index.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/home/enewsletter.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/areas_de_atuacao/areas_de_atuacao.css",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/links_sugeridos.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/canal_promundo.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/sidebar.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/sidebar/galeria_de_fotos.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/includes/ferramentas.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/redes/redes.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/areas_de_atuacao/areas_de_atuacao.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/includes/col_dir.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/flash/apresentacao/xml/menuDinamico.xml",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/paginas/o_promundo/o_promundo.php",
+		"/Applications/MAMP/htdocs/promundo/makeXML.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo/includes/header.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo/includes/menu.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/includes/_header.php",
+		"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012/includes/header.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/sidebar.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/template-arena-arena.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/arena.less",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/header.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/plugins/responsive-slider/css/responsive-slider.css",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_grid.less",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/single-custom_type.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/page-custom.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/template-home-arena.php",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_base.less",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/index.php",
+		"/Users/Admin/Downloads/responsive-slider/css/responsive-slider.css",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/style.less",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-config-WEB.php",
+		"/Applications/MAMP/htdocs/arenacarioca/dump.sql",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_768up.less",
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_mixins.less",
+		"/Users/Admin/Downloads/gridpak (1)/gridpak.css",
+		"/Users/Admin/Downloads/gridpak (1)/gridpak.less"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Applications/MAMP/htdocs/doacoes",
+			"/Applications/MAMP/htdocs/promundo-en/promundo-2012",
+			"/Applications/MAMP/htdocs/promundo/wp-content/themes/promundo-2012",
+			"/Applications/MAMP/htdocs/arenacarioca",
+			"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca",
+			"/Applications/MAMP/htdocs/british_school/wp-content/themes/brittishschool",
+			"/Applications/MAMP/htdocs/british_school/wp-content/themes/toolbox"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"container-fixed",
+			"// Mixins.container-fixed\n.container-fixed",
+			".container-fixed",
+			"collapsing",
+			"margin-",
+			"button-variant",
+			".user-select",
+			"button-size",
+			"btn",
+			";\n",
+			"999999",
+			"tipo",
+			"load->view",
+			"btn ",
+			"form-group",
+			"/*!",
+			"btn",
+			"p",
+			"image_view",
+			"$min_template",
+			"wrap960",
+			"o-",
+			"../fonts/",
+			"ad7e00",
+			"ed8f01",
+			"cc9900",
+			"0F80AE",
+			"#0F80AE",
+			"action",
+			"}\n",
+			"text",
+			"id=\"success\" ",
+			"decheryweb-2014",
+			"googlemaps",
+			"__map",
+			"$this->lang->load",
+			"site_lang.php",
+			"language/english/site_lang.php",
+			"slonga",
+			"custom_user",
+			"database",
+			"$this->load->database()",
+			"$this->load->database();",
+			"database",
+			"user_model",
+			"index",
+			"view",
+			"get_where",
+			"CI_Model",
+			"MY_Model",
+			"marker_info",
+			"Baixar em",
+			"Baixar em Inglês",
+			"publicacoes",
+			"005c92",
+			"nav_topo",
+			"_roxo",
+			"O Promundo desenvolve",
+			"ADVOCACY",
+			"footer",
+			"bones",
+			"footer",
+			">\n",
+			"?>\n",
+			"30px",
+			"php",
+			"display",
+			"element",
+			"208px",
+			"228px",
+			"194px",
+			"194",
+			"30px",
+			"32px",
+			"					height: 32px;\n",
+			"{\n",
+			"fonts",
+			"fonts/",
+			"img",
+			"localhost",
+			"h2",
+			"sixteencol",
+			"fifteencol",
+			"fourteencol",
+			"thirteencol",
+			"http://gridpak.com",
+			"menu-header-menu\nmenu-header-menu",
+			"menu-header-menu",
+			"Stylesheet",
+			"menu-header-menu",
+			":",
+			"$agenda",
+			"10px",
+			"h3",
+			"box-sizing",
+			"h4",
+			"div.",
+			"$area",
+			"$odd",
+			"getClass",
+			"p",
+			"125",
+			"add_theme_support",
+			"six",
+			"even",
+			"ultimas",
+			"&orderby=rand",
+			"ultimas",
+			"bones_main_nav",
+			"sixcol",
+			"grid",
+			"bones-stylesheet",
+			"stylesheet",
+			"bones_scripts_and_styles",
+			"FOOTER",
+			"CONTENT",
+			"HEADER",
+			"{}",
+			"header",
+			"div.top-nav",
+			"orange",
+			"pink",
+			"nav",
+			"content",
+			"post_data",
+			"();\n",
+			"$custom_fields",
+			"fpg_show"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"http://brittishschool.softbrazilweb.com"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "css/less/doacoes.less",
+					"settings":
+					{
+						"buffer_size": 2439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2213,
+								2213
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/less/grid.less",
+					"settings":
+					{
+						"buffer_size": 2031,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								722,
+								722
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 137.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.less",
+					"settings":
+					{
+						"buffer_size": 630,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								602
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "css/less/form.less",
+					"settings":
+					{
+						"buffer_size": 2324,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								325,
+								325
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "css/less/variaveis.less",
+					"settings":
+					{
+						"buffer_size": 410,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								410,
+								410
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/utilities.less",
+					"settings":
+					{
+						"buffer_size": 780,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"slo",
+				"application/views/slonga.php"
+			],
+			[
+				"login",
+				"application/views/login.php"
+			],
+			[
+				"head",
+				"doacoes/application/views/head.php"
+			],
+			[
+				"doa",
+				"doacoes/css/doacoes.less"
+			],
+			[
+				"js",
+				"js/terrines.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Applications/MAMP/htdocs/decheryweb-2014/decheryweb-2014.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 331.0,
+	"status_bar_visible": true
+}
