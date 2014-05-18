@@ -41,13 +41,13 @@
 			<h3>Categorias</h3>
 			<?php
 				foreach ($categorias as $cat) {
-					echo "<input type=checkbox checked=checked name=cat".$cat->id." value=".$cat->id." onClick='showHideMarkersCat(".$cat->id.", this);'>".$cat->nome."<br>";
+					echo "<input type=checkbox checked=checked name=cat".$cat->id." value=".$cat->id." onClick='showHideMarkersCat(".$cat->id.", this);'>&nbsp;&nbsp;".$cat->nome."<br>";
 				}
 			?>
 			<h3>Situações</h3>
 			<?php
 				foreach ($situacoes as $sit) {
-					echo "<input type=checkbox checked=checked name=sit".$sit->id." value=".$sit->id." onClick='showHideMarkersSit(".$sit->id.", this);'>".$sit->descricao."<br>";
+					echo "<input type=checkbox checked=checked name=sit".$sit->id." value=".$sit->id." onClick='showHideMarkersSit(".$sit->id.", this);'>&nbsp;&nbsp;".$sit->descricao."<br>";
 				}
 			?>
 			<input type=button value="Esconder/Mostrar Raios" onClick="hideRadiusCircles();" style="display: none;">
@@ -70,10 +70,10 @@ significa nadis i pareci latim. Interessantiss quisso pudia ce receita de
 bolis, mais bolis eu num gostis.</p>
 		<div id="botoes">
 			<a href="<?php echo base_url('usuario/new_user/P')?>" id="tenho" class="btn-gradient">
-				<span><b>Tenho&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i></b></span>
+				<span>Tenho&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i></span>
 			</a>
 			<a href="<?php echo base_url('usuario/new_user/I')?>" id="preciso" class="btn-gradient">
-				<span><b>Preciso&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i></b></span>
+				<span>Preciso&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i></span>
 			</a>
 		</div>
 	</div>

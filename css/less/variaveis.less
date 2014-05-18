@@ -4,6 +4,45 @@
 
 @verde: #9ba800;
 
+/* gradiente dos botões */
+.gradient(@top; @bottom) {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, @top), color-stop(1, @bottom));
+	background:-moz-linear-gradient(top, @top 5%, @bottom 100%);
+	background:-webkit-linear-gradient(top, @top 5%, @bottom 100%);
+	background:-o-linear-gradient(top, @top 5%, @bottom 100%);
+	background:-ms-linear-gradient(top, @top 5%, @bottom 100%);
+	background:linear-gradient(to bottom, @top 5%, @bottom 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@top', endColorstr='@bottom',GradientType=0);
+}
+
+/* monta botão com gradiente
+http://www.bestcssbuttongenerator.com */
+.btn-gradient(@gtop, @gbot, @borderbtn, @boxshadow, @textshadow) {
+	-moz-box-shadow: inset 0px 1px 0px 0px @boxshadow;
+	-webkit-box-shadow: inset 0px 1px 0px 0px @boxshadow;
+	box-shadow: inset 0px 1px 0px 0px @boxshadow;
+	.gradient(@gtop, @gbot);
+	background-color: @gtop;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 8px;
+	border: 1px solid @borderbtn;
+	display: inline-block;
+	cursor: pointer;
+	padding: 12px 50px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px @textshadow;
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 400;
+	text-transform: uppercase;
+	&:active {
+		position:relative;
+		top:1px;
+	}
+}
+
+/* botão estilo bootstrap */
 .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
 	padding: @padding-vertical @padding-horizontal;
 	font-size: @font-size;

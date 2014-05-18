@@ -169,7 +169,7 @@ window.onload = initialize;
 					<input type="password" name="password_2" value="" size="10" />
 				</div>
 				<div class="form-group">
-					<label>Encontre sua localização:</label>
+					<label>Digite sua localização</label>
 					<input type="text" id="myPlaceTextBox" />
 				</div>
 				<div id="map_canvas"></div>
@@ -177,7 +177,7 @@ window.onload = initialize;
 					<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 				</div>
 			</form>
-			<div><a href="<?php echo base_url()?>map">Back to the Map</a></div>
+			<div style="text-align: right;"><a href="<?php echo base_url()?>map">Back to the Map</a></div>
 		</div>
 	</div>
 </section>
@@ -189,6 +189,10 @@ $( document ).ready(function() {
 			event.preventDefault();
 			return false;
 		}
+	});
+	$('#user-form .form-group').each(function(){
+		$('label', this).css('display','none');
+		$('input[type=text]', this).add('input[type=password]', this).attr('placeholder', $('label', this).html());
 	});
 });
 </script>

@@ -58,7 +58,7 @@
 
 <script type="application/javascript" src="<?php echo base_url();?>javascript"></script>
 <script type="application/javascript" src="<?php echo base_url();?>min/g=<?php echo $min_template;?>_js"></script>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>min/g=<?php echo $min_template;?>_css"/>
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -70,7 +70,7 @@
 
 	$user_name = "";
 	$signup_link = "<a href='".base_url()."login'>Login</a>";
-	$signup_link .= " | <a href='".base_url()."usuario/new_user'>Registrar</a>";
+	$signup_link .= "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='".base_url()."usuario/new_user'>Registrar</a>";
 
 
 	if( isset($login_data) && $login_data["logged_in"] ) {

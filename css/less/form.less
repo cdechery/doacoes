@@ -11,13 +11,13 @@ http://getbootstrap.com/css/#forms-controls */
 label {
 	display: inline-block;
 	margin-bottom: 5px;
-	font-weight: bold;
 }
 
 input[type=text],
 input[type=password] { 
 	display: block;
-	width: 100%;
+	/*width: 100%;*/
+	min-width: 40%;
 	height: 34px;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -33,6 +33,20 @@ input[type=text]:disabled {
 	cursor: not-allowed;
 	background-color: #eeeeee;
 	opacity: 1;
+}
+
+input[type=text]::-moz-placeholder { 
+	text-transform: uppercase;
+	color: #999; 
+	opacity: 1;
+}
+input[type=text]:-ms-input-placeholder { 
+	color: #999;
+	text-transform: uppercase;
+}
+input[type=text]::-webkit-input-placeholder { 
+	color: #999;
+	text-transform: uppercase;
 }
 
 /* botão submit padrão */
@@ -53,7 +67,7 @@ input[type=submit] {
 
 /* classe para botões com gradient */
 
-.btn-gradient {
+.btngradient {
 	text-align: center;
 	cursor: pointer;
 	display: inline-block;

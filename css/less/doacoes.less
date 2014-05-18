@@ -16,11 +16,20 @@ section {
 	}
 }
 
-/* header da seção */
-h2 {
+/* padrão design */
+
+a {
 	color: @azultopo;
-	font-weight: bold;
-	text-transform: uppercase;
+	text-decoration: none;
+}
+
+h2, h3 { /* header seção */
+	color: @azultopo;
+	font-weight: 900;
+}
+
+h3 {
+	font-weight: 400;
 }
 
 @import 'grid.less';
@@ -33,6 +42,7 @@ body {
 	margin:0;
 	padding:0;
 	font-family: 'Lato', sans-serif;
+	font-size: 18px;
 	font-weight: 300;
 	background-color: @azul;
 }
@@ -60,9 +70,10 @@ header {
 	h1 {
 		margin: 25px 0 0;
 		display: inline-block;
+		font-size: 1.6em;
+		font-weight: 400;
 		a {
 			color: #fff;
-			text-decoration: none;
 		}
 	}
 	#login {
@@ -72,18 +83,26 @@ header {
 		position: absolute;
 		right: 0;
 		top: 0;
+		color: #fff;
+		a {
+			color: #fff;
+			text-decoration: none;
+			&:hover {
+				color: @azul;
+			}
+		}
 		.fb-login-button {
 			margin-left: 15px;
 		}
 	}
 }
 
+
 section#map {
 	width: 100%;
 	.wrap960 {
 		/*position: absolute;*/
 		z-index: 1000;
-		background-color: yellow;
 		#filtros {
 			width: 200px;
 			background-color: #000;
@@ -92,6 +111,14 @@ section#map {
 			position: absolute;
 			right: 0;
 			top: 20px;
+			font-size: .9em;
+			color: #fff;
+			h3 {
+				color: yellow;
+				&:first-child {
+					margin-top: 0;
+				}
+			}
 		}
 	}
 	#map_canvas {
@@ -106,6 +133,7 @@ section#map {
 		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 	}
 	#map_canvas_full {
+		border-bottom: 1px solid @azultopo;
 		width: 100%;
 		height: 510px;
 	}
@@ -130,14 +158,14 @@ section.contents {
 }
 
 #home {
-	background-color: @verde;
 	p {
-		font-size: 1.3em;
+		font-size: 1.1em;
 		line-height: 1.8em;
+		font-weight: 300;
 		padding: 0 20px;
+		color: #000;
 		&:first-child {
 			margin-top: 0;
-			color: #fff;
 		}
 	}
 	#botoes {
@@ -145,16 +173,10 @@ section.contents {
 		text-align: center;
 		#tenho {
 			margin-right: 30px;
-			> span {
-				border-color: #ad7e00 #ad7e00 #7d3800 #ad7e00;
-				background: linear-gradient(#fcbd15,#e5a700);
-			}
+			.btn-gradient(#b2c200, @verde, #859100, #9acc85, #636c00);
 		}
 		#preciso {
-			> span {
-				/*border-color: #0F80AE #0F80AE #11698D #0F80AE;
-				background: linear-gradient(#169BD0, #0D7FAE);*/
-			}
+			.btn-gradient(#00a9cf, @azultopo, #00758f, #54a3f7, #154682);
 		}
 	}
 }
@@ -162,12 +184,14 @@ section.contents {
 #login {
 	form {
 		.column(6);
+		margin-left: 0;
 	}
 }
 
 #user {
 	#foto {
 		.column(3);
+		margin-left: 0;
 	}
 	#user-form {
 		.column(9);
@@ -180,6 +204,6 @@ section.contents {
 }
 
 footer {
-	background-color: @verde;
+	/*background-color: @verde;*/
 }
 
