@@ -1,0 +1,17 @@
+<h2>QuemPrecisa</h2>
+<p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias que você configurou.</p>
+<?php
+	$path = $params['upload']['path'];
+	foreach ($itens as $item) {
+		$img = "images/default_item_img.jpg";
+		if( !empty($item['nome_arquivo']) ) {
+			$img = $path.$item['nome_arquivo'];
+		}
+?>
+<div style="float: left">
+<img src="<?php base_url($img)?>"><br>
+<?php echo $item['titulo']?>
+</div>
+<?php
+	} // foreach
+?>

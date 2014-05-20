@@ -19,7 +19,7 @@ Para: <img src="<?php echo base_url($avatar_to)?>"> <?php echo $to_user['nome']?
 Assunto: <input type="text" name="assunto" value="Eu quero o <?php echo $item['titulo']?>">
 </p>
 <p>
-Mensagem: <textarea cols=40 rows=4 name="corpo" placehoder="Escreva algo aqui para o doador (opcional)"></textarea>
+Mensagem: <textarea cols=40 rows=4 name="corpo" onFocus="this.value='';">Escreva algo aqui para o doador (opcional)</textarea>
 </p>
 <input type="submit" value="Enviar">
 </form>

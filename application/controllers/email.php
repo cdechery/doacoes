@@ -37,17 +37,14 @@ class Email extends MY_Controller {
 			$assunto = "Me interessei por um item seu";
 		}
 
-		$corpo = "O usuario ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
-		$corpo .= "Para entrar em contato com ele, basta responder a este email.";
+		$corpo = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
+		$corpo .= "Para entrar em contato com ele(a), basta responder a este email.";
 		if( !empty($form_data['corpo']) ) { 
-			$corpo .= "<br><br>Abaixo a mensagem que ele deixou pra você: <br>".$form_data['corpo'];
+			$corpo .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
 		}
 
 		$this->load->library('email');
-
-		$config['charset'] = 'iso-8859-1';
-		$config['wordwrap'] = TRUE;
-		$this->email->initialize($config);
+		$this->email->initialize($this->params['email']);
 
 		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
 		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );

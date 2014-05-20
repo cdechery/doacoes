@@ -62,7 +62,7 @@ class Notificacao_model extends MY_Model {
 	}
 
 	public function get_pending_notifs() {
-		$this->db->select('c.item_id, it.descricao, 
+		$this->db->select('c.item_id, it.titulo, 
 			im.nome_arquivo, c.usuario_id, 
 			u.nome, u.email');
 		$this->db->from('controle_notif_email c');
