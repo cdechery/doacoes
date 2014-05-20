@@ -18,7 +18,8 @@ $(document).ready(function() {
 		width		: '90%',
 		height		: '90%',
 		autoSize	: false,
-		closeClick	: true,
+		type		: 'ajax',
+		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});

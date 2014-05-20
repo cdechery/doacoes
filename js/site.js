@@ -63,16 +63,6 @@ function load_infowindow_content(infowindow, user_id){
 	});
 }
 
-/*function newmarker_infowindow_content(lat, lng, infowindow) {
-		$.ajax({
-		url: site_root +'map/newmarker_infowindow/' + lat +'/' +lng,
-		success: function(data){
-			infowindow.setContent(data);
-			processInLineLabels();
-		}
-	});
-}*/
-
 $(function() {
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
@@ -159,44 +149,6 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
-
-    /*$('#upload_item_image').submit(function(e) {
-        e.preventDefault();
-
-        $.ajaxFileUpload({
-            url : site_root +'image/upload_item_image/',
-            secureuri :false,
-            fileElementId :'userfile',
-            contentType : 'application/json; charset=utf-8',
-            dataType        : 'json',
-            data : {
-	            'id' : $('#id').val(),
-	            'thumbs' : $('#thumbs').val(),
-	            'usuario_id' : $('#usuario_id').val()
-            },
-            success : function (data) {
-                if( data.status != 'error') {
-                    if( mrkImagesCount === 0 ) {
-                        $('#images').html('');
-                    }
-
-	                var imageData = $.get( site_root +'image/get_image/'+data.file_id );
-	                imageData.success(function(data) {
-                        $('#images').append(data);
-                        mrkImagesCount++;
-	                });
-	                $('#title').val('');
-                } else {
-                    new Messi(data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', 
-                    	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-                }
-            },
-            error : function (data, status, e) {
-				general_error( lang['dist_error_upload'] );
-			}
-        });
-        return false;
-    });*/
 
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
@@ -384,13 +336,5 @@ function delete_image( link ) {
 		error : function (data, status, e) {
 			general_error( lang['dist_imgdel_nok'] );
 		}
-	});
-}
-
-function refresh_marker_images( marker_id ) {
-	$.get(site_root + 'image/list_marker_images/'+marker_id)
-		.success(function (data) {
-			mrkImagesCount = countOcurrences( data, 'img' );
-			$('#images').html(data);
 	});
 }

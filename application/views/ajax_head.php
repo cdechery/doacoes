@@ -1,0 +1,1 @@
+<script type="application/javascript" src="<?php echo base_url('js/ajax_forms.js');?>"></script>

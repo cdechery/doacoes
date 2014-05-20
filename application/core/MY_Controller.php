@@ -79,10 +79,21 @@ class MY_Controller extends CI_Controller
 
 	protected function load_iframe($view_name, $data = array(), $return = FALSE) {
 		if( !$return ) {
-			$this->load->view('mini_head', $data, FALSE);
+			$this->load->view('iframe_head', $data, FALSE);
 			$this->load->view($view_name, $data, FALSE);
 		} else {
-			$out = $this->load->view('mini_head', $data, TRUE);
+			$out = $this->load->view('iframe_head', $data, TRUE);
+			$out .= $this->load->view($view_name, $data, TRUE);
+			return $out;
+		}
+	}
+
+	protected function load_ajax($view_name, $data = array(), $return = FALSE) {
+		if( !$return ) {
+			$this->load->view('ajax_head', $data, FALSE);
+			$this->load->view($view_name, $data, FALSE);
+		} else {
+			$out = $this->load->view('ajax_head', $data, TRUE);
 			$out .= $this->load->view($view_name, $data, TRUE);
 			return $out;
 		}

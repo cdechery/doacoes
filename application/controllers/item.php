@@ -113,7 +113,7 @@ class Item extends MY_Controller {
 		$item_data = $this->item_model->get( $item_id );
 		$img_data = $this->get_images( $item_id );
 
-		$this->load_iframe('item_view', 
+		$this->load->view('item_view', 
 			array('idata'=>$item_data, 'imgdata'=>$img_data));
 	}
 }

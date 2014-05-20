@@ -27,9 +27,9 @@
 		if( $numItems>$maxItems ) break;
 		if( isset($item['imagens']) ) {
 			$thumb = thumb_filename($item['imagens'][0], 80);
-			echo "<div style='float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox' data-fancybox-type='iframe' data-itemid='".$item_id."'><img src='".base_url()."files/".$thumb."''></a></div>";
+			echo "<div style='float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'><img src='".base_url()."files/".$thumb."''></a></div>";
 		} else {
-			echo "<div style='background-color: lightgray; width:80px; height:80px; margin: 10px; float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox' data-fancybox-type='iframe' data-itemid='".$item_id."'>".$item['titulo']."</a></div>";
+			echo "<div style='background-color: lightgray; width:80px; height:80px; margin: 10px; float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'>".$item['titulo']."</a></div>";
 		}
 	}
 ?>

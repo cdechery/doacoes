@@ -19,7 +19,7 @@
 <?php
 	if( $login_data['logged_in'] ) {
 ?>
-<input type="button" value="Eu quero!" onClick="location.href='<?php echo base_url("email/quer_item/".$idata["id"])?>';">
+<input type="button" value="Eu quero!" class='itembox fancybox.ajax' href="<?php echo base_url("email/quer_item/".$idata["id"])?>">
 <?php
 	} 
 ?>
