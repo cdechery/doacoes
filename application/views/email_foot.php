@@ -1,0 +1,1 @@
+<p>Se não quiser mais receber emails, clique aqui.</p>

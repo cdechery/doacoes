@@ -99,8 +99,24 @@ class MY_Controller extends CI_Controller
 		}
 	}
 
-	public function show_access_error() {
-		show_error(xlang('dist_errsess_expire'), 403, $this->params['erro_acesso']);
+	protected function load_email($view_name, $data = array()) {
+		$out = $this->load->view('email_head', $data, TRUE);
+		$out .= $this->load->view($view_name, $data, TRUE);
+		$out .= $this->load->view('email_foot', $data, TRUE);
+		return $out;
+	}
+
+	public function show_access_error($type = "") {
+		$this->load->helper('xlang');
+		$this->load->helper('xerror');
+
+		if( $type==="" ) {
+			show_error( xlang('dist_errsess_expire'),
+				403, $this->params['erro_acesso']);
+		} else {
+			show_error_windowed( xlang('dist_errsess_expire'),
+				200, $this->params['erro_acesso'], $type);
+		}
 	}
 }
 

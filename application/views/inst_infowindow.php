@@ -20,3 +20,10 @@
 <img src="<?php echo base_url($avatar)?>"> <?php echo $udata['nome']?><br>
 </div>
 <p><?php echo $out_inters?></p>
+<?php
+	if( $login_data['logged_in'] ) {
+?>
+<input type='button' value='Enviar Mensagem' class='itembox fancybox.ajax' href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>">
+<?php
+	}
+?>

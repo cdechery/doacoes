@@ -1,4 +1,3 @@
-<h2>QuemPrecisa</h2>
 <p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias que você configurou.</p>
 <?php
 	$path = $params['upload']['path'];
