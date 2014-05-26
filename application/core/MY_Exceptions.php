@@ -11,7 +11,8 @@ class MY_Exceptions extends CI_Exceptions {
 		$this->params = $this->CI->config->item('site_params');
 	}
 
-	function show_error($heading, $message, $template = 'error_general', $status_code = 500) {
+	function show_error($heading, $message,
+		$template = 'error_general', $status_code = 500) {
 
 		set_status_header($status_code);
 

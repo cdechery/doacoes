@@ -60,7 +60,7 @@ class Image extends MY_Controller {
 				if( $isupdate ) {
 					$image_data['item_id'] = $input['id'];
 					$image_data['id'] = $input['img_id'];
-					$this->image_model->update( $udata,
+					$file_id = $this->image_model->update( $udata,
 						$image_data, $thumbSizes );
 				} else if( $istemp ) {
 					$image_data['item_id'] = 0;

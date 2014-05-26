@@ -6,15 +6,7 @@ class Usuario extends MY_Controller {
 		parent::__construct();
 		$this->load->model('usuario_model');
 		$this->load->helper('xlang');
-		$this->load->helper('form');
 		$this->load->helper('cookie');
-	}
-
-	public function tipo() {
-		$head_data = array("title"=>$this->params['titulo_site']);
-		$this->load->view('head', $head_data);
-		$this->load->view('tipo_usuario');
-		$this->load->view('foot');
 	}
 
 	public function logout() {
@@ -71,11 +63,25 @@ class Usuario extends MY_Controller {
 
 	}
 
-	public function new_user($tipo = "P") {
+	public function escolhe_tipo() {
+		$this->session->unset_userdata('tipo_cadastro');
+
+		$head_data = array("title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+		$this->load->view('tipo_usuario');
+		$this->load->view('foot');
+	}
+
+	public function new_user($tipo = NULL) {
 		$this->load->helper('image_helper');
+		$this->load->helper('form');
 	
 		if( $this->is_user_logged_in ) {
 			redirect( base_url() );
+		}
+
+		if( $tipo==NULL ) {
+			redirect( base_url('usuario/escolhe_tipo') );
 		}
 
 		$this->session->set_userdata('tipo_cadastro', $tipo);
@@ -108,7 +114,7 @@ class Usuario extends MY_Controller {
 
 		$user_data = $this->input->post(NULL, TRUE);
 
-		$this->load->helper(array('url'));
+		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('','</br>');

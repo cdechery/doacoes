@@ -160,7 +160,7 @@ window.onload = initialize;
 					<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" placeholder="Seu email" />
 				</div>
 				<div class="form-group">
-					<label>CPF/CNPJ</label>
+					<label><?php echo strtoupper(${'doc'})?></label>
 					<input type="text" name="<?php echo ${'doc'}?>" value="<?php echo ${$doc}?>" size="50" title="<?php echo strtoupper($doc)?>" placeholder="Seu CPF" />
 				</div>
 				<div class="form-group">

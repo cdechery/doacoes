@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( !defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends MY_Controller {
 	
@@ -80,15 +80,9 @@ class Login extends MY_Controller {
 
 			$this->session->set_userdata( $session_data );
 
-
 			if( isset($form_data['lembrar']) ) {
-				/*$cookie = array(
-				    'name'   => 'DoacoesUserCookie',
-				    'value' => $user_data['id'],
-				    'expire' => '86500',
-				    'secure' => TRUE
-				);*/
-				$this->input->set_cookie('DoacoesUserCookie', $user_data['id'], 259000 );
+				$this->input->set_cookie('DoacoesUserCookie',
+					$user_data['id'], 259000 );
 			} else {
 				delete_cookie('DoacoesUserCookie');
 			}

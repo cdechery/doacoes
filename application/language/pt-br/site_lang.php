@@ -4,7 +4,7 @@ $lang['dist_data_update_ok']		= "Dados atualizados com sucesso!";
 $lang['dist_data_update_nok']		= "Ocorreu um erro ao atualizar os dados, tente novamente.";
 $lang['dist_min_image_size']		= "A imagem deve ter no mínimo %1px de largura e/ou altura";
 
-$lang['dist_login_failed']			= "Login ou senha inválidos, tente novamente";
+$lang['dist_login_failed']			= "Usuário ou senha inválidos, tente novamente";
 
 $lang['dist_imgupload_ok']			= "Imagem enviada com sucesso";
 $lang['dist_imgupload_nok']			= "Ocorreu algum problema ao enviar a imagem, tente novamente";
