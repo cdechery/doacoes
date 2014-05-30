@@ -8,18 +8,22 @@
 
 	$user_id = $login_data['user_id'];
 ?>
+		
 <table style="color: <?php echo $cor?>;" class="interesse_row">
+	<colgroup>
+		<col span="5" style="width:20%;" />
+	</colgroup>		
 	<tr>
 		<td><?php echo $interesse->categoria?></td>
 		<td>
 			<select id="raio_<?php echo $interesse->id?>" style="width: 100px;">
 				<?php
-				$raios = $params['raios_busca'];
-				$selected = "";
-				foreach($raios as $raio => $desc) {
-					$selected=($raio==$interesse->raio_busca)?"selected":"";
-					echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
-				}
+					$raios = $params['raios_busca'];
+					$selected = "";
+					foreach($raios as $raio => $desc) {
+						$selected=($raio==$interesse->raio_busca)?"selected":"";
+						echo '<option value="'.$raio.'" '.$selected.'>'.$desc.'</option>';
+					}
 				?>
 			</select>
 		</td>

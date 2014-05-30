@@ -31,8 +31,6 @@
 		}
 	}
 </script>
-	
-</div>
 
 <section id="map">
 
@@ -61,21 +59,25 @@
 
 </section>
 
-<section id="home" class="contents">
-	<div class="wrap960">
-		<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
-girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
-significa nadis i pareci latim. Interessantiss quisso pudia ce receita de
-bolis, mais bolis eu num gostis.</p>
-		<div id="botoes">
-			<a href="<?php echo base_url('usuario/new_user/P')?>" id="tenho" class="btn-gradient">
-				<span>Tenho&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i></span>
-			</a>
-			<a href="<?php echo base_url('usuario/new_user/I')?>" id="preciso" class="btn-gradient">
-				<span>Preciso&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i></span>
-			</a>
+<?php /* home logado */ if( isset($login_data) && !$login_data["logged_in"] ) { ?>
+
+	<section id="home" class="contents">
+		<div class="wrap960">
+			<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
+	girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
+	Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
+	significa nadis i pareci latim. Interessantiss quisso pudia ce receita de
+	bolis, mais bolis eu num gostis.</p>
+			<div id="botoes">
+				<a href="<?php echo base_url('usuario/new_user/P')?>" id="tenho" class="btn-gradient">
+					<span>Tenho&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-up"></i></span>
+				</a>
+				<a href="<?php echo base_url('usuario/new_user/I')?>" id="preciso" class="btn-gradient">
+					<span>Preciso&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i></span>
+				</a>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+
+<?php } ?>
 

@@ -74,6 +74,7 @@
 	if( isset($login_data) && $login_data["logged_in"] ) {
 		$user_name = "Ol&aacute; <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
 		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
+		$user_name .= "<div>Cadastrar: <a href='".base_url()."item/novo'>Item<a>&nbsp;|&nbsp;<a href='".base_url()."usuario/interesses'>Interesse<a></div>";
 		$signup_link = "";
 	}
 ?>
@@ -88,4 +89,12 @@
 		</div>
 	</div>
 </header>
+
+<?php /* esta não é a home-page */ if (2 + 2 === 4): ?>
+	
+	<section class="contents">
+		<div class="wrap960">
+
+<?php endif ?>
+
 	
