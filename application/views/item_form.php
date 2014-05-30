@@ -2,13 +2,16 @@
 	$descricao = $status = $titulo = "";
 	$categoria_id = $situacao_id = "";
 	$id = "0";
+
 	if( !empty($data) ) {
 		extract($data);
 	}
 	if( empty($images) ) {
 		$images = array();
 	}
-	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
+
+	$actions = array("insert"=>xlabel('insert'),
+		"update"=>xlabel('update'));
 ?>
 
 <div id="item">
@@ -18,32 +21,46 @@
 	<aside>
 	
 		<form method="post" action="<?php echo base_url();?>image/upload_item_image" id="upload_item_image" enctype="multipart/form-data">
-		<?php
-			$num_imgs = 0;
-			$max_imgs = $params['max_item_imgs'];
+<?php
+	$num_imgs = 0;
+	$max_imgs = $params['max_item_imgs'];
 
-			// Imagens do item, se houver
-			foreach($images as $img) {
-				$num_imgs++;
-				$thumb = thumb_filename($img->nome_arquivo, 80);
-			?>
-			<input type="file" name="item_file_<?php echo $num_imgs?>" style="display: none;" id="item_file_<?php echo $num_imgs?>" onchange="do_upload_item_image(<?php echo $img->id?>, false);" />
-			<a href="#" onclick="document.getElementById('item_file_<?php echo $num_imgs?>').click();"/>
-				<img alt="Alterar imagem" src="<?php echo base_url()."files/".$thumb?>" id="item_img_<?php echo $num_imgs?>" data-imgid="<?php echo $img->id?>">
+	if( $action!="insert" ) {
+
+		// Imagens do item, se houver
+		foreach($images as $img) {
+			$num_imgs++;
+			$thumb = thumb_filename($img->nome_arquivo, 200);
+?>
+			<input type="file" name="item_file_<?php echo $img->id?>" style="display: none;" id="item_file_<?php echo $img->id?>" onchange="do_upload_item_image(<?php echo $img->id?>, false);" />
+			<a href="#" onclick="document.getElementById('item_file_<?php echo $img->id?>').click();"/>
+				<img alt="Alterar imagem" src="<?php echo base_url()."files/".$thumb?>" id="item_img_<?php echo $img->id?>" data-imgid="<?php echo $img->id?>">
 			</a>
-			<?php } //images
-			// completo as imagens com a "default"
-			$temp = "true";
-			if( $action!="insert" ) {
-				$temp = "false";
-			}
-			for($i=0; $i<$max_imgs-$num_imgs; $i++) {
-			?>		
-			<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i.", ".$temp?>);"/>
+<?php
+		} // for item imagens do item
+
+		if( $num_imgs < $max_imgs ) { // existem imagens, é um update
+			for($i=$num_imgs; $i<$max_imgs; $i++) {
+?>
+				<input type="file" name="item_file_<?php echo $i?>" style="display: none;" id="item_file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);" />
+				<a href="#" onclick="document.getElementById('item_file_<?php echo $i?>').click();"/>
+					<img alt="Enviar imagem" src="<?php echo base_url()."images/default_item_img.jpg"?>" id="item_img_<?php echo $i?>" data-imgid="0">
+				</a>
+<?php
+			} // for imagens default
+		}
+
+	} else { // item novo?
+		for($i=1; $i<=$max_imgs; $i++) {
+?>		
+			<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>,true);"/>
 			<a href="#" onclick="document.getElementById('file_<?php echo $i?>').click();"/>
 				<img alt="Enviar imagem" src="<?php echo base_url()."images/default_item_img.jpg"?>" id="img_<?php echo $i?>" data-newid="0"/>
 			</a>
-			<?php } ?>
+<?php
+		} //for imagens default novo item
+	} // if novo item
+?>
 		</form>
 
 	</aside>
@@ -60,7 +77,7 @@
 					$selected = "";
 					foreach ($categorias as $cat) {
 						$selected = ($cat->id==$categoria_id)?"selected":"";
-						echo '<option value="'.$cat->id.'" $selected>'.$cat->nome.'</option>\n';
+						echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->nome.'</option>\n';
 					}
 				?>
 			</select>
@@ -70,7 +87,7 @@
 					$selected = "";
 					foreach ($situacoes as $sit) {
 						$selected = ($sit->id==$situacao_id)?"selected":"";
-						echo '<option value="'.$sit->id.'" $selected>'.$sit->descricao.'</option>\n';
+						echo '<option value="'.$sit->id.'" '.$selected.'>'.$sit->descricao.'</option>\n';
 					}
 				?>
 			</select><br>

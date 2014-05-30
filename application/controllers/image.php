@@ -62,6 +62,8 @@ class Image extends MY_Controller {
 					$image_data['id'] = $input['img_id'];
 					$file_id = $this->image_model->update( $udata,
 						$image_data, $thumbSizes );
+
+					$file_id = ($file_id)?$input['img_id']:false;
 				} else if( $istemp ) {
 					$image_data['item_id'] = 0;
 					$image_data['temp_id'] = $input['temp_id'];

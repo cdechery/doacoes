@@ -41,6 +41,7 @@ class Item_model extends MY_Model {
 		$insert_data = array(
 			'descricao' => $item_data['desc'],
 			'status' => 'I', // disponivel
+			'titulo' => $item_data['titulo'],
 			'categoria_id' => $item_data['categ'],
 			'usuario_id' => $item_data['usuario_id'],
 			'situacao_id' => $item_data['sit'],
@@ -52,6 +53,23 @@ class Item_model extends MY_Model {
 			return $this->db->insert_id();
 		} else {
 			return 0;
+		}
+	}
+
+	public function update( $item_data ) {
+		$upd_data = array(
+			'descricao' => $item_data['desc'],
+			'titulo' => $item_data['titulo'],
+			'categoria_id' => $item_data['categ'],
+			'situacao_id' => $item_data['sit'],
+		);
+
+		if( $this->db->update('item', $upd_data,
+			array('id'=>$item_data['id']) ) ) {
+			
+			return true;
+		} else {
+			return false;
 		}
 	}
 

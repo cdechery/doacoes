@@ -83,24 +83,79 @@ class Item extends MY_Controller {
 			'msg'=>utf8_encode($msg), 'item_id' => $new_id) );
 	}
 
+	public function update() {
+		$status = "";
+		$msg = "";
+
+		if( !$this->is_user_logged_in ) {
+			$status = "ERROR";
+			$msg = xlang('dist_errsess_expire');
+			echo json_encode(array('status' => $status,
+				'msg' => utf8_encode($msg)) );
+			return;
+		}
+
+		$input = $this->input->post(NULL, TRUE);
+
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('','</br>');
+
+		$this->form_validation->set_rules('titulo', 'Título',
+			'required|min_length[10]|max_length[70]');
+		$this->form_validation->set_rules('desc', 'Descrição',
+			'required|min_length[10]|max_length[250]');
+		$this->form_validation->set_rules('categ', 'Categoria', 'required');
+		$this->form_validation->set_rules('sit', 'Situação', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$status = "ERROR";
+			$msg = validation_errors();
+		} else {
+
+			$item_data['usuario_id'] = $this->login_data['user_id'];
+
+			if( $this->item_model->update( $input ) ) {
+				$status = "OK";
+				$msg = 'O Item foi atualizado com sucesso';
+			} else {
+				$status = "ERROR";
+				$msg = 'Não foi possível atualizar o Item';
+			}
+		}
+
+		echo json_encode( array('status'=>$status,
+			'msg'=>utf8_encode($msg) ) );
+	}
+
 	public function modify( $item_id ) {
 		$msg = $this->check_owner($this->item_model, $item_id);
 		if( $msg ) {
-			show_error($msg);
+			show_error( $msg );
 		}
 
 		$this->load->helper('image_helper');
 
-		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site']);
-		$this->load->view('head', $head_data);
-
 		$item_data = $this->item_model->get( $item_id );
 		$item_data['action'] = 'update';
+		$item_data['temp_id'] = "0";
 
 		$images = $this->get_images( $item_id );
 
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
+
+		$this->load->model('situacao_model');
+		$situacoes = $this->situacao_model->get_all();
+
+		$head_data = array("min_template"=>"image_upload",
+			"title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
 		$this->load->view('item_form',
-			array('data'=>$item_data, 'images'=>$images) );
+			array('data'=>$item_data, 'images'=>$images,
+			'categorias'=>$categorias,
+			'situacoes'=>$situacoes) );
 		$this->load->view('foot');
 	}
 

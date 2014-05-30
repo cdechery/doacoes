@@ -33,8 +33,24 @@ class Image_model extends MY_Model {
 		}
 	}
 
-	public function update() {
-		// TODO
+	public function update($upload_data,
+		$image_data, $thumb_sizes = array()) {
+
+		$update_data = array(
+			'nome_arquivo' => $upload_data['file_name'],
+			'descricao'  => $image_data["descricao"]
+		);
+
+		if( $this->db->update('imagem', $update_data, array('id'=>$image_data['id'])) ) {
+			if( count($thumb_sizes) ) {
+				foreach( $thumb_sizes as $size ) {
+					create_square_cropped_thumb( $upload_data['full_path'], $size );
+				}
+			}
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 	
 	public function move_temp_images( $usuario_id, $item_id, $temp_id ) {

@@ -71,8 +71,8 @@ $(function() {
 
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
-					titleClass: 'success', modal: true,
+				new Messi(lang['dist_newuser_ok2'], {title: lang['dist_lbl_success'], 
+					titleClass: 'dist_lbl_success', modal: true,
 					buttons: [{id: 0, label: 'OK', val: 'S'}], 
 					callback: function(val) { go_home(); } });
 
@@ -91,8 +91,8 @@ $(function() {
 
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['success'],
-					titleClass: 'success', modal: true });
+				new Messi(json.msg, {title: lang['dist_lbl_success'],
+					titleClass: 'dist_lbl_success', modal: true });
 			} else {
 				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -115,8 +115,8 @@ $(function() {
 			success  : function (data) {
 				if( data.status != 'error') {
 					$('#user_avatar').attr('src',data.img_src);
-					new Messi(data.msg, {title: lang['success'], 
-						titleClass: 'success', modal: true });
+					new Messi(data.msg, {title: lang['dist_lbl_success'], 
+						titleClass: 'dist_lbl_success', modal: true });
 				} else {
 					new Messi(data.msg, {title: lang['dist_lbl_error'],
 						titleClass: 'anim error',
@@ -137,10 +137,29 @@ $(function() {
 
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(lang['dist_newuser_ok2'], {title: lang['success'], 
-					titleClass: 'success', modal: true,
+				new Messi(json.msg, {title: lang['dist_lbl_success'], 
+					titleClass: 'dist_lbl_success', modal: true,
 					buttons: [{id: 0, label: 'OK', val: 'S'}], 
 					callback: function(val) { go_home(); } });
+
+			} else {
+				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
+		return false;
+	});
+
+	$('#item_update').submit(function(e) {
+		e.preventDefault();
+		$.post($("#item_update").attr("action"),
+			$("#item_update").serialize(), function(data) {
+
+			var json = myParseJSON( data );
+			if( json.status=="OK" ) {
+				new Messi(json.msg, {title: lang['dist_lbl_success'], 
+					titleClass: 'anim success', modal: true,
+					buttons: [{id: 0, label: 'OK', val: 'S'}] });
 
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
@@ -158,7 +177,7 @@ $(function() {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: 'Interesse incluído com sucesso!',
-					titleClass: 'success', modal: true });
+					titleClass: 'dist_lbl_success', modal: true });
 
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
@@ -186,7 +205,7 @@ $(function() {
 			success     : function (data) {
 				if ( data.status === "success" ) {
 					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!',
-						titleClass: 'success', modal: true });
+						titleClass: 'dist_lbl_success', modal: true });
 				} else {			
 					new Messi( data.msg, {title: lang['dist_lbl_error'],
 						titleClass: 'anim error',
@@ -232,12 +251,10 @@ function do_upload_item_image( img_id, isnew ) {
 	var file_tag_id = 'item_file_'+img_id;
 	var action = '';
 
-	if( isnew ) {
+	if( $('#id').val()==0 && isnew ) {
 		img_tag_id = 'img_'+img_id;
 		file_tag_id = 'file_'+img_id;
-	}
 
-	if( $('#id').val()==0 && isnew ) {
 		action = 'upload_temp_item_image';
 	} else if( $('#id').val()!=0 && isnew ) {
 		action = 'upload_item_image';
@@ -245,6 +262,7 @@ function do_upload_item_image( img_id, isnew ) {
 		action = 'update_item_image';
 	}
 
+	var originalImg = $('#'+img_tag_id).attr('src');
 	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader.gif');
 
     $.ajaxFileUpload({
@@ -273,10 +291,12 @@ function do_upload_item_image( img_id, isnew ) {
                 new Messi(data.msg, {title: lang['dist_lbl_error'],
                 	titleClass: 'anim error', 
                 	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				$('#'+img_tag_id).attr('src', originalImg);
             }
         },
         error : function (data, status, e) {
 			general_error( lang['dist_error_upload'] );
+			$('#'+img_tag_id).attr('src', originalImg);
 		}
     });
     return false;
