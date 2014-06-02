@@ -1,5 +1,5 @@
 <section class="contents">
-	<div class="wrap960">
+	<div class="wrap960">	
 
 		<h2>Meus Interesses</h2>
 
@@ -31,7 +31,7 @@
 
 		<p>&nbsp;</p>
 
-		<table id="interesses">
+		<table>
 			<colgroup>
 				<col span="5" style="width:20%;" />
 			</colgroup>
@@ -45,10 +45,11 @@
 				</tr>
 			</thead>
 		</table>
+		
 		<?php
 			$display_inter_none = "none";
 			if( $int_count==0 ) {
-				$display_inter_none = "box";
+				$display_inter_none = "block";
 			}
 		?>
 

@@ -74,7 +74,7 @@
 	if( isset($login_data) && $login_data["logged_in"] ) {
 		$user_name = "Ol&aacute; <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
 		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
-		$user_name .= "<div>Cadastrar: <a href='".base_url()."item/novo'>Item<a>&nbsp;|&nbsp;<a href='".base_url()."usuario/interesses'>Interesse<a></div>";
+		$user_name .= "<div>Cadastrar: <a href='".base_url()."usuario/itens'>Item<a>&nbsp;|&nbsp;<a href='".base_url()."usuario/interesses'>Interesse<a></div>";
 		$signup_link = "";
 	}
 ?>
