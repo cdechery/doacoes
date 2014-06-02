@@ -55,6 +55,7 @@ class Slonga extends MY_Controller {
 			$this->googlemaps->add_marker($marker);
 
 			$custom_js_global .= "var marker_".$row->user_id."_settings = {};\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings[\"type\"] = '".$row->tipo."';\n";
 			$custom_js_init .= "marker_".$row->user_id."_settings[\"cats\"] = new Array('".$row->cat_id."');\n";
 			$custom_js_init .= "marker_".$row->user_id."_settings[\"sits\"] = new Array('".$row->sit_id."');\n";
 			$custom_js_init .= "marker_".$row->user_id."_settings[\"mrk\"] = marker_".$row->user_id.";";
