@@ -134,14 +134,19 @@ $(function() {
 		e.preventDefault();
 		$.post($("#item_insert").attr("action"),
 			$("#item_insert").serialize(), function(data) {
-
 			var json = myParseJSON( data );
+			console.log(json);
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}], 
-					callback: function(val) { go_home(); } });
-
+					buttons: [{id: 0, label: 'OK', val: 'S'}] });
+				
+				var itemData = $.get( site_root +'item/get_itens/'+json.user_id );
+				itemData.success(function(data){
+					console.log(data);
+					 $('#itens').append( data );
+				});
+			
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -171,7 +176,7 @@ $(function() {
 
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#interesse_insert").attr("action"), 
+		$.post($("#interesse_insert").attr("action"),
 			$("#interesse_insert").serialize(), function(data) {
 
 			var json = myParseJSON( data );

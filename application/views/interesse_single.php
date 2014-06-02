@@ -7,6 +7,7 @@
 	}
 
 	$user_id = $login_data['user_id'];
+
 ?>
 		
 <table style="color: <?php echo $cor?>;" class="interesse_row">

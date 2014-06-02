@@ -321,6 +321,24 @@ class Usuario extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
+	public function itens() {
+		if( !$this->is_user_logged_in ) {
+			$this->show_access_error();
+		}
+
+		$this->load->model('item_model');
+		
+		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
+
+		// tem q incluir a view do form também
+
+		foreach ($itens as $int) {
+			echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
+			//$this->load->view('item_view', array('idata'=>$int));
+		}
+		$this->load->view('foot');
+	}
+
 	public function interesses() {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();

@@ -1,5 +1,3 @@
-	</div><!-- wrap960 -->
-</section><!-- contents -->
 <footer>
 	<div class="wrap960">
 		<p style="text-align: right;">&copy; 2013  &bull; Powered by <a href="http://xumb.frofens.org">Xumb</a></p>

@@ -5,6 +5,9 @@
 			"path": "/Applications/MAMP/htdocs/doacoes"
 		},
 		{
+			"path": "application"
+		},
+		{
 			"path": "application/views"
 		},
 		{

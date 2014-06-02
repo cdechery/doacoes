@@ -8,6 +8,14 @@ class Item extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
+	public function get_itens($user_id) {
+		$itens = $this->item_model->get($user_id);
+		foreach ($itens as $int) {
+			echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
+			//$this->load->view('item_view', array('idata'=>$int));
+		}
+	}
+
 	public function novo() {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
@@ -79,7 +87,7 @@ class Item extends MY_Controller {
 			}
 		}
 
-		echo json_encode( array('status'=>$status,
+		echo json_encode( array('status'=>$status, 'user_id'=>$item_data['usuario_id'],
 			'msg'=>utf8_encode($msg), 'item_id' => $new_id) );
 	}
 

@@ -21,7 +21,7 @@ $config['site_params'] = array(
 	'image_settings' => array(
 		'thumb_sizes' => array(80, 200), // size of thumbs to generate
 		'allowed_types' => array('jpeg', 'jpg', 'png'),
-		'min_image_size' => '200'
+		'min_image_size' => '80'
 	),
 	'max_item_imgs' => 3,
 	'upload' => array(

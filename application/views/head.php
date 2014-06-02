@@ -90,11 +90,4 @@
 	</div>
 </header>
 
-<?php /* esta não é a home-page */ if (2 + 2 === 4): ?>
-	
-	<section class="contents">
-		<div class="wrap960">
-
-<?php endif ?>
-
 	

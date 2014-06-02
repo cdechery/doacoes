@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
-				"az",
-				"azul"
+				"var",
+				"var_dump"
+			],
+			[
+				"bor",
+				"border-collapse"
 			],
 			[
 				"te",
-				"text-decoration"
+				"text-align"
 			],
 			[
 				"pa",
-				"padding-top"
+				"padding"
+			],
+			[
+				"paddi",
+				"padding-right"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"az",
+				"azultopo"
+			],
+			[
+				"fi",
+				"first-child"
 			],
 			[
 				"for",
@@ -84,19 +112,11 @@
 				"max-height"
 			],
 			[
-				"ma",
-				"margin-top"
-			],
-			[
 				"fou",
 				"fourteen"
 			],
 			[
 				"font",
-				"font-size"
-			],
-			[
-				"fon",
 				"font-size"
 			],
 			[
@@ -164,10 +184,6 @@
 				"display"
 			],
 			[
-				"bor",
-				"bordeaux"
-			],
-			[
 				"padd",
 				"padding"
 			],
@@ -183,54 +199,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "css/less/doacoes.less",
-			"settings":
-			{
-				"buffer_size": 2439,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/less/grid.less",
-			"settings":
-			{
-				"buffer_size": 2031,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.less",
-			"settings":
-			{
-				"buffer_size": 630,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/less/form.less",
-			"settings":
-			{
-				"buffer_size": 2324,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/less/variaveis.less",
-			"settings":
-			{
-				"buffer_size": 410,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/utilities.less",
-			"settings":
-			{
-				"buffer_size": 780,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -268,52 +236,64 @@
 	},
 	"file_history":
 	[
+		"/Applications/MAMP/htdocs/doacoes/css/less/doacoes.less",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/tipo_usuario.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/login.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/foot.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/image_model.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/user_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_single.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/update_tool.php",
+		"/Applications/MAMP/htdocs/doacoes/setup/inserts.sql",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/interesse_model.php",
+		"/Applications/MAMP/htdocs/doacoes/css/less/form.less",
+		"/Applications/MAMP/htdocs/doacoes/css/less/variaveis.less",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/interesse.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/routes.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/forms.less",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/mixins.less",
+		"/Applications/MAMP/htdocs/doacoes/css/less/grid.less",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/media.less",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/utilities.less",
+		"/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.less",
 		"/Applications/MAMP/htdocs/doacoes/css/less/boostrap/buttons.less",
 		"/Applications/MAMP/htdocs/doacoes/css/normalize.css",
 		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/variables.less",
 		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/grid.less",
 		"/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.html",
-		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/mixins.less",
 		"/Applications/MAMP/htdocs/doacoes/css/less/boostrap/forms.less",
-		"/Applications/MAMP/htdocs/doacoes/css/less/form.less",
-		"/Applications/MAMP/htdocs/doacoes/application/views/login.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/user_form.php",
 		"/Applications/MAMP/htdocs/doacoes/css/less/forms.less",
 		"/Applications/MAMP/htdocs/doacoes/css/doacoes.less",
 		"/Applications/MAMP/htdocs/doacoes/css/form.less",
 		"/Applications/MAMP/htdocs/doacoes/css/forms.less",
-		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
 		"/Applications/MAMP/htdocs/doacoes/min/groupsConfig.php",
 		"/Applications/MAMP/htdocs/doacoes/css/bootstrap.css",
 		"/Applications/MAMP/htdocs/doacoes/css/buttons.less",
-		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/tipo_usuario.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/interesse.php",
-		"/Applications/MAMP/htdocs/doacoes/application/models/interesse_model.php",
 		"/Applications/MAMP/htdocs/doacoes/.gitignore",
-		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
 		"/Applications/MAMP/htdocs/doacoes/css/forms.css",
 		"/Users/Admin/Downloads/bootstrap/css/bootstrap-theme.css",
 		"/Applications/MAMP/htdocs/doacoes/.htaccess",
 		"/Applications/MAMP/htdocs/doacoes/system/core/Router.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/slonga.php",
-		"/Applications/MAMP/htdocs/doacoes/application/config/routes.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/site_params.php",
 		"/Applications/MAMP/htdocs/doacoes/min/config-test.php",
 		"/Applications/MAMP/htdocs/doacoes/min/config.php",
 		"/Applications/MAMP/htdocs/doacoes/min/lib/CSSmin.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/email.php",
-		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/database.php",
 		"/Applications/MAMP/htdocs/doacoes/css/font-awesome.min.css",
 		"/Applications/MAMP/htdocs/doacoes/application/libraries/Googlemaps.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/foot.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/map.php",
 		"/Applications/MAMP/htdocs/doacoes/system/core/Config.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/image.php",
 		"/Applications/MAMP/htdocs/doacoes/application/language/english/site_lang.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/autoload.php",
@@ -383,19 +363,7 @@
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/header.php",
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/plugins/responsive-slider/css/responsive-slider.css",
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_grid.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/single-custom_type.php",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/page-custom.php",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/template-home-arena.php",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_base.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/index.php",
-		"/Users/Admin/Downloads/responsive-slider/css/responsive-slider.css",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/style.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-config-WEB.php",
-		"/Applications/MAMP/htdocs/arenacarioca/dump.sql",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_768up.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_mixins.less",
-		"/Users/Admin/Downloads/gridpak (1)/gridpak.css",
-		"/Users/Admin/Downloads/gridpak (1)/gridpak.less"
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/single-custom_type.php"
 	],
 	"find":
 	{
@@ -420,6 +388,48 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clearfix",
+			"thumb_filename",
+			"td",
+			"25",
+			"section",
+			"dt_inclusao",
+			"body",
+			"?>/",
+			"/",
+			"$tipo",
+			"h3",
+			"$tipo",
+			"Para",
+			"</p>",
+			"<p>",
+			"<br>",
+			"\">\n",
+			"/>\n",
+			"<br>",
+			"#999",
+			"color: @color;",
+			"&",
+			"placeholder",
+			"</b>",
+			"<b>",
+			"@gcolorfin",
+			"@gcolor",
+			"gcolor",
+			"astcolor",
+			"firstcolor",
+			".9",
+			"lastcor",
+			"primcor",
+			":",
+			"gcolor",
+			"#54a3f7",
+			"-btn",
+			"#0061a7",
+			"#007dc1",
+			".myButton",
+			"section",
+			"h3",
 			"container-fixed",
 			"// Mixins.container-fixed\n.container-fixed",
 			".container-fixed",
@@ -505,49 +515,7 @@
 			"fifteencol",
 			"fourteencol",
 			"thirteencol",
-			"http://gridpak.com",
-			"menu-header-menu\nmenu-header-menu",
-			"menu-header-menu",
-			"Stylesheet",
-			"menu-header-menu",
-			":",
-			"$agenda",
-			"10px",
-			"h3",
-			"box-sizing",
-			"h4",
-			"div.",
-			"$area",
-			"$odd",
-			"getClass",
-			"p",
-			"125",
-			"add_theme_support",
-			"six",
-			"even",
-			"ultimas",
-			"&orderby=rand",
-			"ultimas",
-			"bones_main_nav",
-			"sixcol",
-			"grid",
-			"bones-stylesheet",
-			"stylesheet",
-			"bones_scripts_and_styles",
-			"FOOTER",
-			"CONTENT",
-			"HEADER",
-			"{}",
-			"header",
-			"div.top-nav",
-			"orange",
-			"pink",
-			"nav",
-			"content",
-			"post_data",
-			"();\n",
-			"$custom_fields",
-			"fpg_show"
+			"http://gridpak.com"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -566,170 +534,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "css/less/doacoes.less",
-					"settings":
-					{
-						"buffer_size": 2439,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2213,
-								2213
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "css/less/grid.less",
-					"settings":
-					{
-						"buffer_size": 2031,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								722,
-								722
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 137.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/Admin/Documents/pierre/web ressources/twigkit-semantic.gs-22e0e79/examples/fixed/fixed.less",
-					"settings":
-					{
-						"buffer_size": 630,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								591,
-								602
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "css/less/form.less",
-					"settings":
-					{
-						"buffer_size": 2324,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								325,
-								325
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "css/less/variaveis.less",
-					"settings":
-					{
-						"buffer_size": 410,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								410,
-								410
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/utilities.less",
-					"settings":
-					{
-						"buffer_size": 780,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
