@@ -166,7 +166,7 @@ function filterInst() {
 	for(var i=0; i<activeMarkers.length; i++) {
 		var mrk = activeMarkers[i];
 
-		if( mrk['type']=='I' ) {
+		if( mrk['type']!='I' ) {
 			showHideMarker(mrk.mrk, false);
 		} else {
 			var matchCats = matchFilters(mrk, checkedCats, Array() );
