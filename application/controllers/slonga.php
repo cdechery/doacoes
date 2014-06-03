@@ -39,8 +39,7 @@ class Slonga extends MY_Controller {
 			}
 
 			if( in_array($row->user_id, $markers_created) ) {
-				$custom_js_init .= "marker_".$row->user_id."_settings.cats.push('".$row->cat_id."');";
-				$custom_js_init .= "marker_".$row->user_id."_settings.sits.push('".$row->sit_id."');";
+				$custom_js_init .= "marker_".$row->user_id."_settings.items.push( new Array('".$row->cat_id."', '".$row->sit_id."') ) ;";
 				continue;
 			}
 
@@ -56,8 +55,8 @@ class Slonga extends MY_Controller {
 
 			$custom_js_global .= "var marker_".$row->user_id."_settings = {};\n";
 			$custom_js_init .= "marker_".$row->user_id."_settings[\"type\"] = '".$row->tipo."';\n";
-			$custom_js_init .= "marker_".$row->user_id."_settings[\"cats\"] = new Array('".$row->cat_id."');\n";
-			$custom_js_init .= "marker_".$row->user_id."_settings[\"sits\"] = new Array('".$row->sit_id."');\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings[\"items\"] = new Array();\n";
+			$custom_js_init .= "marker_".$row->user_id."_settings.items.push( new Array('".$row->cat_id."','".$row->sit_id."') );\n";
 			$custom_js_init .= "marker_".$row->user_id."_settings[\"mrk\"] = marker_".$row->user_id.";";
 			$custom_js_init .= "markers_settings.push( marker_".$row->user_id."_settings );";
 

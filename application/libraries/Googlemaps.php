@@ -307,12 +307,13 @@ class Googlemaps {
 			
 			$marker_output .= '
 			marker_'.$marker_id.'.set("content", "'.$marker['infowindow_content'].'");
+			marker_'.$marker_id.'.infowindow = new google.maps.InfoWindow();
 			
 			google.maps.event.addListener(marker_'.$marker_id.', "click", function(event) {
 				//iw.setContent(this.get("content"));
-				iw.setContent("<div class=\"iw_loading_box\"><img src=\"'.base_url().'icons/ajax-loader.gif\"></div>");
-				load_infowindow_content(iw,'.$marker_id.');
-				iw.open('.$this->map_name.', this);
+				marker_'.$marker_id.'.infowindow.setContent("<div class=\"iw_loading_box\"><img src=\"'.base_url().'icons/ajax-loader.gif\"></div>");
+				load_infowindow_content(marker_'.$marker_id.'.infowindow,'.$marker_id.');
+				marker_'.$marker_id.'.infowindow.open('.$this->map_name.', this);
 			';
 			if ($marker['onclick']!="") { $marker_output .= $marker['onclick'].'
 			'; }
