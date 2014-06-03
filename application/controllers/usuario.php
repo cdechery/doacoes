@@ -322,21 +322,29 @@ class Usuario extends MY_Controller {
 	}
 
 	public function itens() {
+		
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
 		}
+
+		$this->load->helper('image');
 
 		$this->load->model('item_model');
 		
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
 
+		$head_data = array("title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+
+		$this->load->view('section', array('id'=>'itens')); // abre tag section
+
 		// tem q incluir a view do form também
 
 		foreach ($itens as $int) {
-			echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
-			//$this->load->view('item_view', array('idata'=>$int));
+			$this->load->view('item_single', array('idata'=>$int));
 		}
-		$this->load->view('foot');
+		
+		$this->load->view('foot_loop'); // fecha tag section
 	}
 
 	public function interesses() {
@@ -349,11 +357,13 @@ class Usuario extends MY_Controller {
 
 		$this->load->view('head', array('title'=>'Interesses'));
 
+		$this->load->view('section');
+
 		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
 		foreach ($interesses as $int) {
 			$this->load->view('interesse_single', array('interesse'=>$int));
 		}
-		$this->load->view('foot');
+		$this->load->view('foot_loop');
 	}
 }
 ?>
