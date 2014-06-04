@@ -144,7 +144,7 @@ $(function() {
 				var itemData = $.get( site_root +'item/get_itens/'+json.user_id );
 				itemData.success(function(data){
 					console.log(data);
-					 $('#itens').append( data );
+					 $('#show_itens').append( data );
 				});
 			
 			} else {

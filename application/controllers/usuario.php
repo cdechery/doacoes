@@ -327,18 +327,30 @@ class Usuario extends MY_Controller {
 			$this->show_access_error();
 		}
 
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
+
+		$this->load->model('situacao_model');
+		$situacoes = $this->situacao_model->get_all();
+
 		$this->load->helper('image');
 
 		$this->load->model('item_model');
+
+		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
 		
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
 
-		$head_data = array("title"=>$this->params['titulo_site']);
+		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$this->load->view('section', array('id'=>'itens')); // abre tag section
+		$this->load->view('section', array('id'=>'item')); // abre tag section
 
-		// tem q incluir a view do form também
+		$data = array('action' => 'insert',
+			'temp_id'=>$temp_id,
+			'situacoes'=>$situacoes,
+			'categorias'=>$categorias);
+		$this->load->view('item_form', array('data'=>$data) );
 
 		foreach ($itens as $int) {
 			$this->load->view('item_single', array('idata'=>$int));
@@ -357,7 +369,7 @@ class Usuario extends MY_Controller {
 
 		$this->load->view('head', array('title'=>'Interesses'));
 
-		$this->load->view('section');
+		$this->load->view('section', array('id'=>'itens'));
 
 		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
 		foreach ($interesses as $int) {

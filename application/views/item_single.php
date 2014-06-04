@@ -1,26 +1,36 @@
 <?php
+
+	$maxItems = 1;
+
+	$numItems = 0;
 	
-	$arrImg = array();
+	$arrItems = array();
 	
 	foreach ($idata as $item) {
+		$arrItems[ $idata->item_id ]['titulo'] = $idata->titulo;
+		$arrItems[ $idata->item_id ]['descricao'] = $idata->descricao;
 		if( !empty($idata->nome_arquivo ) ) {
-			$arrImg[ $idata->item_id ]['imagens'][] = $idata->nome_arquivo;
-			foreach ($arrImg as $item_id => $item) {
-				if( isset($item['imagens']) ) {
-					$thumb = thumb_filename($item['imagens'][0], 220);
-				}
-			}
+			$arrItems[ $idata->item_id ]['imagens'][] = $idata->nome_arquivo;
 		}
 	};
 
 ?>
 
-<div class="item_single">
-	<?php if( isset($item['imagens']) ) { ?>
+<?php foreach ($arrItems as $id => $item): ?>
+	
+	<?php 
+		$numItems++;
+		if( $numItems > $maxItems ) break; 
+	?>
+	
+	<div class="item_single">
+		<?php if( isset($item['imagens']) ) $thumb = thumb_filename($item['imagens'][0], 220); ?>
 		<img src="<?php echo base_url()."files/".$thumb; ?>" alt="<?php echo $idata->titulo; ?>">
-	<?php } ?>
-	<div>
-		<h3><?php echo $idata->titulo; ?></h3>
-		<p><?php echo $idata->descricao; ?></p>
+		<div>
+			<h3><?php echo $item['titulo']; ?></h3>
+			<p><?php echo $item['descricao']; ?></p>
+		</div>
 	</div>
-</div>
+
+<?php endforeach; ?>
+

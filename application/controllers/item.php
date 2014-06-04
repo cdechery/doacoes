@@ -9,10 +9,11 @@ class Item extends MY_Controller {
 	}
 
 	public function get_itens($user_id) {
-		$itens = $this->item_model->get($user_id);
+		$this->load->helper('image');
+		$itens = $this->item_model->get_user_items($user_id);
 		foreach ($itens as $int) {
-			echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
-			//$this->load->view('item_view', array('idata'=>$int));
+			//echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
+			$this->load->view('item_single', array('idata'=>$int));
 		}
 	}
 
@@ -30,6 +31,8 @@ class Item extends MY_Controller {
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
+		$this->load->view('section', array('id'=>'item')); // abre tag section
+
 		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
 
 		$data = array('action' => 'insert',
@@ -37,7 +40,8 @@ class Item extends MY_Controller {
 			'situacoes'=>$situacoes,
 			'categorias'=>$categorias);
 		$this->load->view('item_form', array('data'=>$data) );
-		$this->load->view('foot');
+		
+		$this->load->view('foot_loop');
 	}
 
 	public function insert() {
