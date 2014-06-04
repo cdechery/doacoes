@@ -1,6 +1,3 @@
-<?php 
-	echo "<pre>".print_r($idata)."</pre>";
-?>
 <h3><?php echo $idata['titulo']?></h3>
 <p><?php echo wordwrap($idata['descricao'], 60)?></p>
 <div>

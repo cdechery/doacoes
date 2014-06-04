@@ -329,7 +329,7 @@ class Usuario extends MY_Controller {
 
 		$this->load->model('categoria_model');
 		$categorias = $this->categoria_model->get_all();
-
+		
 		$this->load->model('situacao_model');
 		$situacoes = $this->situacao_model->get_all();
 
@@ -337,8 +337,7 @@ class Usuario extends MY_Controller {
 
 		$this->load->model('item_model');
 
-		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
-		
+		$temp_id = $this->item_model->get_temp_id( $this->login_data['user_id'] );
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
 
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
@@ -352,8 +351,19 @@ class Usuario extends MY_Controller {
 			'categorias'=>$categorias);
 		$this->load->view('item_form', array('data'=>$data) );
 
-		foreach ($itens as $int) {
-			$this->load->view('item_single', array('idata'=>$int));
+		$arrItems = array();
+		foreach ($itens as $item) {
+			$arrItems[ $item->item_id ]['data'] = $item;
+			if( !empty($item->nome_arquivo ) ) {
+				$arrItems[ $item->item_id ]['imagens'][] = $item->nome_arquivo;
+			} else {
+				$arrItems[ $item->item_id ]['imagens'] = array();
+			}
+		}
+
+		foreach ($arrItems as $item_id => $item) {
+			$this->load->view('item_single',
+				array('id'=>$item_id, 'data'=>$item['data'], 'imagens'=>$item['imagens']) );
 		}
 		
 		$this->load->view('foot_loop'); // fecha tag section
