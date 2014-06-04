@@ -327,29 +327,16 @@ class Usuario extends MY_Controller {
 			$this->show_access_error();
 		}
 
-		$this->load->model('categoria_model');
-		$categorias = $this->categoria_model->get_all();
-		
-		$this->load->model('situacao_model');
-		$situacoes = $this->situacao_model->get_all();
-
 		$this->load->helper('image');
 
 		$this->load->model('item_model');
 
-		$temp_id = $this->item_model->get_temp_id( $this->login_data['user_id'] );
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
 
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
 		$this->load->view('section', array('id'=>'item')); // abre tag section
-
-		$data = array('action' => 'insert',
-			'temp_id'=>$temp_id,
-			'situacoes'=>$situacoes,
-			'categorias'=>$categorias);
-		$this->load->view('item_form', array('data'=>$data) );
 
 		$arrItems = array();
 		foreach ($itens as $item) {
@@ -361,11 +348,8 @@ class Usuario extends MY_Controller {
 			}
 		}
 
-		foreach ($arrItems as $item_id => $item) {
-			$this->load->view('item_single',
-				array('id'=>$item_id, 'data'=>$item['data'], 'imagens'=>$item['imagens']) );
-		}
-		
+		$this->load->view('item_list', array('items'=>$arrItems) );
+
 		$this->load->view('foot_loop'); // fecha tag section
 	}
 

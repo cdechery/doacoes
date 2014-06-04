@@ -135,15 +135,14 @@ $(function() {
 		$.post($("#item_insert").attr("action"),
 			$("#item_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
-			console.log(json);
+
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true,
 					buttons: [{id: 0, label: 'OK', val: 'S'}] });
 				
-				var itemData = $.get( site_root +'item/get_itens/'+json.user_id );
-				itemData.success(function(data){
-					console.log(data);
+				var itemData = $.get( site_root +'item/get_single/'+json.item_id );
+				itemData.success(function( data ){
 					 $('#show_itens').append( data );
 				});
 			
@@ -287,7 +286,7 @@ function do_upload_item_image( img_id, isnew ) {
             if( data.status != 'error') {
                 var imageData = $.getJSON( site_root + 'image/get_image/'+data.file_id );
                 imageData.success(function(imgdata) {
-	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb200);
+	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb80);
 	                if( isnew ) {
 	                	$('#'+img_tag_id).data('newid', data.file_id);
 	                }

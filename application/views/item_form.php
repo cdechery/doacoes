@@ -38,7 +38,7 @@ if( $action!="insert" ) {
 <?php
 	} // for item imagens do item
 
-	if( $num_imgs < $max_imgs ) { // existem imagens, Ã© um update
+	if( $num_imgs < $max_imgs ) { // existem imagens, é um update
 		for($i=$num_imgs; $i<$max_imgs; $i++) {
 ?>
 			<input type="file" name="item_file_<?php echo $i?>" style="display: none;" id="item_file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);" />
@@ -81,7 +81,7 @@ if( $action!="insert" ) {
 			?>
 		</select>
 		<select name="sit">
-			<option value="">SituaÃ§Ã£o</option>
+			<option value="">Situação</option>
 			<?php
 				$selected = "";
 				foreach ($situacoes as $sit) {
@@ -90,14 +90,10 @@ if( $action!="insert" ) {
 				}
 			?>
 		</select><br>
-		<input type="text" name="titulo" value="<?php echo $titulo ?>" size="50" title="TÃ­tulo" /><br>
-		<textarea name="desc" title="DescriÃ§Ã£o" rows="4" cols="50"/><?php echo $descricao?></textarea><br>
+		<input type="text" name="titulo" value="<?php echo $titulo ?>" size="50" title="Título" /><br>
+		<textarea name="desc" title="Descrição" rows="4" cols="50"/><?php echo $descricao?></textarea><br>
 		<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 	</form>
 </div>
 
 <br clear="all">
-
-<div id="show_itens" class="clearfix"></div>
-
-<p><a href="<?php echo base_url()?>map">Back to the Map</a></p>

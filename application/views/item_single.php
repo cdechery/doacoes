@@ -1,12 +1,10 @@
 <div class="item_single">
 <?php
 	if( count($imagens) ) {
-		foreach ($imagens as $img) {
-			$thumb = thumb_filename($img, 80);
+			$thumb = thumb_filename($imagens[0], 200);
 ?>
 		<img src="<?php echo base_url("files/".$thumb)?>">
 <?php
-		}
 	}
 ?>	
 	<div>

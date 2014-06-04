@@ -8,13 +8,20 @@ class Item extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
-	public function get_itens($user_id) {
-		$this->load->helper('image');
-		$itens = $this->item_model->get_user_items($user_id);
-		foreach ($itens as $int) {
-			//echo "<pre>".var_dump(array('idata'=>$int))."</pre>";
-			$this->load->view('item_single', array('idata'=>$int));
+	public function get_single($item_id) {
+		$item = $this->item_model->get( $item_id );
+		$imagens = $this->get_images( $item_id );
+
+		$arrImgs = array();
+		foreach ($imagens as $img) {
+			$arrImgs[] = $img->nome_arquivo;
 		}
+		// converto o resulto de array para objeto
+		$itemObj = json_decode(json_encode($item), FALSE);
+
+		$this->load->view( 'item_single', array('data'=>$itemObj, 
+			'imagens'=>$arrImgs) );
+
 	}
 
 	public function novo() {
