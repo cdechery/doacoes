@@ -1,7 +1,7 @@
 <div class="item_single">
 <?php
 	if( count($imagens) ) {
-			$thumb = thumb_filename($imagens[0], 200);
+			$thumb = thumb_filename($imagens[0], 220);
 ?>
 		<img src="<?php echo base_url("files/".$thumb)?>">
 <?php

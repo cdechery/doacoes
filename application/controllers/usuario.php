@@ -339,6 +339,7 @@ class Usuario extends MY_Controller {
 		$this->load->view('section', array('id'=>'item')); // abre tag section
 
 		$arrItems = array();
+		
 		foreach ($itens as $item) {
 			$arrItems[ $item->item_id ]['data'] = $item;
 			if( !empty($item->nome_arquivo ) ) {

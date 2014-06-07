@@ -57,6 +57,17 @@ class Item_model extends MY_Model {
 		}
 	}
 
+	public function delete( $item_id ) {
+		if( empty($item_id) ) {
+			return false;
+		};
+		if ($this->db->delete('item', array('id'=>$item_id))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function update( $item_data ) {
 		$upd_data = array(
 			'descricao' => $item_data['desc'],

@@ -51,6 +51,17 @@ class Item extends MY_Controller {
 		$this->load->view('foot_loop');
 	}
 
+	public function delete($item_id) {
+		if( $this->item_model->delete( $item_id ) ) {
+			$status = "OK";
+			$msg = 'O Item foi removido com sucesso';
+		} else {
+			$status = "ERROR";
+			$msg = 'Não foi possível remover o Item';
+		}
+		echo json_encode(array('status' => $status, 'msg' => utf8_encode($msg)) );
+	}
+
 	public function insert() {
 		$status = "";
 		$msg = "";

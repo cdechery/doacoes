@@ -64,6 +64,7 @@ function load_infowindow_content(infowindow, user_id){
 }
 
 $(function() {
+	
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#usuario_insert").attr("action"),
@@ -135,7 +136,6 @@ $(function() {
 		$.post($("#item_insert").attr("action"),
 			$("#item_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
-
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true,
@@ -143,9 +143,8 @@ $(function() {
 				
 				var itemData = $.get( site_root +'item/get_single/'+json.item_id );
 				itemData.success(function( data ){
-					 $('#show_itens').append( data );
+					 console.log(data); // ver depois onde colocar
 				});
-			
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -172,6 +171,29 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
+
+	$(document).on('click', '.itemdel', function(e) {
+		e.preventDefault();
+		var itemid = $(this).data('itemid');
+		var parentDiv = $(this).parents('.item_single');
+		new Messi('Tem certeza que deseja remover este item?', {title: 'Remover item', 
+				titleClass: 'dist_lbl_success', modal: true,
+				buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
+					if (val=='S') {
+						$.post(site_root+'item/delete/'+itemid, function(data){
+							var json = myParseJSON(data);
+							if (!json.status=="OK") {
+								// pára tudo
+							} else {
+								parentDiv.remove(); 
+							};
+						}).fail( function(){ general_error();} );
+					}
+				}
+			}
+		);
+		return false;
+	}); // delete item
 
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
@@ -233,7 +255,6 @@ $(function() {
 			if( activ_deactiv_interesse(btn, 'deactivate') ) {
 			}
 		}
-
 		return false;
 	}); // delete
 
@@ -247,6 +268,7 @@ $(function() {
 
 		return false;
 	}); // delete
+
 });
 
 function do_upload_item_image( img_id, isnew ) {
@@ -335,7 +357,7 @@ function activ_deactiv_interesse( btn, action ) {
 			return false;
 		}
 	});
-}
+}	
 
 function delete_image( link ) {
 	$.ajax({
