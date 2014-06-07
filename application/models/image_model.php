@@ -121,4 +121,77 @@ class Image_model extends MY_Model {
 			return FALSE;
 		}
 	}
+
+	/* == FUNCOES UTILIZADAS PARA ROTINA DE LIMPEZA */
+	public function prepare_tmp_table() {
+		$this->db->query('TRUNCATE table tmp_imagem_arquivos');
+	}
+
+	public function insert_temp($arq) {
+		$data = array('nome_arquivo'=>$arq);
+		$this->db->insert('tmp_imagem_arquivos', $data);
+	}
+
+	public function clear_empty_avatars() {
+		$this->db->set('u.avatar', NULL);
+
+		$this->db->where('u.avatar IS NOT NULL');
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM tmp_imagem_arquivos '.
+ 			'WHERE nome_arquivo = u.avatar)',NULL, FALSE);
+		$this->db->update('usuario u');
+	}
+
+	public function delete_empty_imgs() {
+		$this->db->where('avatar IS NOT NULL');
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM tmp_imagem_arquivos t '.
+ 			'WHERE t.nome_arquivo = avatar)',NULL, FALSE);
+		$this->db->delete('usuario');
+	}
+
+	public function get_old_temp_images() {
+		$this->db->select('im.nome_arquivo');
+		$this->db->from('item_temp it');
+		$this->db->join('imagem im', 'im.temp_item_id = it.id');
+		$this->db->where('it.data_criacao < SUBDATE(NOW(),1)');
+		return $this->db->get()->result();
+	}
+
+	public function get_orphan_images() {
+		$this->db->select('nome_arquivo');
+		$this->db->from('imagem im');
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM item it '.
+		 	'WHERE im.item_id = it.id)', NULL, FALSE);
+
+		return $this->db->get()->result();
+	}
+
+	public function delete_orphan_images() {
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM item it '.
+		 	'WHERE imagem.item_id = it.id)', NULL, FALSE);
+		$this->db->delete('imagem');
+	}
+
+	public function purge_old_temp_images() {
+		$this->db->query('DELETE im FROM imagem im '.
+			'INNER JOIN item_temp it ON im.temp_item_id = it.id '.
+			'AND it.data_criacao < SUBDATE(NOW(),1)');
+	}
+
+	public function get_unlinked_images() {
+		$this->db->select('t.nome_arquivo');
+		$this->db->from('tmp_imagem_arquivos t');
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM imagem im'.
+			' WHERE im.nome_arquivo = t.nome_arquivo)', NULL, FALSE);
+		$this->db->where('NOT EXISTS '.
+			'(SELECT 1 FROM usuario u'.
+			' WHERE u.avatar = t.nome_arquivo)', NULL, FALSE);
+		return $this->db->get()->result();
+	}
+
+	/* == (FIM) FUNCOES UTILIZADAS PARA ROTINA DE LIMPEZA */
 }

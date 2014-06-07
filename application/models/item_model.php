@@ -12,6 +12,19 @@ class Item_model extends MY_Model {
 			array('id'=>$item_id))->row_array();
 	}
 
+	public function get_list( $item_ids ) {
+		$this->db->select('it.id, it.titulo, 
+			it.descricao, it.categoria_id, im.id imagem_id,
+			im.nome_arquivo, max(im.id)', FALSE);
+		$this->db->from('item it');
+		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
+		$this->db->where_in('it.id', $item_ids );
+		$this->db->group_by('it.id');
+		$items = $this->db->get()->result();
+
+		return $items;
+	}
+
 	public function get_temp_id($usuario_id) {
 		$item = $this->db->get_where('item_temp',
 			array('usuario_id'=>$usuario_id))->row();

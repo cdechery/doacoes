@@ -89,12 +89,12 @@ class Item extends MY_Controller {
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
 		$this->form_validation->set_rules('sit', 'Situação', 'required');
 
+		$item_data['usuario_id'] = $this->login_data['user_id'];
+
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
 			$msg = validation_errors();
 		} else {
-
-			$item_data['usuario_id'] = $this->login_data['user_id'];
 
 			$new_id = $this->item_model->insert( $input );
 			if( $new_id ) {
@@ -201,4 +201,20 @@ class Item extends MY_Controller {
 		$this->load_ajax('item_view', 
 			array('idata'=>$item_data, 'imgdata'=>$img_data));
 	}
+
+	public function listar() {
+		$item_ids = func_get_args();
+
+		$items = $this->item_model->get_list( $item_ids );
+
+		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+
+		$this->load->view('section', array('id'=>'item')); // abre tag section
+
+		$this->load->helper('image_helper');
+		$this->load->view('item_list', array('items'=>$items));
+
+		$this->load->view('foot_loop'); // fecha tag section
+    }	
 }

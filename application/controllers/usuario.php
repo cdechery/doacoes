@@ -332,6 +332,9 @@ class Usuario extends MY_Controller {
 		$this->load->model('item_model');
 
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
+		if( count($itens)==0 ) {
+			redirect( base_url('item/novo') );
+		}
 
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
@@ -349,7 +352,7 @@ class Usuario extends MY_Controller {
 			}
 		}
 
-		$this->load->view('item_list', array('items'=>$arrItems) );
+		$this->load->view('user_item_list', array('items'=>$arrItems) );
 
 		$this->load->view('foot_loop'); // fecha tag section
 	}

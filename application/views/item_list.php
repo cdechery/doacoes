@@ -1,30 +1,31 @@
-<input type="button" value="Novo Item" onClick="location.href='<?php echo base_url('item/novo')?>';">
-
 <div id="show_itens" class="clearfix">
-
-	<?php
-		foreach ($items as $item_id => $item) {
-	?>
-		<div class="item_single">
-		<?php
-			if( count($item['imagens']) ) {
-					$thumb = thumb_filename($item['imagens'][0], 220);
-		?>
-				<img src="<?php echo base_url("files/".$thumb)?>">
-		<?php
-			} // if imagens
-		?>	
-			<div>
-				<h3><?php echo $item['data']->titulo ?></h3>
-				<p><?php echo $item['data']->descricao ?></p>
-			</div>
-			<div>
-				<input type="button" value="Modificar" onClick="location.href='<?php echo base_url('item/modify/'.$item_id)?>';">
-				<input type="button" class="itemdel" value="Apagar" data-itemid="<?php echo $item_id; ?>">
-			</div>
+<?php
+	foreach ($items as $item) {
+?>
+	<div class="item_single">
+<?php
+		if( !empty($item->nome_arquivo) ) {
+				$thumb = thumb_filename($item->nome_arquivo, 200);
+?>
+			<img src="<?php echo base_url("files/".$thumb)?>">
+<?php
+		} // if imagem
+?>	
+		<div>
+			<h3><a href="<?php echo base_url('item/map_view/'.$item->id)?>" class='itembox fancybox.ajax' data-itemid='".$item_id."'><?php echo $item->titulo ?></a></h3>
+			<p><?php echo $item->descricao ?></p>
 		</div>
-	<?php
-		}
-	?>	
-
+<?php
+		if( $login_data['logged_in'] ) {
+?>
+		<div>
+			<input type="button" value="Eu quero!" class='itembox fancybox.ajax' href="<?php echo base_url("email/quer_item/".$item->id)?>">
+		</div>
+<?php
+		} // login
+?>
+	</div>
+<?php
+	} // for
+?>	
 </div>
