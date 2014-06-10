@@ -84,7 +84,6 @@ class Notificacao extends MY_Controller {
 		$this->last_email_err = "";
 
 		$this->email->clear();
-		$this->email->initialize($this->params['email']);
 
 		$this->email->from( 'alerta@quemprecisa.org', "QuemPrecisa" );
 		$this->email->to( $para );

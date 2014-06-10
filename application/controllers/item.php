@@ -77,7 +77,7 @@ class Item extends MY_Controller {
 
 		$input = $this->input->post(NULL, TRUE);
 
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper('form');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('','</br>');
@@ -127,7 +127,7 @@ class Item extends MY_Controller {
 
 		$input = $this->input->post(NULL, TRUE);
 
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper('form');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('','</br>');

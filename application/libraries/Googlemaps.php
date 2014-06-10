@@ -311,8 +311,10 @@ class Googlemaps {
 			
 			google.maps.event.addListener(marker_'.$marker_id.', "click", function(event) {
 				//iw.setContent(this.get("content"));
+				if( last_iw_opened!=null ) { last_iw_opened.close(); }
 				marker_'.$marker_id.'.infowindow.setContent("<div class=\"iw_loading_box\"><img src=\"'.base_url().'icons/ajax-loader.gif\"></div>");
 				load_infowindow_content(marker_'.$marker_id.'.infowindow,'.$marker_id.');
+				last_iw_opened = marker_'.$marker_id.'.infowindow;
 				marker_'.$marker_id.'.infowindow.open('.$this->map_name.', this);
 			';
 			if ($marker['onclick']!="") { $marker_output .= $marker['onclick'].'
@@ -320,11 +322,11 @@ class Googlemaps {
 			$marker_output .= '
 			});
 			';
-		}else{
+		} else {
 			if ($marker['onclick']!="") { 
 				$marker_output .= '
 				google.maps.event.addListener(marker_'.$marker_id.', "click", function(event) {
-					'.$marker['onclick'].'
+					'.$marker['onclick'].' 
 				});
 				';
 			}
@@ -1125,6 +1127,7 @@ class Googlemaps {
 			var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
 			var lat_longs = new Array();
 			var markers = new Array();
+			var last_iw_opened = null;
 			';
 		if ($this->cluster) {
 			$this->output_js_contents .= 'var markerCluster;

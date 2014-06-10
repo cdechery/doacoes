@@ -1,10 +1,15 @@
 <?php
 	$nome = $sobrenome = $lat = $lng = $email = "";
-	$cpf = $cnpj = $login = $avatar = $action = "";
+	$data_nascimento = $sexo = $login = $avatar = $action = "";
 	$id = "";
 
 	if( !empty($data) ) {
 		extract($data);
+
+		if( !empty($data_nascimento) ) {
+			$dt_parts = explode('-', $data_nascimento );
+			$data_nascimento = $dt_parts[2]."/".$dt_parts[1]."/".$dt_parts[0];
+		}
 	}
 
 	$actions = array("insert"=>xlabel('insert'), "update"=>xlabel('update'));
@@ -25,9 +30,9 @@
 		$login_disabled = "disabled";
 	}
 
-	$doc = "cpf";
+	$lblTipo = "Pessoa";
 	if( $tipo=="I" ) { // Instituicao
-		$doc = "cnpj";
+		$lblTipo = "Instituição";
 	}
 ?>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places"></script>
@@ -114,8 +119,7 @@ window.onload = initialize;
 	<div class="wrap960">
 
 		<h2>
-			Cadastro
-			<?php if($tipo === 'I') echo 'instituição'; ?>
+			Cadastro de <?php echo $lblTipo ?>
 		</h2>
 
 		<div id="foto">
@@ -148,27 +152,38 @@ window.onload = initialize;
 					<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
 				</div>
 				<div class="form-group">
-					<label>Nome</label>
-					<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" placeholder="Seu nome" />
-				</div>
-				<?php if( $tipo=="P") { ?>
-					<div class="form-group">
-						<label>Sobrenome</label>
-						<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" placeholder="Seu sobrenome" />
-					</div>
-				<?php } ?>
-				<div class="form-group">
 					<label>Email</label>
 					<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" placeholder="Seu email" />
 				</div>
 				<div class="form-group">
-					<label><?php echo strtoupper(${'doc'})?></label>
-					<input type="text" name="<?php echo ${'doc'}?>" value="<?php echo ${$doc}?>" size="50" title="<?php echo strtoupper($doc)?>" placeholder="Seu CPF" />
+					<label>Nome</label>
+					<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" placeholder="Seu nome" />
 				</div>
+<?php
+	if( $tipo=="P") {
+		$sexoM = ($sexo=="M")?"checked":"";
+		$sexoF = ($sexo=="F")?"checked":"";
+?>
+					<div class="form-group">
+						<label>Sobrenome</label>
+						<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" placeholder="Seu sobrenome" />
+					</div>
+					<div class="form-group">
+						<label>Nascimento</label>
+						<input type="text" name="nascimento" value="<?php echo $data_nascimento; ?>" size="50" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+					</div>
+					<div class="form-group">
+						<label>Sexo</label>
+						<br><input type="radio" name="sexo" value="M" <?php echo $sexoM?>> Masculino
+						<input type="radio" name="sexo" value="F" <?php echo $sexoF?>> Feminino
+					</div>
+<?php
+	} // tipo==P
+?>
 				<div class="form-group">
 					<label>Senha</label>
-					<input type="password" name="password" value="" size="10" placeholder="Escolha uma senha" ><br>
-					<input type="password" name="password_2" value="" size="10" placeholder="Repita a senha" />
+					<input type="password" name="password" value="" size="10" placeholder="Escolha uma senha" >
+					<input type="password" name="password_2" value="" size="10" placeholder="Repita a senha">
 				</div>
 				<div class="form-group">
 					<label>Localização</label>

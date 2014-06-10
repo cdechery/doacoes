@@ -66,7 +66,6 @@ class Login extends MY_Controller {
 
 	public function verify() {
 		$this->load->model('usuario_model');
-		$this->load->helper('url');
 
 		$form_data = $this->input->post(NULL, TRUE);
 

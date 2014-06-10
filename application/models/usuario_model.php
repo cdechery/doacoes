@@ -44,36 +44,30 @@ class Usuario_model extends MY_Model {
 
 	public function insert($user_data) {
 
+		$dt_parts = explode('/', $user_data['nascimento'] );
+		$data = $dt_parts[2]."-".$dt_parts[1]."-".$dt_parts[0];
+
 		$insert_data = array(
 			'login' => $user_data['login'],
 			'nome' => $user_data['nome'],
 			'email' => $user_data['email'],
 			'senha' => md5( $user_data['password'] ),
 			'tipo' => $user_data['tipo'],
+			'data_nascimento' => $data,
+			'sexo' => $user_data['sexo'],
 			'lat' => $user_data['lat'],
 			'lng' => $user_data['lng']
 		);
 
 		if( $user_data['tipo']=="P" ) { // Pessoa
 			$insert_data['sobrenome'] = $user_data['sobrenome'];
-			if( !empty($user_data['cpf']) ) {
-				$insert_data['cpf'] = $user_data['cpf'];
-			}
-			$insert_data['sobrenome'] = $user_data['sobrenome'];
-		} else { // == "I"
-			if( !empty($user_data['cnpj']) ) {
-				$insert_data['cnpj'] = $user_data['cnpj'];
-			}
 		}
 
 		if( !empty($user_data['avatar']) ) {
 			$insert_data['avatar'] = $user_data['avatar'];
 		}
 
-
 		$this->db->set('data_cadastro', 'NOW()', false);
-		$this->db->set('lat', 'NULL', false);
-		$this->db->set('lng', 'NULL', false);
 
 		if( $this->db->insert('usuario', $insert_data ) ) {
 			return $this->db->insert_id();
@@ -95,22 +89,22 @@ class Usuario_model extends MY_Model {
 		);
 
 		if( $user_data['tipo']=="P" ) { // Pessoa
+			$dt_parts = explode('/', $user_data['nascimento'] );
+			$data = $dt_parts[2]."-".$dt_parts[1]."-".$dt_parts[0];
+
 			$upd_data['sobrenome'] = $user_data['sobrenome'];
-			if( !empty($user_data['cpf']) ) {
-				$upd_data['cpf'] = $user_data['cpf'];
-			}
-			$insert_data['sobrenome'] = $user_data['sobrenome'];
-		} else { // == "I"
-			if( !empty($user_data['cnpj']) ) {
-				$upd_data['cnpj'] = $user_data['cnpj'];
-			}
+			$upd_data['data_nascimento'] = $data;
+			$upd_data['sexo'] = $user_data['sexo'];
 		}
 
 		if( !empty($user_data['password']) ) {
 			$upd_data['senha'] = md5($user_data['password']);
 		}
 		
-		return( $this->db->update('usuario', $upd_data, array('id' => $id)) );
+		$this->db->set('data_atualizacao', 'NOW()', false);
+
+		return( $this->db->update('usuario', 
+			$upd_data, array('id' => $id) ) );
 	}
 
 	public function update_lat_long($id, $lat, $long) {

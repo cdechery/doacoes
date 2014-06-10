@@ -13,4 +13,13 @@
 </div>
 <?php
 	} // foreach
+
+	$item_ids = array();
+	foreach ($items as $item) {
+		$item_ids[] = $item['id'];
+	}
+
+	$url = base_url('item/listar/'.implode('/', $item_ids));
+
 ?>
+Para ver mais detalhes sobre os itens e entrar em contato com os doadores, clique <a href="<?php echo $url?>">aqui</a>.

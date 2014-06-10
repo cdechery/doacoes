@@ -18,8 +18,8 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
   `login` VARCHAR(20) NOT NULL ,
   `senha` VARCHAR(32) NOT NULL ,
   `email` VARCHAR(120) NOT NULL ,
-  `cpf` BIGINT NULL ,
-  `cnpj` BIGINT NULL ,
+  `sexo` CHAR(1) NULL,
+  `data_nascimento` DATE NULL,
   `lat` FLOAT(10,6) NULL ,
   `lng` FLOAT(10,6) NULL ,
   `avatar` VARCHAR(100) NULL ,
@@ -29,9 +29,8 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
   `fg_notif_email` CHAR(1) NOT NULL DEFAULT 'S' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC) ,
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) ,
-  UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) )
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) 
+ )
 ENGINE = InnoDB;
 
 
@@ -110,6 +109,16 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`imagem` (
   PRIMARY KEY (`id`) ,
   INDEX `fk_imagem_item1_idx` (`item_id` ASC),
   INDEX `fk_imagem_item2_idx` (`temp_item_id` ASC) )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `doacoes`.`imagem`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `doacoes`.`tmp_imagem_arquivos` ;
+
+CREATE  TABLE IF NOT EXISTS `doacoes`.`tmp_imagem_arquivos` (
+  `nome_arquivo` VARCHAR(50) NOT NULL
+)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

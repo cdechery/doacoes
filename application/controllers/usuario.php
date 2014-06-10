@@ -114,18 +114,20 @@ class Usuario extends MY_Controller {
 
 		$user_data = $this->input->post(NULL, TRUE);
 
-		$this->load->helper(array('url', 'form'));
+		$this->load->helper('form');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
 		$this->form_validation->set_rules('login', 'Login',
-			'required|min_length[5]|max_length[20]|is_unique[usuario.login]|xss_clean');
-		$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
-		if( $user_data['tipo']=='P' ) { // Pessoa
-			$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[5]|max_length[40]');
-		}
+			'required|min_length[3]|max_length[20]|is_unique[usuario.login]|xss_clean');
 		$this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[usuario.email]|valid_email');
+		$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[3]|max_length[120]');
+		if( $user_data['tipo']=='P' ) { // Pessoa
+			$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[3]|max_length[40]');
+			$this->form_validation->set_rules('sexo', 'Sexo', 'required');
+			$this->form_validation->set_rules('nascimento', 'Nascimento', 'required|callback_bday_check');
+		}
 		$this->form_validation->set_rules('password', 'Senha', 'required|min_length[6]|max_length[8]');
 		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
 		$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
@@ -184,19 +186,21 @@ class Usuario extends MY_Controller {
 		} else {
 			$user_data = $this->input->post(NULL, TRUE);
 
-			$this->load->helper(array('form', 'url'));
+			$this->load->helper('form');
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_error_delimiters('','</br>');
 
-			$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[120]');
+			$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[3]|max_length[120]');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
 			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
 			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
 			$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
 
 			if( $user_data['tipo']=='P' ) { // Pessoa
-				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[5]|max_length[40]');
+				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[3]|max_length[40]');
+				$this->form_validation->set_rules('sexo', 'Sexo', 'required');
+				$this->form_validation->set_rules('nascimento', 'Nascimento', 'required|callback_bday_check');
 			}
 
 			if ($this->form_validation->run() == FALSE) {
@@ -280,20 +284,38 @@ class Usuario extends MY_Controller {
 		}
 	}
 
+	public function bday_check( $date ) {
+		$date_arr  = explode('/', $date);
+
+		if (count($date_arr) == 3) {
+		    if (checkdate($date_arr[1], $date_arr[0], $date_arr[2])) {
+		        return TRUE;
+		    } else {
+				$this->form_validation->set_message('bday_check',
+					'Data de Nascimento inválida (formato dd/mm/yyyy)' );
+		        return FALSE;
+		    }
+		} else {
+			$this->form_validation->set_message('bday_check',
+				'Data de Nascimento inválida (formato dd/mm/yyyy)' );
+		    return FALSE;
+		}
+	}
+
 	private function send_pwd_email($email, $password) {
 		$this->load->library('email');
 
 		$this->email->from($this->params['email']['from'], $this->params['email']['name']);
 		$this->email->to( $email ); 
 
-		$this->email->subject('Your New Password');
-		$message = 'You requested a password reset at the '.$this->params['titulo_site'].' website.
+		$this->email->subject('QuemPrecisa: Sua nova senha');
+		$message = 'Vode pediu uma nova senha no nosso site.
 
-					Here it is: '.$password.'
+					Aqui esta: '.$password.'
 					
-					We suggest you login right now, change your password and 
-					then delete this email. You can always use this feature later in
-					the future in case you forget it again. ;)';
+					Sugerimos que voce acesse agora mesmo, troque sua senha e 
+					depois apague esse email. Voce sempre podera usar essa funcao 
+					no futuro, se precisar. :)';
 
 		$this->email->message( $message );	
 

@@ -23,6 +23,49 @@ class Email extends MY_Controller {
 				'to_user'=>$to_user) );
 	}
 
+	public function enviar_quer_item() {
+		$status = "";
+		$msg = "";
+
+		$form_data = $this->input->post(NULL, TRUE);
+
+		$this->load->model('item_model');
+		$item = $this->item_model->get( $form_data['item_id'] );
+
+		$assunto = $form_data['assunto'];
+		if( empty($assunto) ) {
+			$assunto = "Me interessei por um item seu";
+		}
+
+		$corpo = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
+		$corpo .= "Para entrar em contato com ele(a), basta responder a este email.";
+		if( !empty($form_data['corpo']) ) { 
+			$corpo .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
+		}
+
+		$this->load->library('email');
+
+		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
+		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
+		$this->email->subject( $assunto );
+
+		$emailmsg = $this->load_email('email_quer_item',
+			array('corpo'=>$corpo));
+
+		echo $emailmsg; die;
+		$this->email->message( $emailmsg );
+
+		if( $this->email->send() ) {
+			$status = "OK";
+			$msg = "Email enviado com sucesso";
+		} else {
+			$status = "ERROR";
+			$msg = "Não foi possível enviar o email";
+		}
+
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+	}
+
 	public function contato_inst( $inst_id = 0 ) {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error("ajax");
@@ -46,7 +89,6 @@ class Email extends MY_Controller {
 		$form_data = $this->input->post(NULL, TRUE);
 
 		$this->load->library('email');
-		$this->email->initialize($this->params['email']);
 
 		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
 		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
@@ -63,51 +105,10 @@ class Email extends MY_Controller {
 			$msg = "Email enviado com sucesso";
 		} else {
 			$status = "ERROR";
-			$msg = "NÃ£o foi possÃ­vel enviar o email";
+			$msg = "Não foi possível enviar o email";
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function enviar_quer_item() {
-		$status = "";
-		$msg = "";
-
-		$form_data = $this->input->post(NULL, TRUE);
-
-		$this->load->model('item_model');
-		$item = $this->item_model->get( $form_data['item_id'] );
-
-		$assunto = $form_data['assunto'];
-		if( empty($assunto) ) {
-			$assunto = "Me interessei por um item seu";
-		}
-
-		$corpo = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
-		$corpo .= "Para entrar em contato com ele(a), basta responder a este email.";
-		if( !empty($form_data['corpo']) ) { 
-			$corpo .= "<br><br>Abaixo a mensagem que ele(a) deixou pra vocÃª: <br>".$form_data['corpo'];
-		}
-
-		$this->load->library('email');
-		$this->email->initialize($this->params['email']);
-
-		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
-		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
-		$this->email->subject( $assunto );
-
-		$emailmsg = $this->load_email('email_quer_item',
-			array('corpo'=>$corpo));
-		$this->email->message( $emailmsg );
-
-		if( $this->email->send() ) {
-			$status = "OK";
-			$msg = "Email enviado com sucesso";
-		} else {
-			$status = "ERROR";
-			$msg = "NÃ£o foi possÃ­vel enviar o email";
-		}
-
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
-	}
 }
