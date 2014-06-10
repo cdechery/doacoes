@@ -170,7 +170,7 @@ window.onload = initialize;
 					</div>
 					<div class="form-group">
 						<label>Nascimento</label>
-						<input type="text" name="nascimento" value="<?php echo $data_nascimento; ?>" size="50" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+						<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" size="50" title="Data de Nascimento" placeholder="Sua data de nascimento" />
 					</div>
 					<div class="form-group">
 						<label>Sexo</label>
@@ -194,7 +194,6 @@ window.onload = initialize;
 					<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 				</div>
 			</form>
-			<div style="text-align: right;"><a href="<?php echo base_url()?>map">Back to the Map</a></div>
 		</div>
 
 		<aside>
@@ -210,6 +209,7 @@ window.onload = initialize;
 				}
 			});
 		});
+		$('#dtnascimento').datepick( {prevText: '',nextText: '', yearRange: 'any', alignment: 'bottomRight' } );
 		</script>
 
 	</div>

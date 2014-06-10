@@ -90,7 +90,12 @@ class Usuario extends MY_Controller {
 			show_error('Tipo de Usuário inválido');
 		}
 
-		$head_data = array("title"=>$this->params['titulo_site']);
+		$cust_js = array('js/jquery.plugin.min.js', 
+			'js/jquery.datepick.min.js', 'js/jquery.datepick-pt-BR.js');
+		$cust_css = array('css/redmond.datepick.css');
+		$head_data = array("title"=>$this->params['titulo_site'],
+			'cust_js'=>$cust_js,
+			'cust_css'=>$cust_css);
 		$this->load->view('head', $head_data);
 
 		$data = array('action' => 'insert');
@@ -103,7 +108,8 @@ class Usuario extends MY_Controller {
 			$data['avatar'] = $fbdata['avatar'];
 		}
 
-		$this->load->view('user_form', array('data'=>$data, 'tipo'=>$tipo) );
+		$this->load->view('user_form', array('data'=>$data,
+				'tipo'=>$tipo) );
 		$this->load->view('foot');
 	}
 
