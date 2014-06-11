@@ -1,4 +1,3 @@
-<script type="application/javascript" src="<?php echo base_url('js/map.js')?>"></script>
 <section id="map">
 
 	<div class="wrap960">

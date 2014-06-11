@@ -35,6 +35,8 @@ class Item extends MY_Controller {
 		$this->load->model('situacao_model');
 		$situacoes = $this->situacao_model->get_all();
 
+		$this->load->helper('image_helper');
+
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 

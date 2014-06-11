@@ -2,10 +2,7 @@
 <?php
 	$path = $params['upload']['path'];
 	foreach ($itens as $item) {
-		$img = "images/default_item_img.jpg";
-		if( !empty($item['nome_arquivo']) ) {
-			$img = $path.$item['nome_arquivo'];
-		}
+		$img = item_image($item['nome_arquivo'], 80);
 ?>
 <div style="float: left">
 <img src="<?php base_url($img)?>"><br>
