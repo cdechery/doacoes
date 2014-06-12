@@ -10,10 +10,10 @@
 <input type="hidden" name="para_nome" value="<?php echo $to_user['nome']?>">
 <input type="hidden" name="item_id" value="<?php echo $item['id']?>">
 <p>
-De: <img src="<?php echo base_url($avatar_from)?>"> <?php echo $from_user['nome']?>
+De: <img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
 </p>
 <p>
-Para: <img src="<?php echo base_url($avatar_to)?>"> <?php echo $to_user['nome']?>
+Para: <img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
 </p>
 <p>
 Assunto: <input type="text" name="assunto" value="Eu quero o <?php echo $item['titulo']?>">

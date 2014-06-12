@@ -5,7 +5,7 @@
 		$img = item_image($item['nome_arquivo'], 80);
 ?>
 <div style="float: left">
-<img src="<?php base_url($img)?>"><br>
+<img src="<?php echo $img?>"> 
 <?php echo $item['titulo']?>
 </div>
 <?php

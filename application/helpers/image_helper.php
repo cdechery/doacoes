@@ -18,24 +18,24 @@ function thumb_filename($filename, $thumbSize) {
 function user_avatar($avatar, $size) {
 	$default = 'images/default_avatar_'.$size.'.gif';
 	if( empty($avatar) ) {
-		return $default;
+		return base_url($default);
 	} else {
 		$CI =& get_instance();
 		$params = $CI->config->item('site_params');
 		$path = $params['upload']['path'];
-		return $path.thumb_filename($avatar, $size);
+		return base_url($path.thumb_filename($avatar, $size));
 	}
 }
 
 function item_image($img, $size) {
 	$default = 'images/default_item_img_'.$size.'.png';
 	if( empty($img) ) {
-		return $default;
+		return base_url($default);
 	} else {
 		$CI =& get_instance();
 		$params = $CI->config->item('site_params');
 		$path = $params['upload']['path'];
-		return $path.thumb_filename($img, $size);
+		return base_url($path.thumb_filename($img, $size));
 	}
 }
 

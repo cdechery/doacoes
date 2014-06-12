@@ -9,10 +9,10 @@
 <input type="hidden" name="para_email" value="<?php echo $to_user['email']?>">
 <input type="hidden" name="para_nome" value="<?php echo $to_user['nome']?>">
 <p>
-De: <img src="<?php echo base_url($avatar_from)?>"> <?php echo $from_user['nome']?>
+De: <img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
 </p>
 <p>
-Para: <img src="<?php echo base_url($avatar_to)?>"> <?php echo $to_user['nome']?>
+Para: <img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
 </p>
 <p>
 Assunto: <input type="text" name="assunto" value="Olá, <?php echo $to_user['nome']?>">

@@ -123,7 +123,7 @@ window.onload = initialize;
 		</h2>
 
 		<div id="foto">
-			<img id="user_avatar" src="<?php echo base_url($avatar)?>"/>
+			<img id="user_avatar" src="<?php echo $avatar?>"/>
 			<?php if( $action=="update" ) { ?>
 				<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
 					<div class="form-group">

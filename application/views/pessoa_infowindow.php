@@ -6,9 +6,10 @@
 		$width = "400";
 	}*/
 
-	$avatar = user_avatar($udata['avatar'], 80);
+	$avatar = user_avatar( $udata['avatar'], 80 );
 
 	$arrItems = array();
+	$arrCats = array();
 	foreach ($items as $item) {
 		$arrItems[ $item->item_id ]['titulo'] = $item->titulo;
 		if( !empty($item->nome_arquivo ) ) {

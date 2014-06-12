@@ -17,7 +17,7 @@
 	}
 ?>
 <div style="width: <?php echo $width;?>px; text-align: left;">
-<img src="<?php echo base_url($avatar)?>"> <?php echo $udata['nome']?><br>
+<img src="<?php echo $avatar?>"> <?php echo $udata['nome']?><br>
 </div>
 <p><?php echo $out_inters?></p>
 <?php
