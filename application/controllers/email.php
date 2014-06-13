@@ -52,6 +52,7 @@ class Email extends MY_Controller {
 		$emailmsg = $this->load_email('email_quer_item',
 			array('corpo'=>$corpo));
 
+		echo $emailmsg; die;
 		$this->email->message( $emailmsg );
 
 		if( $this->email->send() ) {
@@ -93,13 +94,10 @@ class Email extends MY_Controller {
 		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
 		$this->email->subject( $assunto );
 
-		$corpo = "Olá ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
-			"para te mandar uma mensagem, veja abaixo:<br> ";
-		$corpo .= $form_data['corpo'];
+		$corpo = $form_data['corpo'];
 
 		$emailmsg = $this->load_email('email_contato_inst',
 			array('corpo'=>$corpo));
-
 		$this->email->message( $emailmsg );
 
 		if( $this->email->send() ) {
