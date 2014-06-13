@@ -6,14 +6,14 @@ class Notificacao extends MY_Controller {
 	public function index() {
 		$this->load->model('usuario_model');
 		$this->load->model('item_model');
-
 		$this->load->model('notificacao_model');
+		$this->load->helper('image_helper');
 
 		log_message('info',
 			'Iniciando processo de notificacoes');
 		$old_notifs = $this->notificacao_model->get_pending_notifs();
 		log_message('info',
-			'Encontradas '.$old_notifs.' notificacoes pendentes');
+			'Encontradas '.count($old_notifs).' notificacoes pendentes');
 
 		if( count($old_notifs) ) {
 			$this->processa_notifs( $old_notifs );
@@ -55,7 +55,6 @@ class Notificacao extends MY_Controller {
 			if( $user_id!=0 && $row->usuario_id!=$user_id ) {
 				log_message('info',
 					'Enviando email para $user_email, '.count($user_itens).' itens');
-				$user_itens = array();
 
 				if( $this->send_email($user_email, $user_itens) ) {
 					$this->notificacao_model->set_notificado( $user_id );
@@ -63,6 +62,7 @@ class Notificacao extends MY_Controller {
 					log_message('error', 
 						'Erro ao enviar email\n'.$this->last_email_err);
 				}
+				$user_itens = array();
 			}
 
 			$user_itens[] = array( 'id'=>$row->item_id, 
@@ -73,7 +73,7 @@ class Notificacao extends MY_Controller {
 
 		log_message('info',
 			'Enviando email para $user_email, '.count($user_itens).' itens');
-		if( $this->send_email($user_email, $user_itens) ) {}
+		if( $this->send_email($user_email, $user_itens) ) {
 			$this->notificacao_model->set_notificado( $user_id );
 		} else {
 			log_message('error', 'Erro ao enviar email\n'.$this->last_email_err);
