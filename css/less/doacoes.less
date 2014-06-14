@@ -58,9 +58,9 @@ div.wrap960 {
 
 header {
 	width: 100%;
-	height: 90px;
+	height: 70px;
 	background-color: @azultopo;
-	#marca {
+	#marca { /* imagens bonecos, tirei */
 		width:120px;
 		height: 90px;
 		background: #007095 url('../images/bonecos.png') 50% 50% no-repeat;
@@ -68,7 +68,7 @@ header {
 		margin-right: 25px;
 	}
 	h1 {
-		margin: 25px 0 0;
+		margin: 16px 0 0;
 		display: inline-block;
 		font-size: 1.6em;
 		font-weight: 400;
@@ -76,19 +76,60 @@ header {
 			color: #fff;
 		}
 	}
-	#login {
-		margin: 30px 0 0;
-		width: 300px;
+	nav#top {
+		margin: 23px 0 0;
+		width: 600px;
 		text-align: right;
 		position: absolute;
 		right: 0;
 		top: 0;
 		color: #fff;
-		a {
-			color: #fff;
-			text-decoration: none;
-			&:hover {
-				color: @azul;
+		> ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			> li {
+				display: inline-block;
+				text-transform: uppercase;
+				margin-right: 15px;
+				> a {
+					color: #fff;
+					text-decoration: none;
+					font-size: .8em;
+					&:hover {
+						color: @azul;
+					}
+				}
+			}
+			li#user-btn {
+				text-transform: none;
+				position: relative;
+				.button-size(6px, 12px, inherited, 12px, 4px);
+				.button-variant(#fff; @azulescuro; @azulescuro);
+			}
+		}
+		#user-menu {
+			display: none;
+			position: absolute;
+			top: 30px;
+			left:0;
+			z-index: 5000;
+			width: 133px;
+			background-color: #fff;
+			border-radius: 4px 4px 4px 4px;
+			> ul {
+				list-style: none;
+				margin: 10px 0;
+				padding: 0;
+				li {
+					padding: 8px 15px;
+					margin:0 0 0 0;
+					text-align: left;
+					a {
+						color: #666;
+						font-size: .8em;
+					}
+				}
 			}
 		}
 		.fb-login-button {
@@ -101,7 +142,6 @@ header {
 section#map {
 	width: 100%;
 	.wrap960 {
-		/*position: absolute;*/
 		z-index: 1000;
 		#filtros {
 			width: 200px;
@@ -122,12 +162,10 @@ section#map {
 		}
 	}
 	#map_canvas {
-		border: 1px solid red;
 		width: 960px;
 		height: 510px;
-		margin: 35px auto 50px;
-		border: 7px solid #fff;
-		border-radius: 4px;
+		margin: 0 auto;
+		border-radius: 16px;
 		-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
@@ -158,6 +196,7 @@ section.contents {
 }
 
 #home {
+	/*padding-top: 0;*/
 	p {
 		font-size: 1.1em;
 		line-height: 1.8em;
@@ -183,8 +222,11 @@ section.contents {
 
 #login {
 	form {
-		.column(6);
+		.column(8);
 		margin-left: 0;
+	}
+	aside {
+		.column(4);
 	}
 }
 

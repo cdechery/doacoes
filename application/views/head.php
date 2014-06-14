@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="<?php echo $this->config->item('charset');?>"/>	
+<meta charset="<?php echo $this->config->item('charset');?>"/>
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
 	if( false==$login_data['logged_in'] && false==$fbReg && false ) {
@@ -25,6 +25,7 @@
 				}
 			});
 		};
+
 		(function(d){
 			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
 			if (d.getElementById(id)) {return;}
@@ -35,7 +36,8 @@
 
 		function logonFB() {
 			window.location = "<?php echo base_url('login/fblogin'); ?>";
-		}
+		};
+
 	</script>
 <?php
 	 }
@@ -82,29 +84,39 @@
 <title><?php echo $title; ?></title>
 </head>
 <body>
-<?php
-
-	$user_name = "";
-	$signup_link = "<a href='".base_url()."login'>Login</a>";
-	$signup_link .= "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='".base_url()."usuario/new_user'>Registrar</a>";
-
-
-	if( isset($login_data) && $login_data["logged_in"] ) {
-		$user_name = "Ol&aacute; <a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
-		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
-		$user_name .= "<div>Cadastrar: <a href='".base_url()."usuario/itens'>Item<a>&nbsp;|&nbsp;<a href='".base_url()."usuario/interesses'>Interesse<a></div>";
-		$signup_link = "";
-	}
-?>
 <header>
 	<div class="wrap960">
-		<div id="marca">&nbsp;</div>
-		<h1><a href="<?php echo base_url();?>">Quem Precisa?</a></h1>
-		<div id="login">
-			<?php echo $user_name;?>
-			<?php echo $signup_link;?>
-			<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
-		</div>
+		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
+		<nav id="top">
+			<ul>
+				<li>
+					<a href="">Sobre</a>
+				</li>
+				<li>
+					<a href="">Contato</a>
+				</li>
+				<?php if (isset($login_data) && $login_data["logged_in"]) { ?>
+					<li id="user-btn">
+						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+						<div id="user-menu">
+							<ul>
+								<li><a href="<?php echo base_url();?>usuario/itens">Meus Itens</a></li>
+								<li><a href="<?php echo base_url();?>usuario/interesses">Meus Interesses</a></li>
+								<li><a href="<?php echo base_url();?>usuario/modify">Editar perfil</a></li>
+								<li><a href="<?php echo base_url();?>usuario/logout">Logout</a></li>
+							</ul>
+						</div>
+					</li>
+				<?php } else { ?>
+					<li id="user-btn">
+						<a href="<?php echo base_url('login')?>">Login / Cadastro</a>
+					</li>
+				<?php } ?>
+				<li>
+					<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
+				</li>
+			</ul>
+		</nav>
 	</div>
 </header>
 

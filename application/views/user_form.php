@@ -119,7 +119,7 @@ window.onload = initialize;
 	<div class="wrap960">
 
 		<h2>
-			Cadastro de <?php echo $lblTipo ?>
+			<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
 		</h2>
 
 		<div id="foto">

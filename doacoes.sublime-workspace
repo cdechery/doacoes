@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"padding",
+				"padding-top"
+			],
+			[
 				"arr",
 				"arrItems"
 			],
@@ -200,34 +204,10 @@
 	"buffers":
 	[
 		{
-			"file": "js/site.js",
+			"file": "application/models/item_model.php",
 			"settings":
 			{
-				"buffer_size": 11475,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/item_form.php",
-			"settings":
-			{
-				"buffer_size": 3603,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/item_view.php",
-			"settings":
-			{
-				"buffer_size": 572,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/item_list.php",
-			"settings":
-			{
-				"buffer_size": 799,
+				"buffer_size": 2519,
 				"line_ending": "Unix"
 			}
 		},
@@ -235,15 +215,58 @@
 			"file": "application/controllers/item.php",
 			"settings":
 			{
-				"buffer_size": 5709,
+				"buffer_size": 6204,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/views/item_single.php",
+			"file": "application/controllers/usuario.php",
 			"settings":
 			{
-				"buffer_size": 272,
+				"buffer_size": 11781,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/config/config.php",
+			"settings":
+			{
+				"buffer_size": 13360,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/head.php",
+			"settings":
+			{
+				"buffer_size": 3324,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/less/doacoes.less",
+			"settings":
+			{
+				"buffer_size": 3607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/slonga.php",
+			"settings":
+			{
+				"buffer_size": 4029,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n	$user_name = \"\";\n	$signup_link = \"<a href='\".base_url().\"login'>Login</a>\";\n	$signup_link .= \"&nbsp;&nbsp;|&nbsp;&nbsp;<a href='\".base_url().\"usuario/new_user'>Registrar</a>\";\n	if( isset($login_data) && $login_data[\"logged_in\"] ) {\n		$user_name = \"<a href='\".base_url().\"usuario/modify'>\". $login_data[\"name\"].\"</a> \";\n		$user_name .= \"[<a href='\".base_url().\"usuario/logout'>Logout</a>]\";\n		$user_name .= \"<div>Cadastrar: <a href='\".base_url().\"usuario/itens'>Item<a>&nbsp;|&nbsp;<a href='\".base_url().\"usuario/interesses'>Interesse<a></div>\";\n		$signup_link = \"\";\n	}\n?>\n\n<section id=\"map\">\n\n	<div class=\"wrap960\">\n		<div id=\"filtros\">\n			<input type=button value=\"Mostrar Tudo\" onClick=\"showAll();\"><br>\n			<input type=button value=\"Itens/Pessoas\" onClick=\"showPeople();\"> <input type=button value=\"Instituições\" onClick=\"showInstitutions();\">\n\n			<div id=\"filtro_pessoas\" style=\"display: none;\">\n			<h4>Mostrar Apenas</h4>\n			<h5>Categorias</h5>\n			<?php\n				foreach ($categorias as $cat) {\n					echo \"<input class='filtroPessoaCat' type=checkbox name=cat\".$cat->id.\" value=\".$cat->id.\" onClick='filterPessoa();'>&nbsp;&nbsp;\".$cat->nome.\"<br>\";\n				}\n			?>\n			<h4>Situações</h4>\n			<?php\n				foreach ($situacoes as $sit) {\n					echo \"<input class='filtroPessoaSit' type=checkbox name=sit\".$sit->id.\" value=\".$sit->id.\" onClick='filterPessoa();'>&nbsp;&nbsp;\".$sit->descricao.\"<br>\";\n				}\n			?>\n			</div>\n			<div id=\"filtro_insts\" style=\"display: none;\">\n			<h4>Mostrar Apenas</h4>\n			<h4>Interessado em</h4>\n			<?php\n				foreach ($categorias as $cat) {\n					echo \"<input class='filtroInstCat' type=checkbox name=icat\".$cat->id.\" value=\".$cat->id.\" onClick='filterInst();'>&nbsp;&nbsp;\".$cat->nome.\"<br>\";\n				}\n			?>\n			</div>\n			<div id=\"filtro_texto\">\n				Use os filtros para bla bla bla lorem ipsum mussum frofens\n			</div>\n			<input type=button value=\"Esconder/Mostrar Raios\" onClick=\"hideRadiusCircles();\">\n		</div>\n	</div>\n	\n	<form name=\"__map\">\n		<?php echo $map['js']; ?>\n		<?php echo $map['html']; ?>\n	</form>\n\n</section>\n\n<section id=\"home\" class=\"contents\">\n	<div class=\"wrap960\">\n		<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum\ngirarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.\nManduma pindureta quium dia nois paga. Sapien in monti palavris qui num\nsignifica nadis i pareci latim. Interessantiss quisso pudia ce receita de\nbolis, mais bolis eu num gostis.</p>\n		<div id=\"botoes\">\n			<a href=\"<?php echo base_url('login')?>\" id=\"tenho\" class=\"btn-gradient\">\n				<span>Fazer Login</span>\n			</a>\n			<a href=\"<?php echo base_url('usuario/new_user')?>\" id=\"preciso\" class=\"btn-gradient\">\n				<span>Cadastrar-se<\n\n\n				/span>\n			</a>\n		</div>\n	</div>\n</section>\n\n",
+			"file": "application/views/slonga.php",
+			"file_size": 2825,
+			"file_write_time": 1402578545000000,
+			"settings":
+			{
+				"buffer_size": 2832,
 				"line_ending": "Unix"
 			}
 		}
@@ -284,24 +307,30 @@
 	},
 	"file_history":
 	[
-		"/Applications/MAMP/htdocs/doacoes/application/language/pt-br/site_lang.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
+		"/Applications/MAMP/htdocs/doacoes/min/config.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/mapa.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/autoload.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/usuario_model.php",
 		"/Applications/MAMP/htdocs/doacoes/js/site.js",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_list.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_single.php",
+		"/Applications/MAMP/htdocs/doacoes/application/language/english/site_lang.php",
+		"/Applications/MAMP/htdocs/doacoes/application/language/pt-br/form_validation_lang.php",
+		"/Applications/MAMP/htdocs/doacoes/application/language/pt-br/site_lang.php",
+		"/Applications/MAMP/htdocs/doacoes/.gitignore",
 		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/interesse.php",
 		"/Applications/MAMP/htdocs/doacoes/application/models/interesse_model.php",
-		"/Applications/MAMP/htdocs/doacoes/application/models/usuario_model.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_list.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_form.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
-		"/Applications/MAMP/htdocs/doacoes/.gitignore",
 		"/Applications/MAMP/htdocs/doacoes/css/less/doacoes.less",
 		"/Applications/MAMP/htdocs/doacoes/application/views/pessoa_infowindow.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/section.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/site_params.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_single.php",
 		"/Users/Admin/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Applications/MAMP/htdocs/doacoes/application/views/foot_loop.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_single.php",
@@ -314,10 +343,8 @@
 		"/Applications/MAMP/htdocs/doacoes/setup/create_db.sql",
 		"/Applications/MAMP/htdocs/doacoes/system/database/DB_result.php",
 		"/Applications/MAMP/htdocs/doacoes/system/database/DB.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
 		"/Applications/MAMP/htdocs/doacoes/application/helpers/image_helper.php",
 		"/Applications/MAMP/htdocs/doacoes/min/config-test.php",
-		"/Applications/MAMP/htdocs/doacoes/min/config.php",
 		"/Applications/MAMP/htdocs/doacoes/min/groupsConfig.php",
 		"/Applications/MAMP/htdocs/doacoes/min/lib/CSSmin.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
@@ -332,8 +359,6 @@
 		"/Applications/MAMP/htdocs/doacoes/system/core/Config.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/image.php",
-		"/Applications/MAMP/htdocs/doacoes/application/language/english/site_lang.php",
-		"/Applications/MAMP/htdocs/doacoes/application/config/autoload.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/user.php",
 		"/Applications/MAMP/htdocs/doacoes/system/core/CodeIgniter.php",
 		"/Applications/MAMP/htdocs/doacoes/application/models/user_model.php",
@@ -409,9 +434,7 @@
 		"/Applications/MAMP/htdocs/arenacarioca/wp-config-WEB.php",
 		"/Applications/MAMP/htdocs/arenacarioca/dump.sql",
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_768up.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_mixins.less",
-		"/Users/Admin/Downloads/gridpak (1)/gridpak.css",
-		"/Users/Admin/Downloads/gridpak (1)/gridpak.less"
+		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_mixins.less"
 	],
 	"find":
 	{
@@ -419,7 +442,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/Applications/MAMP/htdocs/doacoes",
@@ -436,6 +459,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"view",
+			"$input",
+			"global_xss_filtering",
+			"$this->load->database()",
 			"data",
 			"this",
 			"site_root",
@@ -559,11 +586,7 @@
 			"add_theme_support",
 			"six",
 			"even",
-			"ultimas",
-			"&orderby=rand",
-			"ultimas",
-			"bones_main_nav",
-			"sixcol"
+			"ultimas"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -582,50 +605,49 @@
 	"groups":
 	[
 		{
-			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "js/site.js",
+					"file": "application/models/item_model.php",
 					"settings":
 					{
-						"buffer_size": 11475,
+						"buffer_size": 2519,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7760,
-								7760
+								696,
+								696
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3488.0,
+						"translation.y": 838.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "application/views/item_form.php",
+					"file": "application/controllers/item.php",
 					"settings":
 					{
-						"buffer_size": 3603,
+						"buffer_size": 6204,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1773,
-								1773
+								329,
+								329
 							]
 						],
 						"settings":
@@ -641,18 +663,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "application/views/item_view.php",
+					"file": "application/controllers/usuario.php",
 					"settings":
 					{
-						"buffer_size": 572,
+						"buffer_size": 11781,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								212,
-								213
+								277,
+								277
 							]
 						],
 						"settings":
@@ -668,45 +690,44 @@
 				},
 				{
 					"buffer": 3,
-					"file": "application/views/item_list.php",
+					"file": "application/config/config.php",
 					"settings":
 					{
-						"buffer_size": 799,
+						"buffer_size": 13360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								322,
-								322
+								10313,
+								10333
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4820.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "application/controllers/item.php",
+					"file": "application/views/head.php",
 					"settings":
 					{
-						"buffer_size": 5709,
+						"buffer_size": 3324,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								654,
-								654
+								2201,
+								2288
 							]
 						],
 						"settings":
@@ -722,26 +743,81 @@
 				},
 				{
 					"buffer": 5,
-					"file": "application/views/item_single.php",
+					"file": "css/less/doacoes.less",
 					"settings":
 					{
-						"buffer_size": 272,
+						"buffer_size": 3607,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								102,
-								102
+								1262,
+								1262
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1002.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/controllers/slonga.php",
+					"settings":
+					{
+						"buffer_size": 4029,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								573,
+								586
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "application/views/slonga.php",
+					"settings":
+					{
+						"buffer_size": 2832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2422,
+								2422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 316.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

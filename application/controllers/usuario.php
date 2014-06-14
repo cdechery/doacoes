@@ -360,11 +360,13 @@ class Usuario extends MY_Controller {
 		$this->load->model('item_model');
 
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
+		
 		if( count($itens)==0 ) {
 			redirect( base_url('item/novo') );
 		}
 
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
+		
 		$this->load->view('head', $head_data);
 
 		$this->load->view('section', array('id'=>'item')); // abre tag section
@@ -386,11 +388,13 @@ class Usuario extends MY_Controller {
 	}
 
 	public function interesses() {
+		
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
 		}
 
 		$this->load->model('interesse_model');
+		
 		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
@@ -398,9 +402,11 @@ class Usuario extends MY_Controller {
 		$this->load->view('section', array('id'=>'itens'));
 
 		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
+		
 		foreach ($interesses as $int) {
 			$this->load->view('interesse_single', array('interesse'=>$int));
 		}
+		
 		$this->load->view('foot_loop');
 	}
 }

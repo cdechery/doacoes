@@ -64,6 +64,18 @@ function load_infowindow_content(infowindow, user_id){
 }
 
 $(function() {
+
+	// menu drop down de usuário
+	$('#user-btn').on('mouseover', function(){
+		$('#user-menu').css('display','block').hover(
+			function() {
+				$(this).show();
+			},
+			function() {
+				$(this).hide();
+			}
+		);
+	});
 	
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();

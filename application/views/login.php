@@ -24,6 +24,9 @@
 					<input type="submit" value="Enviar">
 				</div>
 			</form>
+			<aside>
+				<p><a href="<?php echo base_url('usuario/new_user') ?>">Novo usuário?</a></p>
+			</aside>
 		</div>
 
 		<script>
