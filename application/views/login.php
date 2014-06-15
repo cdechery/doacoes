@@ -5,7 +5,7 @@
 				<h4 style="color: red;"><?php echo $msg?></h4>
 			</div>
 			<h2>Login</h2>
-			<form method="post" action="<?php echo base_url()?>login/verify">
+			<form method="post" action="<?php echo base_url()?>login/verificar">
 				<h5><?php echo $msg?></h5>
 				<div class="form-group">
 					<label>Usuário: </label>
@@ -25,7 +25,7 @@
 				</div>
 			</form>
 			<aside>
-				<p><a href="<?php echo base_url('usuario/new_user') ?>">Novo usuário?</a></p>
+				<p><a href="<?php echo base_url('usuario/novo') ?>">Novo usuário?</a></p>
 			</aside>
 		</div>
 

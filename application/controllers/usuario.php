@@ -72,7 +72,7 @@ class Usuario extends MY_Controller {
 		$this->load->view('foot');
 	}
 
-	public function new_user($tipo = NULL) {
+	public function novo($tipo = NULL) {
 		$this->load->helper('image_helper');
 		$this->load->helper('form');
 	
@@ -93,6 +93,11 @@ class Usuario extends MY_Controller {
 		$cust_js = array('js/jquery.plugin.min.js', 
 			'js/jquery.datepick.min.js', 'js/jquery.datepick-pt-BR.js');
 		$cust_css = array('css/redmond.datepick.css');
+
+		if( $tipo=="I" ) {
+			$cust_css = $cust_js = array();
+		}
+		
 		$head_data = array("title"=>$this->params['titulo_site'],
 			'cust_js'=>$cust_js,
 			'cust_css'=>$cust_css);
@@ -161,7 +166,7 @@ class Usuario extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
-	public function modify() {
+	public function modificar() {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
 		}

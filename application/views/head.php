@@ -95,23 +95,35 @@
 				<li>
 					<a href="">Contato</a>
 				</li>
-				<?php if (isset($login_data) && $login_data["logged_in"]) { ?>
+<?php
+	if ( $login_data["logged_in"] ) {
+?>
 					<li id="user-btn">
 						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
 						<div id="user-menu">
 							<ul>
-								<li><a href="<?php echo base_url();?>usuario/itens">Meus Itens</a></li>
-								<li><a href="<?php echo base_url();?>usuario/interesses">Meus Interesses</a></li>
-								<li><a href="<?php echo base_url();?>usuario/modify">Editar perfil</a></li>
-								<li><a href="<?php echo base_url();?>usuario/logout">Logout</a></li>
+<?php
+		if ( $login_data['type']=='P') {
+?>
+								<li><a href="<?php echo base_url('usuario/itens')?>">Meus Itens</a></li>
+<?php
+		} // tipo = P
+?>
+								<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
+								<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
+								<li><a href="<?php echo base_url('usuario/logout')?>">Logout</a></li>
 							</ul>
 						</div>
 					</li>
-				<?php } else { ?>
+<?php
+	} else {
+?>
 					<li id="user-btn">
 						<a href="<?php echo base_url('login')?>">Login / Cadastro</a>
 					</li>
-				<?php } ?>
+<?php
+	} // if logged_in
+?>
 				<li>
 					<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
 				</li>

@@ -29,6 +29,11 @@ class Item extends MY_Controller {
 			$this->show_access_error();
 		}
 
+		if( $this->login_data['type']!='P' ) {
+			show_error('Apenas Pessoas podem cadastrar itens para doação.
+				Seu cadastro é de Instituição, que apenas recebe.');
+		}
+
 		$this->load->model('categoria_model');
 		$categorias = $this->categoria_model->get_all();
 
@@ -161,7 +166,7 @@ class Item extends MY_Controller {
 			'msg'=>utf8_encode($msg) ) );
 	}
 
-	public function modify( $item_id ) {
+	public function modificar( $item_id ) {
 		$msg = $this->check_owner($this->item_model, $item_id);
 		if( $msg ) {
 			show_error( $msg );

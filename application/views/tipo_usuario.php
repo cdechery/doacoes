@@ -5,10 +5,10 @@
 
 		<ul>
 			<li>
-				<a href="<?php echo base_url('usuario/new_user/P')?>">Pessoa</a> - para <strong>fazer</strong> doações
+				<a href="<?php echo base_url('usuario/novo/P')?>">Pessoa</a> - para <strong>fazer</strong> doações
 			</li>
 			<li>
-				<a href="<?php echo base_url('usuario/new_user/I')?>">Instituição</a> - para <strong>receber</strong> doações
+				<a href="<?php echo base_url('usuario/novo/I')?>">Instituição</a> - para <strong>receber</strong> doações
 			</li>
 		</ul>
 

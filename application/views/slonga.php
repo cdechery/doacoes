@@ -3,7 +3,7 @@
 	$signup_link = "<a href='".base_url()."login'>Login</a>";
 	$signup_link .= "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='".base_url()."usuario/new_user'>Registrar</a>";
 	if( isset($login_data) && $login_data["logged_in"] ) {
-		$user_name = "<a href='".base_url()."usuario/modify'>". $login_data["name"]."</a> ";
+		$user_name = "<a href='".base_url()."usuario/modificar'>". $login_data["name"]."</a> ";
 		$user_name .= "[<a href='".base_url()."usuario/logout'>Logout</a>]";
 		$user_name .= "<div>Cadastrar: <a href='".base_url()."usuario/itens'>Item<a>&nbsp;|&nbsp;<a href='".base_url()."usuario/interesses'>Interesse<a></div>";
 		$signup_link = "";
@@ -66,7 +66,7 @@ bolis, mais bolis eu num gostis.</p>
 			<a href="<?php echo base_url('login')?>" id="tenho" class="btn-gradient">
 				<span>Fazer Login</span>
 			</a>
-			<a href="<?php echo base_url('usuario/new_user')?>" id="preciso" class="btn-gradient">
+			<a href="<?php echo base_url('usuario/novo')?>" id="preciso" class="btn-gradient">
 				<span>Cadastrar-se</span>
 			</a>
 		</div>

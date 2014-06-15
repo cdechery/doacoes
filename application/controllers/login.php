@@ -40,7 +40,7 @@ class Login extends MY_Controller {
 					$this->session->set_userdata('fbuserdata', $fbuser );
 					$tipo = $this->session->userdata('tipo_cadastro');
 					if( $tipo ) {
-						redirect( base_url('usuario/new_user/'.$tipo ) );
+						redirect( base_url('usuario/novo/'.$tipo ) );
 					} else {
 						redirect( base_url('usuario/tipo') );
 					}
@@ -64,7 +64,7 @@ class Login extends MY_Controller {
 		$this->load->view('foot');
 	}
 
-	public function verify() {
+	public function verificar() {
 		$this->load->model('usuario_model');
 
 		$form_data = $this->input->post(NULL, TRUE);
@@ -74,8 +74,9 @@ class Login extends MY_Controller {
 
 		if( $user_data ) {
 			$session_data = array('logged_in'=>TRUE,
-					  		'user_id' => $user_data['id'],
-					  		'name' => $user_data['nome'] );
+				'user_id' => $user_data['id'],
+				'name' => $user_data['nome'],
+				'type' => $user_data['tipo'] );
 
 			$this->session->set_userdata( $session_data );
 

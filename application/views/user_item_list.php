@@ -19,7 +19,7 @@
 				<p><?php echo $item['data']->descricao ?></p>
 			</div>
 			<div>
-				<input type="button" value="Modificar" onClick="location.href='<?php echo base_url('item/modify/'.$item_id)?>';">
+				<input type="button" value="Modificar" onClick="location.href='<?php echo base_url('item/modificar/'.$item_id)?>';">
 				<input type="button" class="itemdel" value="Apagar" data-itemid="<?php echo $item_id; ?>">
 			</div>
 		</div>
