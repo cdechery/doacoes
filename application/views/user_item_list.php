@@ -1,4 +1,7 @@
-<input type="button" value="Novo Item" onClick="location.href='<?php echo base_url('item/novo')?>';">
+<header class="clearfix">
+	<h2>Itens</h2>
+	<a href="#" class="item-novo" onClick="location.href='<?php echo base_url('item/novo')?>';"><i class="fa fa-plus"></i>&nbsp;&nbsp;adicionar</a>
+</header>
 
 <div id="show_itens" class="clearfix">
 
@@ -6,22 +9,25 @@
 		foreach ($items as $item_id => $item) {
 	?>
 		<div class="item_single">
-		<?php
-			if( count($item['imagens']) ) {
-					$thumb = thumb_filename($item['imagens'][0], 220);
-		?>
-				<img src="<?php echo base_url("files/".$thumb)?>">
-		<?php
-			} // if imagens
-		?>	
-			<div>
-				<h3><?php echo $item['data']->titulo ?></h3>
-				<p><?php echo $item['data']->descricao ?></p>
+			<button class="itemdel" data-itemid="<?php echo $item_id; ?>"><i class="fa fa-times"></i></button>
+			<div class="thumbs">
+				<?php if( count($item['imagens']) ) {
+					foreach ($item['imagens'] as $file) {
+						$thumb = thumb_filename($file, 120);
+						echo "<img src=".base_url("files/".$thumb)." />";
+					}
+				} ?>
 			</div>
+			<h3><?php echo $item['data']->titulo ?></h3>
+			<p><?php echo $item['data']->descricao ?></p>
+			<div class="action">
+				<button class="item-modify" data-itemid="<?php echo $item_id; ?>"><i class="fa fa-pencil"></i></button>
+				<?php if ($item['data']->status === 'I'): ?>
+					<button class="item-status active" data-itemid="<?php echo $item_id; ?>" data-status="I"><i class="fa fa-thumbs-o-up"></i></button>
+				<?php else: ?>
+					<button class="item-status unactive" data-itemid="<?php echo $item_id; ?>" data-status="0"><i class="fa fa-thumbs-o-down"></i></button>
+				<?php endif; ?>
 			<div>
-				<input type="button" value="Modificar" onClick="location.href='<?php echo base_url('item/modificar/'.$item_id)?>';">
-				<input type="button" class="itemdel" value="Apagar" data-itemid="<?php echo $item_id; ?>">
-			</div>
 		</div>
 	<?php
 		}
