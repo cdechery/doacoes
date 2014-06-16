@@ -58,11 +58,16 @@ class MY_Controller extends CI_Controller
 			delete_cookie('FbRegPending');
 		}
 
-		$login_status = array('user_id' => 0, 'logged_in'=>FALSE);
+		$login_status = array('user_id' => 0,
+			'logged_in'=>FALSE,
+			'name'=>'',
+			'type'=>'');
+
 		if( isset($session["user_id"]) ) {
 			$login_status = array("logged_in"=>TRUE,
 				"user_id" => $session["user_id"],
-				"name" => $session["name"] );
+				"name" => $session["name"],
+				"type" => $session["type"] );
 		}
 		
 		return $login_status;

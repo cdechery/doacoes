@@ -209,7 +209,13 @@ window.onload = initialize;
 				}
 			});
 		});
+<?php
+	if( $tipo=="P") {
+?>
 		$('#dtnascimento').datepick( {prevText: '',nextText: '', yearRange: 'any', alignment: 'bottomRight' } );
+<?php
+	}
+?>
 		</script>
 
 	</div>

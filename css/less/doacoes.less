@@ -45,6 +45,7 @@ body {
 	font-size: 18px;
 	font-weight: 300;
 	background-color: @azul;
+	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
 }
 
 div.wrap960 {
@@ -56,7 +57,7 @@ div.wrap960 {
 
 /* inicio estilos slonga */
 
-header {
+header#main {
 	width: 100%;
 	height: 70px;
 	background-color: @azultopo;
@@ -91,7 +92,7 @@ header {
 			> li {
 				display: inline-block;
 				text-transform: uppercase;
-				margin-right: 15px;
+				margin-left: 15px;
 				> a {
 					color: #fff;
 					text-decoration: none;
@@ -253,7 +254,18 @@ section.contents {
 	}
 }
 
-#item { /* form cadastro item */
+#item { /* usado em diversas views de item */
+	header {
+		.item-novo {
+			float: right;
+			font-weight: bold;
+			.button-size(6px, 12px, inherited, 12px, 4px);
+			.button-variant(#fff; @verde_botao; @verde_botao);
+		}
+		h2 {
+			float: left;
+		}
+	}
 	aside {
 		float: right;
 		width: 350px;
@@ -262,13 +274,56 @@ section.contents {
 		float: left;
 		width: 500px;
 	}
-	.item_single {
-		.column(3);
+	.item_single { /* user_item_list */
 		background-color: #fff;
-		height: 400px;
+		height: 200px;
 		margin-bottom: 20px;
-		h3, p {
-			padding: 0 10px;
+		border-radius: 12px;
+		position: relative;
+		padding: 20px;
+		h3 {
+			margin-top:0;
+		}
+		.itemdel {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			width: 20px;
+			height: 20px;
+			padding: 0;
+			background-color: #fff;
+			color: #ccc;
+			border: none;
+			text-decoration: none;
+		}
+		.action {
+			position: absolute;
+			left: 20px;
+			bottom: 20px;
+			button {
+				border: none;
+				.button-size(6px, 12px, inherited, 12px, 4px);
+				.button-variant(#fff; @azulescuro; @azulescuro);
+				&.item-modify {
+					background-color: @amarelo_botao;
+				}
+				&.active {
+					background-color: @verde_botao;
+				}
+				&.unactive {
+					background-color: @azul;
+				}
+			}
+		}
+		.thumbs {
+			position: absolute;
+			right: 20px;
+			top: 60px;
+			width: 420px;
+			float: right;
+			img {
+				margin-left: 20px;
+			}
 		}
 	}
 }
@@ -290,5 +345,15 @@ table {
 
 footer {
 	/*background-color: @verde;*/
+}
+
+/* CLEARFIX */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 

@@ -44,23 +44,24 @@ class Usuario_model extends MY_Model {
 
 	public function insert($user_data) {
 
-		$dt_parts = explode('/', $user_data['nascimento'] );
-		$data = $dt_parts[2]."-".$dt_parts[1]."-".$dt_parts[0];
-
 		$insert_data = array(
 			'login' => $user_data['login'],
 			'nome' => $user_data['nome'],
 			'email' => $user_data['email'],
 			'senha' => md5( $user_data['password'] ),
 			'tipo' => $user_data['tipo'],
-			'data_nascimento' => $data,
-			'sexo' => $user_data['sexo'],
 			'lat' => $user_data['lat'],
 			'lng' => $user_data['lng']
 		);
 
 		if( $user_data['tipo']=="P" ) { // Pessoa
 			$insert_data['sobrenome'] = $user_data['sobrenome'];
+
+			$dt_parts = explode('/', $user_data['nascimento'] );
+			$data = $dt_parts[2]."-".$dt_parts[1]."-".$dt_parts[0];
+			$insert_data['data_nascimento'] = $data;
+
+			$insert_data['sexo'] = $user_data['sexo'];
 		}
 
 		if( !empty($user_data['avatar']) ) {
@@ -91,8 +92,8 @@ class Usuario_model extends MY_Model {
 		if( $user_data['tipo']=="P" ) { // Pessoa
 			$dt_parts = explode('/', $user_data['nascimento'] );
 			$data = $dt_parts[2]."-".$dt_parts[1]."-".$dt_parts[0];
-
 			$upd_data['sobrenome'] = $user_data['sobrenome'];
+
 			$upd_data['data_nascimento'] = $data;
 			$upd_data['sexo'] = $user_data['sexo'];
 		}

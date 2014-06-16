@@ -29,6 +29,11 @@ class Item extends MY_Controller {
 			$this->show_access_error();
 		}
 
+		if( $this->login_data['type']!='P' ) {
+			show_error('Apenas Pessoas podem cadastrar itens para doação.
+				Seu cadastro é de Instituição, que apenas recebe.');
+		}
+
 		$this->load->model('categoria_model');
 		$categorias = $this->categoria_model->get_all();
 
@@ -157,11 +162,25 @@ class Item extends MY_Controller {
 			}
 		}
 
-		echo json_encode( array('status'=>$status,
-			'msg'=>utf8_encode($msg) ) );
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg) ) );
+		}
+
+	public function changestatus($id) {
+		$status = $this->input->post('status');
+		$statusname = $status === 'I' ? 'Ativo' : 'Inativo';
+		if($this->item_model->change_status($id, $status)) {
+			$result = "OK";
+			$statusvalue = $status;
+			$msg = 'O Status de seu Item foi atualizado para '.$statusname;
+		} else {
+			$result = "ERROR";
+			$statusvalue = NULL;
+			$msg = 'O Status de seu Item NÃO foi atualizado';
+		}
+		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
 	}
 
-	public function modify( $item_id ) {
+	public function modificar( $item_id ) {
 		$msg = $this->check_owner($this->item_model, $item_id);
 		if( $msg ) {
 			show_error( $msg );
@@ -183,12 +202,17 @@ class Item extends MY_Controller {
 
 		$head_data = array("min_template"=>"image_upload",
 			"title"=>$this->params['titulo_site']);
+		
 		$this->load->view('head', $head_data);
+
+		$this->load->view('section', array('id'=>'item')); // abre tag section
+		
 		$this->load->view('item_form',
 			array('data'=>$item_data, 'images'=>$images,
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes) );
-		$this->load->view('foot');
+		
+		$this->load->view('foot_loop');
 	}
 
 	public function get_images( $item_id ) {

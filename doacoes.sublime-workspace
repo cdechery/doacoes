@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"ba",
+				"background"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"a",
+				"anim-	animation: ${1:name} ${2:duration} ${3:timing-function} ${4:delay} ${5:iteration-count} ${6:direction} ${7:fill-mode};"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"az",
+				"azul"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
 				"padding",
 				"padding-top"
 			],
@@ -20,10 +52,6 @@
 				"margin-bottom"
 			],
 			[
-				"a",
-				"arrImg"
-			],
-			[
 				"thu",
 				"thumb_filename"
 			],
@@ -34,10 +62,6 @@
 			[
 				"su",
 				"success"
-			],
-			[
-				"ba",
-				"background-color"
 			],
 			[
 				"bar",
@@ -52,20 +76,12 @@
 				"height"
 			],
 			[
-				"te",
-				"text-transform"
-			],
-			[
 				"acti",
 				"active"
 			],
 			[
 				"hei",
 				"height"
-			],
-			[
-				"fo",
-				"font-weight"
 			],
 			[
 				"bac",
@@ -78,10 +94,6 @@
 			[
 				"margi",
 				"margin-top"
-			],
-			[
-				"mar",
-				"margin"
 			],
 			[
 				"op",
@@ -113,10 +125,6 @@
 			],
 			[
 				"font",
-				"font-size"
-			],
-			[
-				"fon",
 				"font-size"
 			],
 			[
@@ -204,10 +212,10 @@
 	"buffers":
 	[
 		{
-			"file": "application/models/item_model.php",
+			"file": "js/site.js",
 			"settings":
 			{
-				"buffer_size": 2519,
+				"buffer_size": 13657,
 				"line_ending": "Unix"
 			}
 		},
@@ -215,7 +223,23 @@
 			"file": "application/controllers/item.php",
 			"settings":
 			{
-				"buffer_size": 6204,
+				"buffer_size": 6765,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/models/item_model.php",
+			"settings":
+			{
+				"buffer_size": 2705,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/user_item_list.php",
+			"settings":
+			{
+				"buffer_size": 1292,
 				"line_ending": "Unix"
 			}
 		},
@@ -223,23 +247,7 @@
 			"file": "application/controllers/usuario.php",
 			"settings":
 			{
-				"buffer_size": 11781,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/config/config.php",
-			"settings":
-			{
-				"buffer_size": 13360,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/head.php",
-			"settings":
-			{
-				"buffer_size": 3324,
+				"buffer_size": 11799,
 				"line_ending": "Unix"
 			}
 		},
@@ -247,26 +255,23 @@
 			"file": "css/less/doacoes.less",
 			"settings":
 			{
-				"buffer_size": 3607,
+				"buffer_size": 5546,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/controllers/slonga.php",
-			"settings":
-			{
-				"buffer_size": 4029,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<?php\n	$user_name = \"\";\n	$signup_link = \"<a href='\".base_url().\"login'>Login</a>\";\n	$signup_link .= \"&nbsp;&nbsp;|&nbsp;&nbsp;<a href='\".base_url().\"usuario/new_user'>Registrar</a>\";\n	if( isset($login_data) && $login_data[\"logged_in\"] ) {\n		$user_name = \"<a href='\".base_url().\"usuario/modify'>\". $login_data[\"name\"].\"</a> \";\n		$user_name .= \"[<a href='\".base_url().\"usuario/logout'>Logout</a>]\";\n		$user_name .= \"<div>Cadastrar: <a href='\".base_url().\"usuario/itens'>Item<a>&nbsp;|&nbsp;<a href='\".base_url().\"usuario/interesses'>Interesse<a></div>\";\n		$signup_link = \"\";\n	}\n?>\n\n<section id=\"map\">\n\n	<div class=\"wrap960\">\n		<div id=\"filtros\">\n			<input type=button value=\"Mostrar Tudo\" onClick=\"showAll();\"><br>\n			<input type=button value=\"Itens/Pessoas\" onClick=\"showPeople();\"> <input type=button value=\"Instituições\" onClick=\"showInstitutions();\">\n\n			<div id=\"filtro_pessoas\" style=\"display: none;\">\n			<h4>Mostrar Apenas</h4>\n			<h5>Categorias</h5>\n			<?php\n				foreach ($categorias as $cat) {\n					echo \"<input class='filtroPessoaCat' type=checkbox name=cat\".$cat->id.\" value=\".$cat->id.\" onClick='filterPessoa();'>&nbsp;&nbsp;\".$cat->nome.\"<br>\";\n				}\n			?>\n			<h4>Situações</h4>\n			<?php\n				foreach ($situacoes as $sit) {\n					echo \"<input class='filtroPessoaSit' type=checkbox name=sit\".$sit->id.\" value=\".$sit->id.\" onClick='filterPessoa();'>&nbsp;&nbsp;\".$sit->descricao.\"<br>\";\n				}\n			?>\n			</div>\n			<div id=\"filtro_insts\" style=\"display: none;\">\n			<h4>Mostrar Apenas</h4>\n			<h4>Interessado em</h4>\n			<?php\n				foreach ($categorias as $cat) {\n					echo \"<input class='filtroInstCat' type=checkbox name=icat\".$cat->id.\" value=\".$cat->id.\" onClick='filterInst();'>&nbsp;&nbsp;\".$cat->nome.\"<br>\";\n				}\n			?>\n			</div>\n			<div id=\"filtro_texto\">\n				Use os filtros para bla bla bla lorem ipsum mussum frofens\n			</div>\n			<input type=button value=\"Esconder/Mostrar Raios\" onClick=\"hideRadiusCircles();\">\n		</div>\n	</div>\n	\n	<form name=\"__map\">\n		<?php echo $map['js']; ?>\n		<?php echo $map['html']; ?>\n	</form>\n\n</section>\n\n<section id=\"home\" class=\"contents\">\n	<div class=\"wrap960\">\n		<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum\ngirarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.\nManduma pindureta quium dia nois paga. Sapien in monti palavris qui num\nsignifica nadis i pareci latim. Interessantiss quisso pudia ce receita de\nbolis, mais bolis eu num gostis.</p>\n		<div id=\"botoes\">\n			<a href=\"<?php echo base_url('login')?>\" id=\"tenho\" class=\"btn-gradient\">\n				<span>Fazer Login</span>\n			</a>\n			<a href=\"<?php echo base_url('usuario/new_user')?>\" id=\"preciso\" class=\"btn-gradient\">\n				<span>Cadastrar-se<\n\n\n				/span>\n			</a>\n		</div>\n	</div>\n</section>\n\n",
 			"file": "application/views/slonga.php",
-			"file_size": 2825,
-			"file_write_time": 1402578545000000,
 			"settings":
 			{
-				"buffer_size": 2832,
+				"buffer_size": 2825,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/head.php",
+			"settings":
+			{
+				"buffer_size": 3541,
 				"line_ending": "Unix"
 			}
 		}
@@ -307,38 +312,46 @@
 	},
 	"file_history":
 	[
+		"/Applications/MAMP/htdocs/doacoes/application/views/user_item_list.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
+		"/Applications/MAMP/htdocs/doacoes/css/less/doacoes.less",
+		"/Users/Admin/Documents/pierre/web ressources/bootstrap-3.1.1/less/forms.less",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/item_single.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/site_params.php",
+		"/Applications/MAMP/htdocs/doacoes/css/less/variaveis.less",
+		"/Applications/MAMP/htdocs/doacoes/css/less/form.less",
+		"/Applications/MAMP/htdocs/doacoes/js/site.js",
+		"/Applications/MAMP/htdocs/doacoes/application/views/foot.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/login.php",
+		"/Applications/MAMP/htdocs/doacoes/application/views/user_form.php",
+		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
+		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
+		"/Applications/MAMP/htdocs/doacoes/application/controllers/slonga.php",
+		"/Applications/MAMP/htdocs/doacoes/css/normalize.css",
 		"/Applications/MAMP/htdocs/doacoes/min/config.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/mapa.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/autoload.php",
 		"/Applications/MAMP/htdocs/doacoes/application/models/usuario_model.php",
-		"/Applications/MAMP/htdocs/doacoes/js/site.js",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_form.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/item_view.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/item_list.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/item.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/item_single.php",
 		"/Applications/MAMP/htdocs/doacoes/application/language/english/site_lang.php",
 		"/Applications/MAMP/htdocs/doacoes/application/language/pt-br/form_validation_lang.php",
 		"/Applications/MAMP/htdocs/doacoes/application/language/pt-br/site_lang.php",
 		"/Applications/MAMP/htdocs/doacoes/.gitignore",
-		"/Applications/MAMP/htdocs/doacoes/application/models/item_model.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/interesse.php",
 		"/Applications/MAMP/htdocs/doacoes/application/models/interesse_model.php",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/usuario.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_form.php",
-		"/Applications/MAMP/htdocs/doacoes/css/less/doacoes.less",
 		"/Applications/MAMP/htdocs/doacoes/application/views/pessoa_infowindow.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/section.php",
-		"/Applications/MAMP/htdocs/doacoes/application/config/site_params.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/head.php",
 		"/Users/Admin/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Applications/MAMP/htdocs/doacoes/application/views/foot_loop.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/interesse_single.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/user_form.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/routes.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/tipo_usuario.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/login.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/foot.php",
 		"/Applications/MAMP/htdocs/doacoes/system/core/Model.php",
 		"/Applications/MAMP/htdocs/doacoes/setup/create_db.sql",
 		"/Applications/MAMP/htdocs/doacoes/system/database/DB_result.php",
@@ -347,17 +360,14 @@
 		"/Applications/MAMP/htdocs/doacoes/min/config-test.php",
 		"/Applications/MAMP/htdocs/doacoes/min/groupsConfig.php",
 		"/Applications/MAMP/htdocs/doacoes/min/lib/CSSmin.php",
-		"/Applications/MAMP/htdocs/doacoes/application/views/slonga.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/email.php",
 		"/Applications/MAMP/htdocs/doacoes/application/config/database.php",
 		"/Applications/MAMP/htdocs/doacoes/css/font-awesome.min.css",
-		"/Applications/MAMP/htdocs/doacoes/application/controllers/slonga.php",
 		"/Applications/MAMP/htdocs/doacoes/.htaccess",
 		"/Applications/MAMP/htdocs/doacoes/css/doacoes.less",
 		"/Applications/MAMP/htdocs/doacoes/application/libraries/Googlemaps.php",
 		"/Applications/MAMP/htdocs/doacoes/application/views/map.php",
 		"/Applications/MAMP/htdocs/doacoes/system/core/Config.php",
-		"/Applications/MAMP/htdocs/doacoes/application/config/config.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/image.php",
 		"/Applications/MAMP/htdocs/doacoes/application/controllers/user.php",
 		"/Applications/MAMP/htdocs/doacoes/system/core/CodeIgniter.php",
@@ -429,12 +439,7 @@
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/template-home-arena.php",
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_base.less",
 		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/index.php",
-		"/Users/Admin/Downloads/responsive-slider/css/responsive-slider.css",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/style.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-config-WEB.php",
-		"/Applications/MAMP/htdocs/arenacarioca/dump.sql",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_768up.less",
-		"/Applications/MAMP/htdocs/arenacarioca/wp-content/themes/arenacarioca/library/less/_mixins.less"
+		"/Users/Admin/Downloads/responsive-slider/css/responsive-slider.css"
 	],
 	"find":
 	{
@@ -459,6 +464,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"krew",
+			"status",
+			"post",
+			"$status",
+			"Status",
+			"status",
+			"item_id",
+			"change_status",
+			"location",
+			"form",
+			"item_single",
+			"			\n",
+			"$itens",
+			"$this->load->view('section",
+			"item",
+			"$login_disabled",
+			"user-btn",
+			" ?",
+			" ",
+			"li",
+			"ul",
 			"view",
 			"$input",
 			"global_xss_filtering",
@@ -565,28 +591,7 @@
 			"sixteencol",
 			"fifteencol",
 			"fourteencol",
-			"thirteencol",
-			"http://gridpak.com",
-			"menu-header-menu\nmenu-header-menu",
-			"menu-header-menu",
-			"Stylesheet",
-			"menu-header-menu",
-			":",
-			"$agenda",
-			"10px",
-			"h3",
-			"box-sizing",
-			"h4",
-			"div.",
-			"$area",
-			"$odd",
-			"getClass",
-			"p",
-			"125",
-			"add_theme_support",
-			"six",
-			"even",
-			"ultimas"
+			"thirteencol"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -605,31 +610,32 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/models/item_model.php",
+					"file": "js/site.js",
 					"settings":
 					{
-						"buffer_size": 2519,
+						"buffer_size": 13657,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								696,
-								696
+								6808,
+								6822
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 838.0,
+						"translation.y": 4022.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -639,15 +645,15 @@
 					"file": "application/controllers/item.php",
 					"settings":
 					{
-						"buffer_size": 6204,
+						"buffer_size": 6765,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								329,
-								329
+								4931,
+								4937
 							]
 						],
 						"settings":
@@ -656,25 +662,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2410.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "application/controllers/usuario.php",
+					"file": "application/models/item_model.php",
 					"settings":
 					{
-						"buffer_size": 11781,
+						"buffer_size": 2705,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								277,
-								277
+								2215,
+								2215
 							]
 						],
 						"settings":
@@ -683,51 +689,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 964.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "application/config/config.php",
+					"file": "application/views/user_item_list.php",
 					"settings":
 					{
-						"buffer_size": 13360,
+						"buffer_size": 1292,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10313,
-								10333
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 4820.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "application/views/head.php",
-					"settings":
-					{
-						"buffer_size": 3324,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2201,
-								2288
+								1016,
+								1022
 							]
 						],
 						"settings":
@@ -737,6 +717,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/controllers/usuario.php",
+					"settings":
+					{
+						"buffer_size": 11799,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10474,
+								10488
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6178.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -746,15 +753,15 @@
 					"file": "css/less/doacoes.less",
 					"settings":
 					{
-						"buffer_size": 3607,
+						"buffer_size": 5546,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1262,
-								1262
+								653,
+								653
 							]
 						],
 						"settings":
@@ -763,25 +770,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1002.0,
+						"translation.y": 711.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "application/controllers/slonga.php",
+					"file": "application/views/slonga.php",
 					"settings":
 					{
-						"buffer_size": 4029,
+						"buffer_size": 2825,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								573,
-								586
+								0,
+								0
 							]
 						],
 						"settings":
@@ -797,18 +804,18 @@
 				},
 				{
 					"buffer": 7,
-					"file": "application/views/slonga.php",
+					"file": "application/views/head.php",
 					"settings":
 					{
-						"buffer_size": 2832,
+						"buffer_size": 3541,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2422,
-								2422
+								2380,
+								2380
 							]
 						],
 						"settings":
@@ -817,7 +824,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 316.0,
+						"translation.y": 690.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

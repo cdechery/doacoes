@@ -42,7 +42,7 @@ class Item_model extends MY_Model {
 
 	public function get_user_items( $usuario_id ) {
 		$this->db->select('it.id item_id, it.titulo, 
-			it.descricao, it.categoria_id, im.id imagem_id, im.nome_arquivo');
+			it.descricao, it.status, it.categoria_id, im.id imagem_id, im.nome_arquivo');
 		$this->db->from('item it');
 		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
 		$this->db->where('it.usuario_id', $usuario_id);
@@ -81,6 +81,14 @@ class Item_model extends MY_Model {
 		}
 	}
 
+	public function change_status( $id, $status ) {
+		if($this->db->update('item', array('status'=>$status), array('id'=>$id))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function update( $item_data ) {
 		$upd_data = array(
 			'descricao' => $item_data['desc'],
@@ -91,7 +99,6 @@ class Item_model extends MY_Model {
 
 		if( $this->db->update('item', $upd_data,
 			array('id'=>$item_data['id']) ) ) {
-			
 			return true;
 		} else {
 			return false;

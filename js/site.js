@@ -207,6 +207,33 @@ $(function() {
 		return false;
 	}); // delete item
 
+	$(document).on('click', '.item-modify', function(e) {
+		e.preventDefault();
+		var itemid = $(this).data('itemid');
+		location.href = site_root+'item/modify/'+itemid;
+		return false;
+	}); // modify item
+
+	$(document).on('click', '.item-status', function(e){
+		var itemid = $(this).data('itemid');
+		var that = this;
+		var itemstatus = $(this).data('status') === 'I' ? 0 : 'I';
+		$.post(site_root+'item/changestatus/'+itemid, { status: itemstatus } ,function(data){
+			var json = myParseJSON(data);
+			if (json.result === "OK") {
+				new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
+					titleClass: 'dist_lbl_success', modal: true });
+				if (json.status === 'I') {
+					$(that).removeClass('unactive').addClass('active');
+					that.setAttribute('data-status', 0);
+				} else {
+					$(that).removeClass('active').addClass('unactive');
+					that.setAttribute('data-status', 'I');
+				};
+			};
+		}).fail( function(){ general_error();} );
+	});
+
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#interesse_insert").attr("action"),

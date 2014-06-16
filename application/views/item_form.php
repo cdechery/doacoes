@@ -91,7 +91,7 @@ if( $action!="insert" ) {
 			?>
 		</select><br>
 		<input type="text" name="titulo" value="<?php echo $titulo ?>" size="50" title="Título" /><br>
-		<textarea name="desc" title="Descrição" rows="4" cols="50"/><?php echo $descricao?></textarea><br>
+		<textarea name="desc" title="Descrição" rows="40" cols="40"/><?php echo $descricao?></textarea><br>
 		<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 	</form>
 </div>
