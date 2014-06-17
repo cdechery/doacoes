@@ -84,7 +84,7 @@
 <title><?php echo $title; ?></title>
 </head>
 <body>
-<header>
+<header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
 		<nav id="top">
