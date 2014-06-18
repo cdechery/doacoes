@@ -26,20 +26,20 @@ class Interesse_model extends MY_Model {
 	}
 
 	public function get_old($dias_pessoa, $dias_inst) {
-		$q = $this->db->query('SELECT i.categoria_id, i.usuario_id, '.
-			'c.nome nome_cat, u.nome nome_usuario, u.email '.
-			'FROM interesse i, usuario u, categoria c '.
-			'WHERE i.usuario_id = u.id '.
-			'AND i.categoria_id = c.id'.
-			'AND ( ( '.
+		$this->db->select('i.categoria_id, i.usuario_id, ');
+		$this->db->select('c.nome as nome_cat, u.nome as nome_usuario, u.email');
+		$this->db->from('interesse i');
+		$this->db->join('usuario u','i.usuario_id = u.id ');
+		$this->db->join('categoria c','i.categoria_id = c.id ');
+		$this->db->where('( ( '.
 			'	date_sub(curdate(),INTERVAL 30 day) > i.data_inclusao'.
 			'	AND u.tipo=\'P\''.
 			') OR ( '.
 			'	date_sub(curdate(),INTERVAL 180 day) > i.data_inclusao'.
-			'	AND u.tipo=\'I\''.
-			') ) GROUP BY u.id');
+			'	AND u.tipo=\'I\') )', NULL, FALSE);
+		$this->db->group_by('u.id, i.categoria_id');
 
-		return $q;
+		return $this->db->get()->result();
 	}
 
 

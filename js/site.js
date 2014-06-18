@@ -210,7 +210,7 @@ $(function() {
 	$(document).on('click', '.item-modify', function(e) {
 		e.preventDefault();
 		var itemid = $(this).data('itemid');
-		location.href = site_root+'item/modify/'+itemid;
+		location.href = site_root+'item/modificar/'+itemid;
 		return false;
 	}); // modify item
 

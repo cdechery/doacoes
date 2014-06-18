@@ -133,11 +133,12 @@ class Interesse extends MY_Controller {
 
 	public function purge_old() {
 		log_message('info', 'Iniciando processo de limpeza de Interesses');
+		$this->load->library('email');
 
 		$dias_pessoa = $this->params['validade_interesse_pessoa'];
 		$dias_inst = $this->params['validade_interesse_inst'];
 
-		$old_ints = $this->image_model->get_old( $dias_pessoa, $dias_inst );
+		$old_ints = $this->interesse_model->get_old( $dias_pessoa, $dias_inst );
 		log_message('info', 'Foram encontrados '.count($old_ints).' expirados');
 
 		if( count($old_ints)==0 ) {
@@ -148,6 +149,7 @@ class Interesse extends MY_Controller {
 		$categorias = array();
 		$user_id = 0;
 
+		log_message('info', 'Processando notificacoes e exclusao de Interesses');
 		foreach ($old_ints as $int) {
 			if( $user_id!=0 && $user_id!=$int->usuario_id ) {
 				$this->notify_delete($int->email, $categorias, $int->nome_usuario);
@@ -162,6 +164,8 @@ class Interesse extends MY_Controller {
 
 		$this->notify_delete($int->email, $categorias, $int->nome_usuario);
 		$this->interesse_model->delete($int->categoria_id, $int->usuario_id);
+
+		log_message('info', 'Fim do processo de exclusao de Interesses');
 	}
 
 	private function notify_delete($para, $cats, $nome) {
@@ -176,6 +180,8 @@ class Interesse extends MY_Controller {
 		$emailmsg = $this->load_email('email_notif_interesses',
 			array('categorias'=>$cats, 'nome'=>$nome) );
 		$this->email->message( $emailmsg );
+
+		echo $emailmsg; 
 
 		$ret = $this->email->send();
 		$this->last_email_err = $this->email->print_debugger();
