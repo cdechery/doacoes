@@ -19,7 +19,7 @@ $config['site_params'] = array(
 	'erro_acesso' => 'Acesso negado',
 	'titulo_site' => 'QuemPrecisa',
 	'image_settings' => array(
-		'thumb_sizes' => array(80, 200, 120), // size of thumbs to generate
+		'thumb_sizes' => array(40, 60, 80, 120, 200), // size of thumbs to generate
 		'allowed_types' => array('jpeg', 'jpg', 'png'),
 		'min_image_size' => '80'
 	),

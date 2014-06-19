@@ -7,7 +7,7 @@
 		$width = "400";
 	}*/
 
-	$avatar = user_avatar( $udata['avatar'], 80 );
+	$avatar = user_avatar( $udata['avatar'], 40 );
 
 	$arrItems = array();
 	$arrCats = array();
@@ -21,8 +21,8 @@
 
 ?>
 
-<h3 style="margin:0 0 10px;">
-	<img src="<?php echo $avatar?>" style="width:40px;height:40px;"> <span class="username"><?php echo $udata['nome']?></span> tem <?php echo count($arrItems)?> itens para doar.
+<h3>
+	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <?php echo count($arrItems)?> itens para doar.
 </h3>
 
 <?php
@@ -32,10 +32,10 @@
 		$numItems++;
 		if( $numItems>$maxItems ) break;
 		if( isset($item['imagens']) ) {
-			$thumb = thumb_filename($item['imagens'][0], 80);
-			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' title='".$item['descricao']."'><img src='".base_url()."files/".$thumb."'' style='width:60px;height:60px;border:1px solid #ccc;'></a>";
+			$thumb = thumb_filename($item['imagens'][0], 60);
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' title='".$item['descricao']."'><img src='".base_url()."files/".$thumb."''></a>";
 		} else {
-			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'>".$item['titulo']."</a>";
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' title='".$item['descricao']."'><img src='".base_url()."images/default_item_img.gif' style='width:60px;height:60px;'></a>";
 		}
 	}
 

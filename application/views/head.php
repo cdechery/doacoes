@@ -4,7 +4,7 @@
 <meta charset="<?php echo $this->config->item('charset');?>"/>
 <?php
 	$fbReg = $this->input->cookie('FbRegPending');
-	if( false == $login_data['logged_in'] && false == $fbReg ) {
+	if( false == $login_data['logged_in'] && false == $fbReg && false ) {
 ?>
 	<script>
 		window.fbAsyncInit = function() {		
@@ -95,7 +95,7 @@
 				<li>
 					<a href="">Contato</a>
 				</li>
-					<?php if ( $login_data["logged_in"] ) : ?>
+				<?php if ( $login_data["logged_in"] ) : ?>
 					<li id="user-btn">
 						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
 						<div id="user-menu">
@@ -113,7 +113,7 @@
 					<li id="user-btn">
 						<a href="<?php echo base_url('login')?>">Login / Cadastro</a>
 					</li>
-					<?php endif; // if logged_in ?> 
+				<?php endif; // if logged_in ?> 
 				<li>
 					<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
 				</li>

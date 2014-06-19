@@ -3,7 +3,7 @@
 	$path = $params['upload']['path'];
 	$width = "300";
 
-	$avatar = user_avatar($udata['avatar'], 80);
+	$avatar = user_avatar($udata['avatar'], 40);
 
 	$out_inters = "";
 	foreach($interesses as $inter) {
@@ -18,8 +18,8 @@
 	}
 ?>
 
-<h3 style="margin:0 0 10px;">
-	<img src="<?php echo $avatar?>" style="width:40px;height:40px;"> <?php echo $udata['nome']?>
+<h3>
+	<img src="<?php echo $avatar?>"> <?php echo $udata['nome']?>
 </h3>
 
 <p><?php echo $out_inters?></p>

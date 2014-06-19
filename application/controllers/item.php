@@ -181,7 +181,7 @@ class Item extends MY_Controller {
 		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
 	}
 
-	public function modify( $item_id ) {
+	public function modificar( $item_id ) {
 		$msg = $this->check_owner($this->item_model, $item_id);
 		if( $msg ) {
 			show_error( $msg );
