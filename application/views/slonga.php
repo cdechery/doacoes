@@ -50,7 +50,7 @@
 
 <section id="home" class="contents">
 	<div class="wrap960">
-		<?php if( !isset($login_data) ) { ?>
+		<?php if( !$login_data["logged_in"] ) { ?>
 			<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
 	girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
 	Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num

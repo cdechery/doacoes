@@ -228,14 +228,14 @@ $(function() {
 			if (json.result === "OK") {
 				new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
 					titleClass: 'dist_lbl_success', modal: true });
-				if (json.status === 'I') {
-					$(that).removeClass('unactive').addClass('active');
-					//that.setAttribute('data-status', 0);
-					that.style.display = 'none';
+				if (json.status === '0') {
+					$(that).removeClass('active');
+					$('i.fa', that).removeClass('fa-thumbs-o-up').addClass('fa-thumbs-o-down');
+					that.setAttribute('data-status','0');
 				} else {
-					$(that).removeClass('active').addClass('unactive');
-					//that.setAttribute('data-status', 'I');
-					that.style.display = 'none';
+					$(that).addClass('active');
+					$('i.fa', that).removeClass('fa-thumbs-o-down').addClass('fa-thumbs-o-up');
+					that.setAttribute('data-status','I');
 				};
 			};
 		}).fail( function(){ general_error();} );

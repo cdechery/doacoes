@@ -25,7 +25,7 @@
 				<?php if ($item['data']->status === 'I'): ?>
 					<button class="item-status active" data-itemid="<?php echo $item_id; ?>" data-status="I" title="Item Ativo"><i class="fa fa-thumbs-o-up"></i></button>
 				<?php else: ?>
-					<button class="item-status unactive" data-itemid="<?php echo $item_id; ?>" data-status="0" title="Item Inativo"><i class="fa fa-thumbs-o-down"></i></button>
+					<button class="item-status" data-itemid="<?php echo $item_id; ?>" data-status="0" title="Item Inativo"><i class="fa fa-thumbs-o-down"></i></button>
 				<?php endif; ?>
 			</div>
 		</div>

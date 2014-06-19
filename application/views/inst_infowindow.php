@@ -1,4 +1,5 @@
 <?php
+	
 	$path = $params['upload']['path'];
 	$width = "300";
 
@@ -16,14 +17,19 @@
 		$out_inters = "Interessado em: ".$out_inters;
 	}
 ?>
-<div style="width: <?php echo $width;?>px; text-align: left;">
-<img src="<?php echo $avatar?>"> <?php echo $udata['nome']?><br>
-</div>
+
+<h3 style="margin:0 0 10px;">
+	<img src="<?php echo $avatar?>" style="width:40px;height:40px;"> <?php echo $udata['nome']?>
+</h3>
+
 <p><?php echo $out_inters?></p>
+
 <?php
 	if( $login_data['logged_in'] ) {
 ?>
-<input type='button' value='Enviar Mensagem' class='itembox fancybox.ajax' href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>">
+
+<p><a href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class='itembox fancybox.ajax'>Enviar Mensagem</a></p>
+
 <?php
 	}
 ?>
