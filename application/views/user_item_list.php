@@ -21,13 +21,13 @@
 			<h3><?php echo $item['data']->titulo ?></h3>
 			<p><?php echo $item['data']->descricao ?></p>
 			<div class="action">
-				<button class="item-modify" data-itemid="<?php echo $item_id; ?>"><i class="fa fa-pencil"></i></button>
+				<button class="item-modify" data-itemid="<?php echo $item_id; ?>" title="Editar Item"><i class="fa fa-pencil"></i></button>
 				<?php if ($item['data']->status === 'I'): ?>
-					<button class="item-status active" data-itemid="<?php echo $item_id; ?>" data-status="I"><i class="fa fa-thumbs-o-up"></i></button>
+					<button class="item-status active" data-itemid="<?php echo $item_id; ?>" data-status="I" title="Item Ativo"><i class="fa fa-thumbs-o-up"></i></button>
 				<?php else: ?>
-					<button class="item-status unactive" data-itemid="<?php echo $item_id; ?>" data-status="0"><i class="fa fa-thumbs-o-down"></i></button>
+					<button class="item-status unactive" data-itemid="<?php echo $item_id; ?>" data-status="0" title="Item Inativo"><i class="fa fa-thumbs-o-down"></i></button>
 				<?php endif; ?>
-			<div>
+			</div>
 		</div>
 	<?php
 		}

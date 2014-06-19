@@ -65,6 +65,10 @@ function load_infowindow_content(infowindow, user_id){
 
 $(function() {
 
+	$('#map #hide').on('click', function(){
+		$('#map #filtros').toggle();
+	});
+
 	// menu drop down de usuário
 	$('#user-btn').on('mouseover', function(){
 		$('#user-menu').css('display','block').hover(
@@ -215,6 +219,7 @@ $(function() {
 	}); // modify item
 
 	$(document).on('click', '.item-status', function(e){
+		e.preventDefault();
 		var itemid = $(this).data('itemid');
 		var that = this;
 		var itemstatus = $(this).data('status') === 'I' ? 0 : 'I';
@@ -225,10 +230,12 @@ $(function() {
 					titleClass: 'dist_lbl_success', modal: true });
 				if (json.status === 'I') {
 					$(that).removeClass('unactive').addClass('active');
-					that.setAttribute('data-status', 0);
+					//that.setAttribute('data-status', 0);
+					that.style.display = 'none';
 				} else {
 					$(that).removeClass('active').addClass('unactive');
-					that.setAttribute('data-status', 'I');
+					//that.setAttribute('data-status', 'I');
+					that.style.display = 'none';
 				};
 			};
 		}).fail( function(){ general_error();} );

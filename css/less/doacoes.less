@@ -2,16 +2,16 @@
 
 /* meu normalize. ver se já não existe isso no normalize.css */
 
-div, aside, h1 {
+div, aside, h1, section {
 	box-sizing: border-box;
 }
 
 header, section, footer {
-	padding: 1px; /* evitar margin collapsing */
+	padding: 0; /* evitar margin collapsing */
 }
 
 section {
-	h2:first-child {
+	h2:first-child, h2:first-of-type {
 		margin-top: 0; /* normalizando margem do header */
 	}
 }
@@ -133,31 +133,46 @@ header#main {
 				}
 			}
 		}
-		.fb-login-button {
-			margin-left: 15px;
-		}
 	}
 }
 
 
 section#map {
 	width: 100%;
+	position: relative;
 	.wrap960 {
 		z-index: 1000;
+		position: static;
+		#hide {
+			position: absolute;
+			top: 10%;
+			right: 7.8%;
+			border:none;
+			.button-size(6px, 12px, inherited, 12px, 4px);
+			.button-variant(#fff; #000; pink);
+			z-index: 4;
+		}
 		#filtros {
-			width: 200px;
-			background-color: #000;
-			opacity: 0.6;
+			width: 425px;
+			min-height: 160px;
+			background-image: url('../images/bg_filtros.png');
+			border-radius: 6px;
 			padding: 20px;
 			position: absolute;
-			right: 0;
+			right: 7%;
 			top: 20px;
 			font-size: .9em;
 			color: #fff;
-			h3 {
-				color: yellow;
-				&:first-child {
-					margin-top: 0;
+			z-index: 2;
+			button {
+				font-size: .9em;
+				border:none;
+				.button-size(6px, 12px, inherited, 12px, 4px);
+				.button-variant(#fff; @azulescuro; @azulescuro);
+				&#raios {
+					position: absolute;
+					bottom: 20px;
+					right: 20px;
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 <?php
+	
 	$maxItems = 3;
 	$path = $params['upload']['path'];
 	$width = "300";
@@ -12,26 +13,30 @@
 	$arrCats = array();
 	foreach ($items as $item) {
 		$arrItems[ $item->item_id ]['titulo'] = $item->titulo;
+		$arrItems[ $item->item_id ]['descricao'] = $item->descricao;
 		if( !empty($item->nome_arquivo ) ) {
 			$arrItems[ $item->item_id ]['imagens'][] = $item->nome_arquivo;
 		}
 	}
+
 ?>
-<div style="width: <?php echo $width;?>px; text-align: left;">
-<img src="<?php echo $avatar?>"> <?php echo $udata['nome']?> tem <?php echo count($arrItems)?> itens para doar.<br>
-</div>
+
+<h3 style="margin:0 0 10px;">
+	<img src="<?php echo $avatar?>" style="width:40px;height:40px;"> <span class="username"><?php echo $udata['nome']?></span> tem <?php echo count($arrItems)?> itens para doar.
+</h3>
 
 <?php
+	
 	$numItems = 0;
 	foreach ($arrItems as $item_id => $item) {
 		$numItems++;
 		if( $numItems>$maxItems ) break;
 		if( isset($item['imagens']) ) {
 			$thumb = thumb_filename($item['imagens'][0], 80);
-			echo "<div style='float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'><img src='".base_url()."files/".$thumb."''></a></div>";
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' title='".$item['descricao']."'><img src='".base_url()."files/".$thumb."'' style='width:60px;height:60px;border:1px solid #ccc;'></a>";
 		} else {
-			echo "<div style='background-color: lightgray; width:80px; height:80px; margin: 10px; float: left'><a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'>".$item['titulo']."</a></div>";
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."'>".$item['titulo']."</a>";
 		}
 	}
+
 ?>
-</div>
