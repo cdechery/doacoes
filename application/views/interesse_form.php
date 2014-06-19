@@ -1,4 +1,14 @@
+<?php
+	$validade = $params['validade_interesse_pessoa'];
+	if( $login_data['type']=='I' ) {
+		$validade = $params['validade_interesse_inst'];
+	}
+
+?>
 <h2>Meus Interesses</h2>
+
+<p>Interesses são válidos por <?php echo $validade?> dias após a data de seu cadastro.<br>
+Após esse período serão excluídos automaticamente - podendo ser cadastrados novamente sem problemas.</p>
 
 <form method="post" id="interesse_insert" action="<?php echo base_url()?>interesse/insert">
 	<h4>Incluir novo</h4>

@@ -16,7 +16,8 @@ class Item extends MY_Controller {
 		foreach ($imagens as $img) {
 			$arrImgs[] = $img->nome_arquivo;
 		}
-		// converto o resulto de array para objeto
+		
+		// converto o result de array para objeto
 		$itemObj = json_decode(json_encode($item), FALSE);
 
 		$this->load->view( 'item_single', array('data'=>$itemObj, 
