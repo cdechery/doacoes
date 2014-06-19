@@ -73,11 +73,7 @@ class Login extends MY_Controller {
 			$form_data['password'] );
 
 		if( $user_data ) {
-			$session_data = array('logged_in'=>TRUE,
-				'user_id' => $user_data['id'],
-				'name' => $user_data['nome'],
-				'type' => $user_data['tipo'] );
-
+			$session_data = set_user_session( $user_data );
 			$this->session->set_userdata( $session_data );
 
 			if( isset($form_data['lembrar']) ) {

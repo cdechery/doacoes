@@ -4,7 +4,8 @@
  * functionality across Xumb.
  * Remember to call this from a Controller or a View before any output
  */
-function set_user_session( $user_id ) {
+function set_user_session( $user_data ) {
+
 	$CI = & get_instance();
 	
 	$session = $CI->session->all_userdata();
@@ -12,13 +13,19 @@ function set_user_session( $user_id ) {
 		return $session;
 	}
 
-	$CI->load->model('usuario_model');
-	$user_data = $CI->usuario_model->get_data( $user_id );
+	// Se um array foi passado, basta colocar os dados na sessao
+	// se nao for um array, é o user_data = ID 
+	if( !is_array($user_data) ) {
+		$CI->load->model('usuario_model');
+		$user_data = $CI->usuario_model->get_data( $user_data );
+	}
 
 	if( FALSE!=$user_data ) {
 		$session_data = array('logged_in'=>TRUE,
 		  	'user_id' => $user_data['id'],
-		  	'name' => $user_data['nome'] );
+		  	'name' => $user_data['nome'],
+		  	'type' => $user_data['tipo'],
+		  	'email' => $user_data['email'] );
 
 		$CI->session->set_userdata( $session_data );
 		return $session_data; 

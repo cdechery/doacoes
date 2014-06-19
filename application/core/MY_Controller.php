@@ -61,13 +61,11 @@ class MY_Controller extends CI_Controller
 		$login_status = array('user_id' => 0,
 			'logged_in'=>FALSE,
 			'name'=>'',
-			'type'=>'');
+			'type'=>'',
+			'email'=>'');
 
 		if( isset($session["user_id"]) ) {
-			$login_status = array("logged_in"=>TRUE,
-				"user_id" => $session["user_id"],
-				"name" => $session["name"],
-				"type" => $session["type"] );
+			$login_status = array_merge( $login_status, $session );
 		}
 		
 		return $login_status;

@@ -151,7 +151,8 @@ class Usuario extends MY_Controller {
 
 			if( $new_id > 0 ) {
 				$status = "OK";
-				$msg = xlang('dist_newuser_ok');
+				$msg = xlang('dist_newuser_ok').'<br>Um email foi enviado confirmando seu cadastro';
+				$this->email_boasvindas( $user_data );
 			} else {
 				$status = "ERROR";
 				$msg = xlang('dist_newuser_nok');
@@ -403,9 +404,7 @@ class Usuario extends MY_Controller {
 		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
-
 		$this->load->view('section', array('id'=>'itens'));
-
 		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
 		
 		foreach ($interesses as $int) {
@@ -413,6 +412,26 @@ class Usuario extends MY_Controller {
 		}
 		
 		$this->load->view('foot_loop');
+	}
+
+	private function email_boasvindas($user_data) {
+		$this->load->library('email');
+
+		$this->email->from( 'noreply@interessa.org', "Interessa.org" );
+		$this->email->to( $user_data['email'] );
+		$this->email->subject( 'Bem-vindo ao Interessa' );
+
+		$email_template = "email_boasvindas_pessoa";
+		if( $user_data['tipo']=='I') {
+			$email_template = "email_boasvindas_inst";
+		}
+
+		$emailmsg = $this->load_email($email_template,
+			array('nome'=>$user_data['nome']) );
+
+		$this->email->message( $emailmsg );
+
+		return $this->email->send();
 	}
 }
 ?>
