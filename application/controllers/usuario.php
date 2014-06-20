@@ -375,8 +375,6 @@ class Usuario extends MY_Controller {
 		
 		$this->load->view('head', $head_data);
 
-		$this->load->view('section', array('id'=>'item')); // abre tag section
-
 		$arrItems = array();
 		
 		foreach ($itens as $item) {
@@ -390,7 +388,7 @@ class Usuario extends MY_Controller {
 
 		$this->load->view('user_item_list', array('items'=>$arrItems) );
 
-		$this->load->view('foot_loop'); // fecha tag section
+		$this->load->view('foot'); // fecha tag section
 	}
 
 	public function interesses() {
@@ -404,14 +402,14 @@ class Usuario extends MY_Controller {
 		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
-		$this->load->view('section', array('id'=>'itens'));
+		
 		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
 		
 		foreach ($interesses as $int) {
 			$this->load->view('interesse_single', array('interesse'=>$int));
 		}
 		
-		$this->load->view('foot_loop');
+		$this->load->view('foot');
 	}
 
 	private function email_boasvindas($user_data) {

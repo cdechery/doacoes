@@ -18,10 +18,6 @@
 		$min_debug = "&debug=true";
 	}
 
-	if( !isset($login_data) ) {
-		$login_data['logged_in'] = FALSE;
-	}
-
 ?>
 <script type="application/javascript" src="<?php echo base_url('javascript')?>"></script>
 <script type="application/javascript" src="<?php echo base_url('min/g='.$min_template.'_js'.$min_debug)?>"></script>
@@ -45,7 +41,7 @@
 ?>
 <title><?php echo $title; ?></title>
 </head>
-<body>
+<body id="home">
 <header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
@@ -57,7 +53,7 @@
 				<li>
 					<a href="<?php echo base_url('contato')?>">Contato</a>
 				</li>
-					<?php if( $login_data["logged_in"] ) : ?>
+					<?php if ( $login_data["logged_in"] ) : ?>
 					<li id="user-btn">
 						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
 						<div id="user-menu">
@@ -128,5 +124,3 @@
 <?php
 	 }
 ?>
-<section class="contents">
-	<div class="wrap960">

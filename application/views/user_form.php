@@ -115,108 +115,102 @@ window.onload = initialize;
 ?>
 </script>
 
-<section id="user" class="contents">
-	<div class="wrap960">
+<h2>
+	<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
+</h2>
 
-		<h2>
-			<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
-		</h2>
+<div id="foto">
+	<img id="user_avatar" src="<?php echo $avatar?>"/>
+	<?php if( $action=="update" ) { ?>
+		<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
+			<div class="form-group">
+				<label>Mude sua foto:</label>
+				<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
+				<input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
+				<input type="file" id="userfile" name="userfile" style="display: none;" />
+				<input type="button" value="Procurar" onclick="document.getElementById('userfile').click();" />
+			</div>
+			<div class="form-group">
+				<input type="submit" name="Upload" id="submit" value="<?php echo xlabel('upload')?>" />
+			</div>
+		</form>
+	<?php } ?>
+</div>
 
-		<div id="foto">
-			<img id="user_avatar" src="<?php echo $avatar?>"/>
-			<?php if( $action=="update" ) { ?>
-				<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
-					<div class="form-group">
-						<label>Mude sua foto:</label>
-						<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
-						<input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
-						<input type="file" id="userfile" name="userfile" style="display: none;" />
-						<input type="button" value="Procurar" onclick="document.getElementById('userfile').click();" />
-					</div>
-					<div class="form-group">
-						<input type="submit" name="Upload" id="submit" value="<?php echo xlabel('upload')?>" />
-					</div>
-				</form>
-			<?php } ?>
+<div id="user-form">
+	<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
+		<input type="hidden" name="id" value="<?php echo $id ?>">
+		<input type="hidden" name="lat" value="<?php echo $lat ?>">
+		<input type="hidden" name="lng" value="<?php echo $lng ?>">
+		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
+		<?php echo $hiddenAvatar?>
+		<div class="form-group">
+			<label>Login</label>
+			<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
 		</div>
-
-		<div id="user-form">
-			<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
-				<input type="hidden" name="id" value="<?php echo $id ?>">
-				<input type="hidden" name="lat" value="<?php echo $lat ?>">
-				<input type="hidden" name="lng" value="<?php echo $lng ?>">
-				<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
-				<?php echo $hiddenAvatar?>
-				<div class="form-group">
-					<label>Login</label>
-					<input type="text" name="login" value="<?php echo $login; ?>" size="50" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
-				</div>
-				<div class="form-group">
-					<label>Email</label>
-					<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" placeholder="Seu email" />
-				</div>
-				<div class="form-group">
-					<label>Nome</label>
-					<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" placeholder="Seu nome" />
-				</div>
-<?php
-	if( $tipo=="P") {
-		$sexoM = ($sexo=="M")?"checked":"";
-		$sexoF = ($sexo=="F")?"checked":"";
-?>
-					<div class="form-group">
-						<label>Sobrenome</label>
-						<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" placeholder="Seu sobrenome" />
-					</div>
-					<div class="form-group">
-						<label>Nascimento</label>
-						<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" size="50" title="Data de Nascimento" placeholder="Sua data de nascimento" />
-					</div>
-					<div class="form-group">
-						<label>Sexo</label>
-						<br><input type="radio" name="sexo" value="M" <?php echo $sexoM?>> Masculino
-						<input type="radio" name="sexo" value="F" <?php echo $sexoF?>> Feminino
-					</div>
-<?php
-	} // tipo==P
-?>
-				<div class="form-group">
-					<label>Senha</label>
-					<input type="password" name="password" value="" size="10" placeholder="Escolha uma senha" >
-					<input type="password" name="password_2" value="" size="10" placeholder="Repita a senha">
-				</div>
-				<div class="form-group">
-					<label>Localização</label>
-					<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
-				</div>
-				<div id="map_canvas"></div>
-				<div class="form-group">
-					<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
-				</div>
-			</form>
+		<div class="form-group">
+			<label>Email</label>
+			<input type="text" name="email" value="<?php echo $email?>" size="50" title="Email" placeholder="Seu email" />
 		</div>
+		<div class="form-group">
+			<label>Nome</label>
+			<input type="text" name="nome" value="<?php echo $nome ?>" size="50" title="Nome" placeholder="Seu nome" />
+		</div>
+<?php
+if( $tipo=="P") {
+$sexoM = ($sexo=="M")?"checked":"";
+$sexoF = ($sexo=="F")?"checked":"";
+?>
+			<div class="form-group">
+				<label>Sobrenome</label>
+				<input type="text" name="sobrenome" value="<?php echo $sobrenome; ?>" size="50" title="Sobrenome" placeholder="Seu sobrenome" />
+			</div>
+			<div class="form-group">
+				<label>Nascimento</label>
+				<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" size="50" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+			</div>
+			<div class="form-group">
+				<label>Sexo</label>
+				<br><input type="radio" name="sexo" value="M" <?php echo $sexoM?>> Masculino
+				<input type="radio" name="sexo" value="F" <?php echo $sexoF?>> Feminino
+			</div>
+<?php
+} // tipo==P
+?>
+		<div class="form-group">
+			<label>Senha</label>
+			<input type="password" name="password" value="" size="10" placeholder="Escolha uma senha" >
+			<input type="password" name="password_2" value="" size="10" placeholder="Repita a senha">
+		</div>
+		<div class="form-group">
+			<label>Localização</label>
+			<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
+		</div>
+		<div id="map_canvas"></div>
+		<div class="form-group">
+			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
+		</div>
+	</form>
+</div>
 
-		<aside>
-			Preencha seu formulário rules para poder dar ou ganhar coisas.
-		</aside>
+<aside>
+	Preencha seu formulário rules para poder dar ou ganhar coisas.
+</aside>
 
-		<script>
-		$( document ).ready(function() {
-			$(window).keydown(function(event){
-				if(event.keyCode == 13) {
-					event.preventDefault();
-					return false;
-				}
-			});
+<script>
+	$( document ).ready(function() {
+		$(window).keydown(function(event){
+			if(event.keyCode == 13) {
+				event.preventDefault();
+				return false;
+			}
 		});
-<?php
-	if( $tipo=="P") {
-?>
-		$('#dtnascimento').datepick( {prevText: '',nextText: '', yearRange: 'any', alignment: 'bottomRight' } );
-<?php
-	}
-?>
-		</script>
-
-	</div>
-</section>
+	});
+	<?php
+		if( $tipo=="P") {
+	?>
+	$('#dtnascimento').datepick( {prevText: '',nextText: '', yearRange: 'any', alignment: 'bottomRight' } );
+	<?php
+		}
+	?>
+</script>

@@ -3,7 +3,14 @@
 class Notificacao extends MY_Controller {
 	private $last_email_err = "";
 
+	public function __construct() {
+		parent::__construct();
+		$this->load->library('email');
+	}
+
 	public function index() {
+		$this->require_auth();
+
 		$this->load->model('usuario_model');
 		$this->load->model('item_model');
 		$this->load->model('notificacao_model');
@@ -27,7 +34,7 @@ class Notificacao extends MY_Controller {
 		log_message('info',
 			'Preparando tabela para novas notificacoes');
 		$prepare = $this->notificacao_model->prepare_notifs_table();
-		if( $prepare>0 ) {
+		if( $prepare > 0 ) {
 			$new_notifs = $this->notificacao_model->get_pending_notifs();
 			log_message('info',
 				'Encontradas '.$new_notifs.' novas notificacoes');

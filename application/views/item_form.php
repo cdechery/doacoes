@@ -16,7 +16,7 @@
 
 <h2>Cadastro de Itens</h2>
 
-<aside>
+<aside id="image">
 
 	<form method="post" action="<?php echo base_url();?>image/upload_item_image" id="upload_item_image" enctype="multipart/form-data">
 <?php
@@ -64,7 +64,7 @@ if( $action!="insert" ) {
 
 </aside>
 
-<div id="form">
+<div id="newitem">
 	<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>">
 		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
 		<input type="hidden" name="temp_id" id="temp_id" value="<?php echo $temp_id ?>">

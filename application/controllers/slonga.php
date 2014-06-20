@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Slonga extends MY_Controller {
+
+	public function __construct() {
+		parent::__construct();
+	}
+
 	public function index() {
 		
 		$this->load->library('googlemaps');
@@ -112,7 +117,7 @@ class Slonga extends MY_Controller {
 
 		$cust_js = array('js/map.js');
 
-		$this->load->view('head', array('title'=>'Slonga!!!',
+		$this->load->view('head_slonga', array('title'=>'Slonga!!!',
 			'min_template'=>'image_view', 'cust_js'=>$cust_js));
 		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');

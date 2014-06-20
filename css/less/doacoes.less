@@ -44,8 +44,11 @@ body {
 	font-family: 'Lato', sans-serif;
 	font-size: 18px;
 	font-weight: 300;
-	background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
 	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
+	background-color: @azul;
+	&#home {
+		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
+	}
 }
 
 div.wrap960 {
@@ -60,6 +63,7 @@ div.wrap960 {
 header#main {
 	width: 100%;
 	height: 70px;
+	background-color: @azultopo;
 	#marca { /* imagens bonecos, tirei */
 		width:120px;
 		height: 90px;
@@ -135,6 +139,27 @@ header#main {
 	}
 }
 
+/* class section padrão */
+
+section.contents {
+	width: 100%;
+	padding: 25px 0 60px;
+	min-height: 300px;
+	form {
+		h5:first-child {
+			display: none; /* mensagem de erro */
+		}
+		.form-group {
+			a.various { /* ? */
+				float: right;
+				padding-top: 20px;
+				font-size: .9em;
+			}
+		}
+	}
+}
+
+/* mapa */
 
 section#map {
 	width: 100%;
@@ -199,23 +224,7 @@ section#map {
 	}
 }
 
-section.contents {
-	width: 100%;
-	padding: 25px 0 60px;
-	min-height: 300px;
-	form {
-		h5:first-child {
-			display: none; /* mensagem de erro */
-		}
-		.form-group {
-			a.various { /* ? */
-				float: right;
-				padding-top: 20px;
-				font-size: .9em;
-			}
-		}
-	}
-}
+/* section home (texto, botões login, etc) */
 
 #home {
 	/*padding-top: 0;*/
@@ -242,111 +251,118 @@ section.contents {
 	}
 }
 
-#login {
-	form {
-		.column(8);
-		margin-left: 0;
-	}
-	aside {
-		.column(4);
+/* view login */
+
+form#login {
+	.column(8);
+	margin-left: 0;
+}
+
+form#login + aside { /* ysado na página de login, por enquanto */
+	.column(4);
+}
+
+/* view user_form */
+
+#foto {
+	.column(3);
+	margin-left: 0;
+}
+
+#user-form {
+	.column(6);
+	#map_canvas {
+		margin: 30px 0;
+		width: 420px;
+		height: 300px;
 	}
 }
 
-#user {
-	#foto {
-		.column(3);
-		margin-left: 0;
-	}
-	#user-form {
-		.column(6);
-		#map_canvas {
-			margin: 30px 0;
-			width: 420px;
-			height: 300px;
-		}
-	}
-	aside {
-		.column(3);
-		border-radius: 6px;
-		padding: 20px;
-		background-color: @verde;
-		color: #fff;
-		font-size: .9em;
-	}
+#user-form + aside {
+	.column(3);
+	border-radius: 6px;
+	padding: 20px;
+	background-color: @verde;
+	color: #fff;
+	font-size: .9em;
 }
 
-#item { /* usado em diversas views de item */
-	header {
-		.item-novo {
-			float: right;
-			font-weight: bold;
-			.button-size(6px, 12px, inherited, 12px, 4px);
-			.button-variant(#fff; @verde_botao; @verde_botao);
-		}
-		h2 {
-			float: left;
-		}
-	}
-	aside {
+/* view item (diversas) */
+
+header#itens {
+	.item-novo {
 		float: right;
-		width: 350px;
+		font-weight: bold;
+		.button-size(6px, 12px, inherited, 12px, 4px);
+		.button-variant(#fff; @verde_botao; @verde_botao);
 	}
-	#form {
+	h2 {
 		float: left;
-		width: 500px;
 	}
-	.item_single { /* user_item_list */
+}
+
+aside#image {
+	float: right;
+	width: 350px;
+}
+
+form#newitem {
+	float: left;
+	width: 500px;
+}
+
+.item_single { /* user_item_list */
+	background-color: #fff;
+	height: 200px;
+	margin-bottom: 20px;
+	border-radius: 12px;
+	position: relative;
+	padding: 20px;
+	h3 {
+		margin-top:0;
+	}
+	.itemdel {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		width: 20px;
+		height: 20px;
+		padding: 0;
 		background-color: #fff;
-		height: 200px;
-		margin-bottom: 20px;
-		border-radius: 12px;
-		position: relative;
-		padding: 20px;
-		h3 {
-			margin-top:0;
-		}
-		.itemdel {
-			position: absolute;
-			right: 10px;
-			top: 10px;
-			width: 20px;
-			height: 20px;
-			padding: 0;
-			background-color: #fff;
-			color: #ccc;
+		color: #ccc;
+		border: none;
+		text-decoration: none;
+	}
+	.action {
+		position: absolute;
+		left: 20px;
+		bottom: 20px;
+		button {
 			border: none;
-			text-decoration: none;
-		}
-		.action {
-			position: absolute;
-			left: 20px;
-			bottom: 20px;
-			button {
-				border: none;
-				.button-size(6px, 12px, inherited, 12px, 4px);
-				.button-variant(#fff; @azulescuro; @azulescuro);
-				&.item-modify {
-					background-color: @amarelo_botao;
-				}
-				&.item-status {
-					background-color: @azul;
-				}
-				&.active {
-					background-color: @verde_botao;
-				}
+			.button-size(6px, 12px, inherited, 12px, 4px);
+			.button-variant(#fff; @azulescuro; @azulescuro);
+			&.item-modify {
+				background-color: @amarelo_botao;
 			}
-		}
-		.thumbs {
-			position: absolute;
-			right: 20px;
-			top: 60px;
-			width: 420px;
-			float: right;
-			img {
-				margin-left: 20px;
+			&.item-status {
+				background-color: @azul;
+			}
+			&.active {
+				background-color: @verde_botao;
 			}
 		}
 	}
+	.thumbs {
+		position: absolute;
+		right: 20px;
+		top: 60px;
+		width: 420px;
+		float: right;
+		img {
+			margin-left: 20px;
+		}
+	}
+
 }
 
 /* TABLES */

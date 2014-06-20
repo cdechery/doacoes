@@ -1,5 +1,4 @@
 <section id="map">
-
 	<div class="wrap960">
 
 		<button id="hide"><i class="fa fa-times"></i></button>
@@ -8,7 +7,7 @@
 
 			<button onClick="showAll();">Mostrar Tudo</button>
 			<button onClick="showPeople();">Itens/Pessoas</button>
-			<button onClick="showInstitutions();">InstituiÃ§Ãµes</button>
+			<button onClick="showInstitutions();">Instituições</button>
 
 			<div id="filtro_pessoas" style="display: none;">
 				<h4>Mostrar Apenas</h4>
@@ -18,7 +17,7 @@
 						echo "<input class='filtroPessoaCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$cat->nome."<br>";
 					}
 				?>
-				<h4>SituaÃ§Ãµes</h4>
+				<h4>Situações</h4>
 				<?php
 					foreach ($situacoes as $sit) {
 						echo "<input class='filtroPessoaSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$sit->descricao."<br>";
@@ -51,8 +50,8 @@
 <section id="home" class="contents">
 	<div class="wrap960">
 		<?php if( !$login_data["logged_in"] ) { ?>
-			<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lÃ¡ , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. MÃ© faiz elementum
-	girarzis, nisi eros vermeio, in elementis mÃ© pra quem Ã© amistosis quis leo.
+			<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
+	girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
 	Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
 	significa nadis i pareci latim. Interessantiss quisso pudia ce receita de
 	bolis, mais bolis eu num gostis.</p>

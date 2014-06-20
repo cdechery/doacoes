@@ -1,4 +1,4 @@
-   <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Item extends MY_Controller { 
 	
@@ -46,8 +46,6 @@ class Item extends MY_Controller {
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$this->load->view('section', array('id'=>'item')); // abre tag section
-
 		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
 
 		$data = array('action' => 'insert',
@@ -56,7 +54,7 @@ class Item extends MY_Controller {
 			'categorias'=>$categorias);
 		$this->load->view('item_form', array('data'=>$data) );
 		
-		$this->load->view('foot_loop');
+		$this->load->view('foot');
 	}
 
 	public function delete($item_id) {
@@ -206,14 +204,12 @@ class Item extends MY_Controller {
 		
 		$this->load->view('head', $head_data);
 
-		$this->load->view('section', array('id'=>'item')); // abre tag section
-		
 		$this->load->view('item_form',
 			array('data'=>$item_data, 'images'=>$images,
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes) );
 		
-		$this->load->view('foot_loop');
+		$this->load->view('foot');
 	}
 
 	public function get_images( $item_id ) {
@@ -237,11 +233,9 @@ class Item extends MY_Controller {
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
-		$this->load->view('section', array('id'=>'item')); // abre tag section
-
 		$this->load->helper('image_helper');
 		$this->load->view('item_list', array('items'=>$items));
 
-		$this->load->view('foot_loop'); // fecha tag section
+		$this->load->view('foot'); // fecha tag section
     }	
 }

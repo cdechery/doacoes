@@ -1,4 +1,4 @@
-<header class="clearfix">
+<header id="itens" class="clearfix">
 	<h2>Itens</h2>
 	<a href="#" class="item-novo" onClick="location.href='<?php echo base_url('item/novo')?>';"><i class="fa fa-plus"></i>&nbsp;&nbsp;adicionar</a>
 </header>
