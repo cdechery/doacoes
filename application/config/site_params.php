@@ -15,6 +15,7 @@ $config['site_params'] = array(
 		'25' => '25 km',
 		'50' => '50 km'
 		),
+	'nhe' => 'Nhe',
 	'erro_generico' => 'Ocorreu um erro inesperado',
 	'erro_acesso' => 'Acesso negado',
 	'titulo_site' => 'QuemPrecisa',
