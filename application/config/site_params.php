@@ -15,14 +15,13 @@ $config['site_params'] = array(
 		'25' => '25 km',
 		'50' => '50 km'
 		),
-	'nhe' => 'Nhe',
 	'erro_generico' => 'Ocorreu um erro inesperado',
 	'erro_acesso' => 'Acesso negado',
-	'titulo_site' => 'QuemPrecisa',
+	'titulo_site' => 'Interessa',
 	'image_settings' => array(
 		'thumb_sizes' => array(40, 60, 80, 120, 200), // size of thumbs to generate
 		'allowed_types' => array('jpeg', 'jpg', 'png'),
-		'min_image_size' => '80'
+		'min_image_size' => '200'
 	),
 	'max_item_imgs' => 3,
 	'upload' => array(
@@ -31,5 +30,6 @@ $config['site_params'] = array(
 	),
 	'facebook' => array('appId' => '649645738441266',
         		'secret' => '8d37a4c4dc26a772b0d9cafffab5169e'),
-	'email' => array('charset'=>'ISO-8859-1', 'wordwrap'=>TRUE)
+	'email' => array('charset'=>'ISO-8859-1', 'wordwrap'=>TRUE),
+	'basic_auth' => array('user'=>'admin', 'pass'=>'72gt!4o9')
 );
