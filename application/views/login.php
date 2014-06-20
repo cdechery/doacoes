@@ -19,6 +19,7 @@
 			<input type="checkbox" name="lembrar"> Manter conectado?
 		</label>
 	</div>
+	<p><a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe"><?php echo xlang('dist_resetpw_link')?></a></p>
 	<div class="form-group">
 		<input type="submit" value="Enviar">
 	</div>
