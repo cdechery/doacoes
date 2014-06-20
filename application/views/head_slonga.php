@@ -41,6 +41,22 @@
 ?>
 <title><?php echo $title; ?></title>
 </head>
+<script>
+$(document).ready(function() { // pra quê?
+	$(".itembox").fancybox({
+		maxWidth	: 500,
+		maxHeight	: 400,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+})
+</script>
 <body id="home">
 <header id="main">
 	<div class="wrap960">

@@ -5,9 +5,12 @@
 		
 		<div id="filtros">
 
-			<button onClick="showAll();">Mostrar Tudo</button>
-			<button onClick="showPeople();">Itens/Pessoas</button>
-			<button onClick="showInstitutions();">Instituições</button>
+			<header>
+				Mostrar:&nbsp;&nbsp;
+				<button onClick="showAll();">Tudo</button>
+				<button onClick="showPeople();">Itens/Pessoas</button>
+				<button onClick="showInstitutions();">Instituições</button>
+			</header>
 
 			<div id="filtro_pessoas" style="display: none;">
 				<h4>Mostrar Apenas</h4>
@@ -34,8 +37,8 @@
 					}
 				?>
 			</div>
-			
-			<button id="raios" onClick="hideRadiusCircles();">Esconder/Mostrar Raios</button>
+
+			<button id="raios" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-circle-o"></i></button>
 		
 		</div>
 	</div>
@@ -64,21 +67,3 @@
 				</a>
 			</div>
 		<?php } ?>
-	</div>
-</section>
-<script>
-$(document).ready(function() {
-	$(".itembox").fancybox({
-		maxWidth	: 500,
-		maxHeight	: 400,
-		fitToView	: false,
-		width		: '90%',
-		height		: '90%',
-		autoSize	: false,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-})
-</script>
