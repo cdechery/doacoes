@@ -2,12 +2,10 @@
 
 class MY_Controller extends CI_Controller
 {
-	protected $login_data = array();
+	protected $login_data = array('logged_in'=>FALSE);
 	protected $params = array();
 	protected $is_user_logged_in = FALSE;
 
-	private $head_loaded = FALSE;
-	
 	public function __construct() {
 
 		parent::__construct();
@@ -28,9 +26,25 @@ class MY_Controller extends CI_Controller
 		$this->is_user_logged_in = $this->login_data["logged_in"];
 
 		// load 'login_status' to the views
-		$this->load->vars( array('login_data' => $this->login_data, 'params'=>$this->params)  );
+		$this->load->vars( array('login_data' => $this->login_data,
+			'params'=>$this->params)  );
 		
 		$this->output->set_header('Content-type: text/html; charset='.$this->config->item('charset'));
+	}
+
+	protected function require_auth() {
+		$user = (isset($_SERVER['PHP_AUTH_USER']))?$_SERVER['PHP_AUTH_USER']:"";
+		$pass = (isset($_SERVER['PHP_AUTH_PW']))?$_SERVER['PHP_AUTH_PW']:"";
+
+		$basic_auth = $this->params['basic_auth'];
+
+		$validated = ($user==$basic_auth['user'] && $pass==$basic_auth['pass']);
+
+		if ( !$validated ) {
+			header('WWW-Authenticate: Basic realm="Interessa.org"');
+			header('HTTP/1.0 401 Unauthorized');
+			die ("Not authorized");
+		}
 	}
 	
 	protected function check_owner( $model, $id ) {

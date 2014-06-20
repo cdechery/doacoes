@@ -2,7 +2,13 @@
 
 class Limpeza_imagens extends MY_Controller {
 
+	public function __construct() {
+		parent::__construct();
+	}
+
 	public function index() {
+		$this->require_auth();
+
 		log_message('info',
 			'Iniciando processo de manutencao/limpeza de imagens');
 

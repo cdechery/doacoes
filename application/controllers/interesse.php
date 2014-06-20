@@ -132,6 +132,8 @@ class Interesse extends MY_Controller {
 	}
 
 	public function purge_old() {
+		$this->require_auth();
+
 		log_message('info', 'Iniciando processo de limpeza de Interesses');
 		$this->load->library('email');
 
