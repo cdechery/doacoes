@@ -155,12 +155,13 @@ $(function() {
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}] });
+					buttons: [{id: 0, label: 'OK', val: 'S'}],
+					callback: function(val) { location.href = site_root+'usuario/itens'; } });
 				
-				var itemData = $.get( site_root +'item/get_single/'+json.item_id );
-				itemData.success(function( data ){
-					 console.log(data); // ver depois onde colocar
-				});
+				// var itemData = $.get( site_root +'item/get_single/'+json.item_id );
+				// itemData.success(function( data ){
+				// 	 console.log(data); // ver depois onde colocar
+				// });
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});

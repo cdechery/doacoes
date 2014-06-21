@@ -30,6 +30,5 @@ $config['site_params'] = array(
 	),
 	'facebook' => array('appId' => '649645738441266',
         		'secret' => '8d37a4c4dc26a772b0d9cafffab5169e'),
-	'email' => array('charset'=>'ISO-8859-1', 'wordwrap'=>TRUE),
 	'basic_auth' => array('user'=>'admin', 'pass'=>'72gt!4o9')
 );

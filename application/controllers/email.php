@@ -45,7 +45,8 @@ class Email extends MY_Controller {
 
 		$this->load->library('email');
 
-		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
+		$this->email->from( 'noreply@interessa.org', $form_data['de_nome']." - Interessa" );
+		$this->email->reply_to( $form_data['de_email'] );
 		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
 		$this->email->subject( $assunto );
 
