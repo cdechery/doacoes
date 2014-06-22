@@ -33,6 +33,11 @@ class MY_Controller extends CI_Controller
 	}
 
 	protected function require_auth() {
+		if( ENVIRONMENT=='production' ) {
+			list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':',
+				base64_decode( substr($_SERVER['HTTP_AUTHORIZATION'],6) ) );
+		}
+
 		$user = (isset($_SERVER['PHP_AUTH_USER']))?$_SERVER['PHP_AUTH_USER']:"";
 		$pass = (isset($_SERVER['PHP_AUTH_PW']))?$_SERVER['PHP_AUTH_PW']:"";
 

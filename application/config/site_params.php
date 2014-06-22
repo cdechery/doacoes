@@ -28,7 +28,9 @@ $config['site_params'] = array(
 		'path' => './files/',
 		'max_size' => (8*1024)
 	),
+	'update_tool' => array('password'=>'###changethis###',
+		'skip_files'=>'' ),
 	'facebook' => array('appId' => '649645738441266',
         		'secret' => '8d37a4c4dc26a772b0d9cafffab5169e'),
-	'basic_auth' => array('user'=>'admin', 'pass'=>'72gt!4o9')
+	'basic_auth' => array('user'=>'admin', 'pass'=>'admin') 
 );

@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'quemprecisa';
-$db['default']['password'] = 'abc123';
-$db['default']['database'] = 'doacoes';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

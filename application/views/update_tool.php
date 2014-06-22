@@ -1,10 +1,10 @@
 <html>
 <head>
-	<title>Xumb Update Tool</title>
-	 <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
+	<title>Update Tool</title>
+	 <link type="text/css" rel="stylesheet" href="<?php echo base_url('css/doacoes.css')?>">
 </head>
 <body style="margin: 20px">
-	<h1>Xumb Update Tool</h1>
+	<h1>Update Tool</h1>
 <?php
 	if( empty($step) ) {
 		$step = "auth";
@@ -32,7 +32,7 @@
 			<h4>Please confirm the settings:</h4>
 			<?php echo $settings?>
 			<br>If everything is correct, just click the button below to begin the Update.
-			If not, correct your <i>dist.php</i> file and refresh (F5) this page before procceding.
+			If not, correct your <i>site_params.php</i> file and refresh (F5) this page before procceding.
 			<br><br>
 			<input type="checkbox" checked value="1" name="delete"> Clean update folder afterwards?<br><br>
 			<input type="submit" value="Do Update!">
