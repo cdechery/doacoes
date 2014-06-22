@@ -7,7 +7,8 @@
 			'/.htaccess',
 			'/index.php', 
 			'/application/config/config.php',
-			'/application/config/database.php');
+			'/application/config/database.php',
+			'/application/config/site_params.php');
 
 		public function __construct() {
 			parent::__construct();
