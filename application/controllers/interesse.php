@@ -134,6 +134,9 @@ class Interesse extends MY_Controller {
 	public function purge_old() {
 		$this->require_auth();
 
+		$this->load->library('email');
+		$this->load->helper('email');
+
 		log_message('info', 'Iniciando processo de limpeza de Interesses');
 		$this->load->library('email');
 
@@ -171,23 +174,18 @@ class Interesse extends MY_Controller {
 	}
 
 	private function notify_delete($para, $cats, $nome) {
-		$this->last_email_err = "";
 
-		$this->email->clear();
+		$corpo = $this->load_email('email_notif_interesses',
+			array('categorias'=>$cats, 'nome'=>$nome), TRUE );
 
-		$this->email->from( 'alerta@quemprecisa.org', "QuemPrecisa" );
-		$this->email->to( $para );
-		$this->email->subject( 'Interesses expirados' );
+		$params = array(
+			'to_email'=> $para,
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=> 'Interessa.org',
+			'subject'=> 'Interesses expirados',
+			'body'=>$corpo
+		);
 
-		$emailmsg = $this->load_email('email_notif_interesses',
-			array('categorias'=>$cats, 'nome'=>$nome) );
-		$this->email->message( $emailmsg );
-
-		echo $emailmsg; 
-
-		$ret = $this->email->send();
-		$this->last_email_err = $this->email->print_debugger();
-
-		return $ret;
+		return send_email( $params );
 	}
 } // Image class

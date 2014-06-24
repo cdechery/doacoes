@@ -24,6 +24,9 @@ class Email extends MY_Controller {
 	}
 
 	public function enviar_quer_item() {
+		$this->load->library('email');
+		$this->load->helper('email');
+
 		$status = "";
 		$msg = "";
 
@@ -37,25 +40,24 @@ class Email extends MY_Controller {
 			$assunto = "Me interessei por um item seu";
 		}
 
-		$corpo = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
-		$corpo .= "Para entrar em contato com ele(a), basta responder a este email.";
+		$msg = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
+		$msg .= "Para entrar em contato com ele(a), basta responder a este email.";
 		if( !empty($form_data['corpo']) ) { 
-			$corpo .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
+			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
 		}
+		$corpo = $this->load->view('email_quer_item',
+			array('corpo'=>$corpo), TRUE);
 
-		$this->load->library('email');
+		$params = array(
+			'to_email'=> $form_data['para_email'],
+			'to_name'=>$form_data['para_nome'],
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=>$form_data['de_nome']." - Interessa",
+			'subject'=>$assunto,
+			'body'=>$corpo
+		);
 
-		$this->email->from( 'noreply@interessa.org', $form_data['de_nome']." - Interessa" );
-		$this->email->reply_to( $form_data['de_email'] );
-		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
-		$this->email->subject( $assunto );
-
-		$emailmsg = $this->load_email('email_quer_item',
-			array('corpo'=>$corpo));
-
-		$this->email->message( $emailmsg );
-
-		if( $this->email->send() ) {
+		if( send_email( $params ) ) {
 			$status = "OK";
 			$msg = "Email enviado com sucesso";
 		} else {
@@ -63,7 +65,8 @@ class Email extends MY_Controller {
 			$msg = "Não foi possível enviar o email";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status,
+			'msg'=>utf8_encode($msg)) );
 	}
 
 	public function contato_inst( $inst_id = 0 ) {
@@ -83,27 +86,30 @@ class Email extends MY_Controller {
 	}
 
 	public function enviar_contato_inst() {
+		$this->load->library('email');
+		$this->load->helper('email');
+
 		$status = "";
 		$msg = "";
 
 		$form_data = $this->input->post(NULL, TRUE);
 
-		$this->load->library('email');
-
-		$this->email->from( $form_data['de_email'], "QuemPrecisa [".$form_data['de_nome']."]" );
-		$this->email->to( $form_data['para_email'], $form_data['para_nome'] );
-		$this->email->subject( $assunto );
-
-		$corpo = "Olá ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
+		$msg = "Olá ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
 			"para te mandar uma mensagem, veja abaixo:<br> ";
-		$corpo .= $form_data['corpo'];
+		$msg .= $form_data['corpo'];
+		$corpo = $this->load->view('email_contato_inst',
+			array('corpo'=>$corpo), TRUE);
 
-		$emailmsg = $this->load_email('email_contato_inst',
-			array('corpo'=>$corpo));
+		$params = array(
+			'to_email'=> $form_data['para_email'],
+			'to_name'=>$form_data['para_nome'],
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=>$form_data['de_nome']." - Interessa",
+			'subject'=>$assunto,
+			'body'=>$corpo
+		);
 
-		$this->email->message( $emailmsg );
-
-		if( $this->email->send() ) {
+		if( send_email($params) ) {
 			$status = "OK";
 			$msg = "Email enviado com sucesso";
 		} else {

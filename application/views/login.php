@@ -5,7 +5,7 @@
 </div>
 
 <form id="login" method="post" action="<?php echo base_url()?>login/verificar">
-	<h5><?php echo $msg?></h5>
+	<input type="hidden" name="next" value="<?php echo $next?>">
 	<div class="form-group">
 		<label>Usuário: </label>
 		<input type="text" name="login" id="login" />

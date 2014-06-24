@@ -8,6 +8,64 @@ class Login extends MY_Controller {
 		$this->load->helper('cookie');	
 	}
 
+	public function _remap( $param ) {
+		if( $param=="verificar" ) {
+			$this->verificar( $param );
+		} else if( $param=="fblogin" ) {
+			$this->fblogin( $param );
+		} else {
+			$this->index( $param );
+		}
+	}
+
+	public function index( $next="", $msg="" ) {
+
+		if( $next=="index") {
+			$next = "";
+		}
+
+		$head_data = array("min_template"=>"image_view",
+			"title"=>$this->params['titulo_site'].": Login");
+
+		$this->load->view('head', $head_data);
+		$this->load->view('login',
+			array('next'=>$next, 'msg'=>$msg) );
+		$this->load->view('foot');
+	}
+
+	public function verificar() {
+		$this->load->model('usuario_model');
+
+		$form_data = $this->input->post(NULL, TRUE);
+
+		$user_data = $this->usuario_model->check_login( $form_data['login'],
+			$form_data['password'] );
+
+		$next = "";
+		if( !empty($form_data['next']) ) {
+			$next = base64_decode( $form_data['next'] );
+		}
+
+		if( $user_data ) {
+			$session_data = set_user_session( $user_data );
+			$this->session->set_userdata( $session_data );
+
+			if( isset($form_data['lembrar']) ) {
+				$this->input->set_cookie('DoacoesUserCookie',
+					$user_data['id'], 259000 );
+			} else {
+				delete_cookie('DoacoesUserCookie');
+			}
+
+			redirect( base_url($next) );
+		} else {
+			if( !empty($next) ) {
+				$next = base64_encode( $next );
+			}
+			$this->index( $next, xlang('dist_login_failed') );
+		}
+	}
+
 	public function fblogin() {
 		$fbuser = null;
 		$logoutURL = null;
@@ -56,37 +114,5 @@ class Login extends MY_Controller {
         }
 	}
 
-	public function index($msg = "") {
-		$head_data = array("min_template"=>"image_view",
-			"title"=>$this->params['titulo_site'].": Login");
-		$this->load->view('head', $head_data);
-		$this->load->view('login', array('msg'=>$msg));
-		$this->load->view('foot');
-	}
-
-	public function verificar() {
-		$this->load->model('usuario_model');
-
-		$form_data = $this->input->post(NULL, TRUE);
-
-		$user_data = $this->usuario_model->check_login( $form_data['login'],
-			$form_data['password'] );
-
-		if( $user_data ) {
-			$session_data = set_user_session( $user_data );
-			$this->session->set_userdata( $session_data );
-
-			if( isset($form_data['lembrar']) ) {
-				$this->input->set_cookie('DoacoesUserCookie',
-					$user_data['id'], 259000 );
-			} else {
-				delete_cookie('DoacoesUserCookie');
-			}
-
-			redirect( base_url() );
-		} else {
-			$this->index( xlang('dist_login_failed') );
-		}
-	}
 }
 

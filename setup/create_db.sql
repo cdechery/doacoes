@@ -26,7 +26,10 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
   `data_cadastro` DATETIME NOT NULL ,
   `data_atualizacao` DATETIME NULL ,
   `tipo` CHAR(1) NOT NULL ,
-  `fg_notif_email` CHAR(1) NOT NULL DEFAULT 'S' ,
+  `fg_geral_email` CHAR(1) NOT NULL DEFAULT 'S' ,
+  `fg_notif_int_email` CHAR(1) NOT NULL DEFAULT 'S' ,
+  `fg_de_inst_email` CHAR(1) NOT NULL DEFAULT 'S' ,
+  `fg_de_pessoa_email` CHAR(1) NOT NULL DEFAULT 'S' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) 

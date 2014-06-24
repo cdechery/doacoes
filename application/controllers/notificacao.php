@@ -6,6 +6,7 @@ class Notificacao extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('email');
+		$this->load->helper('email');
 	}
 
 	public function index() {
@@ -63,7 +64,8 @@ class Notificacao extends MY_Controller {
 				log_message('info',
 					'Enviando email para $user_email, '.count($user_itens).' itens');
 
-				if( $this->send_email($user_email, $user_itens) ) {
+				$params = $this->monta_email( $user_email, $user_itens);
+				if( send_email( $params ) ) {
 					$this->notificacao_model->set_notificado( $user_id );
 				} else {
 					log_message('error', 
@@ -80,29 +82,26 @@ class Notificacao extends MY_Controller {
 
 		log_message('info',
 			'Enviando email para $user_email, '.count($user_itens).' itens');
-		if( $this->send_email($user_email, $user_itens) ) {
+		$params = $this->monta_email( $user_email, $user_itens);
+		if( send_email( $params ) ) {
 			$this->notificacao_model->set_notificado( $user_id );
 		} else {
 			log_message('error', 'Erro ao enviar email\n'.$this->last_email_err);
 		}
 	}
 
-	private function send_email($para, $itens) {
-		$this->last_email_err = "";
+	private function monta_email($para, $itens) {
+		$corpo = $this->load->view('email_notif_itens',
+			array('itens'=>$itens), TRUE);
 
-		$this->email->clear();
+		$params = array(
+			'to_email'=> $para,
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=> 'Interessa.org',
+			'subject'=> 'Novos Itens que podem te interessar',
+			'body'=>$corpo
+		);
 
-		$this->email->from( 'alerta@quemprecisa.org', "QuemPrecisa" );
-		$this->email->to( $para );
-		$this->email->subject( 'Novos itens que podem te interessar' );
-
-		$emailmsg = $this->load_email('email_notif_itens',
-			array('itens'=>$itens) );
-		$this->email->message( $emailmsg );
-
-		$ret = $this->email->send();
-		$this->last_email_err = $this->email->print_debugger();
-
-		return $ret;
+		return $params;
 	}
 }

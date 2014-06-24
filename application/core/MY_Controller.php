@@ -121,13 +121,6 @@ class MY_Controller extends CI_Controller
 		}
 	}
 
-	protected function load_email($view_name, $data = array()) {
-		$out = $this->load->view('email_head', $data, TRUE);
-		$out .= $this->load->view($view_name, $data, TRUE);
-		$out .= $this->load->view('email_foot', $data, TRUE);
-		return $out;
-	}
-
 	public function show_access_error($type = "") {
 		$this->load->helper('xlang');
 		$this->load->helper('xerror');

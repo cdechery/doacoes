@@ -63,6 +63,18 @@ class Usuario extends MY_Controller {
 
 	}
 
+	public function pref_email() {
+		if( ! $this->is_user_logged_in ) {
+			$next = urlencode( base64_encode("usuario/pref_email") );
+			redirect( "login/".$next );
+		}
+
+		$head_data = array("title"=>$this->params['titulo_site']);
+		$this->load->view('head', $head_data);
+		$this->load->view('pref_email');
+		$this->load->view('foot');
+	}
+
 	public function escolhe_tipo() {
 		$this->session->unset_userdata('tipo_cadastro');
 
@@ -414,22 +426,25 @@ class Usuario extends MY_Controller {
 
 	private function email_boasvindas($user_data) {
 		$this->load->library('email');
-
-		$this->email->from( 'noreply@interessa.org', "Interessa.org" );
-		$this->email->to( $user_data['email'] );
-		$this->email->subject( 'Bem-vindo ao Interessa' );
+		$this->load->helper('email');
 
 		$email_template = "email_boasvindas_pessoa";
 		if( $user_data['tipo']=='I') {
 			$email_template = "email_boasvindas_inst";
 		}
 
-		$emailmsg = $this->load_email($email_template,
-			array('nome'=>$user_data['nome']) );
+		$corpo = $this->load->view($email_template,
+			array('nome'=>$user_data['nome']), TRUE );
 
-		$this->email->message( $emailmsg );
+		$params = array(
+			'to_email'=> $user_data['email'],
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=> 'Interessa.org',
+			'subject'=> 'Bem-vindo ao Interessa',
+			'body'=>$corpo
+		);
 
-		return $this->email->send();
+		return send_email( $params );
 	}
 }
 ?>
