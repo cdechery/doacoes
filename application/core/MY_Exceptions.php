@@ -55,7 +55,7 @@ class MY_Exceptions extends CI_Exceptions {
 		$head_data = array("title"=>$this->params['titulo_site'].": Erro");
 		$head = $this->CI->load->view($type.'_head', $head_data, TRUE);
 
-		$err_body = $this->CI->load->view('error',
+		$err_body = $this->CI->load->view('error_windowed',
 			array('message'=>$message, 'heading'=>$heading), TRUE);
 		
 		if (ob_get_level() > $this->ob_level + 1) {

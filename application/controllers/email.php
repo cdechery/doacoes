@@ -3,21 +3,34 @@
 class Email extends MY_Controller { 
 	public function __construct() {
 		parent::__construct();
+		$this->load->helper('xerror');
 	}
 
-	public function quer_item( $item_id = 0) {
+	public function quer_item( $item_id = 0 ) {
+
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error("ajax");
 		}
 
 		$this->load->model('item_model');
-		$this->load->model('usuario_model');
-		$this->load->helper('image_helper');
-
 		$item = $this->item_model->get( $item_id );
+
+		$this->load->model('usuario_model');
 		$from_user = $this->usuario_model->get_data( $this->login_data['user_id'] );
 		$to_user = $this->usuario_model->get_data( $item['usuario_id'] );
 
+		$tipo_from = $from_user['tipo'];
+		$fg_email_pessoa = $to_user['fg_de_pessoa_email'];
+		$fg_email_inst = $to_user['fg_de_inst_email'];
+
+		if( ($tipo_from=="I" && $fg_email_inst=='N') ||
+			($tipo_from=="P" && $fg_email_pessoa=='N') ) {
+
+			show_error_windowed( 'O usuário optou por não receber mensagens desse tipo',
+				200, 'Impossível enviar mensagem', 'ajax');			
+		}
+
+		$this->load->helper('image_helper');
 		$this->load_ajax('email_item_form',
 			array('item'=>$item, 'from_user'=>$from_user,
 				'to_user'=>$to_user) );
@@ -79,6 +92,17 @@ class Email extends MY_Controller {
 
 		$from_user = $this->usuario_model->get_data( $this->login_data['user_id'] );
 		$to_user = $this->usuario_model->get_data( $inst_id );
+
+		$tipo_from = $from_user['tipo'];
+		$fg_email_pessoa = $to_user['fg_de_pessoa_email'];
+		$fg_email_inst = $to_user['fg_de_inst_email'];
+
+		if( ($tipo_from=="I" && $fg_email_inst=='N') ||
+			($tipo_from=="P" && $fg_email_pessoa=='N') ) {
+
+			show_error_windowed('O usuário optou por não receber mensagens desse tipo',
+				200, 'Impossível enviar mensagem', 'ajax');			
+		}
 
 		$this->load_ajax('email_contato_inst_form',
 			array('from_user'=>$from_user,

@@ -57,15 +57,22 @@ class Notificacao extends MY_Controller {
 		$user_id = 0;
 		$user_email = "";
 		$user_itens = array();
+		$fg_notif = "";
 
 		foreach ($result_set as $row) {
 
 			if( $user_id!=0 && $row->usuario_id!=$user_id ) {
-				log_message('info',
-					'Enviando email para $user_email, '.count($user_itens).' itens');
+				$mail_sent = false;
 
-				$params = $this->monta_email( $user_email, $user_itens);
-				if( send_email( $params ) ) {
+				if( $fg_notif ) {
+					log_message('info',
+						'Enviando email para $user_email, '.count($user_itens).' itens');
+
+					$params = $this->monta_email( $user_email, $user_itens);
+					$mail_sent = send_email( $params );
+				}
+
+				if( ($fg_notif && $mail_sent) || !$fg_notif ) {
 					$this->notificacao_model->set_notificado( $user_id );
 				} else {
 					log_message('error', 
@@ -74,19 +81,27 @@ class Notificacao extends MY_Controller {
 				$user_itens = array();
 			}
 
+			$fg_notif = $row->fg_notif_int_email=='S';
 			$user_itens[] = array( 'id'=>$row->item_id, 
 				'titulo'=>$row->titulo, 'nome_arquivo'=>$row->nome_arquivo );
 			$user_id = $row->usuario_id;
 			$user_email = $row->email;
 		}
 
-		log_message('info',
-			'Enviando email para $user_email, '.count($user_itens).' itens');
-		$params = $this->monta_email( $user_email, $user_itens);
-		if( send_email( $params ) ) {
+		
+		if( $fg_notif ) {
+			log_message('info',
+				'Enviando email para $user_email, '.count($user_itens).' itens');
+
+			$params = $this->monta_email( $user_email, $user_itens);
+			$mail_sent = send_email( $params );
+		}
+
+		if( ($fg_notif && $mail_sent) || !$fg_notif ) {
 			$this->notificacao_model->set_notificado( $user_id );
 		} else {
-			log_message('error', 'Erro ao enviar email\n'.$this->last_email_err);
+			log_message('error', 
+				'Erro ao enviar email\n'.$this->last_email_err);
 		}
 	}
 

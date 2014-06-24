@@ -155,19 +155,27 @@ class Interesse extends MY_Controller {
 		$user_id = 0;
 
 		log_message('info', 'Processando notificacoes e exclusao de Interesses');
+		$fg_notif = "";
 		foreach ($old_ints as $int) {
+
 			if( $user_id!=0 && $user_id!=$int->usuario_id ) {
-				$this->notify_delete($int->email, $categorias, $int->nome_usuario);
+				if( $fg_notif ) {
+					$this->notify_delete($int->email, $categorias, $int->nome_usuario);
+				}
 				$this->interesse_model->delete($int->categoria_id, $int->usuario_id);
 
 				$categorias = array();
 			}
 
+			$fg_notif = $int->fg_geral_email=='S';
+
 			$categorias[] = $int->nome_cat;
 			$user_id = $int->usuario_id;
 		}
 
-		$this->notify_delete($int->email, $categorias, $int->nome_usuario);
+		if( $fg_notif ) {
+			$this->notify_delete($int->email, $categorias, $int->nome_usuario);
+		}
 		$this->interesse_model->delete($int->categoria_id, $int->usuario_id);
 
 		log_message('info', 'Fim do processo de exclusao de Interesses');
@@ -175,7 +183,7 @@ class Interesse extends MY_Controller {
 
 	private function notify_delete($para, $cats, $nome) {
 
-		$corpo = $this->load_email('email_notif_interesses',
+		$corpo = $this->load->view('email_notif_interesses',
 			array('categorias'=>$cats, 'nome'=>$nome), TRUE );
 
 		$params = array(

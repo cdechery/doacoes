@@ -19,11 +19,11 @@ class Mapa_model extends MY_Model {
 		$pessoas = $this->db->get()->result();
 
 		$this->db->select('u.id as user_id, u.lat, u.lng, 
-			u.tipo, c.id as cat_id, 0 as sit_id', FALSE);
+			u.tipo, ifnull(c.id,0) as cat_id, 0 as sit_id', FALSE);
 		$this->db->from('usuario u');
-		$this->db->join('interesse i', 'u.id = i.usuario_id');
-		$this->db->join('categoria c', 'c.id = i.categoria_id');
-		$this->db->where('i.fg_ativo', 'S');
+		$this->db->join('interesse i',
+			'u.id = i.usuario_id AND i.fg_ativo = \'S\'', 'left');
+		$this->db->join('categoria c', 'c.id = i.categoria_id', 'left');
 		$this->db->where('u.tipo','I'); 
 		$this->db->order_by('u.id', 'asc');
 		$insts = $this->db->get()->result();

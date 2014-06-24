@@ -8,7 +8,7 @@
 		extract( $params );
 
 		if( empty($from_email) || empty($to_email) ||
-			empty($subject) || empty($template) || empty($body) ) {
+			empty($subject) || empty($body) ) {
 
 			$caller = $CI->router->method;
 			log_message('error', 'Tentativa de enviar email com parametros invalidos ('.$caller.')');
