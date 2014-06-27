@@ -69,10 +69,40 @@ class Usuario extends MY_Controller {
 			redirect( "login/".$next );
 		}
 
+		$udata = $this->usuario_model->get_data( $this->login_data['user_id'] );
+
 		$head_data = array("title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
-		$this->load->view('pref_email');
+		$this->load->view('pref_email', array('data'=>$udata));
 		$this->load->view('foot');
+	}
+
+	public function salvar_pref_email() {
+		$status = $msg = "";
+
+		if( !$this->is_user_logged_in ) {
+			$status = "error";
+			$msg = xlang('dist_errsess_expire');
+		} else {
+			$user_data = $this->input->post(NULL, TRUE);
+
+			$user_data['fg_geral_email'] = isset($user_data['fg_geral_email'])?'S':'N';
+			$user_data['fg_notif_int_email'] = isset($user_data['fg_notif_int_email'])?'S':'N';
+			$user_data['fg_de_inst_email'] = isset($user_data['fg_de_inst_email'])?'S':'N';
+			$user_data['fg_de_pessoa_email'] = isset($user_data['fg_de_pessoa_email'])?'S':'N';
+
+			if( $this->usuario_model->update_pref_email($user_data, 
+				$this->login_data['user_id']) ) {
+
+				$status = "OK";
+				$msg = "Preferências salvas com sucesso!";
+			} else {
+				$status = "ERRO";
+				$msg = "Ocorreu um erro ao salvar as preferências";
+			}
+		}
+
+		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
 	}
 
 	public function escolhe_tipo() {
@@ -185,11 +215,21 @@ class Usuario extends MY_Controller {
 		}
 
 		$this->load->helper('image_helper');
+		$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
 
-		$head_data = array("min_template"=>"image_upload", "title"=>$this->params['titulo_site']);
+		$cust_js = array('js/jquery.plugin.min.js', 
+			'js/jquery.datepick.min.js', 'js/jquery.datepick-pt-BR.js');
+		$cust_css = array('css/redmond.datepick.css');
+
+		if( $user_data['tipo']=="I" ) {
+			$cust_css = $cust_js = array();
+		}
+
+		$head_data = array("min_template"=>"image_upload",
+			"title"=>$this->params['titulo_site'],
+			'cust_css'=>$cust_css, 'cust_js'=>$cust_js);
 		$this->load->view('head', $head_data);
 
-		$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
 		$user_data['action'] = 'update';
 
 		if( !empty($user_data['avatar']) ) {

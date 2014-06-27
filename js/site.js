@@ -81,6 +81,25 @@ $(function() {
 		);
 	});
 	
+	$('#pref_email').submit(function(e) {
+		e.preventDefault();
+		$.post($("#pref_email").attr("action"),
+			$("#pref_email").serialize(), function(data) {
+
+			var json = myParseJSON( data );
+			if( json.status=="OK" ) {
+				new Messi(json.msg, {title: lang['dist_lbl_success'], 
+					titleClass: 'anim success', modal: true,
+					buttons: [{id: 0, label: 'OK', val: 'S'}] });
+
+			} else {
+				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
+		return false;
+	});
+
 	$('#usuario_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#usuario_insert").attr("action"),

@@ -108,6 +108,18 @@ class Usuario_model extends MY_Model {
 			$upd_data, array('id' => $id) ) );
 	}
 
+	public function update_pref_email($pref_data, $user_id) {
+		$upd_data = array(
+			'fg_geral_email' => $pref_data['fg_geral_email'],
+			'fg_notif_int_email' => $pref_data['fg_notif_int_email'],
+			'fg_de_inst_email' => $pref_data['fg_de_inst_email'],
+			'fg_de_pessoa_email' => $pref_data['fg_de_pessoa_email']
+		);
+
+		return( $this->db->update('usuario', 
+			$upd_data, array('id' => $user_id) ) );
+	}
+
 	public function update_lat_long($id, $lat, $long) {
 		if( empty($lat) || empty($long) ) {
 			return false;
