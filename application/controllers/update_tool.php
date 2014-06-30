@@ -136,7 +136,8 @@
 				$output .= "<br><b>Update aborted!</b>";
 			}
 
-			$this->load->view('update_tool', array('step'=>'do_update', 'output'=>$output) );
+			$this->load->view('update_tool',
+				array('step'=>'do_update', 'output'=>$output) );
 		}
 
 		private function recurse_copy($src,$dst) { 
@@ -148,8 +149,7 @@
 		                $this->recurse_copy($src . '/' . $file,$dst . '/' . $file); 
 		            } else { 
 		            	$dest_file = $dst."/".$file;
-		            	if( !in_array($dest_file, $this->base_skip_files) && 
-		            		strpos($dest_file, '/views/')===FALSE ) {
+		            	if( !in_array($dest_file, $this->base_skip_files) ) {
 			                copy($src . '/' . $file,$dst . '/' . $file); 
 		            	}
 		            } 

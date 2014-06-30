@@ -57,6 +57,28 @@ $(document).ready(function() { // pra quê?
 	});
 })
 </script>
+<style>
+.fancybox-nav {
+    width: 60px;       
+}
+
+.fancybox-nav span {
+    visibility: visible;
+    opacity: 0.5;
+}
+
+.fancybox-nav:hover span {
+    opacity: 1;
+}
+
+.fancybox-next {
+    right: -60px;
+}
+
+.fancybox-prev {
+    left: -60px;
+}
+</style>
 <body id="home">
 <header id="main">
 	<div class="wrap960">
