@@ -349,7 +349,7 @@ form#newitem {
 				background-color: @azul;
 			}
 			&.active {
-				background-color: @verde_botao;
+				background-color: @verde_botao!important;
 			}
 		}
 	}
@@ -366,20 +366,53 @@ form#newitem {
 
 }
 
-/* TABLES */
-table {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid @azultopo;
-	border-collapse: collapse;
-	thead th {
-		text-align: left;
-		padding: 10px 20px;
+/* interesses */
+
+#interesses {
+	margin: 30px 0;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 14px;
+	table { 
+		width: 100%;
+		thead {
+			text-align: left;
+			color: @azulescuro;
+		}
+		td {
+			color: #000;
+			padding: 10px 0;
+			border-bottom: 1px solid #ccc;
+		}
+		tr.disabled td {
+			color: @azulescuro;
+		}
+		tr:last-child td {
+			border-bottom: none;
+		}
 	}
-	td {
-		padding: 10px 20px;
+	button {
+		border: none;
+		.button-size(6px, 12px, 14px, 1.2em, 4px);
+		.button-variant(#fff, @amarelo_botao, @amarelo_botao);
+		&.activ_interesse_btn {
+			background-color: @azulescuro;
+		}
+		&.blue {
+			background-color: @azul!important;
+			color:@azulescuro!important;
+		}
 	}
 }
+
+#interesse_insert {
+	input[type=submit]{
+		.button-size(6px, 12px, inherited, 12px, 4px);
+		.button-variant(#fff; @verde_botao; @verde_botao);
+	}
+}
+
+/* tables */
 
 footer {
 	/*background-color: @verde;*/

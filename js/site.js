@@ -240,25 +240,14 @@ $(function() {
 
 	$(document).on('click', '.item-status', function(e){
 		e.preventDefault();
-		var itemid = $(this).data('itemid');
-		var that = this;
-		var itemstatus = $(this).data('status') === 'I' ? 0 : 'I';
-		$.post(site_root+'item/changestatus/'+itemid, { status: itemstatus } ,function(data){
-			var json = myParseJSON(data);
-			if (json.result === "OK") {
-				new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
-					titleClass: 'dist_lbl_success', modal: true });
-				if (json.status === '0') {
-					$(that).removeClass('active');
-					$('i.fa', that).removeClass('fa-thumbs-o-up').addClass('fa-thumbs-o-down');
-					that.setAttribute('data-status','0');
-				} else {
-					$(that).addClass('active');
-					$('i.fa', that).removeClass('fa-thumbs-o-down').addClass('fa-thumbs-o-up');
-					that.setAttribute('data-status','I');
-				};
-			};
-		}).fail( function(){ general_error();} );
+		var btn = $(this);
+		var itemstatus = btn.data('status');
+		if (itemstatus == 'I') {
+			activ_deactiv_item(btn, '0');
+		} else {
+			activ_deactiv_item(btn, 'I');
+		}
+		return false;
 	});
 
 	$('#interesse_insert').submit(function(e) {
@@ -273,8 +262,8 @@ $(function() {
 
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
-                    $('#interesses_none').hide();
-                    $('#interesses').append( data );
+                	$('#interesses_none').hide();
+                    $('#interesses table').append(data);
                 });
 
 			} else {
@@ -289,7 +278,6 @@ $(function() {
 		e.preventDefault();
 		var btn = $(this);
 		var raio = $('#raio_'+btn.data('catid')).val();
-
 		$.ajax({
 			url 		: site_root + 'interesse/update/'+btn.data('catid')+'/'+raio,
 			contentType : 'charset=utf-8',
@@ -314,12 +302,10 @@ $(function() {
 	$(document).on('click', '.activ_interesse_btn', function(e) {
 		e.preventDefault();
 		var btn = $(this);
-
-		if( btn.val()=='Ativar' ) {
+		if( btn.html()=='Ativar' ) {
 			activ_deactiv_interesse(btn, 'activate');
 		} else {
-			if( activ_deactiv_interesse(btn, 'deactivate') ) {
-			}
+			activ_deactiv_interesse(btn, 'deactivate');
 		}
 		return false;
 	}); // delete
@@ -399,22 +385,22 @@ function activ_deactiv_interesse( btn, action ) {
 		url         : site_root + 'interesse/'+action+'/'+btn.data('catid'),
 		contentType    : 'charset=utf-8',
 		dataType : 'json',
-		success     : function (data) {
+		success : function (data) {
 			if ( data.status === "success" ) {
 				if( action=='activate' ) {
-					btn.val('Desativar');
-					btn.closest('table').css('color','black');
+					btn.html('Desativar');
+					btn.addClass('blue');
+					btn.parents('tr').removeClass('disabled');
 				} else {
-					btn.val('Ativar');
-					btn.closest('table').css('color','lightgrey');
+					btn.html('Ativar');
+					btn.removeClass('blue');
+					btn.parents('tr').addClass('disabled');
 				}
-
 				return true;
 			} else {
 				new Messi( data.msg, {title: lang['dist_lbl_error'],
 					titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-
 				return false;
 			}
 		},
@@ -423,7 +409,26 @@ function activ_deactiv_interesse( btn, action ) {
 			return false;
 		}
 	});
-}	
+}
+
+function activ_deactiv_item(btn, action) {
+	$.post(site_root+'item/changestatus/'+btn.data('itemid'), { status: action } ,function(data){
+		var json = myParseJSON(data);
+		if (json.result === "OK") {
+			new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
+				titleClass: 'dist_lbl_success', modal: true });
+			if (json.status === 'I') {
+				btn.addClass('active');
+				btn.html('<i class="fa fa-thumbs-o-up">');
+				btn.data('status', 'I');
+			} else {
+				btn.removeClass('active');
+				btn.html('<i class="fa fa-thumbs-o-down">');
+				btn.data('status', '0');
+			};
+		};
+	});
+}
 
 function delete_image( link ) {
 	$.ajax({

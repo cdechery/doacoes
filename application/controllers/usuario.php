@@ -451,15 +451,19 @@ class Usuario extends MY_Controller {
 
 		$this->load->model('interesse_model');
 		
-		$interesses = $this->interesse_model->get( $this->login_data['user_id'] );
+		$result = $this->interesse_model->get( $this->login_data['user_id'] );
 
 		$this->load->view('head', array('title'=>'Interesses'));
-		
-		$this->load->view('interesse_form', array('int_count'=>count($interesses)));
-		
-		foreach ($interesses as $int) {
-			$this->load->view('interesse_single', array('interesse'=>$int));
+
+		$interesses = array();
+
+		$interesses['count'] = count($result);
+
+		foreach ($result as $int) {
+			$interesses['data'][$int->id] = $int;
 		}
+
+		$this->load->view('interesse_form', array('interesses'=>$interesses));
 		
 		$this->load->view('foot');
 	}
