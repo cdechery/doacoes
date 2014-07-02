@@ -138,7 +138,6 @@ class Interesse extends MY_Controller {
 		$this->load->helper('email');
 
 		log_message('info', 'Iniciando processo de limpeza de Interesses');
-		$this->load->library('email');
 
 		$dias_pessoa = $this->params['validade_interesse_pessoa'];
 		$dias_inst = $this->params['validade_interesse_inst'];

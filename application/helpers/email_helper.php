@@ -5,6 +5,9 @@
 	function send_email( $params ) {
 
 		$CI =& get_instance();
+		$sim_only = $CI->config->item('email_sim_only');
+		$sim_only = $sim_only && (ENVIRONMENT!='production');
+
 		extract( $params );
 
 		if( empty($from_email) || empty($to_email) ||
@@ -36,13 +39,25 @@
 
 		$CI->email->subject( $subject );
 
-		$emailmsg = $CI->load->view('email_head', TRUE);
+		$emailmsg = $CI->load->view('email_head', NULL, TRUE);
 		$emailmsg .= $body;
 		$emailmsg .= $CI->load->view('email_foot',
 			 array('email_para'=>$to_email), TRUE);
 
-		$CI->email->message( $emailmsg );
+		if( $sim_only ) {
+			
+			$emailmsg .= '\n\n<!--\n';
+			$emailmsg .= var_export($params, true);
+			$emailmsg .= '\n-->';
 
-		return $CI->email->send();
+			$tmp_emailfile = 'email'.uniqid().'.html';
+			$file = fopen("./emails/".$tmp_emailfile, "w");
+			fwrite($file, $emailmsg);
+			fclose($file);
+			return true;
+
+		} else {
+			return $CI->email->message( $emailmsg );
+		}
 	}
 ?>

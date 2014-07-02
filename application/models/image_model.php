@@ -127,7 +127,7 @@ class Image_model extends MY_Model {
 		$this->db->query('TRUNCATE table tmp_imagem_arquivos');
 	}
 
-	public function insert_temp($arq) {
+	public function insert_temp( $arq ) {
 		$data = array('nome_arquivo'=>$arq);
 		$this->db->insert('tmp_imagem_arquivos', $data);
 	}
@@ -143,11 +143,16 @@ class Image_model extends MY_Model {
 	}
 
 	public function delete_empty_imgs() {
-		$this->db->where('avatar IS NOT NULL');
-		$this->db->where('NOT EXISTS '.
+		$this->db->query('DELETE i FROM `imagem` AS i '.
+			'WHERE NOT EXISTS '.
 			'(SELECT 1 FROM tmp_imagem_arquivos t '.
- 			'WHERE t.nome_arquivo = avatar)',NULL, FALSE);
-		$this->db->delete('usuario');
+ 			'WHERE t.nome_arquivo = i.nome_arquivo)');
+
+		$this->db->query('DELETE u FROM `usuario` AS u '.
+			'WHERE avatar IS NOT NULL '.
+			'AND NOT EXISTS '.
+			'(SELECT 1 FROM tmp_imagem_arquivos t '.
+ 			'WHERE t.nome_arquivo = u.avatar)');
 	}
 
 	public function get_old_temp_images() {
@@ -156,6 +161,19 @@ class Image_model extends MY_Model {
 		$this->db->join('imagem im', 'im.temp_item_id = it.id');
 		$this->db->where('it.data_criacao < SUBDATE(NOW(),1)');
 		return $this->db->get()->result();
+	}
+
+	public function get_all_images() {
+		$this->db->select('im.nome_arquivo');
+		$this->db->from('imagem im');
+		$imgs = $this->db->get()->result();
+
+		$this->db->select('u.avatar as nome_arquivo');
+		$this->db->from('usuario u');
+		$this->db->where('u.avatar IS NOT NULL', NULL, FALSE);
+		$avatars = $this->db->get()->result();
+
+		return array_merge( $imgs, $avatars );
 	}
 
 	public function get_orphan_images() {

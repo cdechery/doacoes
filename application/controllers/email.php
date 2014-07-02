@@ -59,7 +59,7 @@ class Email extends MY_Controller {
 			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
 		}
 		$corpo = $this->load->view('email_quer_item',
-			array('corpo'=>$corpo), TRUE);
+			array('corpo'=>$msg), TRUE);
 
 		$params = array(
 			'to_email'=> $form_data['para_email'],
@@ -122,14 +122,14 @@ class Email extends MY_Controller {
 			"para te mandar uma mensagem, veja abaixo:<br> ";
 		$msg .= $form_data['corpo'];
 		$corpo = $this->load->view('email_contato_inst',
-			array('corpo'=>$corpo), TRUE);
+			array('corpo'=>$msg), TRUE);
 
 		$params = array(
 			'to_email'=> $form_data['para_email'],
 			'to_name'=>$form_data['para_nome'],
 			'from_email'=>'noreply@interessa.org',
 			'from_name'=>$form_data['de_nome']." - Interessa",
-			'subject'=>$assunto,
+			'subject'=>$form_data['assunto'],
 			'body'=>$corpo
 		);
 
@@ -141,7 +141,7 @@ class Email extends MY_Controller {
 			$msg = "Não foi possível enviar o email";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status,'msg'=>utf8_encode($msg)) );
 	}
 
 }
