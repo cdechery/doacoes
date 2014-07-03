@@ -6,14 +6,10 @@ class Notificacao_model extends MY_Model {
 		parent::__construct();
 	}
 
-	public function insert_item($item_id, $usuario_id = 0) {
+	public function insert_item( $item_id ) {
 		$insert_data = array(
 			'item_id' => $item_id
 		);
-
-		if( $user_id != 0 ) {
-			$insert['usuario_id'] = $usuario_id; 
-		}
 
 		return $this->db->insert('controle_notif_email', $insert_data);
 	}

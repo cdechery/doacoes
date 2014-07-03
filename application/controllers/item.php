@@ -105,8 +105,13 @@ class Item extends MY_Controller {
 			$new_id = $this->item_model->insert( $input );
 			if( $new_id ) {
 				$this->load->model('image_model');
-				$this->image_model->move_temp_images($item_data['usuario_id'],
+				$this->load->model('notificacao_model');
+
+				@$this->image_model->move_temp_images($item_data['usuario_id'],
 					$new_id, $input['temp_id'] );
+
+				@$this->notificacao_model->insert_item( $new_id );
+
 				$status = "OK";
 				$msg = 'O Item foi incluído com sucesso';
 			} else {
