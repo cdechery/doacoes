@@ -416,7 +416,6 @@ class Usuario extends MY_Controller {
 		$this->load->helper('image');
 
 		$this->load->model('item_model');
-
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
 		
 		if( count($itens)==0 ) {
@@ -450,8 +449,10 @@ class Usuario extends MY_Controller {
 		}
 
 		$this->load->model('interesse_model');
-		
 		$result = $this->interesse_model->get( $this->login_data['user_id'] );
+
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
 
 		$this->load->view('head', array('title'=>'Interesses'));
 
@@ -463,7 +464,7 @@ class Usuario extends MY_Controller {
 			$interesses['data'][$int->id] = $int;
 		}
 
-		$this->load->view('interesse_form', array('interesses'=>$interesses));
+		$this->load->view('interesse_form', array('interesses'=>$interesses, 'categorias'=>$categorias));
 		
 		$this->load->view('foot');
 	}

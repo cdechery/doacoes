@@ -1,10 +1,10 @@
 <?php
 	
-	$labelBtn = "Desativar";
+	$labelBtn = "<i class='fa fa-square-o'></i>&nbsp;Desativar";
 	$itemstate = "";
 	
 	if( $interesse->fg_ativo == "N" ) {
-		$labelBtn = "Ativar";
+		$labelBtn = "<i class='fa fa-check-square-o'></i>&nbsp;Ativar";
 		$itemstate = "class='disabled'";
 	}
 

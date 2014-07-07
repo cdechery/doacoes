@@ -1,7 +1,7 @@
 <section id="map">
 	<div class="wrap960">
 
-		<button id="hide"><i class="fa fa-times"></i></button>
+		<button id="hide"><i class="fa fa-minus-square"></i></button>
 		
 		<div id="filtros">
 
@@ -38,7 +38,7 @@
 				?>
 			</div>
 
-			<button id="raios" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-circle-o"></i></button>
+			<button id="raios" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-bullseye"></i></button>
 		
 		</div>
 	</div>

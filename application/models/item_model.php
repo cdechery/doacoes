@@ -89,6 +89,15 @@ class Item_model extends MY_Model {
 		}
 	}
 
+	public function given( $id, $status ) {
+		$this->db->set('data_doacao', 'NOW()', false);
+		if($this->db->update('item', array('status'=>$status), array('id'=>$id))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function update( $item_data ) {
 		$upd_data = array(
 			'descricao' => $item_data['desc'],

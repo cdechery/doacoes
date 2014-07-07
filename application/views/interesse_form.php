@@ -4,7 +4,7 @@
 	$raios = $params['raios_busca'];
 	$selected = "";
 	$active = "blue";
-	$labelBtn = "Desativar";
+	$labelBtn = "<i class='fa fa-square-o'></i>&nbsp;Desativar";
 	$cor = "black";
 	$itemstate = "";
 	
@@ -18,6 +18,8 @@
 		$validade = $params['validade_interesse_inst'];
 	}
 
+	chromePhp::log($interesses);
+
 ?>
 
 <h2>Meus Interesses</h2>
@@ -25,11 +27,11 @@
 <p>Interesses são válidos por <?php echo $validade?> dias após a data de seu cadastro.<br>
 Após esse período serão excluídos automaticamente - podendo ser cadastrados novamente sem problemas.</p>
 
+<div align="center" id="interesses_none" style="display:<?php echo $display_inter_none?>;">
+	Não há nenhum Interesse cadastrado.
+</div>
+
 <div id="interesses">
-	
-	<div align="center" id="interesses_none" style="display:<?php echo $display_inter_none?>;">
-		Não há nenhum Interesse cadastrado.
-	</div>
 
 	<table>
 		
@@ -49,7 +51,7 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 			<?php if ($count !== 0) {
 				foreach ($interesses['data'] as $int) {
 					if( $int->fg_ativo == "N" ) {
-						$labelBtn = "Ativar";
+						$labelBtn = "<i class='fa fa-check-square-o'></i>&nbsp;Ativar";
 						$itemstate = "class='disabled'";
 						$active = "";
 					}
@@ -69,11 +71,11 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 					</td>
 					<td><?php echo $int->data; ?></td>
 					<td>
-						<button class="update_interesse_btn" data-catid="<?php echo $int->id?>">Atualizar</button>
+						<button class="update_interesse_btn" data-catid="<?php echo $int->id?>"><i class="fa fa-refresh"></i>&nbsp;Atualizar</button>
 						<button class="activ_interesse_btn <?php echo $active; ?>" data-catid="<?php echo $int->id?>"><?php echo $labelBtn?></button>
 					</td>
 				</tr>		
-			<?	}
+			<?php }
 			} ?>
 		</tbody>
 	</table>
@@ -84,10 +86,11 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 	<h3>Incluir novo&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></h3>
 	<label>Categoria</label>
 	<select name="categ">
-		<option value=""></option>
-		<option value="1">Roupas</option>
-		<option value="2">Móveis</option>
-		<option value="3">Brinquedos</option>
+		<?php
+			foreach ($categorias as $cat) {
+				echo '<option value="'.$cat->id.'">'.$cat->nome.'</option>';
+			}
+		?>
 	</select>&nbsp;&nbsp;
 	<label>Distância</label>
 	<select name="raio" style="width: 100px;">

@@ -184,6 +184,20 @@ class Item extends MY_Controller {
 		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
 	}
 
+	public function doado($id) {
+		$status = $this->input->post('status');
+		if($this->item_model->given($id, $status)) {
+			$result = "OK";
+			$statusvalue = $status;
+			$msg = 'O Item foi marcado como doado.';
+		} else {
+			$result = "ERROR";
+			$statusvalue = NULL;
+			$msg = 'O Item não foi marcado como doado.';
+		}
+		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
+	}
+
 	public function modificar( $item_id ) {
 		$msg = $this->check_owner($this->item_model, $item_id);
 		if( $msg ) {

@@ -65,11 +65,19 @@ function load_infowindow_content(infowindow, user_id){
 
 $(function() {
 
+	var showmap = true;
+
 	$('#map #hide').on('click', function(){
-		$('#map #filtros').toggle();
+		if(showmap == true) {
+			$('#map #filtros').toggle();
+			$(this).html('<i class="fa fa-plus-square"></i>');
+		} else {
+			$('#map #filtros').toggle();
+			$(this).html('<i class="fa fa-minus-square"></i>');
+		}
+		showmap = !showmap;
 	});
 
-	// menu drop down de usuário
 	$('#user-btn').on('mouseover', function(){
 		$('#user-menu').css('display','block').hover(
 			function() {
@@ -85,13 +93,11 @@ $(function() {
 		e.preventDefault();
 		$.post($("#pref_email").attr("action"),
 			$("#pref_email").serialize(), function(data) {
-
 			var json = myParseJSON( data );
-			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['dist_lbl_success'], 
+			if( json.status == "OK" ) {
+				new Messi(json.msg, {title: lang['dist_lbl_success'],
 					titleClass: 'anim success', modal: true,
 					buttons: [{id: 0, label: 'OK', val: 'S'}] });
-
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -104,7 +110,6 @@ $(function() {
 		e.preventDefault();
 		$.post($("#usuario_insert").attr("action"),
 			$("#usuario_insert").serialize(), function(data) {
-
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(lang['dist_newuser_ok2'], {title: lang['dist_lbl_success'], 
@@ -124,7 +129,6 @@ $(function() {
 		e.preventDefault();
 		$.post($("#usuario_update").attr("action"),
 			$("#usuario_update").serialize(), function(data) {
-
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'],
@@ -168,19 +172,12 @@ $(function() {
 
 	$('#item_insert').submit(function(e) {
 		e.preventDefault();
-		$.post($("#item_insert").attr("action"),
-			$("#item_insert").serialize(), function(data) {
+		$.post($("#item_insert").attr("action"), $("#item_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
-					titleClass: 'dist_lbl_success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}],
+					titleClass: 'dist_lbl_success', modal: true, buttons: [{id: 0, label: 'OK', val: 'S'}], 
 					callback: function(val) { location.href = site_root+'usuario/itens'; } });
-				
-				// var itemData = $.get( site_root +'item/get_single/'+json.item_id );
-				// itemData.success(function( data ){
-				// 	 console.log(data); // ver depois onde colocar
-				// });
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -193,7 +190,6 @@ $(function() {
 		e.preventDefault();
 		$.post($("#item_update").attr("action"),
 			$("#item_update").serialize(), function(data) {
-
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
@@ -218,9 +214,7 @@ $(function() {
 					if (val=='S') {
 						$.post(site_root+'item/delete/'+itemid, function(data){
 							var json = myParseJSON(data);
-							if (!json.status=="OK") {
-								// pára tudo
-							} else {
+							if (json.status=="OK") {
 								parentDiv.remove(); 
 							};
 						}).fail( function(){ general_error();} );
@@ -229,19 +223,19 @@ $(function() {
 			}
 		);
 		return false;
-	}); // delete item
+	});
 
 	$(document).on('click', '.item-modify', function(e) {
 		e.preventDefault();
 		var itemid = $(this).data('itemid');
 		location.href = site_root+'item/modificar/'+itemid;
 		return false;
-	}); // modify item
+	});
 
 	$(document).on('click', '.item-status', function(e){
 		e.preventDefault();
 		var btn = $(this);
-		var itemstatus = btn.data('status');
+		var itemstatus = btn.attr('data-status');
 		if (itemstatus == 'I') {
 			activ_deactiv_item(btn, '0');
 		} else {
@@ -250,22 +244,40 @@ $(function() {
 		return false;
 	});
 
+	$(document).on('click', '.item-doado', function(e){
+		e.preventDefault();
+		var btn = $(this);
+		var itemstatus = btn.attr('data-status');
+		if (itemstatus == 'D') {
+			new Messi('Este item já foi marcado como doado', { title: 'Atenção', titleClass: 'anim error', modal: false });
+		} else {
+			new Messi('Confirma que o item foi doado? Após marcar como doado você não poderá mais fazer alterações neste item.', {
+					title: 'Confirmar doação', 
+					titleClass: 'dist_lbl_success', 
+					modal: true, 
+					buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
+						if (val=='S') {
+							marca_item_doado(btn);
+						}
+					}
+				}
+			);
+		};
+		return false;
+	});
+
 	$('#interesse_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#interesse_insert").attr("action"),
 			$("#interesse_insert").serialize(), function(data) {
-
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: 'Interesse incluído com sucesso!',
-					titleClass: 'dist_lbl_success', modal: true });
-
+				new Messi(json.msg, {title: 'Interesse incluído com sucesso!', titleClass: 'dist_lbl_success', modal: true });
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
                 	$('#interesses_none').hide();
                     $('#interesses table').append(data);
                 });
-
 			} else {
 				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -284,12 +296,9 @@ $(function() {
 			dataType	: 'json',
 			success     : function (data) {
 				if ( data.status === "success" ) {
-					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!',
-						titleClass: 'dist_lbl_success', modal: true });
+					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!', titleClass: 'dist_lbl_success', modal: true });
 				} else {			
-					new Messi( data.msg, {title: lang['dist_lbl_error'],
-						titleClass: 'anim error',
-						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+					new Messi( data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
 				}
 			},
 			error : function (data, status, e) {
@@ -302,13 +311,13 @@ $(function() {
 	$(document).on('click', '.activ_interesse_btn', function(e) {
 		e.preventDefault();
 		var btn = $(this);
-		if( btn.html()=='Ativar' ) {
+		if( !btn.hasClass('blue') ) {
 			activ_deactiv_interesse(btn, 'activate');
 		} else {
 			activ_deactiv_interesse(btn, 'deactivate');
 		}
 		return false;
-	}); // delete
+	});
 
 	$(document).on('click', '.delete_file_link', function(e) {
 		e.preventDefault();
@@ -319,7 +328,7 @@ $(function() {
 			callback: function(val) { if(val=='S') delete_image(btn); }});
 
 		return false;
-	}); // delete
+	});
 
 });
 
@@ -332,7 +341,6 @@ function do_upload_item_image( img_id, isnew ) {
 	if( $('#id').val()==0 && isnew ) {
 		img_tag_id = 'img_'+img_id;
 		file_tag_id = 'file_'+img_id;
-
 		action = 'upload_temp_item_image';
 	} else if( $('#id').val()!=0 && isnew ) {
 		action = 'upload_item_image';
@@ -383,16 +391,16 @@ function do_upload_item_image( img_id, isnew ) {
 function activ_deactiv_interesse( btn, action ) {
 	$.ajax({
 		url         : site_root + 'interesse/'+action+'/'+btn.data('catid'),
-		contentType    : 'charset=utf-8',
-		dataType : 'json',
-		success : function (data) {
+		contentType : 'charset=utf-8',
+		dataType 	: 'json',
+		success 	: function (data) {
 			if ( data.status === "success" ) {
 				if( action=='activate' ) {
-					btn.html('Desativar');
+					btn.html('<i class="fa fa-square-o"></i>&nbsp;Desativar');
 					btn.addClass('blue');
 					btn.parents('tr').removeClass('disabled');
 				} else {
-					btn.html('Ativar');
+					btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Ativar');
 					btn.removeClass('blue');
 					btn.parents('tr').addClass('disabled');
 				}
@@ -418,23 +426,40 @@ function activ_deactiv_item(btn, action) {
 			new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
 				titleClass: 'dist_lbl_success', modal: true });
 			if (json.status === 'I') {
-				btn.addClass('active');
-				btn.html('<i class="fa fa-thumbs-o-up">');
-				btn.data('status', 'I');
-			} else {
 				btn.removeClass('active');
-				btn.html('<i class="fa fa-thumbs-o-down">');
-				btn.data('status', '0');
+				btn.html('<i class="fa fa-square-o"></i>&nbsp;Cancelar Item');
+				btn.attr('data-status', 'I');
+				btn.next().removeClass('disabled').attr('disabled', false);
+			} else {
+				btn.addClass('active');
+				btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Ativar Item');
+				btn.attr('data-status', '0');
+				btn.next().addClass('disabled').attr('disabled', true);
 			};
 		};
-	});
+	}).fail( function() { general_error(); } );;
 }
+
+function marca_item_doado(btn) {
+	$.post(site_root+'item/doado/'+btn.data('itemid'), { status: 'D' }, function(data) {
+		var json = myParseJSON( data );
+		if (json.result === "OK") {
+			new Messi(json.msg, { title: 'Doação realizada', titleClass: 'dist_lbl_success', modal: false });
+			btn.addClass('active');
+			btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Doado');
+			btn.attr('data-status', 'D');
+			btn.siblings('button').addClass('disabled').attr('disabled', true);
+		} else {
+			new Messi(json.msg, { title: 'Erro na atualização do item', titleClass: 'anim error', modal: false });
+		};
+	}).fail( function() { general_error(); } );
+};
 
 function delete_image( link ) {
 	$.ajax({
 		url         : site_root + 'image/delete_image/' + link.data('file_id'),
-		contentType    : 'charset=utf-8',
-		dataType : 'json',
+		contentType : 'charset=utf-8',
+		dataType 	: 'json',
 		success     : function (data) {
 			var images = $('#images');
 			if (data.status === "success") {

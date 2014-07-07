@@ -58,6 +58,13 @@ div.wrap960 {
 	.clearfix;
 }
 
+/* box fundo branco com rounded corners padrão */
+.roundbox {
+	background-color: #fff;
+	padding: 25px;
+	border-radius: 14px;
+}
+
 /* inicio estilos slonga */
 
 header#main {
@@ -109,7 +116,7 @@ header#main {
 				text-transform: none;
 				position: relative;
 				.button-size(6px, 12px, inherited, 12px, 4px);
-				.button-variant(#fff; @azulescuro; @azulescuro);
+				.button-variant(#fff; @azulescuro);
 			}
 		}
 		#user-menu {
@@ -173,7 +180,7 @@ section#map {
 			right: 100px;
 			border:none;
 			.button-size(6px, 12px, inherited, 12px, 4px);
-			.button-variant(#fff; #000; pink);
+			.button-variant(#fff; #000);
 			z-index: 4;
 		}
 		#filtros {
@@ -192,7 +199,7 @@ section#map {
 				font-size: .9em;
 				border:none;
 				.button-size(6px, 12px, inherited, 12px, 4px);
-				.button-variant(#fff; @azulescuro; @azulescuro);
+				.button-variant(#fff; @azulescuro);
 				&#raios {
 					background-color: #000;
 					position: absolute;
@@ -295,7 +302,7 @@ header#itens {
 		float: right;
 		font-weight: bold;
 		.button-size(6px, 12px, inherited, 12px, 4px);
-		.button-variant(#fff; @verde_botao; @verde_botao);
+		.button-variant(#fff; @verde_botao);
 	}
 	h2 {
 		float: left;
@@ -340,16 +347,23 @@ form#newitem {
 		bottom: 20px;
 		button {
 			border: none;
-			.button-size(6px, 12px, inherited, 12px, 4px);
-			.button-variant(#fff; @azulescuro; @azulescuro);
+			.button-size(6px, 12px, 14px, 1.2em, 4px);
+			.button-variant(@azulescuro; @azul);
 			&.item-modify {
 				background-color: @amarelo_botao;
+				color: #aa5c00;
 			}
 			&.item-status {
-				background-color: @azul;
+				/*background-color: @azul;
+				color: @azulescuro;*/
 			}
 			&.active {
 				background-color: @verde_botao!important;
+				color: #fff!important;
+			}
+			&.disabled {
+				background-color: #eee!important;
+				color: #666!important;
 			}
 		}
 	}
@@ -385,7 +399,7 @@ form#newitem {
 			border-bottom: 1px solid #ccc;
 		}
 		tr.disabled td {
-			color: @azulescuro;
+			color: #ccc;
 		}
 		tr:last-child td {
 			border-bottom: none;
@@ -394,7 +408,7 @@ form#newitem {
 	button {
 		border: none;
 		.button-size(6px, 12px, 14px, 1.2em, 4px);
-		.button-variant(#fff, @amarelo_botao, @amarelo_botao);
+		.button-variant(#fff, @amarelo_botao);
 		&.activ_interesse_btn {
 			background-color: @azulescuro;
 		}
@@ -408,7 +422,17 @@ form#newitem {
 #interesse_insert {
 	input[type=submit]{
 		.button-size(6px, 12px, inherited, 12px, 4px);
-		.button-variant(#fff; @verde_botao; @verde_botao);
+		.button-variant(#fff; @verde_botao);
+	}
+}
+
+/* prefs email */
+
+#pref_email {
+	label {
+		display: inline-block;
+		width: 50%;
+		margin-bottom: 10px;
 	}
 }
 
