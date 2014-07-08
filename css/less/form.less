@@ -11,7 +11,11 @@ http://getbootstrap.com/css/#forms-controls */
 label {
 	display: inline-block;
 	padding-right: 5px;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
+	font-size: .8em;
+	font-weight: 400;
+	color:@azulescuro;
+	text-transform: uppercase;
 }
 
 input[type=text],
@@ -20,9 +24,9 @@ textarea {
 	display: block;
 	/*width: 100%;*/
 	min-width: 40%;
-	height: 34px;
+	min-height: 34px;
 	padding: 6px 12px;
-	font-size: 14px;
+	font-size: .9em;
 	line-height: 1.42857143;
 	background-color: #fff;
 	background-image: none;
@@ -38,17 +42,14 @@ input[type=text]:disabled {
 }
 
 input[type=text]::-moz-placeholder { 
-	text-transform: uppercase;
 	color: #999; 
 	opacity: 1;
 }
 input[type=text]:-ms-input-placeholder { 
 	color: #999;
-	text-transform: uppercase;
 }
 input[type=text]::-webkit-input-placeholder { 
 	color: #999;
-	text-transform: uppercase;
 }
 
 /* botão submit padrão estilo bootstrap */
@@ -64,5 +65,5 @@ input[type=submit] {
 	border: 1px solid transparent;
 	white-space: nowrap;
 	.button-size(12px, 18px, 14px, 14px, 4px);
-	.button-variant(#fff; @azultopo);
+	.button-variant(#fff; @verde_botao);
 }

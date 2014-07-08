@@ -19,17 +19,17 @@ section {
 /* padrão design */
 
 a {
-	color: @azultopo;
+	color: @azulescuro;
 	text-decoration: none;
 }
 
 h2, h3 { /* header seção */
-	color: @azultopo;
+	color: @azulescuro;
 	font-weight: 900;
 }
 
 h3 {
-	font-weight: 400;
+	font-weight: 700;
 }
 
 @import 'grid.less';
@@ -63,6 +63,15 @@ div.wrap960 {
 	background-color: #fff;
 	padding: 25px;
 	border-radius: 14px;
+	min-height: 260px;
+}
+
+/* cols float padrão (par) */
+.col {
+	.column(6);
+	h4 {
+		margin: 0 0 10px;
+	}
 }
 
 /* inicio estilos slonga */
@@ -106,7 +115,8 @@ header#main {
 				> a {
 					color: #fff;
 					text-decoration: none;
-					font-size: .8em;
+					font-size: .7em;
+					font-weight: 700;
 					&:hover {
 						color: @azul;
 					}
@@ -115,19 +125,26 @@ header#main {
 			li#user-btn {
 				text-transform: none;
 				position: relative;
+				font-weight: 400;
 				.button-size(6px, 12px, inherited, 12px, 4px);
 				.button-variant(#fff; @azulescuro);
+				i {
+					color: yellow;
+				}
 			}
 		}
 		#user-menu {
 			display: none;
 			position: absolute;
 			top: 30px;
-			left:0;
+			right:-10px;
 			z-index: 5000;
-			width: 133px;
+			width: 150px;
 			background-color: #fff;
 			border-radius: 4px 4px 4px 4px;
+			-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
+			-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
+			box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
 			> ul {
 				list-style: none;
 				margin: 10px 0;
@@ -137,8 +154,9 @@ header#main {
 					margin:0 0 0 0;
 					text-align: left;
 					a {
-						color: #666;
+						color: @azulescuro;
 						font-size: .8em;
+						font-weight: 400;
 					}
 				}
 			}
@@ -178,14 +196,17 @@ section#map {
 			position: absolute;
 			top: 30px;
 			right: 100px;
-			border:none;
-			.button-size(6px, 12px, inherited, 12px, 4px);
-			.button-variant(#fff; #000);
 			z-index: 4;
+			width:40px;
+			height: 40px;
+			color: #fff;
+			text-align: center;
+			line-height: 2em;
+			cursor: pointer;
 		}
 		#filtros {
-			width: 425px;
-			min-height: 160px;
+			width: 400px;
+			min-height: 120px;
 			background-image: url('../images/bg_filtros.png');
 			border-radius: 6px;
 			padding: 20px;
@@ -193,18 +214,34 @@ section#map {
 			right: 100px;
 			top: 30px;
 			font-size: .9em;
+			font-weight: 400;
 			color: #fff;
 			z-index: 2;
+			p {
+				text-transform: uppercase;
+				font-size: .8em;
+			}
+			h4 {
+				margin: 0 0 10px;
+				color: @amarelo_botao;
+			}
+			div.col {
+				.column(2);
+				margin-bottom: 25px;
+			}
 			button {
-				font-size: .9em;
-				border:none;
+				font-size: .8em;
 				.button-size(6px, 12px, inherited, 12px, 4px);
 				.button-variant(#fff; @azulescuro);
-				&#raios {
-					background-color: #000;
-					position: absolute;
-					bottom: 20px;
-					right: 20px;
+			}
+			a#raios {
+				color: #fff;
+				display: inline-block;
+				position: absolute;
+				bottom: 20px;
+				right: 20px;
+				&:hover {
+					color: @amarelo_botao;
 				}
 			}
 		}
@@ -300,7 +337,7 @@ form#login + aside { /* ysado na página de login, por enquanto */
 header#itens {
 	.item-novo {
 		float: right;
-		font-weight: bold;
+		font-weight: 700;
 		.button-size(6px, 12px, inherited, 12px, 4px);
 		.button-variant(#fff; @verde_botao);
 	}
@@ -420,7 +457,8 @@ form#newitem {
 }
 
 #interesse_insert {
-	input[type=submit]{
+	button {
+		font-weight: 700;
 		.button-size(6px, 12px, inherited, 12px, 4px);
 		.button-variant(#fff; @verde_botao);
 	}
@@ -433,6 +471,8 @@ form#newitem {
 		display: inline-block;
 		width: 50%;
 		margin-bottom: 10px;
+		text-transform: none;
+		font-size: .9em;
 	}
 }
 

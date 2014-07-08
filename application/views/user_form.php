@@ -193,10 +193,6 @@ $sexoF = ($sexo=="F")?"checked":"";
 	</form>
 </div>
 
-<aside>
-	Preencha seu formulário rules para poder dar ou ganhar coisas.
-</aside>
-
 <script>
 	$( document ).ready(function() {
 		$(window).keydown(function(event){

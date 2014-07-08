@@ -28,7 +28,7 @@
 		<?php echo $interesse->data?>
 	</td>
 	<td>
-		<button class="update_interesse_btn" data-catid="<?php echo $interesse->id?>">Atualizar</button>
+		<button class="update_interesse_btn" data-catid="<?php echo $interesse->id?>"><i class="fa fa-refresh"></i>&nbsp;Atualizar</button>
 		<button class="activ_interesse_btn blue" data-catid="<?php echo $interesse->id?>"><?php echo $labelBtn?></button>
 	</td>
 </tr>

@@ -1,4 +1,7 @@
-<h2>Login</h2>
+<header>
+	<h2>Login</h2>
+	<a href="<?php echo base_url('usuario/novo')?>">Novo usuário?</a>
+</header>
 
 <div>
 	<h4 style="color: red;"><?php echo $msg?></h4>
@@ -24,10 +27,6 @@
 		<input type="submit" value="Enviar">
 	</div>
 </form>
-
-<aside>
-	<p><a href="<?php echo base_url('usuario/novo') ?>">Novo usuário?</a></p>
-</aside>
 
 <script>
 	$(document).ready(function() {

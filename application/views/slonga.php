@@ -1,44 +1,50 @@
 <section id="map">
 	<div class="wrap960">
 
-		<button id="hide"><i class="fa fa-minus-square"></i></button>
+		<div id="hide"><i class="fa fa-minus-square"></i></div>
 		
 		<div id="filtros">
 
 			<header>
-				Mostrar:&nbsp;&nbsp;
+				mostrar:&nbsp;&nbsp;
 				<button onClick="showAll();">Tudo</button>
 				<button onClick="showPeople();">Itens/Pessoas</button>
 				<button onClick="showInstitutions();">Instituições</button>
 			</header>
 
 			<div id="filtro_pessoas" style="display: none;">
-				<h4>Mostrar Apenas</h4>
-				<h5>Categorias</h5>
-				<?php
-					foreach ($categorias as $cat) {
-						echo "<input class='filtroPessoaCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$cat->nome."<br>";
-					}
-				?>
-				<h4>Situações</h4>
-				<?php
-					foreach ($situacoes as $sit) {
-						echo "<input class='filtroPessoaSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$sit->descricao."<br>";
-					}
-				?>
+				<p>filtrar:</p>
+				<div class="col">
+					<h4>Categorias</h4>
+					<?php
+						foreach ($categorias as $cat) {
+							echo "<input class='filtroPessoaCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$cat->nome."<br>";
+						}
+					?>
+				</div>
+				<div class="col">
+					<h4>Situações</h4>
+					<?php
+						foreach ($situacoes as $sit) {
+							echo "<input class='filtroPessoaSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$sit->descricao."<br>";
+						}
+					?>
+				</div>
 			</div>
 			
 			<div id="filtro_insts" style="display: none;">
-				<h4>Mostrar Apenas</h4>
-				<h4>Interessado em</h4>
-				<?php
-					foreach ($categorias as $cat) {
-						echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInst();'>&nbsp;&nbsp;".$cat->nome."<br>";
-					}
-				?>
+				<p>filtrar:</p>
+				<div class="col">
+					<h4>Interessado em</h4>
+					<?php
+						foreach ($categorias as $cat) {
+							echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInst();'>&nbsp;&nbsp;".$cat->nome."<br>";
+						}
+					?>
+				</div>
 			</div>
 
-			<button id="raios" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-bullseye"></i></button>
+			<a id="raios" href="#" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-bullseye"></i></a>
 		
 		</div>
 	</div>

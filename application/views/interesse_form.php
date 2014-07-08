@@ -18,8 +18,6 @@
 		$validade = $params['validade_interesse_inst'];
 	}
 
-	chromePhp::log($interesses);
-
 ?>
 
 <h2>Meus Interesses</h2>
@@ -83,7 +81,7 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 </div>
 
 <form method="post" id="interesse_insert" action="<?php echo base_url()?>interesse/insert">
-	<h3>Incluir novo&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></h3>
+	<h3>Incluir novo:</h3>
 	<label>Categoria</label>
 	<select name="categ">
 		<?php
@@ -100,5 +98,5 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 			}
 		?>
 	</select>&nbsp;&nbsp;
-	<input type="submit" value="Inserir">
+	<button><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>
 </form>
