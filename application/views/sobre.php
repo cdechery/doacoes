@@ -16,4 +16,4 @@
 <br clear="left">
 
 <h3>Contato para doações</h3>
-O site atua apenas como um grande cadastro de pessoas e itens disponíveis para doação. Mas todo contato e negociação para realização das coletas e ou entrega dos itens, é feito diretamente entre as pessoas. Ao identificar um item que lhe interessa, você envia uma mensagem ao proprietário, se ele decidir responder, a partir desse momento toda a comunicação é feita diretamente por email.
+<p>O site atua apenas como um grande cadastro de pessoas e itens disponíveis para doação. Mas todo contato e negociação para realização das coletas e ou entrega dos itens, é feito diretamente entre as pessoas. Ao identificar um item que lhe interessa, você envia uma mensagem ao proprietário, se ele decidir responder, a partir desse momento toda a comunicação é feita diretamente por email.</p>
