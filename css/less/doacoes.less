@@ -36,26 +36,21 @@ h3 {
 
 @import 'form.less';
 
-/* estrutura */
+/* class section padrão */
 
-body {
-	margin:0;
-	padding:0;
-	font-family: 'Lato', sans-serif;
-	font-size: 18px;
-	font-weight: 300;
-	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
-	background-color: @azul;
-	&#home {
-		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
+section.contents {
+	width: 100%;
+	padding: 25px 0 60px;
+	min-height: 300px;
+	/* entrelinha texto padrão */
+	p {
+		line-height: 1.5em;
 	}
-}
-
-div.wrap960 {
-	margin: 0 auto;
-	width: 960px;
-	position: relative;
-	.clearfix;
+	form {
+		h5:first-child {
+			display: none; /* mensagem de erro. TESTAR ISSO */
+		}
+	}
 }
 
 /* box fundo branco com rounded corners padrão */
@@ -74,6 +69,28 @@ div.wrap960 {
 	}
 }
 
+/* body */
+
+body {
+	margin:0;
+	padding:0;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px; /* tamanho padrão browsers */
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
+	background-color: @azul;
+	&#home {
+		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
+	}
+}
+
+div.wrap960 {
+	margin: 0 auto;
+	width: 960px;
+	position: relative;
+	.clearfix;
+}
+
 /* inicio estilos slonga */
 
 header#main {
@@ -90,8 +107,8 @@ header#main {
 	h1 {
 		margin: 16px 0 0;
 		display: inline-block;
-		font-size: 1.6em;
-		font-weight: 400;
+		font-size: 1.9em;
+		font-weight: 900;
 		a {
 			color: #fff;
 		}
@@ -115,8 +132,8 @@ header#main {
 				> a {
 					color: #fff;
 					text-decoration: none;
-					font-size: .7em;
-					font-weight: 700;
+					font-size: .8em;
+					font-weight: 900;
 					&:hover {
 						color: @azul;
 					}
@@ -125,7 +142,6 @@ header#main {
 			li#user-btn {
 				text-transform: none;
 				position: relative;
-				font-weight: 400;
 				.button-size(6px, 12px, inherited, 12px, 4px);
 				.button-variant(#fff; @azulescuro);
 				i {
@@ -155,34 +171,9 @@ header#main {
 					text-align: left;
 					a {
 						color: @azulescuro;
-						font-size: .8em;
-						font-weight: 400;
+						font-size: .9em;
 					}
 				}
-			}
-		}
-	}
-}
-
-/* class section padrão */
-
-section.contents {
-	width: 100%;
-	padding: 25px 0 60px;
-	min-height: 300px;
-	/* entrelinha texto padrão */
-	p {
-		line-height: 1.5em;
-	}
-	form {
-		h5:first-child {
-			display: none; /* mensagem de erro */
-		}
-		.form-group {
-			a.various { /* ? */
-				float: right;
-				padding-top: 20px;
-				font-size: .9em;
 			}
 		}
 	}
@@ -209,7 +200,7 @@ section#map {
 			cursor: pointer;
 		}
 		#filtros {
-			width: 400px;
+			width: 450px;
 			min-height: 120px;
 			background-image: url('../images/bg_filtros.png');
 			border-radius: 6px;
@@ -218,12 +209,10 @@ section#map {
 			right: 100px;
 			top: 30px;
 			font-size: .9em;
-			font-weight: 400;
 			color: #fff;
 			z-index: 2;
-			p {
-				text-transform: uppercase;
-				font-size: .8em;
+			header p {
+				margin:0 0 15px;
 			}
 			h4 {
 				margin: 0 0 10px;
@@ -231,11 +220,10 @@ section#map {
 			}
 			div.col {
 				.column(2);
-				margin-bottom: 25px;
+				margin: 25px 0;
 			}
 			button {
-				font-size: .8em;
-				.button-size(6px, 12px, inherited, 12px, 4px);
+				.button-size(6px, 12px, .8em, 12px, 4px);
 				.button-variant(#fff; @azulescuro);
 			}
 			a#raios {
@@ -278,9 +266,8 @@ section#map {
 section#home {
 	/*padding-top: 0;*/
 	p {
-		font-size: 1.1em;
+		font-size: 1.2em;
 		line-height: 1.8em;
-		font-weight: 300;
 		padding: 0 20px;
 		color: #000;
 		&:first-child {
@@ -307,7 +294,7 @@ form#login {
 	margin-left: 0;
 }
 
-form#login + aside { /* ysado na página de login, por enquanto */
+form#login + aside { /* usado na página de login, por enquanto */
 	.column(4);
 }
 
@@ -315,25 +302,16 @@ form#login + aside { /* ysado na página de login, por enquanto */
 
 #foto {
 	.column(3);
-	margin-left: 0;
 }
 
 #user-form {
-	.column(6);
+	.column(9);
+	margin-left: 0;
 	#map_canvas {
 		margin: 30px 0;
 		width: 420px;
 		height: 300px;
 	}
-}
-
-#user-form + aside {
-	.column(3);
-	border-radius: 6px;
-	padding: 20px;
-	background-color: @verde;
-	color: #fff;
-	font-size: .9em;
 }
 
 /* view item (diversas) */
@@ -476,7 +454,7 @@ form#newitem {
 		width: 50%;
 		margin-bottom: 10px;
 		text-transform: none;
-		font-size: .9em;
+		font-size: 1em;
 	}
 }
 

@@ -6,14 +6,14 @@
 		<div id="filtros">
 
 			<header>
-				mostrar:&nbsp;&nbsp;
-				<button onClick="showAll();">Tudo</button>
+				<p>Filtre o conteudo do mapa:</p>
+				<button onClick="showAll();">Mostrar Tudo</button>
 				<button onClick="showPeople();">Itens/Pessoas</button>
 				<button onClick="showInstitutions();">Instituições</button>
+				<button onClick="hideRadiusCircles();">Raios</button>
 			</header>
 
 			<div id="filtro_pessoas" style="display: none;">
-				<p>filtrar:</p>
 				<div class="col">
 					<h4>Categorias</h4>
 					<?php
@@ -33,7 +33,6 @@
 			</div>
 			
 			<div id="filtro_insts" style="display: none;">
-				<p>filtrar:</p>
 				<div class="col">
 					<h4>Interessado em</h4>
 					<?php
@@ -43,8 +42,6 @@
 					?>
 				</div>
 			</div>
-
-			<a id="raios" href="#" onClick="hideRadiusCircles();">Esconder/Mostrar Raios&nbsp;&nbsp;<i class="fa fa-bullseye"></i></a>
 		
 		</div>
 	</div>
