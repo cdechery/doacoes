@@ -52,7 +52,13 @@ class Slonga extends MY_Controller {
 			$marker['infowindow_content'] = 'Item';
 			$marker['clickable'] = true;
 			$marker['onclick'] = 'map.setCenter(event.latLng); map.panBy(0, -120);';
-			$marker['icon'] = base_url().'icons/pessoa.png';
+
+			if( $row->tipo=='P' ) {
+				$marker['icon'] = base_url().'icons/pessoa.png';
+			} else {
+				$marker['icon'] = base_url().'icons/inst.png';
+			}
+
 			$marker['id'] = $row->user_id;
 
 			$this->googlemaps->add_marker($marker);
@@ -75,7 +81,13 @@ class Slonga extends MY_Controller {
 			$marker['position'] = $user_data['lat'].', '.$user_data['lng'];
 			$marker['infowindow_content'] = 'Você';
 			$marker['clickable'] = false;
-			$marker['icon'] = base_url().'icons/active_user.png';
+
+			if( $row->tipo=='P' ) {
+				$marker['icon'] = base_url().'icons/active_pessoa.png';
+			} else {
+				$marker['icon'] = base_url().'icons/active_inst.png';
+			}
+
 			$marker['id'] = $user_data['id'];
 
 			$this->googlemaps->add_marker( $marker );

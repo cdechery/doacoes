@@ -21,8 +21,8 @@
 		<label>Assunto:</label>
 		<select name="assunto">
 			<option value=""></option>
-			<option value="duvida">DÃºvida</option>
-			<option value="critica">ReclamaÃ§Ã£o</option>
+			<option value="duvida">Dúvida</option>
+			<option value="critica">Reclamação</option>
 			<option value="problema">Erro no site</option>
 		</select>
 	</div>
