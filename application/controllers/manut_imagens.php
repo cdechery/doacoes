@@ -32,7 +32,7 @@ class Manut_imagens extends MY_Controller {
     		}
 		} else {
 			log_message('error',
-				'Não foi possível abrir o diretorio de imagens!');
+				'NÃ£o foi possÃ­vel abrir o diretorio de imagens!');
 			return;
 		}
 

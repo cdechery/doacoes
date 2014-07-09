@@ -22,11 +22,11 @@
 
 <h2>Meus Interesses</h2>
 
-<p>Interesses são válidos por <?php echo $validade?> dias após a data de seu cadastro.<br>
-Após esse período serão excluídos automaticamente - podendo ser cadastrados novamente sem problemas.</p>
+<p>Interesses sÃ£o vÃ¡lidos por <?php echo $validade?> dias apÃ³s a data de seu cadastro.<br>
+ApÃ³s esse perÃ­odo serÃ£o excluÃ­dos automaticamente - podendo ser cadastrados novamente sem problemas.</p>
 
 <div align="center" id="interesses_none" style="display:<?php echo $display_inter_none?>;">
-	Não há nenhum Interesse cadastrado.
+	NÃ£o hÃ¡ nenhum Interesse cadastrado.
 </div>
 
 <div id="interesses">
@@ -40,9 +40,9 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 		<thead>
 			<tr>
 				<th>Categoria</th>
-				<th>Distância</th>
-				<th>Data Inclusão</th>
-				<th>Ações</th>
+				<th>DistÃ¢ncia</th>
+				<th>Data InclusÃ£o</th>
+				<th>AÃ§Ãµes</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -90,7 +90,7 @@ Após esse período serão excluídos automaticamente - podendo ser cadastrados nova
 			}
 		?>
 	</select>&nbsp;&nbsp;
-	<label>Distância</label>
+	<label>DistÃ¢ncia</label>
 	<select name="raio" style="width: 100px;">
 		<?php
 			foreach($raios as $raio => $desc) {

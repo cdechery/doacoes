@@ -1,10 +1,3 @@
-$.ajaxSetup({
-	contentType: 'application/x-www-form-urlencoded; '+site_charset,
-	beforeSend: function(jqXHR) {
-		jqXHR.overrideMimeType('application/x-www-form-urlencoded; charset='+site_charset);
-	}
-});
-
 jQuery.extend({
     handleError: function( s, xhr, status, e ) {
         // If a local callback was specified, fire it
@@ -210,7 +203,7 @@ $(function() {
 		var parentDiv = $(this).parents('.item_single');
 		new Messi('Tem certeza que deseja remover este item?', {title: 'Remover item', 
 				titleClass: 'dist_lbl_success', modal: true,
-				buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
+				buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'NÃ£o', val: 'N'}], callback: function(val) { 
 					if (val=='S') {
 						$.post(site_root+'item/delete/'+itemid, function(data){
 							var json = myParseJSON(data);
@@ -249,13 +242,13 @@ $(function() {
 		var btn = $(this);
 		var itemstatus = btn.attr('data-status');
 		if (itemstatus == 'D') {
-			new Messi('Este item já foi marcado como doado', { title: 'Atenção', titleClass: 'anim error', modal: false });
+			new Messi('Este item jÃ¡ foi marcado como doado', { title: 'AtenÃ§Ã£o', titleClass: 'anim error', modal: false });
 		} else {
-			new Messi('Confirma que o item foi doado? Após marcar como doado você não poderá mais fazer alterações neste item.', {
-					title: 'Confirmar doação', 
+			new Messi('Confirma que o item foi doado? ApÃ³s marcar como doado vocÃª nÃ£o poderÃ¡ mais fazer alteraÃ§Ãµes neste item.', {
+					title: 'Confirmar doaÃ§Ã£o', 
 					titleClass: 'dist_lbl_success', 
 					modal: true, 
-					buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
+					buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'NÃ£o', val: 'N'}], callback: function(val) { 
 						if (val=='S') {
 							marca_item_doado(btn);
 						}
@@ -272,7 +265,7 @@ $(function() {
 			$("#interesse_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: 'Interesse incluído com sucesso!', titleClass: 'dist_lbl_success', modal: true });
+				new Messi(json.msg, {title: 'Interesse incluÃ­do com sucesso!', titleClass: 'dist_lbl_success', modal: true });
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
                 	$('#interesses_none').hide();
@@ -324,7 +317,7 @@ $(function() {
 		var btn = $(this);
 		new Messi(lang['dist_imgdel_confirm'], {modal: true,
 			buttons: [{id: 0, label: 'Sim', val: 'S'},
-			{id: 1, label: 'Não', val: 'N'}], 
+			{id: 1, label: 'NÃ£o', val: 'N'}], 
 			callback: function(val) { if(val=='S') delete_image(btn); }});
 
 		return false;
@@ -444,13 +437,13 @@ function marca_item_doado(btn) {
 	$.post(site_root+'item/doado/'+btn.data('itemid'), { status: 'D' }, function(data) {
 		var json = myParseJSON( data );
 		if (json.result === "OK") {
-			new Messi(json.msg, { title: 'Doação realizada', titleClass: 'dist_lbl_success', modal: false });
+			new Messi(json.msg, { title: 'DoaÃ§Ã£o realizada', titleClass: 'dist_lbl_success', modal: false });
 			btn.addClass('active');
 			btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Doado');
 			btn.attr('data-status', 'D');
 			btn.siblings('button').addClass('disabled').attr('disabled', true);
 		} else {
-			new Messi(json.msg, { title: 'Erro na atualização do item', titleClass: 'anim error', modal: false });
+			new Messi(json.msg, { title: 'Erro na atualizaÃ§Ã£o do item', titleClass: 'anim error', modal: false });
 		};
 	}).fail( function() { general_error(); } );
 };

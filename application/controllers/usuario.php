@@ -95,14 +95,14 @@ class Usuario extends MY_Controller {
 				$this->login_data['user_id']) ) {
 
 				$status = "OK";
-				$msg = "Preferências salvas com sucesso!";
+				$msg = "PreferÃªncias salvas com sucesso!";
 			} else {
 				$status = "ERRO";
-				$msg = "Ocorreu um erro ao salvar as preferências";
+				$msg = "Ocorreu um erro ao salvar as preferÃªncias";
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function escolhe_tipo() {
@@ -129,7 +129,7 @@ class Usuario extends MY_Controller {
 		$this->session->set_userdata('tipo_cadastro', $tipo);
 
 		if( $tipo!="P" && $tipo!="I" ) {
-			show_error('Tipo de Usuário inválido');
+			show_error('Tipo de UsuÃ¡rio invÃ¡lido');
 		}
 
 		$cust_js = array('js/jquery.plugin.min.js', 
@@ -182,8 +182,8 @@ class Usuario extends MY_Controller {
 			$this->form_validation->set_rules('nascimento', 'Nascimento', 'required|callback_bday_check');
 		}
 		$this->form_validation->set_rules('password', 'Senha', 'required|min_length[6]|max_length[8]');
-		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
-		$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
+		$this->form_validation->set_rules('password_2', 'ConfirmaÃ§Ã£o de senha', 'required|matches[password]');
+		$this->form_validation->set_rules('lat', 'LocalizaÃ§Ã£o (no Mapa)', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -206,7 +206,7 @@ class Usuario extends MY_Controller {
 			delete_cookie('FbRegPending');
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function modificar() {
@@ -258,8 +258,8 @@ class Usuario extends MY_Controller {
 			$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[3]|max_length[120]');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
 			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
-			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
-			$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
+			$this->form_validation->set_rules('password_2', 'ConfirmaÃ§Ã£o de senha', 'matches[password]');
+			$this->form_validation->set_rules('lat', 'LocalizaÃ§Ã£o (no Mapa)', 'required');
 
 			if( $user_data['tipo']=='P' ) { // Pessoa
 				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[3]|max_length[40]');
@@ -283,7 +283,7 @@ class Usuario extends MY_Controller {
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function reset_password() {
@@ -356,12 +356,12 @@ class Usuario extends MY_Controller {
 		        return TRUE;
 		    } else {
 				$this->form_validation->set_message('bday_check',
-					'Data de Nascimento inválida (formato dd/mm/yyyy)' );
+					'Data de Nascimento invÃ¡lida (formato dd/mm/yyyy)' );
 		        return FALSE;
 		    }
 		} else {
 			$this->form_validation->set_message('bday_check',
-				'Data de Nascimento inválida (formato dd/mm/yyyy)' );
+				'Data de Nascimento invÃ¡lida (formato dd/mm/yyyy)' );
 		    return FALSE;
 		}
 	}
@@ -397,14 +397,14 @@ class Usuario extends MY_Controller {
 			$ret = $this->usuario_model->update_lat_long($this->login_data['user_id'], $lat, $long);
 			if( $ret ) {
 				$status = "OK";
-				$msg = "Localização atualizada com sucesso";
+				$msg = "LocalizaÃ§Ã£o atualizada com sucesso";
 			} else {
 				$status = "ERRO";
-				$msg = "Não foi possível atualizar a localização";
+				$msg = "NÃ£o foi possÃ­vel atualizar a localizaÃ§Ã£o";
 			}
 		}
 		
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function itens() {

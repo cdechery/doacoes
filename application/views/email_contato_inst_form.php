@@ -15,7 +15,7 @@ De: <img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
 Para: <img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
 </p>
 <p>
-Assunto: <input type="text" name="assunto" value="Olá, <?php echo $to_user['nome']?>">
+Assunto: <input type="text" name="assunto" value="OlÃ¡, <?php echo $to_user['nome']?>">
 </p>
 <p>
 Mensagem: <textarea cols=40 rows=4 name="corpo" onFocus="this.value='';">Escreva aqui sua mensagem</textarea>

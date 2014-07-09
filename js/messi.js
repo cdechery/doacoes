@@ -2,7 +2,7 @@
  * jQuery Messi Plugin 1.3
  * https://github.com/marcosesperon/jquery-messi
  *
- * Copyright 2012, Marcos Esperón
+ * Copyright 2012, Marcos EsperÃ³n
  * http://marcosesperon.es
  *
  * Licensed under the MIT license:
@@ -19,7 +19,7 @@ function Messi(data, options) {
   _this.messi = jQuery(_this.template);
   _this.setContent(data);
   
-  // ajustamos el título
+  // ajustamos el tÃ­tulo
   if(_this.options.title == null) {
   
     jQuery('.messi-titlebox', _this.messi).remove();
@@ -72,7 +72,7 @@ function Messi(data, options) {
   
   };
   
-  // preparamos el botón de cerrar automáticamente
+  // preparamos el botÃ³n de cerrar automÃ¡ticamente
   if(_this.options.buttons.length === 0 && _this.options.title == null && !_this.options.autoclose) {
     
     if(_this.options.closeButton) {
@@ -96,7 +96,7 @@ function Messi(data, options) {
   // controlamos el redimensionamiento de la pantalla
   jQuery(window).bind('resize', function(){ _this.resize(); });
   
-  // configuramos el cierre automático
+  // configuramos el cierre automÃ¡tico
   if(_this.options.autoclose != null) {
     setTimeout(function(_this) {
       _this.hide();
@@ -151,7 +151,7 @@ Messi.prototype = {
     if(this.options.modal && this.modal != null) this.modal.show();
     this.messi.appendTo(document.body);
     
-    // obtenemos el centro de la pantalla si la opción de centrar está activada
+    // obtenemos el centro de la pantalla si la opciÃ³n de centrar estÃ¡ activada
     if(this.options.center) this.options.viewport = this.viewport(jQuery('.messi-box', this.messi));
     
     this.messi.css({top: this.options.viewport.top, left: this.options.viewport.left, 'z-index': this.options.zIndex + jQuery('.messi').length}).show().animate({opacity: 1}, 300);

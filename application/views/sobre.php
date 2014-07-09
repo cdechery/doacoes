@@ -1,19 +1,19 @@
-<h2>O que é?</h2>
-<p>O Interessa.org é um site para facilitar a doação, especialmente entre pessoas, daquelas coisas que não queremos mais, estão entulhando nossas casas mas pode interessar a alguém. Mas essas doações podem ser para instituições também, tais como ONGs, orfanatos, asilos, etc. Mas esse não é um site com foco na caridade, e sim numa alternativa ao desperdício e combate a <a href="http://pt.wikipedia.org/wiki/Obsolesc%C3%AAncia">obsolescência planejada</a> - com o foco na redução do consumo e reuso.
+<h2>O que Ã©?</h2>
+<p>O Interessa.org Ã© um site para facilitar a doaÃ§Ã£o, especialmente entre pessoas, daquelas coisas que nÃ£o queremos mais, estÃ£o entulhando nossas casas mas pode interessar a alguÃ©m. Mas essas doaÃ§Ãµes podem ser para instituiÃ§Ãµes tambÃ©m, tais como ONGs, orfanatos, asilos, etc. Mas esse nÃ£o Ã© um site com foco na caridade, e sim numa alternativa ao desperdÃ­cio e combate a <a href="http://pt.wikipedia.org/wiki/Obsolesc%C3%AAncia">obsolescÃªncia planejada</a> - com o foco na reduÃ§Ã£o do consumo e reuso.
 
 <h3>Como funciona?</h3>
 
 <div class="col roundbox">
 	<h4>para pessoas:</h4>
-	<p>Se você estiver procurando alguém interessado em algo que você não precisa ou não usa mais, basta você se cadastrar, depois incluir os itens que tem aí sobrando e acumulando pó. No mapa você consegue filtrar as pessoas interessadas nas categorias de item que você cadastrou. Se elas tiverem 'Interesses' cadastrados, serão avisadas automaticamente das coisas que você cadastrar.
+	<p>Se vocÃª estiver procurando alguÃ©m interessado em algo que vocÃª nÃ£o precisa ou nÃ£o usa mais, basta vocÃª se cadastrar, depois incluir os itens que tem aÃ­ sobrando e acumulando pÃ³. No mapa vocÃª consegue filtrar as pessoas interessadas nas categorias de item que vocÃª cadastrou. Se elas tiverem 'Interesses' cadastrados, serÃ£o avisadas automaticamente das coisas que vocÃª cadastrar.
 </div>
 
 <div class="col roundbox">
-	<h4>para instituições:</h4>
-	<p>Usuário cadastrados como Instituição não cadastram itens para doação. Apenas registram os Interesses, indicando as categorias e distância máxima. Toda vez que um item novo for cadastrado naquela categoria, e dentro da distância escolhida, serão avisados, e podem entrar em contato com os doadores.	
+	<h4>para instituiÃ§Ãµes:</h4>
+	<p>UsuÃ¡rio cadastrados como InstituiÃ§Ã£o nÃ£o cadastram itens para doaÃ§Ã£o. Apenas registram os Interesses, indicando as categorias e distÃ¢ncia mÃ¡xima. Toda vez que um item novo for cadastrado naquela categoria, e dentro da distÃ¢ncia escolhida, serÃ£o avisados, e podem entrar em contato com os doadores.	
 </div>
 
 <br clear="left">
 
-<h3>Contato para doações</h3>
-<p>O site atua apenas como um grande cadastro de pessoas, instituições e itens disponíveis para doação. Todo contato e negociação para realização das coletas e ou entrega dos itens, é feito diretamente entre as pessoas - e o Interessa.org facilita (e protege) esse primeiro contato. Ao identificar um item que lhe interessa, por exemplo, você envia uma mensagem ao proprietário, se ele decidir responder, a partir desse momento toda a comunicação é feita diretamente por email.</p>
+<h3>Contato para doaÃ§Ãµes</h3>
+<p>O site atua apenas como um grande cadastro de pessoas, instituiÃ§Ãµes e itens disponÃ­veis para doaÃ§Ã£o. Todo contato e negociaÃ§Ã£o para realizaÃ§Ã£o das coletas e ou entrega dos itens, Ã© feito diretamente entre as pessoas - e o Interessa.org facilita (e protege) esse primeiro contato. Ao identificar um item que lhe interessa, por exemplo, vocÃª envia uma mensagem ao proprietÃ¡rio, se ele decidir responder, a partir desse momento toda a comunicaÃ§Ã£o Ã© feita diretamente por email.</p>

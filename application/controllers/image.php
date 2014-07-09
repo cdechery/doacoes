@@ -25,7 +25,7 @@ class Image extends MY_Controller {
 			$status = "error";
 			$msg = xlang('dist_errsess_expire');
 			echo json_encode(array('status' => $status,
-				'msg' => utf8_encode($msg), "file_id" => $file_id) );
+				'msg' => $msg, "file_id" => $file_id) );
 			return;
 		}
 
@@ -43,7 +43,7 @@ class Image extends MY_Controller {
 
 		if ( !$this->upload->do_upload( $file_element_name ) ) 	{
 			$status = "error";
-			$msg =  utf8_encode( $this->upload->display_errors('','') );
+			$msg = $this->upload->display_errors('','');
 		} else {
 			$udata = $this->upload->data();
 
@@ -86,7 +86,6 @@ class Image extends MY_Controller {
 			}
 		}
 
-		$msg = utf8_encode($msg);
 		echo json_encode(array('status' => $status, 'msg' => $msg,
 			"file_id" => $file_id) );
 	} // upload_marker_imagem
@@ -96,7 +95,7 @@ class Image extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "error";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode( array('status' => $status, 'msg' => utf8_encode($msg)) );
+			echo json_encode( array('status' => $status, 'msg' => $msg) );
 			return;
 		}
 
@@ -149,7 +148,6 @@ class Image extends MY_Controller {
 			}
 		}
 
-		$msg = utf8_encode($msg);
 		echo json_encode(array('status' => $status, 'msg' => $msg, "img_src" => $img_src) );
 	} // upload_marker_imagem
 
@@ -157,7 +155,7 @@ class Image extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "error";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode( array('status' => $status, 'msg' => utf8_encode($msg)) );
+			echo json_encode( array('status' => $status, 'msg' => $msg) );
 			return;
 		}
 
@@ -170,9 +168,8 @@ class Image extends MY_Controller {
 			$status = "success";
 			$msg = xlang('dist_imgdel_ok');
 		}
-		$msg = utf8_encode( $msg );
 		echo json_encode( array('status' => $status,
-			'msg' => utf8_encode($msg)) );
+			'msg' => $msg) );
 	}
 
 	public function get_image($image_id) {

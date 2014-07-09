@@ -32,7 +32,7 @@
 
 	$lblTipo = "Pessoa";
 	if( $tipo=="I" ) { // Instituicao
-		$lblTipo = "Instituição";
+		$lblTipo = "InstituiÃ§Ã£o";
 	}
 ?>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places"></script>
@@ -54,7 +54,7 @@ function createMarker( markerOptions ) {
 	}
 
 	var marker = new google.maps.Marker( markerOptions );
-	marker.set("content", "Sua localização");
+	marker.set("content", "Sua localizaÃ§Ã£o");
 
 	userLocMarker = marker;
 	google.maps.event.addListener(marker, "dragend", function(event) {
@@ -109,7 +109,7 @@ window.onload = initialize;
 <?php
 	if( $fromFacebook ) {
 ?>
-	new Messi('Para finalizar o cadastro, precisamos de mais algumas informações');
+	new Messi('Para finalizar o cadastro, precisamos de mais algumas informaÃ§Ãµes');
 <?php	
 	}
 ?>
@@ -168,8 +168,8 @@ $sexoF = ($sexo=="F")?"checked":"";
 			</div>
 		</div>
 		<div class="form-group">
-			<label>Localização</label>
-			<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
+			<label>LocalizaÃ§Ã£o</label>
+			<input type="text" id="myPlaceTextBox" placeholder="Digite sua localizaÃ§Ã£o" />
 		</div>
 		<div id="map_canvas"></div>
 		<div class="form-group">

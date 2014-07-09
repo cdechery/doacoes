@@ -1,10 +1,10 @@
-<p>Você está criando um cadastro novo para:</p>
+<p>VocÃª estÃ¡ criando um cadastro novo para:</p>
 
 <ul>
 	<li>
-		<a href="<?php echo base_url('usuario/novo/P')?>">Pessoa</a> - para <strong>fazer</strong> doações
+		<a href="<?php echo base_url('usuario/novo/P')?>">Pessoa</a> - para <strong>fazer</strong> doaÃ§Ãµes
 	</li>
 	<li>
-		<a href="<?php echo base_url('usuario/novo/I')?>">Instituição</a> - para <strong>receber</strong> doações
+		<a href="<?php echo base_url('usuario/novo/I')?>">InstituiÃ§Ã£o</a> - para <strong>receber</strong> doaÃ§Ãµes
 	</li>
 </ul>

@@ -22,13 +22,13 @@
 		<?php
 			$centro = $params['mapa']['default_loc_name'];
 			if( $login_data['logged_in'] ) {
-				$centro = "Sua localização";
+				$centro = "Sua localizaÃ§Ã£o";
 			}
 		?>
 			Exibindo: <div id="exibindo_mapa"><?php echo $centro?></div><br>
 			<input type="text" style="color: black;" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
 		<?php if( $login_data['logged_in']) : ?>
-			Retornar para <a href="#" onClick="map.setCenter( user_location );">Sua localização</a>
+			Retornar para <a href="#" onClick="map.setCenter( user_location );">Sua localizaÃ§Ã£o</a>
 		<?php endif; ?>
 		</div>
 		
@@ -38,7 +38,7 @@
 				<p>Filtre o conteudo do mapa:</p>
 				<button onClick="showAll();">Mostrar Tudo</button>
 				<button onClick="showPeople();">Itens/Pessoas</button>
-				<button onClick="showInstitutions();">Instituições</button>
+				<button onClick="showInstitutions();">InstituiÃ§Ãµes</button>
 				<button onClick="hideRadiusCircles();">Raios</button>
 			</header>
 
@@ -52,7 +52,7 @@
 					?>
 				</div>
 				<div class="col">
-					<h4>Situações</h4>
+					<h4>SituaÃ§Ãµes</h4>
 					<?php
 						foreach ($situacoes as $sit) {
 							echo "<input class='filtroPessoaSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$sit->descricao."<br>";
@@ -85,7 +85,7 @@
 <section id="home" class="contents">
 	<div class="wrap960">
 		<?php if( !$login_data["logged_in"] ) { ?>
-			<p>Bem-vindo ao Interessa.org. Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
+			<p>Bem-vindo ao Interessa.org. Se vocÃª tem algo sobrando na sua casa e estÃ¡ procurando para quem doar, esse Ã© o lugar para vocÃª. Fique a vontade para procurar tudo que estiver disponÃ­vel para doaÃ§Ã£o e entrar em contato com o doador. O objetivo aqui Ã© facilitar a vida de pessoas e instituiÃ§Ãµes a se encontrarem e doar o que nÃ£o mais serve para quem Interessa.</p>
 			<div id="botoes">
 				<a href="<?php echo base_url('login')?>" id="tenho" class="btn-gradient">
 					<span>Fazer Login</span>
