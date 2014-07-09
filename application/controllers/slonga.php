@@ -10,13 +10,19 @@ class Slonga extends MY_Controller {
 		
 		$this->load->library('googlemaps');
 		$config = array();
-		$config['center'] = '-22.9035,-43.2096';
+		$config['center'] = $this->params['mapa']['default_loc'];
 		$config['zoom'] = 'auto';	
 		$config['geocodeCaching'] = FALSE;
 		$config['minifyJS'] = TRUE;
 		$config['places'] = FALSE;
 		$config['cluster'] = FALSE;
 		$config['sensor'] = TRUE;
+		$config['places'] = TRUE;
+		$config['disableMapTypeControl'] = TRUE;
+		$config['disableStreetViewControl'] = TRUE;
+		$config['placesAutocompleteInputID'] = 'mapCenterTextBox';
+		$config['placesAutocompleteBoundsMap'] = TRUE; // set results biased towards the maps viewport
+		$config['placesAutocompleteOnChange'] = 'var place = placesAutocomplete.getPlace(); map.setCenter( place.geometry.location ); $(\'#exibindo_mapa\').html( place.address_components[0].long_name ); console.log( place );';
 
 		$config['map_width'] = '90%';
 		$config['map_height'] = '500px';
@@ -73,12 +79,15 @@ class Slonga extends MY_Controller {
 			$markers_created[] = $row->user_id;
 		}
 
+		$user_location = "";
 		if( $this->is_user_logged_in ) {
 			$this->load->model('usuario_model');
 			$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
 
 			$marker = array();
 			$marker['position'] = $user_data['lat'].', '.$user_data['lng'];
+			$user_location = $marker['position'];
+
 			$marker['infowindow_content'] = 'Você';
 			$marker['clickable'] = false;
 
@@ -116,6 +125,7 @@ class Slonga extends MY_Controller {
 		}
 
 		$custom_js_global .= "var num_circles = ".count($this->googlemaps->circles).";";
+		$custom_js_global .= "var user_location = new google.maps.LatLng( ".$user_location." );";
 
 		$config['custom_js_global'] = $custom_js_global;
 		$config['custom_js_init'] = $custom_js_init;

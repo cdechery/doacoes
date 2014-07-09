@@ -1,7 +1,36 @@
+<style>
+#busca_mapa {
+	width:350px;
+	background-color: gray;
+	min-height:90px;
+	background-image:url('../images/bg_filtros.png');
+	border-radius:6px;
+	padding:15px;
+	position:absolute;
+	left:150px;
+	top:30px;
+	font-size:.9em;
+	color:#fff;z-index:2
+}
+</style>
 <section id="map">
 	<div class="wrap960">
 
 		<div id="hide"><i class="fa fa-minus-square"></i></div>
+
+		<div id="busca_mapa">
+		<?php
+			$centro = $params['mapa']['default_loc_name'];
+			if( $login_data['logged_in'] ) {
+				$centro = "Sua localização";
+			}
+		?>
+			Exibindo: <div id="exibindo_mapa"><?php echo $centro?></div><br>
+			<input type="text" style="color: black;" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
+		<?php if( $login_data['logged_in']) : ?>
+			Retornar para <a href="#" onClick="map.setCenter( user_location );">Sua localização</a>
+		<?php endif; ?>
+		</div>
 		
 		<div id="filtros">
 
@@ -56,11 +85,7 @@
 <section id="home" class="contents">
 	<div class="wrap960">
 		<?php if( !$login_data["logged_in"] ) { ?>
-			<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
-	girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-	Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
-	significa nadis i pareci latim. Interessantiss quisso pudia ce receita de
-	bolis, mais bolis eu num gostis.</p>
+			<p>Bem-vindo ao Interessa.org. Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
 			<div id="botoes">
 				<a href="<?php echo base_url('login')?>" id="tenho" class="btn-gradient">
 					<span>Fazer Login</span>

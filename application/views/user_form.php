@@ -67,7 +67,7 @@ function createMarker( markerOptions ) {
 
 function initialize() {
 	
-	var myLatlng = new google.maps.LatLng(-22.9035,-43.2096);
+	var myLatlng = new google.maps.LatLng( <?php echo $params['mapa']['default_loc']?> );
 	var myOptions = {
   		zoom: 13,
 		center: myLatlng,

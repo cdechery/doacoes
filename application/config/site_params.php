@@ -15,6 +15,8 @@ $config['site_params'] = array(
 		'25' => '25 km',
 		'50' => '50 km'
 		),
+	'mapa' => array('default_loc'=>'-22.9035,-43.2096',
+		'default_loc_name'=>'Rio de Janeiro'),
 	'erro_generico' => 'Ocorreu um erro inesperado',
 	'erro_acesso' => 'Acesso negado',
 	'titulo_site' => 'Interessa',
