@@ -1,5 +1,20 @@
 @import 'variaveis.less';
 
+/* body */
+
+body {
+	margin:0;
+	padding:0;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px; /* tamanho padrão browsers */
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
+	background-color: @azul;
+	&#home {
+		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
+	}
+}
+
 /* meu normalize. ver se já não existe isso no normalize.css */
 
 div, aside, h1, section {
@@ -28,6 +43,10 @@ h2, h3 { /* header seção */
 	font-weight: 900;
 }
 
+h2:first-child, h3:first-child {
+	margin-top: 0;
+}
+
 h3 {
 	font-weight: 700;
 }
@@ -42,6 +61,8 @@ section.contents {
 	width: 100%;
 	padding: 25px 0 60px;
 	min-height: 300px;
+	/* tamanho texto padráo. ver depois. 
+	font-size: 1.2em; */
 	/* entrelinha texto padrão */
 	p {
 		line-height: 1.5em;
@@ -66,21 +87,6 @@ section.contents {
 	.column(6);
 	h4 {
 		margin: 0 0 10px;
-	}
-}
-
-/* body */
-
-body {
-	margin:0;
-	padding:0;
-	font-family: 'Lato', sans-serif;
-	font-size: 16px; /* tamanho padrão browsers */
-	font-weight: 400;
-	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
-	background-color: @azul;
-	&#home {
-		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
 	}
 }
 
@@ -199,6 +205,18 @@ section#map {
 			line-height: 2em;
 			cursor: pointer;
 		}
+		#busca_mapa {
+			margin-top: 20px;
+			input[type=text] {
+				min-height: none;
+				min-width: 200px;
+				padding: 0 12px;
+				line-height: .8;
+			}
+			span {
+				font-weight: 700;
+			}
+		}
 		#filtros {
 			width: 450px;
 			min-height: 120px;
@@ -255,6 +273,7 @@ section#map {
 				display: inline-block;
 				border:1px solid #ccc;
 				margin-right: 10px;
+				line-height: .8em;
 			}
 
 		}
@@ -264,7 +283,9 @@ section#map {
 /* section home (texto, botões login, etc) */
 
 section#home {
-	/*padding-top: 0;*/
+	.wrap960 {
+		margin-top: 10px; /* afastar título texto do mapa */
+	}
 	p {
 		font-size: 1.2em;
 		line-height: 1.8em;
@@ -458,10 +479,63 @@ form#newitem {
 	}
 }
 
-/* tables */
+/* fancybox 'quero item' */
+
+.fancybox-item {
+	.label {
+		margin: 0 0;
+		font-size: .9em;
+		color:#ccc;
+		text-transform: uppercase;
+		& + p {
+			margin: 0;
+		}
+	}
+	h3 {
+		margin:0 0 10px;
+		padding: 0;
+	}
+	input[type=text] {
+		min-width: 200px;
+		padding: 0 12px;
+		line-height: .8;
+	}
+	input[type="button"] {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-weight: 700;
+		.button-size(10px, 14px, inherited, 12px, 4px);
+		.button-variant(#fff; @verde_botao);
+	}
+	.imgs {
+		margin: 20px 0;
+		img {
+			border:1px solid #ccc;
+			margin-right: 10px;
+		}
+	}
+	.fancybox-nav {
+		width: 60px;
+		span {
+			visibility: visible;
+			opacity: 0.5;
+		}
+		&:hover span {
+			opacity: 1;
+		}
+	}
+	.fancybox-next {
+		right: -60px;
+	}
+	.fancybox-prev {
+		left: -60px;
+	}
+}
+
+/* footer */
 
 footer {
-	/*background-color: @verde;*/
 }
 
 /* CLEARFIX */

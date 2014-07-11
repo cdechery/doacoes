@@ -38,7 +38,7 @@ if( $action!="insert" ) {
 <?php
 	} // for item imagens do item
 
-	if( $num_imgs < $max_imgs ) { // existem imagens, é um update
+	if( $num_imgs < $max_imgs ) { // existem imagens, Ã© um update
 		for($i=$num_imgs; $i<$max_imgs; $i++) {
 ?>
 			<input type="file" name="item_file_<?php echo $i?>" style="display: none;" id="item_file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);" />
@@ -84,9 +84,9 @@ if( $action!="insert" ) {
 			</select>
 		</div>
 		<div class="form-group">
-			<label>Situação:</label>
+			<label>SituaÃ§Ã£o:</label>
 			<select name="sit">
-				<option value="">Situação</option>
+				<option value="">SituaÃ§Ã£o</option>
 				<?php
 					$selected = "";
 					foreach ($situacoes as $sit) {
@@ -98,11 +98,11 @@ if( $action!="insert" ) {
 		</div>
 		<div class="form-group">
 			<label>Nome do item:</label>
-			<input type="text" name="titulo" value="<?php echo $titulo ?>" size="50" title="Título" />
+			<input type="text" name="titulo" value="<?php echo $titulo ?>" title="TÃ­tulo" />
 		</div>
 		<div class="form-group">
-			<label>Descrição:</label>
-			<textarea name="desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
+			<label>DescriÃ§Ã£o:</label>
+			<textarea name="desc" title="DescriÃ§Ã£o" rows="6" cols="50"/><?php echo $descricao?></textarea>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>

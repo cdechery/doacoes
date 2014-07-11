@@ -42,10 +42,12 @@
 <title><?php echo $title; ?></title>
 </head>
 <script>
-$(document).ready(function() { // pra quê?
+$(document).ready(function() {
 	$(".itembox").fancybox({
-		maxWidth	: 500,
-		maxHeight	: 400,
+		wrapCSS		: 'fancybox-item',
+		padding		: 25,
+		maxWidth	: 300,
+		maxHeight	: 410,
 		fitToView	: false,
 		width		: '90%',
 		height		: '90%',
@@ -57,28 +59,7 @@ $(document).ready(function() { // pra quê?
 	});
 })
 </script>
-<style>
-.fancybox-nav {
-    width: 60px;       
-}
 
-.fancybox-nav span {
-    visibility: visible;
-    opacity: 0.5;
-}
-
-.fancybox-nav:hover span {
-    opacity: 1;
-}
-
-.fancybox-next {
-    right: -60px;
-}
-
-.fancybox-prev {
-    left: -60px;
-}
-</style>
 <body id="home">
 <header id="main">
 	<div class="wrap960">

@@ -3,9 +3,6 @@
 	$maxItems = 3;
 	$path = $params['upload']['path'];
 	$width = "300";
-	/*if( isset($data['images']) && count($data['images'])>2 ) {
-		$width = "400";
-	}*/
 
 	$avatar = user_avatar( $udata['avatar'], 40 );
 
@@ -33,9 +30,9 @@
 		if( $numItems>$maxItems ) break;
 		if( isset($item['imagens']) ) {
 			$thumb = thumb_filename($item['imagens'][0], 60);
-			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens' title='".$item['descricao']."'><img src='".base_url()."files/".$thumb."''></a>";
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."files/".$thumb."''></a>";
 		} else {
-			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens' title='".$item['descricao']."'><img src='".base_url()."images/default_item_img.gif' style='width:60px;height:60px;'></a>";
+			echo "<a href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."images/default_item_img.gif' style='width:60px;height:60px;'></a>";
 		}
 	}
 

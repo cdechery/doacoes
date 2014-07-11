@@ -67,7 +67,7 @@
 								<?php endif; ?>
 								<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
 								<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
-								<li><a href="<?php echo base_url('usuario/pref_email')?>">Preferências de email</a></li>
+								<li><a href="<?php echo base_url('usuario/pref_email')?>">PreferÃªncias de email</a></li>
 								<li><a href="<?php echo base_url('usuario/logout')?>">Logout</a></li>
 							</ul>
 						</div>

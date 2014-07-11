@@ -1,6 +1,6 @@
 <header>
 	<h2>Login</h2>
-	<a href="<?php echo base_url('usuario/novo')?>">Novo usu·rio?</a>
+	<a href="<?php echo base_url('usuario/novo')?>">Novo usu√°rio?</a>
 </header>
 
 <div>
@@ -10,7 +10,7 @@
 <form id="login" method="post" action="<?php echo base_url()?>login/verificar">
 	<input type="hidden" name="next" value="<?php echo $next?>">
 	<div class="form-group">
-		<label>Usu·rio: </label>
+		<label>Usu√°rio: </label>
 		<input type="text" name="login" id="login" />
 	</div>
 	<div class="form-group">

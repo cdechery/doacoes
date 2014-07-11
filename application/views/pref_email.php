@@ -5,7 +5,7 @@
 	$fg_de_pessoa_email = ($data['fg_de_pessoa_email']=='S')?'checked':'';
 ?>
 
-<h2>Preferências de email</h2>
+<h2>PreferÃªncias de email</h2>
 
 <p>Selecione abaixo quais emails deseja receber.</p>
 
@@ -15,7 +15,7 @@
 	
 		<label>Receber avisos gerais do site</label> <input type="checkbox" <?php echo $fg_geral_email?> name="fg_geral_email" value="<?php echo $data['fg_geral_email']?>"><br>
 		<label>Receber avisos relacioandos aos seus Interesses</label> <input type="checkbox" <?php echo $fg_notif_int_email?> name="fg_notif_int_email" value="<?php echo $data['fg_notif_int_email']?>"><br>
-		<label>Receber emails de contato de Instituições</label> <input type="checkbox" <?php echo $fg_de_inst_email?> name="fg_de_inst_email" value="<?php echo $data['fg_de_inst_email']?>"><br>
+		<label>Receber emails de contato de InstituiÃ§Ãµes</label> <input type="checkbox" <?php echo $fg_de_inst_email?> name="fg_de_inst_email" value="<?php echo $data['fg_de_inst_email']?>"><br>
 		<label>Receber emails de contato de Pessoas</label> <input type="checkbox" <?php echo $fg_de_pessoa_email?> name="fg_de_pessoa_email" value="<?php echo $data['fg_de_pessoa_email']?>"><br>
 
 		<br>

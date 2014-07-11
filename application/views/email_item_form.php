@@ -1,25 +1,32 @@
 <?php
 	$avatar_from = $avatar_to = "";
-	$avatar_from = user_avatar($from_user['avatar'], 80);
-	$avatar_to = user_avatar($to_user['avatar'], 80);
+	$avatar_from = user_avatar($from_user['avatar'], 40);
+	$avatar_to = user_avatar($to_user['avatar'], 40);
 ?>
 <form method="POST" id="email_queroitem" action="<?php echo base_url('email/enviar_quer_item')?>">
-<input type="hidden" name="de_email" value="<?php echo $from_user['email']?>">
-<input type="hidden" name="de_nome" value="<?php echo $from_user['nome']?>">
-<input type="hidden" name="para_email" value="<?php echo $to_user['email']?>">
-<input type="hidden" name="para_nome" value="<?php echo $to_user['nome']?>">
-<input type="hidden" name="item_id" value="<?php echo $item['id']?>">
-<p>
-De: <img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
-</p>
-<p>
-Para: <img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
-</p>
-<p>
-Assunto: <input type="text" name="assunto" value="Eu quero o <?php echo $item['titulo']?>">
-</p>
-<p>
-Mensagem: <textarea cols=40 rows=4 name="corpo" onFocus="this.value='';">Escreva algo aqui para o doador (opcional)</textarea>
-</p>
-<input type="submit" value="Enviar">
+	<input type="hidden" name="de_email" value="<?php echo $from_user['email']?>">
+	<input type="hidden" name="de_nome" value="<?php echo $from_user['nome']?>">
+	<input type="hidden" name="para_email" value="<?php echo $to_user['email']?>">
+	<input type="hidden" name="para_nome" value="<?php echo $to_user['nome']?>">
+	<input type="hidden" name="item_id" value="<?php echo $item['id']?>">
+	<div class="form-group">
+		<label>De:</label>
+		<img src="<?php echo $avatar_from?>"> <?php echo $from_user['nome']?>
+	</div>
+	<div class="form-group">
+		<label>Para:</label>
+		<img src="<?php echo $avatar_to?>"> <?php echo $to_user['nome']?>
+	</div>
+	
+	<div class="form-group">
+		<label>Assunto: </label>
+		<input type="text" name="assunto" placeholder="Eu quero o <?php echo $item['titulo']?>">
+	</div>
+	<div class="form-group">
+		<label>Mensagem (opcional): </label>
+		<textarea cols="30" rows="4" name="corpo"></textarea>
+	</div>
+	<div class="form-group submit">
+		<input type="submit" value="Enviar">
+	</div>
 </form>
