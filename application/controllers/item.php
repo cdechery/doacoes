@@ -31,8 +31,8 @@ class Item extends MY_Controller {
 		}
 
 		if( $this->login_data['type']!='P' ) {
-			show_error('Apenas Pessoas podem cadastrar itens para doação.
-				Seu cadastro é de Instituição, que apenas recebe.');
+			show_error('Apenas Pessoas podem cadastrar itens para doaÃ§Ã£o.
+				Seu cadastro Ã© de InstituiÃ§Ã£o, que apenas recebe.');
 		}
 
 		$this->load->model('categoria_model');
@@ -63,9 +63,9 @@ class Item extends MY_Controller {
 			$msg = 'O Item foi removido com sucesso';
 		} else {
 			$status = "ERROR";
-			$msg = 'Não foi possível remover o Item';
+			$msg = 'NÃ£o foi possÃ­vel remover o Item';
 		}
-		echo json_encode(array('status' => $status, 'msg' => utf8_encode($msg)) );
+		echo json_encode(array('status' => $status, 'msg' => $msg) );
 	}
 
 	public function insert() {
@@ -76,8 +76,7 @@ class Item extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "ERROR";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode(array('status' => $status,
-				'msg' => utf8_encode($msg)) );
+			echo json_encode(array('status' => $status, 'msg' => $msg) );
 			return;
 		}
 
@@ -88,12 +87,12 @@ class Item extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('titulo', 'Título',
+		$this->form_validation->set_rules('titulo', 'TÃ­tulo',
 			'required|min_length[10]|max_length[70]');
-		$this->form_validation->set_rules('desc', 'Descrição',
+		$this->form_validation->set_rules('desc', 'DescriÃ§Ã£o',
 			'required|min_length[10]|max_length[250]');
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('sit', 'Situação', 'required');
+		$this->form_validation->set_rules('sit', 'SituaÃ§Ã£o', 'required');
 
 		$item_data['usuario_id'] = $this->login_data['user_id'];
 
@@ -113,15 +112,15 @@ class Item extends MY_Controller {
 				@$this->notificacao_model->insert_item( $new_id );
 
 				$status = "OK";
-				$msg = 'O Item foi incluído com sucesso';
+				$msg = 'O Item foi incluÃ­do com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'Não foi possível incluir o Item';
+				$msg = 'NÃ£o foi possÃ­vel incluir o Item';
 			}
 		}
 
 		echo json_encode( array('status'=>$status, 'user_id'=>$item_data['usuario_id'],
-			'msg'=>utf8_encode($msg), 'item_id' => $new_id) );
+			'msg'=>$msg, 'item_id' => $new_id) );
 	}
 
 	public function update() {
@@ -131,8 +130,7 @@ class Item extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "ERROR";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode(array('status' => $status,
-				'msg' => utf8_encode($msg)) );
+			echo json_encode(array('status' => $status,'msg' => $msg) );
 			return;
 		}
 
@@ -143,12 +141,12 @@ class Item extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('titulo', 'Título',
+		$this->form_validation->set_rules('titulo', 'TÃ­tulo',
 			'required|min_length[10]|max_length[70]');
-		$this->form_validation->set_rules('desc', 'Descrição',
+		$this->form_validation->set_rules('desc', 'DescriÃ§Ã£o',
 			'required|min_length[10]|max_length[250]');
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('sit', 'Situação', 'required');
+		$this->form_validation->set_rules('sit', 'SituaÃ§Ã£o', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -162,11 +160,11 @@ class Item extends MY_Controller {
 				$msg = 'O Item foi atualizado com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'Não foi possível atualizar o Item';
+				$msg = 'NÃ£o foi possÃ­vel atualizar o Item';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg) ) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg ) );
 		}
 
 	public function changestatus($id) {
@@ -179,9 +177,9 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Status de seu Item NÃO foi atualizado';
+			$msg = 'O Status de seu Item NÃO foi atualizado';
 		}
-		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
+		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg ) );
 	}
 
 	public function doado($id) {
@@ -193,9 +191,9 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Item não foi marcado como doado.';
+			$msg = 'O Item nÃ£o foi marcado como doado.';
 		}
-		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>utf8_encode($msg) ) );
+		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg ) );
 	}
 
 	public function modificar( $item_id ) {

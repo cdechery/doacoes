@@ -1,4 +1,4 @@
-<p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias que você configurou.</p>
+<p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias que vocÃª configurou.</p>
 <?php
 	$path = $params['upload']['path'];
 	foreach ($itens as $item) {

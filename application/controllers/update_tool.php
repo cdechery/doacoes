@@ -166,7 +166,7 @@
 
 	function download_from_github($dest_dir) {
 		$ret = FALSE;
-		$master = "http://github.com/cdechery/doacoes/archive/master.zip";
+		$master = "https://github.com/cdechery/doacoes/archive/master.zip";
 		$remote_data = @file_get_contents( $master );
 		if( $remote_data==FALSE ) {
 			return FALSE;

@@ -2171,7 +2171,7 @@ class Googlemaps {
 		}
 		
 		if ($this->https) { $data_location = 'https://'; } else { $data_location = 'http://'; }
-		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor;
+		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode($address)."&sensor=".$this->sensor;
 		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
 		$data = file_get_contents($data_location);
 		
@@ -2236,7 +2236,7 @@ class Googlemaps {
 			}
 		}
 		
-		return array("status"=>$status, "address"=>utf8_decode($address));
+		return array("status"=>$status, "address"=>$address);
 	} 
 
 	function get_street_view_img( $lat, $long, $params = array() ) {

@@ -88,7 +88,7 @@ class Slonga extends MY_Controller {
 			$marker['position'] = $user_data['lat'].', '.$user_data['lng'];
 			$user_location = $marker['position'];
 
-			$marker['infowindow_content'] = 'Você';
+			$marker['infowindow_content'] = 'VocÃª';
 			$marker['clickable'] = false;
 
 			if( $row->tipo=='P' ) {

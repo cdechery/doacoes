@@ -36,8 +36,8 @@ class Interesse extends MY_Controller {
 
 			if( $existente ) {
 				$status = "ERROR";
-				$msg = "Já existe um Interesse para esta Categoria";
-				echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+				$msg = "JÃ¡ existe um Interesse para esta Categoria";
+				echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 				return;
 			}
 
@@ -45,14 +45,14 @@ class Interesse extends MY_Controller {
 
 			if( $this->interesse_model->insert( $inter_data ) ) {
 				$status = "OK";
-				$msg = 'O Interesse foi incluído com sucesso';
+				$msg = 'O Interesse foi incluÃ­do com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'Não foi possível incluir o interesse';
+				$msg = 'NÃ£o foi possÃ­vel incluir o interesse';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg),
+		echo json_encode( array('status'=>$status, 'msg'=>$msg,
 			'user'=>$this->login_data['user_id'],
 			'cat'=>$inter_data['categ']) );
 	}
@@ -64,7 +64,7 @@ class Interesse extends MY_Controller {
 		$msg = $this->check_owner($this->interesse_model,$categoria_id);
 		if( $msg ) {
 			$status = "error";
-			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 			return;
 		}
 
@@ -78,7 +78,7 @@ class Interesse extends MY_Controller {
 			$msg = "Ocorreu uma falha ao ativar o Interesse, tente novamente";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function deactivate( $categoria_id ) {
@@ -88,7 +88,7 @@ class Interesse extends MY_Controller {
 		$msg = $this->check_owner($this->interesse_model,$categoria_id);
 		if( $msg ) {
 			$status = "error";
-			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 			return;
 		}
 
@@ -102,7 +102,7 @@ class Interesse extends MY_Controller {
 			$msg = "Ocorreu uma falha ao desativar o Interesse, tente novamente";
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function update( $categoria_id, $raio ) {
@@ -112,7 +112,7 @@ class Interesse extends MY_Controller {
 		$msg = $this->check_owner($this->interesse_model,$categoria_id);
 		if( $msg ) {
 			$status = "error";
-			echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+			echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 			return;
 		}
 
@@ -125,10 +125,10 @@ class Interesse extends MY_Controller {
 			$msg = 'O Interesse foi atualizado com sucesso';
 		} else {
 			$status = "error";
-			$msg = 'Não foi possível atualizar o interesse';
+			$msg = 'NÃ£o foi possÃ­vel atualizar o interesse';
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function purge_old() {

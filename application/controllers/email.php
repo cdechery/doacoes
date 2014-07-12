@@ -26,8 +26,8 @@ class Email extends MY_Controller {
 		if( ($tipo_from=="I" && $fg_email_inst=='N') ||
 			($tipo_from=="P" && $fg_email_pessoa=='N') ) {
 
-			show_error_windowed( 'O usuário optou por não receber mensagens desse tipo',
-				200, 'Impossível enviar mensagem', 'ajax');			
+			show_error_windowed( 'O usuÃ¡rio optou por nÃ£o receber mensagens desse tipo',
+				200, 'ImpossÃ­vel enviar mensagem', 'ajax');			
 		}
 
 		$this->load->helper('image_helper');
@@ -56,7 +56,7 @@ class Email extends MY_Controller {
 		$msg = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
 		$msg .= "Para entrar em contato com ele(a), basta responder a este email.";
 		if( !empty($form_data['corpo']) ) { 
-			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
+			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra vocÃª: <br>".$form_data['corpo'];
 		}
 		$corpo = $this->load->view('email_quer_item',
 			array('corpo'=>$msg), TRUE);
@@ -75,11 +75,10 @@ class Email extends MY_Controller {
 			$msg = "Email enviado com sucesso";
 		} else {
 			$status = "ERROR";
-			$msg = "Não foi possível enviar o email";
+			$msg = "NÃ£o foi possÃ­vel enviar o email";
 		}
 
-		echo json_encode( array('status'=>$status,
-			'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
 	public function contato_inst( $inst_id = 0 ) {
@@ -100,8 +99,8 @@ class Email extends MY_Controller {
 		if( ($tipo_from=="I" && $fg_email_inst=='N') ||
 			($tipo_from=="P" && $fg_email_pessoa=='N') ) {
 
-			show_error_windowed('O usuário optou por não receber mensagens desse tipo',
-				200, 'Impossível enviar mensagem', 'ajax');			
+			show_error_windowed('O usuÃ¡rio optou por nÃ£o receber mensagens desse tipo',
+				200, 'ImpossÃ­vel enviar mensagem', 'ajax');			
 		}
 
 		$this->load_ajax('email_contato_inst_form',
@@ -118,7 +117,7 @@ class Email extends MY_Controller {
 
 		$form_data = $this->input->post(NULL, TRUE);
 
-		$msg = "Olá ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
+		$msg = "OlÃ¡ ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
 			"para te mandar uma mensagem, veja abaixo:<br> ";
 		$msg .= $form_data['corpo'];
 		$corpo = $this->load->view('email_contato_inst',
@@ -138,10 +137,10 @@ class Email extends MY_Controller {
 			$msg = "Email enviado com sucesso";
 		} else {
 			$status = "ERROR";
-			$msg = "Não foi possível enviar o email";
+			$msg = "NÃ£o foi possÃ­vel enviar o email";
 		}
 
-		echo json_encode( array('status'=>$status,'msg'=>utf8_encode($msg)) );
+		echo json_encode( array('status'=>$status,'msg'=>$msg) );
 	}
 
 }
