@@ -127,7 +127,7 @@ $min_serveOptions['maxAge'] = 1800;
  * Only the "g" parameter will be considered.
  */
 $min_serveOptions['minApp']['groupsOnly'] = false;
-$min_serveOptions['contentTypeCharset'] = 'ISO-8859-1';
+$min_serveOptions['contentTypeCharset'] = 'UTF-8';
 //$min_serveOptions['contentTypeCharset'] = false;
 
 
