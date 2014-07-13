@@ -87,6 +87,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `doacoes`.`item_temp`
 -- -----------------------------------------------------
+CREATE TABLE `controle_notif_email` (
+  `item_id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `fg_email_enviado` char(1) DEFAULT 'N',
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `doacoes`.`item_temp`
+-- -----------------------------------------------------
 DROP TABLE IF EXISTS `doacoes`.`item_temp` ;
 
 CREATE TABLE IF NOT EXISTS `doacoes`.`item_temp` (
