@@ -8,7 +8,7 @@
 
 <h2>Entre em contato</h2>
 
-<form method="post" action="<?php echo base_url('contato/enviar')?>">
+<form id="contato" method="post" action="<?php echo base_url('contato/enviar')?>">
 	<div class="form-group">
 		<label>Seu nome:</label>
 		<input type="text" name="nome" placeholder="Seu nome" value="<?php echo $nome?>">
@@ -30,7 +30,9 @@
 		<label>Sua mensagem:</label>
 		<textarea name="corpo" placeholder="Entre sua mensagem" cols="20" rows="4"></textarea>
 	</div>
-	<div><input type="submit" value="Enviar"></div>
+	<div class="form-group">
+		<input type="submit" value="Enviar">
+	</div>
 
 </form>
 

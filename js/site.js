@@ -323,6 +323,27 @@ $(function() {
 		return false;
 	});
 
+	$('#contato').submit(function(e) {
+		
+		e.preventDefault();
+
+		var action = $("#contato").attr("action");
+		var formdata = $("#contato").serialize();
+
+		$.post(action, formdata, function(data) {
+			var json = myParseJSON( data );
+			console.log(json);
+			if( json.status=="OK" ) {
+				new Messi('O email foi enviado!', {title: 'Sucesso',
+					titleClass: 'success', modal: true });
+			} else {
+				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		}).fail( function() { general_error(); } );
+		return false;
+	});
+
 });
 
 function do_upload_item_image( img_id, isnew ) {

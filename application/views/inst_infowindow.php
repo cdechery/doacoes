@@ -28,7 +28,9 @@
 	if( $login_data['logged_in'] ) {
 ?>
 
-<p><a href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class='itembox fancybox.ajax'>Enviar Mensagem</a></p>
+<p>
+	<a style="font-weight:700;" href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class="itembox fancybox.ajax">Enviar Mensagem</a>
+</p>
 
 <?php
 	}
