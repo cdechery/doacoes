@@ -1,5 +1,3 @@
-var activeMarkers = null;
-
 function showHideMarker(marker, visible) {
 	if( visible ) {
 		marker.setVisible(true);
@@ -29,6 +27,16 @@ function findSituation(sit, marker) {
 	return false;
 }
 
+function findInterest(inter, marker) {
+	for(var i=0; i<marker.items.length; i++) {
+		if( marker.items[i][2]==inter ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function findCatWithSit(cat, sit, marker) {
 	for(var i=0; i<marker.items.length; i++) {
 		if( marker.items[i][0]==cat &&
@@ -41,7 +49,7 @@ function findCatWithSit(cat, sit, marker) {
 }
 
 
-function matchFilters(marker, cats, sits) {
+function matchFiltersItem(marker, cats, sits) {
 	var hasCat = false;
 	var hasSit = false;
 
@@ -82,20 +90,41 @@ function matchFilters(marker, cats, sits) {
 	return hasCat && hasSit;
 }
 
+function matchFiltersInt(marker, ints) {
+	if( ints.length==0 ) {
+		return true;
+	}
+
+	for(var i=0; i<ints.length; i++) {
+		if( findInterest(ints[i], marker) ) {
+			return true;
+		}
+	} // for
+
+	return false;
+}
+
+function showAllActive() {
+	for(var i=0; i<activeMarkers.length; i++) {
+		showHideMarker(activeMarkers[i].mrk, true);
+	}
+}
+
 function showAll() {
-	$('#filtro_insts').hide();
-	$('#filtro_pessoas').hide();
+	$('#filtro_ints').hide();
+	$('#filtro_itens').hide();
 	$('#filtro_texto').show();
 
-	for(var i=0; i<markers_settings.length; i++) {
-		showHideMarker(markers_settings[i].mrk, true);
+	activeMarkers = markers_settings;
+	for(var i=0; i<activeMarkers.length; i++) {
+		showHideMarker(activeMarkers[i].mrk, true);
 	}
 }
 
 function showPeople() {
-	$('#filtro_insts').hide();
-	$('#filtro_texto').hide();
-	$('#filtro_pessoas').show();
+	$('#filtro_ints').hide();
+	$('#filtro_itens').hide();
+	$('#filtro_texto').show();
 
 	activeMarkers = new Array();
 	for(var i=0; i<markers_settings.length; i++) {
@@ -104,74 +133,82 @@ function showPeople() {
 
 		showHideMarker( mrk, isPessoa );
 
-		activeMarkers.push( markers_settings[i] );
+		if( isPessoa ) {
+			activeMarkers.push( markers_settings[i] );
+		}
 	}
 }
 
 function showInstitutions() {
-	$('#filtro_pessoas').hide();
-	$('#filtro_texto').hide();
-	$('#filtro_insts').show();
+	$('#filtro_ints').hide();
+	$('#filtro_itens').hide();
+	$('#filtro_texto').show();
 
 	activeMarkers = new Array();
 	for(var i=0; i<markers_settings.length; i++) {
 		var isInst = ( markers_settings[i]['type']=='I' );
 		var mrk = markers_settings[i].mrk;
 
+		if( isInst ) {
+			activeMarkers.push( markers_settings[i] );
+		}
 		showHideMarker( mrk, isInst );
-
-		activeMarkers.push( markers_settings[i] );
 	}
 }
 
-function filterPessoa() {
+function showFilterItem() {
+	$('#filtro_ints').hide();
+	$('#filtro_texto').hide();
+	$('#filtro_itens').show();
+}
+
+function showFilterInt() {
+	$('#filtro_itens').hide();
+	$('#filtro_texto').hide();
+	$('#filtro_ints').show();
+}
+
+function filterItem() {
+
 	var checkedCats = Array();
-	$('.filtroPessoaCat:checked').each(function() {
+	$('.filterItemCat:checked').each(function() {
 		checkedCats.push( $(this).val() );
 	});
 
 	var checkedSits = Array();
-	$('.filtroPessoaSit:checked').each(function() {
+	$('.filterItemSit:checked').each(function() {
 		checkedSits.push( $(this).val() );
 	});
 
 	if( checkedCats.length==0 && checkedSits.length==0 ) {
-		showPeople();
+		showAllActive();
 		return;
 	}
 
 	for(var i=0; i<activeMarkers.length; i++) {
 		var mrk = activeMarkers[i];
 
-		if( mrk['type']!='P' ) {
-			showHideMarker(mrk.mrk, false);
-		} else {
-			var match = matchFilters(mrk, checkedCats, checkedSits);
-			showHideMarker(mrk.mrk, match);
-		}
+		var match = matchFiltersItem(mrk, checkedCats, checkedSits);
+		showHideMarker(mrk.mrk, match);
 	}
 }
 
-function filterInst() {
+function filterInt() {
 	var checkedCats = Array();
 	$('.filtroInstCat:checked').each(function() {
 		checkedCats.push( $(this).val() );
 	});
 
 	if( checkedCats.length==0 ) {
-		showInstitutions();
+		showAllActive();
 		return;
 	}
 
 	for(var i=0; i<activeMarkers.length; i++) {
 		var mrk = activeMarkers[i];
 
-		if( mrk['type']!='I' ) {
-			showHideMarker(mrk.mrk, false);
-		} else {
-			var matchCats = matchFilters(mrk, checkedCats, Array() );
-			showHideMarker(mrk.mrk, matchCats);
-		}			
+		var matchCats = matchFiltersInt(mrk, checkedCats, Array() );
+		showHideMarker(mrk.mrk, matchCats);
 	}
 }
 

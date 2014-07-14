@@ -6,18 +6,24 @@
 		<div id="filtros">
 
 			<header>
-				<p>Filtre o conteudo do mapa:</p>
-				<button onClick="showAll();">Mostrar Tudo</button>
-				<button onClick="showPeople();">Itens/Pessoas</button>
+				Mostrar:
+				<button onClick="showAll();">Tudo</button>
+				<button onClick="showPeople();">Pessoas</button>
 				<button onClick="showInstitutions();">Instituições</button>
 			</header>
+			<br>
+			<header>
+				Filtrar:
+				<button onClick="showFilterItem();">Itens</button>
+				<button onClick="showFilterInt();">Interesses</button>
+			</header>
 
-			<div id="filtro_pessoas" style="display: none;" class="clearfix">	
+			<div id="filtro_itens" style="display: none;" class="clearfix">	
 				<div class="col">
 					<h4>Categorias</h4>
 					<?php
 						foreach ($categorias as $cat) {
-							echo "<input class='filtroPessoaCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$cat->nome."<br>";
+							echo "<input class='filterItemCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterItem();'>&nbsp;&nbsp;".$cat->nome."<br>";
 						}
 					?>
 				</div>
@@ -25,24 +31,24 @@
 					<h4>Situações</h4>
 					<?php
 						foreach ($situacoes as $sit) {
-							echo "<input class='filtroPessoaSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterPessoa();'>&nbsp;&nbsp;".$sit->descricao."<br>";
+							echo "<input class='filterItemSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterItem();'>&nbsp;&nbsp;".$sit->descricao."<br>";
 						}
 					?>
 				</div>
 			</div>
 			
-			<div id="filtro_insts" style="display: none;" class="clearfix">
+			<div id="filtro_ints" style="display: none;" class="clearfix">
 				<div class="col">
 					<h4>Interessado em</h4>
 					<?php
 						foreach ($categorias as $cat) {
-							echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInst();'>&nbsp;&nbsp;".$cat->nome."<br>";
+							echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInt();'>&nbsp;&nbsp;".$cat->nome."<br>";
 						}
 					?>
 				</div>
 			</div>
 
-			<div id="busca_mapa">
+			<div id="filtro_texto">
 				<?php
 					$centro = $params['mapa']['default_loc_name'];
 					if( $login_data['logged_in'] ) {
