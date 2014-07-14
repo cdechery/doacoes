@@ -81,7 +81,7 @@ if( $action!="insert" ) {
 						echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->nome.'</option>\n';
 					}
 				?>
-			</select>
+			</select> <input type="button" href="<?php echo base_url('item/get_categorias')?>" class='catbox fancybox.ajax' value="?"> 
 		</div>
 		<div class="form-group">
 			<label>Situação:</label>
@@ -111,3 +111,20 @@ if( $action!="insert" ) {
 </div>
 
 <br clear="all">
+<script>
+$(document).ready(function() {
+	$(".catbox").fancybox({
+		padding		: 25,
+		maxWidth	: 400,
+		maxHeight	: 300,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+})
+</script>

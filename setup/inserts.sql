@@ -1,7 +1,17 @@
-INSERT INTO `doacoes`.`categoria` (`id`, `nome`, `descricao`) VALUES ('1', 'Roupas', 'N/A');
-INSERT INTO `doacoes`.`categoria` (`id`, `nome`, `descricao`) VALUES ('2', 'Móveis', 'N/A');
-INSERT INTO `doacoes`.`categoria` (`id`, `nome`, `descricao`) VALUES ('3', 'Brinquedos', 'N/A');
+INSERT INTO `categoria` (`id`, `nome`, `descricao`, `icone`) VALUES
+(1, 'Vestuário', 'Sapatos, camisas, calças, bijuteria, chapéus, etc', ''),
+(2, 'Móveis', 'Mesas, cadeiras, racks, camas, arnários, colchões, etc', ''),
+(3, 'Brinquedos', 'Qualquer tipo de brinquedo', ''),
+(4, 'Livros/Revistas', 'Enciclipédias, quadrinhos, livros, revistas antigas, etc', ''),
+(5, 'Equipamentos', 'Maquinário industrial, equipamentos de segurança, escalada, esportivos, etc', ''),
+(6, 'Utilidades', 'Utensílios de cozinha, ferramentas, etc', ''),
+(7, 'Eletrônicos', 'Informática, telefones celulares, câmeras fotográficas, etc', ''),
+(8, 'Eletrodomésticos', 'Fogão, geladeira, liquidificador, torradeira, etc', ''),
+(9, 'Animais', 'Animais domésticos em geral', ''),
+(10, 'Outros', 'Qualquer item que não se encaixe nas demais categorias', '');
 
-INSERT INTO `doacoes`.`interesse` (`categoria_id`, `usuario_id`, `data_inclusao`, `fg_ativo`, `raio_busca`) VALUES ('1', '1', NOW(), 'S', '5');
-INSERT INTO `doacoes`.`interesse` (`categoria_id`, `usuario_id`, `data_inclusao`, `fg_ativo`, `raio_busca`) VALUES ('2', '1', NOW(), 'N', '10');
-INSERT INTO `doacoes`.`interesse` (`categoria_id`, `usuario_id`, `data_inclusao`, `fg_ativo`, `raio_busca`) VALUES ('3', '1', NOW(), 'S', '20');
+INSERT INTO `situacao` (`id`, `descricao`) VALUES
+(1, 'Novo'),
+(2, 'Semi-novo'),
+(3, 'Usado'),
+(4, 'Com defeito');

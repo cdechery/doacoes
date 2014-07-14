@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Item extends MY_Controller { 
-	
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('item_model');
@@ -16,7 +16,7 @@ class Item extends MY_Controller {
 		foreach ($imagens as $img) {
 			$arrImgs[] = $img->nome_arquivo;
 		}
-		
+
 		// converto o result de array para objeto
 		$itemObj = json_decode(json_encode($item), FALSE);
 
@@ -25,14 +25,15 @@ class Item extends MY_Controller {
 
 	}
 
+	public function get_categorias() {
+		$this->load->model('categoria_model');
+		$categorias = $this->categoria_model->get_all();
+		$this->load_ajax('categorias', array('categorias'=>$categorias ));
+	}
+
 	public function novo() {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
-		}
-
-		if( $this->login_data['type']!='P' ) {
-			show_error('Apenas Pessoas podem cadastrar itens para doaÃ§Ã£o.
-				Seu cadastro Ã© de InstituiÃ§Ã£o, que apenas recebe.');
 		}
 
 		$this->load->model('categoria_model');
@@ -53,7 +54,7 @@ class Item extends MY_Controller {
 			'situacoes'=>$situacoes,
 			'categorias'=>$categorias);
 		$this->load->view('item_form', array('data'=>$data) );
-		
+
 		$this->load->view('foot');
 	}
 
@@ -63,7 +64,7 @@ class Item extends MY_Controller {
 			$msg = 'O Item foi removido com sucesso';
 		} else {
 			$status = "ERROR";
-			$msg = 'NÃ£o foi possÃ­vel remover o Item';
+			$msg = 'Não foi possível remover o Item';
 		}
 		echo json_encode(array('status' => $status, 'msg' => $msg) );
 	}
@@ -76,7 +77,8 @@ class Item extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "ERROR";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode(array('status' => $status, 'msg' => $msg) );
+			echo json_encode(array('status' => $status,
+				'msg' => $msg) );
 			return;
 		}
 
@@ -87,12 +89,12 @@ class Item extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('titulo', 'TÃ­tulo',
+		$this->form_validation->set_rules('titulo', 'Título',
 			'required|min_length[10]|max_length[70]');
-		$this->form_validation->set_rules('desc', 'DescriÃ§Ã£o',
+		$this->form_validation->set_rules('desc', 'Descrição',
 			'required|min_length[10]|max_length[250]');
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('sit', 'SituaÃ§Ã£o', 'required');
+		$this->form_validation->set_rules('sit', 'Situação', 'required');
 
 		$item_data['usuario_id'] = $this->login_data['user_id'];
 
@@ -112,14 +114,15 @@ class Item extends MY_Controller {
 				@$this->notificacao_model->insert_item( $new_id );
 
 				$status = "OK";
-				$msg = 'O Item foi incluÃ­do com sucesso';
+				$msg = 'O Item foi incluído com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'NÃ£o foi possÃ­vel incluir o Item';
+				$msg = 'Não foi possível incluir o Item';
 			}
 		}
 
-		echo json_encode( array('status'=>$status, 'user_id'=>$item_data['usuario_id'],
+		echo json_encode( array('status'=>$status,
+			'user_id'=>$item_data['usuario_id'],
 			'msg'=>$msg, 'item_id' => $new_id) );
 	}
 
@@ -130,7 +133,8 @@ class Item extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$status = "ERROR";
 			$msg = xlang('dist_errsess_expire');
-			echo json_encode(array('status' => $status,'msg' => $msg) );
+			echo json_encode(array('status' => $status,
+				'msg' => $msg) );
 			return;
 		}
 
@@ -141,12 +145,12 @@ class Item extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters('','</br>');
 
-		$this->form_validation->set_rules('titulo', 'TÃ­tulo',
+		$this->form_validation->set_rules('titulo', 'Título',
 			'required|min_length[10]|max_length[70]');
-		$this->form_validation->set_rules('desc', 'DescriÃ§Ã£o',
+		$this->form_validation->set_rules('desc', 'Descrição',
 			'required|min_length[10]|max_length[250]');
 		$this->form_validation->set_rules('categ', 'Categoria', 'required');
-		$this->form_validation->set_rules('sit', 'SituaÃ§Ã£o', 'required');
+		$this->form_validation->set_rules('sit', 'Situação', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -160,7 +164,7 @@ class Item extends MY_Controller {
 				$msg = 'O Item foi atualizado com sucesso';
 			} else {
 				$status = "ERROR";
-				$msg = 'NÃ£o foi possÃ­vel atualizar o Item';
+				$msg = 'Não foi possível atualizar o Item';
 			}
 		}
 
@@ -177,7 +181,7 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Status de seu Item NÃO foi atualizado';
+			$msg = 'O Status de seu Item NÃO foi atualizado';
 		}
 		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg ) );
 	}
@@ -191,9 +195,9 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Item nÃ£o foi marcado como doado.';
+			$msg = 'O Item não foi marcado como doado.';
 		}
-		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg ) );
+		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg) );
 	}
 
 	public function modificar( $item_id ) {
@@ -218,14 +222,14 @@ class Item extends MY_Controller {
 
 		$head_data = array("min_template"=>"image_upload",
 			"title"=>$this->params['titulo_site']);
-		
+
 		$this->load->view('head', $head_data);
 
 		$this->load->view('item_form',
 			array('data'=>$item_data, 'images'=>$images,
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes) );
-		
+
 		$this->load->view('foot');
 	}
 

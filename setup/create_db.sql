@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS `doacoes`.`categoria` ;
 CREATE  TABLE IF NOT EXISTS `doacoes`.`categoria` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
-  `descricao` VARCHAR(100) NULL ,
+  `descricao` VARCHAR(200) NULL ,
   `icone` VARCHAR(50) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;

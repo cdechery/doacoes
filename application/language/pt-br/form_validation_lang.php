@@ -1,28 +1,28 @@
 <?php
 
-$lang['required']             = "O campo %s é obrigatório.";
+$lang['required']             = "O campo %s Ã© obrigatÃ³rio.";
 $lang['isset']                = "O campo %s deve ter um valor.";
-$lang['valid_email']          = "O campo %s deve conter um endereço de e-mail válido.";
-$lang['valid_emails']         = "O campo %s deve conter todos os endereços de e-mail válidos.";
-$lang['valid_url']            = "O campo %s deve conter um URL válido.";
-$lang['valid_ip']             = "O campo %s deve conter um IP válido.";
-$lang['min_length']           = "O campo %s deve ter no mínimo %s caracteres.";
-$lang['max_length']           = "O campo %s deve ter no máximo %s caracteres.";
+$lang['valid_email']          = "O campo %s deve conter um endereÃ§o de e-mail vÃ¡lido.";
+$lang['valid_emails']         = "O campo %s deve conter todos os endereÃ§os de e-mail vÃ¡lidos.";
+$lang['valid_url']            = "O campo %s deve conter um URL vÃ¡lido.";
+$lang['valid_ip']             = "O campo %s deve conter um IP vÃ¡lido.";
+$lang['min_length']           = "O campo %s deve ter no mÃ­nimo %s caracteres.";
+$lang['max_length']           = "O campo %s deve ter no mÃ¡ximo %s caracteres.";
 $lang['exact_length']         = "O campo %s deve ter exatamente %s caracteres.";
-$lang['alpha']                = "O campo %s pode conter apenas caracteres alfabéticos.";
-$lang['alpha_numeric']        = "O campo %s pode conter apenas caracteres alfa-numéricos.";
-$lang['alpha_dash']           = "O campo %s pode conter apenas caracteres alfa-numéricos, underscores e hífens.";
-$lang['numeric']              = "O campo %s deve conter apenas números.";
-$lang['is_numeric']           = "O campo %s deve conter apenas caracteres numéricos.";
+$lang['alpha']                = "O campo %s pode conter apenas caracteres alfabÃ©ticos.";
+$lang['alpha_numeric']        = "O campo %s pode conter apenas caracteres alfa-numÃ©ricos.";
+$lang['alpha_dash']           = "O campo %s pode conter apenas caracteres alfa-numÃ©ricos, underscores e hÃ­fens.";
+$lang['numeric']              = "O campo %s deve conter apenas nÃºmeros.";
+$lang['is_numeric']           = "O campo %s deve conter apenas caracteres numÃ©ricos.";
 $lang['integer']              = "O campo %s deve conter um inteiro.";
-$lang['regex_match']          = "O campo %s não está no formato correto.";
-$lang['matches']              = "O campo %s não coincide com o campo %s.";
-$lang['is_unique']            = "O valor informado em %s já existe.";
-$lang['is_natural']           = "O campo %s deve conter apenas números positivos.";
-$lang['is_natural_no_zero']   = "O campo %s deve conter um número maior que zero.";
-$lang['decimal']              = "O campo %s deve conter um número decimal.";
-$lang['less_than']            = "O campo %s deve conter um número menor que %s.";
-$lang['greater_than']         = "O campo %s deve conter um número maior que %s.";
+$lang['regex_match']          = "O campo %s nÃ£o estÃ¡ no formato correto.";
+$lang['matches']              = "O campo %s nÃ£o coincide com o campo %s.";
+$lang['is_unique']            = "O valor informado em %s jÃ¡ existe.";
+$lang['is_natural']           = "O campo %s deve conter apenas nÃºmeros positivos.";
+$lang['is_natural_no_zero']   = "O campo %s deve conter um nÃºmero maior que zero.";
+$lang['decimal']              = "O campo %s deve conter um nÃºmero decimal.";
+$lang['less_than']            = "O campo %s deve conter um nÃºmero menor que %s.";
+$lang['greater_than']         = "O campo %s deve conter um nÃºmero maior que %s.";
 
 
 /* End of file form_validation_lang.php */

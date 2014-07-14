@@ -10,7 +10,6 @@
 				<button onClick="showAll();">Mostrar Tudo</button>
 				<button onClick="showPeople();">Itens/Pessoas</button>
 				<button onClick="showInstitutions();">Instituições</button>
-				<button onClick="hideRadiusCircles();">Raios</button>
 			</header>
 
 			<div id="filtro_pessoas" style="display: none;" class="clearfix">	
@@ -50,11 +49,20 @@
 						$centro = "Sua localização";
 				} ?>
 				<p>Exibindo: <span id="exibindo_mapa"><?php echo $centro?></span></p>
-				<input type="text" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
+				<input type="text" style="color: black" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
 				<?php if( $login_data['logged_in']) : ?>
-					<p>Retornar para <a href="#" onClick="map.setCenter( user_location );">Sua localização</a></p>
+					<p>Retornar para <a href="#" onClick="map.setCenter( user_location ); $('#exibindo_mapa').html('Sua localização');">Sua localização</a></p>
 				<?php endif; ?>
 			</div>
+			<?php if( $login_data['logged_in'] ): ?>
+			<div id="raios">
+				<button onClick="hideRadiusCircles();">Mostrar/esconder raios</button><br>
+				<?php
+					array_shift($params['raios_busca']);
+					echo implode(" > ", $params['raios_busca']);
+				?>
+			</div>
+			<?php endif; ?>
 		
 		</div>
 	</div>

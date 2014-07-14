@@ -1,12 +1,12 @@
 <?php
 
-$lang['migration_none_found']          = "Nenhuma migração foi encontrada.";
-$lang['migration_not_found']           = "Esta migração não foi encontrada.";
-$lang['migration_multiple_version']    = "Estas são múltiplas migrações com o mesmo número de versão: %d.";
-$lang['migration_class_doesnt_exist']  = "A classe de migração \"%s\" não foi encontrada.";
-$lang['migration_missing_up_method']   = "A classe de migração \"%s\" está faltando o método 'up'.";
-$lang['migration_missing_down_method'] = "A classe de migração \"%s\" está faltando o método 'down'.";
-$lang['migration_invalid_filename']    = "Migração \"%s\" tem um nome de arquivo inválido.";
+$lang['migration_none_found']          = "Nenhuma migraÃ§Ã£o foi encontrada.";
+$lang['migration_not_found']           = "Esta migraÃ§Ã£o nÃ£o foi encontrada.";
+$lang['migration_multiple_version']    = "Estas sÃ£o mÃºltiplas migraÃ§Ãµes com o mesmo nÃºmero de versÃ£o: %d.";
+$lang['migration_class_doesnt_exist']  = "A classe de migraÃ§Ã£o \"%s\" nÃ£o foi encontrada.";
+$lang['migration_missing_up_method']   = "A classe de migraÃ§Ã£o \"%s\" estÃ¡ faltando o mÃ©todo 'up'.";
+$lang['migration_missing_down_method'] = "A classe de migraÃ§Ã£o \"%s\" estÃ¡ faltando o mÃ©todo 'down'.";
+$lang['migration_invalid_filename']    = "MigraÃ§Ã£o \"%s\" tem um nome de arquivo invÃ¡lido.";
 
 
 /* End of file migration_lang.php */

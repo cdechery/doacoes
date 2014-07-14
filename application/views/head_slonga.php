@@ -77,9 +77,7 @@ $(document).ready(function() {
 						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
 						<div id="user-menu">
 							<ul>
-								<?php if ( $login_data['type']=='P') : ?>
 								<li><a href="<?php echo base_url('usuario/itens')?>">Meus Itens</a></li>
-								<?php endif; ?>
 								<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
 								<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
 								<li><a href="<?php echo base_url('usuario/pref_email')?>">Preferências de email</a></li>

@@ -36,10 +36,9 @@ class Contato extends MY_Controller {
 			$msg = "Email enviado com sucesso";
 		} else {
 			$status = "ERROR";
-			$msg = "Não foi possível enviar o email";
+			$msg = "NÃ£o foi possÃ­vel enviar o email";
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
-
 	}
 }
