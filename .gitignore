@@ -8,3 +8,4 @@ ci_ide_helper.php
 index.php
 application/config/config.php
 application/config/database.php
+*.html
