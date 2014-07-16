@@ -48,17 +48,20 @@ class Usuario extends MY_Controller {
 		$this->load->helper('image');
 
 		$udata = $this->usuario_model->get_data($user_id);
-		if( $udata['tipo']=='P' ) { 
-			$this->load->model('item_model');
-			$items = $this->item_model->get_user_items( $user_id );
 
+		$this->load->model('item_model');
+		$items = $this->item_model->get_user_items( $user_id );
+
+		if( $udata['tipo']=='P' ) { 
 			$this->load->view('pessoa_infowindow',
 				array('udata'=>$udata, 'items'=>$items));
 		} else {
 			$this->load->model('interesse_model');
 			$inters = $this->interesse_model->get( $user_id );
 			$this->load->view('inst_infowindow',
-				array('udata'=>$udata, 'interesses'=>$inters));
+				array('udata'=>$udata,
+					'interesses'=>$inters,
+					'items'=>$items));
 		}
 
 	}
