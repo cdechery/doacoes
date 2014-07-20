@@ -2,8 +2,8 @@
 files/*
 application/logs/*
 application/config/*
-doacoes.sublime-project
-doacoes.sublime-workspace
+*.sublime-project
+*.sublime-workspace
 ci_ide_helper.php
 index.php
 application/config/config.php
