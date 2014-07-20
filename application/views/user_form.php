@@ -182,17 +182,16 @@ $sexoF = ($sexo=="F")?"checked":"";
 	<?php if( $action=="update" ) { ?>
 		<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
 			<div class="form-group">
-				<label>Mude sua foto:</label>
 				<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
 				<input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
-				<input type="file" id="userfile" name="userfile" style="display: none;" />
-				<input type="button" value="Procurar" onclick="document.getElementById('userfile').click();" />
-			</div>
-			<img id="user_avatar" src="<?php echo $avatar?>"/>
-			<div class="form-group" style="text-align:right;">
+				<input type="file" id="userfile" name="userfile" style="display: none;" onChange="do_upload_avatar();" />
+<!-- 				<input type="button" value="Procurar" onclick="document.getElementById('userfile').click();" />
+ -->			</div>
+			<a href="#" onClick="document.getElementById('userfile').click();"><img title="Clique aqui para alterar sua foto" id="user_avatar" src="<?php echo $avatar?>"/></a>
+<!-- 			<div class="form-group" style="text-align:right;">
 				<input type="submit" name="Upload" id="submit" value="<?php echo xlabel('upload')?>" />
 			</div>
-		</form>
+ -->		</form>
 	<?php } ?>
 </div>
 

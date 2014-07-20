@@ -134,34 +134,34 @@ $(function() {
 		return false;
 	});
 
-	$('#upload_avatar').submit(function(e) {
-		e.preventDefault();
-		$.ajaxFileUpload({
-			url 		   : site_root +'image/upload_avatar/',
-			secureuri      : false,
-			fileElementId  :'userfile',
-			contentType    : 'application/json; charset=utf-8',
-			dataType	   : 'json',
-			data        : {
-				'thumbs'           : $('#thumbs').val()
-			},
-			success  : function (data) {
-				if( data.status != 'error') {
-					$('#user_avatar').attr('src',data.img_src);
-					new Messi(data.msg, {title: lang['dist_lbl_success'], 
-						titleClass: 'dist_lbl_success', modal: true });
-				} else {
-					new Messi(data.msg, {title: lang['dist_lbl_error'],
-						titleClass: 'anim error',
-						buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-				}
-			},
-			error : function (data, status, e) {
-				general_error( lang['dist_error_upload'] );
-			}
-		});
-		return false;
-	});
+	// $('#upload_avatar').submit(function(e) {
+	// 	e.preventDefault();
+	// 	$.ajaxFileUpload({
+	// 		url 		   : site_root +'image/upload_avatar/',
+	// 		secureuri      : false,
+	// 		fileElementId  :'userfile',
+	// 		contentType    : 'application/json; charset=utf-8',
+	// 		dataType	   : 'json',
+	// 		data        : {
+	// 			'thumbs'           : $('#thumbs').val()
+	// 		},
+	// 		success  : function (data) {
+	// 			if( data.status != 'error') {
+	// 				$('#user_avatar').attr('src',data.img_src);
+	// 				new Messi(data.msg, {title: lang['dist_lbl_success'], 
+	// 					titleClass: 'dist_lbl_success', modal: true });
+	// 			} else {
+	// 				new Messi(data.msg, {title: lang['dist_lbl_error'],
+	// 					titleClass: 'anim error',
+	// 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+	// 			}
+	// 		},
+	// 		error : function (data, status, e) {
+	// 			general_error( lang['dist_error_upload'] );
+	// 		}
+	// 	});
+	// 	return false;
+	// });
 
 	$('#item_insert').submit(function(e) {
 		e.preventDefault();
@@ -346,6 +346,40 @@ $(function() {
 
 });
 
+function do_upload_avatar() {
+	var originalImg = $('user_avatar').attr('src');
+	$('#user_avatar').attr('src', site_root+'icons/ajax-loader-200.gif');
+
+	$.ajaxFileUpload({
+		url 		   : site_root +'image/upload_avatar/',
+		secureuri      : false,
+		fileElementId  :'userfile',
+		contentType    : 'application/json; charset=utf-8',
+		dataType	   : 'json',
+		data        : {
+			'thumbs' : $('#thumbs').val()
+		},
+		success  : function (data) {
+			if( data.status != 'error') {
+				$('#user_avatar').attr('src',data.img_src);
+				new Messi(data.msg, {title: lang['dist_lbl_success'], 
+					titleClass: 'dist_lbl_success', modal: true });
+			} else {
+				$('userfile').attr('src', originalImg );
+				new Messi(data.msg, {title: lang['dist_lbl_error'],
+					titleClass: 'anim error',
+					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			}
+		},
+		error : function (data, status, e) {
+			$('userfile').attr('src', originalImg );
+			general_error( lang['dist_error_upload'] );
+		}
+	});
+	return false;
+}
+
+
 function do_upload_item_image( img_id, isnew ) {
 
  	var img_tag_id = 'item_img_'+img_id;
@@ -363,7 +397,7 @@ function do_upload_item_image( img_id, isnew ) {
 	}
 
 	var originalImg = $('#'+img_tag_id).attr('src');
-	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader.gif');
+	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader-80.gif');
 
     $.ajaxFileUpload({
         url : site_root +'image/'+action+'/',

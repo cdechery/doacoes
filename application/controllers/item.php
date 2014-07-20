@@ -251,11 +251,23 @@ class Item extends MY_Controller {
 
 		$items = $this->item_model->get_list( $item_ids );
 
-		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
+		$arrItems = array();
+		
+		foreach ($items as $item) {
+			$arrItems[ $item->id ]['data'] = $item;
+			if( !empty($item->nome_arquivo ) ) {
+				$arrItems[ $item->id ]['imagens'][] = $item->nome_arquivo;
+			} else {
+				$arrItems[ $item->id ]['imagens'] = array();
+			}
+		}
+
+		$head_data = array('min_template'=>'image_upload',
+			"title"=>$this->params['titulo_site']);
 		$this->load->view('head', $head_data);
 
 		$this->load->helper('image_helper');
-		$this->load->view('item_list', array('items'=>$items));
+		$this->load->view('item_list', array('items'=>$arrItems));
 
 		$this->load->view('foot'); // fecha tag section
     }	

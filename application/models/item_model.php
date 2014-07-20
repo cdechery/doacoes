@@ -13,7 +13,7 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_list( $item_ids ) {
-		$this->db->select('it.id, it.titulo, 
+		$this->db->select('it.id, it.titulo, it.status,
 			it.descricao, it.categoria_id, im.id imagem_id,
 			im.nome_arquivo, max(im.id)', FALSE);
 		$this->db->from('item it');
