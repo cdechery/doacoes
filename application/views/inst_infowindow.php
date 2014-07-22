@@ -51,3 +51,4 @@
 	</p>
 <?php endif; ?>
 </div>
+<a href="#" onClick="prevMarker();"> < </a> | <a href="#" onClick="nextMarker();"> > </a>

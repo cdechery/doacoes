@@ -33,7 +33,7 @@ if( $action!="insert" ) {
 ?>
 		<input type="file" name="item_file_<?php echo $img->id?>" style="display: none;" id="item_file_<?php echo $img->id?>" onchange="do_upload_item_image(<?php echo $img->id?>, false);" />
 		<a href="#" onclick="document.getElementById('item_file_<?php echo $img->id?>').click();"/>
-			<img title="titleerar imagem" src="<?php echo $thumb?>" id="item_img_<?php echo $img->id?>" data-imgid="<?php echo $img->id?>">
+			<img title="Alterar imagem" src="<?php echo $thumb?>" id="item_img_<?php echo $img->id?>" data-imgid="<?php echo $img->id?>">
 		</a>
 <?php
 	} // for item imagens do item

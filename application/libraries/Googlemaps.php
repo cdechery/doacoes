@@ -316,6 +316,8 @@ class Googlemaps {
 				load_infowindow_content(marker_'.$marker_id.'.infowindow,'.$marker_id.');
 				last_iw_opened = marker_'.$marker_id.'.infowindow;
 				marker_'.$marker_id.'.infowindow.open('.$this->map_name.', this);
+
+				currentMarker = marker_'.$marker_id.';
 			';
 			if ($marker['onclick']!="") { $marker_output .= $marker['onclick'].'
 			'; }

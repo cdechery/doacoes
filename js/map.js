@@ -1,3 +1,46 @@
+function nextMarker() {
+	if( currentMarker==null ) {
+		return false;
+	}
+
+	if( currentMarker['next']==0 ) {
+		return false;
+	}
+
+	currentMarker.infowindow.close();
+	google.maps.event.trigger( currentMarker['next'], 'click');
+}
+
+function prevMarker() {
+	if( currentMarker==null ) {
+		return false;
+	}
+
+	if( currentMarker['prev']==0 ) {
+		return false;
+	}
+
+	currentMarker.infowindow.close();
+	google.maps.event.trigger( currentMarker['prev'], 'click');
+}
+
+function buildNextPrevPointers(markers) {
+	if( markers.length==0 ) {
+		return;
+	} else if ( markers.length==1 ) {
+		markers[0]['mrk']['next'] = 0;
+		markers[0]['mrk']['prev'] = 0;
+	} else {
+		markers[0]['mrk']['prev'] = markers[ markers.length-1 ]['mrk'];
+		markers[ markers.length-1 ]['mrk']['next'] = markers[0]['mrk'];
+
+		for(var i=1; i<markers.length; i++) {
+			markers[i]['mrk']['prev'] = markers[i-1]['mrk'];
+			markers[i-1]['mrk']['next'] = markers[i]['mrk'];
+		}
+	}
+}
+
 function showHideMarker(marker, visible) {
 	if( visible ) {
 		marker.setVisible(true);
@@ -119,6 +162,8 @@ function showAll() {
 	for(var i=0; i<activeMarkers.length; i++) {
 		showHideMarker(activeMarkers[i].mrk, true);
 	}
+
+	buildNextPrevPointers( activeMarkers );
 }
 
 function showPeople() {
@@ -137,6 +182,8 @@ function showPeople() {
 			activeMarkers.push( markers_settings[i] );
 		}
 	}
+
+	buildNextPrevPointers( activeMarkers );
 }
 
 function showInstitutions() {
@@ -154,6 +201,8 @@ function showInstitutions() {
 		}
 		showHideMarker( mrk, isInst );
 	}
+
+	buildNextPrevPointers( activeMarkers );
 }
 
 function showFilterItem() {
