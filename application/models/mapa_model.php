@@ -28,11 +28,10 @@ class Mapa_model extends MY_Model {
 		$this->db->from('usuario u');
 		$this->db->join('interesse it',
 			'u.id = it.usuario_id AND it.fg_ativo = \'S\'', 'left');
-		$this->db->join('item i', 'u.id = i.usuario_id', 'left');
-		$this->db->join('categoria c', 'c.id = i.categoria_id');
-		$this->db->join('situacao s', 's.id = i.situacao_id');
+		$this->db->join('item i', 'u.id = i.usuario_id AND i.status=\'I\'', 'left');
+		$this->db->join('categoria c', 'c.id = i.categoria_id', 'left');
+		$this->db->join('situacao s', 's.id = i.situacao_id', 'left');
 		$this->db->where('u.tipo','I'); //Instituicao
-		$this->db->where('i.status','I'); //Disponivel
 		$this->db->order_by('u.id', 'asc');
 		$insts = $this->db->get()->result();
 
