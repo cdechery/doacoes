@@ -138,13 +138,15 @@ window.onload = initialize;
 			<label>Nome</label>
 			<div class="form-group">
 				<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
+				<?php if( $tipo=="P") : ?>
 				<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
+				<?php endif; ?>
 			</div>
 		</div>
 <?php
-if( $tipo=="P") {
-$sexoM = ($sexo=="M")?"checked":"";
-$sexoF = ($sexo=="F")?"checked":"";
+	if( $tipo=="P") {
+		$sexoM = ($sexo=="M")?"checked":"";
+		$sexoF = ($sexo=="F")?"checked":"";
 ?>
 			<div class="form-group">
 				<label>Nascimento</label>
@@ -158,7 +160,7 @@ $sexoF = ($sexo=="F")?"checked":"";
 				</div>
 			</div>
 <?php
-} // tipo==P
+	} // tipo==P
 ?>
 		<div class="form-group">
 			<label>Senha</label>
