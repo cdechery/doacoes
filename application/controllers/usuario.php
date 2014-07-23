@@ -410,7 +410,38 @@ class Usuario extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
-	public function itens() {
+	public function itens( $user_id = 0 ) {
+		if( $user_id==0 ) {
+			redirect( base_url() );
+		}
+
+		$this->load->helper('image');
+
+		$user_data = $this->usuario_model->get_data( $user_id );
+
+		$this->load->model('item_model');
+		$itens = $this->item_model->get_user_items( $user_id );
+
+		$head_data = array('min_template'=>'image_view', "title"=>'Itens');
+		$this->load->view('head', $head_data);
+
+		$arrItems = array();
+		foreach ($itens as $item) {
+			$arrItems[ $item->item_id ]['data'] = $item;
+			if( !empty($item->nome_arquivo ) ) {
+				$arrItems[ $item->item_id ]['imagens'][] = $item->nome_arquivo;
+			} else {
+				$arrItems[ $item->item_id ]['imagens'] = array();
+			}
+		}
+
+		$this->load->view('item_list',
+			array('items'=>$arrItems, 'user'=>$user_data) );
+
+		$this->load->view('foot'); // fecha tag section
+	}
+
+	public function meus_itens() {
 		
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
@@ -426,11 +457,9 @@ class Usuario extends MY_Controller {
 		}
 
 		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
-		
 		$this->load->view('head', $head_data);
 
 		$arrItems = array();
-		
 		foreach ($itens as $item) {
 			$arrItems[ $item->item_id ]['data'] = $item;
 			if( !empty($item->nome_arquivo ) ) {

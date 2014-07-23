@@ -57,7 +57,7 @@ class Slonga extends MY_Controller {
 			$marker['position'] = $row->lat.', '.$row->lng;
 			$marker['infowindow_content'] = 'Item';
 			$marker['clickable'] = true;
-			$marker['onclick'] = 'map.setCenter(event.latLng); map.panBy(0, -120);';
+			$marker['onclick'] = 'map.setCenter(this.position); map.panBy(0, -120);';
 
 			if( $row->tipo=='P' ) {
 				$marker['icon'] = base_url().'icons/pessoa.png';
@@ -126,7 +126,9 @@ class Slonga extends MY_Controller {
 
 		$custom_js_global .= "var num_circles = ".count($this->googlemaps->circles).";";
 		$custom_js_global .= "var user_location = new google.maps.LatLng( ".$user_location." );";
-		$custom_js_global .= "var activeMarkers = markers_settings;";
+		
+		$custom_js_init .= "var activeMarkers = markers_settings;";
+		$custom_js_init .= "buildNextPrevPointers( activeMarkers );";
 
 		$config['custom_js_global'] = $custom_js_global;
 		$config['custom_js_init'] = $custom_js_init;

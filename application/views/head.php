@@ -62,7 +62,7 @@
 						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
 						<div id="user-menu">
 							<ul>
-								<li><a href="<?php echo base_url('usuario/itens')?>">Meus Itens</a></li>
+								<li><a href="<?php echo base_url('usuario/meus_itens')?>">Meus Itens</a></li>
 								<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
 								<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
 								<li><a href="<?php echo base_url('usuario/pref_email')?>">Preferências de email</a></li>

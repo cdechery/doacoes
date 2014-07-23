@@ -15,7 +15,7 @@
 ?>
 <div id="iw_pessoa" style="width=300px;">
 	<h3>
-		<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <?php echo count($arrItems)?> itens para doar.
+		<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a style="text-decoration: underline;" href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
 	</h3>
 <?php
 	
@@ -32,4 +32,9 @@
 	}
 ?>
 </div>
-<a href="#" onClick="prevMarker();"> < </a> | <a href="#" onClick="nextMarker();"> > </a>
+<div style="float: left; width: 50%; text-align: left;">
+	<a href="#" onClick="prevMarker();">< anterior</a>
+</div>
+<div style="float: left; width: 50%; text-align: right;">
+	<a href="#" onClick="nextMarker();">próximo ></a>
+</div>

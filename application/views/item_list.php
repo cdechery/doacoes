@@ -16,8 +16,19 @@ $(document).ready(function() {
 	});
 })
 </script>
+<?php if( !empty($user) ): ?>
+<div id="user_ites" class="clearfix">
+	<h3><img src="<?php echo user_avatar($user['avatar'], 80) ?>">
+	Listando itens do <?php echo $user['nome']?></h3>
+</div>
+<br>
+<?php endif; ?>
 <div id="show_itens" class="clearfix">
 <?php
+	if( count($items)==0 ) {
+		echo "<h4>Nenhum item para exibir</h4>";		
+	}
+
 	foreach ($items as $item_id => $item) {
 ?>
 		<div class="item_single">

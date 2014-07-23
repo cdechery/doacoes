@@ -171,7 +171,16 @@ class Item extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>$msg ) );
 		}
 
-	public function changestatus($id) {
+	public function changestatus( $id ) {
+		if( !$this->is_user_logged_in ) {
+			$result = "ERROR";
+			$msg = xlang('dist_errsess_expire');
+
+			echo json_encode( array('result'=>$result,
+				'status'=>'', 'msg'=>$msg ) );
+			return;
+		}
+
 		$status = $this->input->post('status');
 		$statusname = $status === 'I' ? 'Ativo' : 'Inativo';
 		if($this->item_model->change_status($id, $status)) {
@@ -181,12 +190,22 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Status de seu Item NÃO foi atualizado';
+			$msg = 'O Status de seu Item não foi atualizado';
 		}
-		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg ) );
+
+		echo json_encode( array('result'=>$result,
+			'status'=>$statusvalue, 'msg'=>$msg ) );
 	}
 
 	public function doado($id) {
+		if( !$this->is_user_logged_in ) {
+			$msg = xlang('dist_errsess_expire');
+
+			echo json_encode( array('status'=>'ERROR',
+				'msg'=>$msg ) );
+			return;
+		}
+
 		$status = $this->input->post('status');
 		if($this->item_model->given($id, $status)) {
 			$result = "OK";
@@ -252,7 +271,6 @@ class Item extends MY_Controller {
 		$items = $this->item_model->get_list( $item_ids );
 
 		$arrItems = array();
-		
 		foreach ($items as $item) {
 			$arrItems[ $item->id ]['data'] = $item;
 			if( !empty($item->nome_arquivo ) ) {

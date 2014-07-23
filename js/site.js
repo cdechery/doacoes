@@ -170,7 +170,7 @@ $(function() {
 			if( json.status=="OK" ) {
 				new Messi(json.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true, buttons: [{id: 0, label: 'OK', val: 'S'}], 
-					callback: function(val) { location.href = site_root+'usuario/itens'; } });
+					callback: function(val) { location.href = site_root+'usuario/meus_itens'; } });
 			} else {
 				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -484,7 +484,9 @@ function activ_deactiv_item(btn, action) {
 				btn.attr('data-status', '0');
 				btn.next().addClass('disabled').attr('disabled', true);
 			};
-		};
+		} else {
+			new Messi(json.msg, { title: 'Erro na atualização do item', titleClass: 'anim error', modal: false });
+		}
 	}).fail( function() { general_error(); } );;
 }
 
