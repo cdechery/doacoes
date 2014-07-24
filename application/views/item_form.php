@@ -16,7 +16,8 @@
 
 <h2>Cadastro de Itens</h2>
 
-<aside id="image">
+<aside id="image" class="col roundbox">
+	<h3>Imagens do item</h3>
 
 	<form method="post" action="<?php echo base_url();?>image/upload_item_image" id="upload_item_image" enctype="multipart/form-data">
 <?php
@@ -29,9 +30,9 @@ if( $action!="insert" ) {
 	// Imagens do item, se houver
 	foreach($images as $img) {
 		$num_imgs++;
-		$thumb = item_image($img->nome_arquivo, 80);
+		$thumb = item_image($img->nome_arquivo, 120);
 ?>
-		<input type="file" name="item_file_<?php echo $img->id?>" style="display: none;" id="item_file_<?php echo $img->id?>" onchange="do_upload_item_image(<?php echo $img->id?>, false);" />
+		<input type="file" name="item_file_<?php echo $img->id?>" style="display: none;" id="item_file_<?php echo $img->id?>" onChange="do_upload_item_image(<?php echo $img->id?>, false);" />
 		<a href="#" onclick="document.getElementById('item_file_<?php echo $img->id?>').click();"/>
 			<img title="Alterar imagem" src="<?php echo $thumb?>" id="item_img_<?php echo $img->id?>" data-imgid="<?php echo $img->id?>">
 		</a>
@@ -43,7 +44,7 @@ if( $action!="insert" ) {
 ?>
 			<input type="file" name="item_file_<?php echo $i?>" style="display: none;" id="item_file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);" />
 			<a href="#" onclick="document.getElementById('item_file_<?php echo $i?>').click();"/>
-				<img title="Enviar imagem" src="<?php echo item_image(null, 80)?>" id="item_img_<?php echo $i?>" data-imgid="0">
+				<img title="Enviar imagem" src="<?php echo item_image(null, 120)?>" id="item_img_<?php echo $i?>" data-imgid="0">
 			</a>
 <?php
 		} // for imagens default
@@ -54,7 +55,7 @@ if( $action!="insert" ) {
 ?>		
 		<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>,true);"/>
 		<a href="#" onclick="document.getElementById('file_<?php echo $i?>').click();"/>
-			<img title="Enviar imagem" src="<?php echo item_image(null, 80)?>" id="img_<?php echo $i?>" data-newid="0"/>
+			<img title="Enviar imagem" src="<?php echo item_image(null, 120)?>" id="img_<?php echo $i?>" data-newid="0"/>
 		</a>
 <?php
 	} //for imagens default novo item

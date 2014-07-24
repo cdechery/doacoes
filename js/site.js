@@ -343,11 +343,16 @@ $(function() {
 		}).fail( function() { general_error(); } );
 		return false;
 	});
-
 });
 
+var avatarUploadInProgress = false;
+
 function do_upload_avatar() {
-	var originalImg = $('user_avatar').attr('src');
+
+	if( avatarUploadInProgress ) return false;
+	avatarUploadInProgress = true;
+
+	var originalImg = $('#user_avatar').attr('src');
 	$('#user_avatar').attr('src', site_root+'icons/ajax-loader-200.gif');
 
 	$.ajaxFileUpload({
@@ -365,7 +370,7 @@ function do_upload_avatar() {
 				new Messi(data.msg, {title: lang['dist_lbl_success'], 
 					titleClass: 'dist_lbl_success', modal: true });
 			} else {
-				$('userfile').attr('src', originalImg );
+				$('#user_avatar').attr('src', originalImg );
 				new Messi(data.msg, {title: lang['dist_lbl_error'],
 					titleClass: 'anim error',
 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
@@ -376,11 +381,16 @@ function do_upload_avatar() {
 			general_error( lang['dist_error_upload'] );
 		}
 	});
+
+	avatarUploadInProgress = false;
 	return false;
 }
 
-
+var imgUploadInProgress = false;
 function do_upload_item_image( img_id, isnew ) {
+
+	if( imgUploadInProgress ) return false;
+	imgUploadInProgress = true;
 
  	var img_tag_id = 'item_img_'+img_id;
 	var file_tag_id = 'item_file_'+img_id;
@@ -397,7 +407,7 @@ function do_upload_item_image( img_id, isnew ) {
 	}
 
 	var originalImg = $('#'+img_tag_id).attr('src');
-	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader-80.gif');
+	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader-120.gif');
 
     $.ajaxFileUpload({
         url : site_root +'image/'+action+'/',
@@ -416,7 +426,7 @@ function do_upload_item_image( img_id, isnew ) {
             if( data.status != 'error') {
                 var imageData = $.getJSON( site_root + 'image/get_image/'+data.file_id );
                 imageData.success(function(imgdata) {
-	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb80);
+	                $('#'+img_tag_id).attr('src', site_root+'files/'+imgdata.thumb120);
 	                if( isnew ) {
 	                	$('#'+img_tag_id).data('newid', data.file_id);
 	                }
@@ -433,6 +443,8 @@ function do_upload_item_image( img_id, isnew ) {
 			$('#'+img_tag_id).attr('src', originalImg);
 		}
     });
+
+    imgUploadInProgress = false;
     return false;
 }
 
