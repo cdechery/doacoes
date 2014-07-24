@@ -48,10 +48,11 @@ function general_error( msg ) {
 }
 
 function load_infowindow_content(infowindow, user_id){
-		$.ajax({
+	$.ajax({
 		url: site_root +'usuario/map_infowindow/' + user_id,
 		success: function(data) {
-			infowindow.setContent(data);
+			infowindow.setContent( data );
+			$('#iw_current').hide().fadeIn('slow');
 		}
 	});
 }
