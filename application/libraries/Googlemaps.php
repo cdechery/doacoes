@@ -312,7 +312,7 @@ class Googlemaps {
 			google.maps.event.addListener(marker_'.$marker_id.', "click", function(event) {
 				//iw.setContent(this.get("content"));
 				if( last_iw_opened!=null ) { last_iw_opened.close(); }
-				marker_'.$marker_id.'.infowindow.setContent("<div class=\"iw_loading_box\"><img src=\"'.base_url().'icons/ajax-loader.gif\"></div>");
+				marker_'.$marker_id.'.infowindow.setContent("<div id=\"iw_loading\" class=\"iw_loading_box\"><img src=\"'.base_url().'icons/ajax-loader.gif\"></div>");
 				load_infowindow_content(marker_'.$marker_id.'.infowindow,'.$marker_id.');
 				last_iw_opened = marker_'.$marker_id.'.infowindow;
 				marker_'.$marker_id.'.infowindow.open('.$this->map_name.', this);

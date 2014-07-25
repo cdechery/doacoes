@@ -9,11 +9,9 @@ $('#email_queroitem').submit(function(e) {
 
 		var json = myParseJSON( data );
 		if( json.status=="OK" ) {
-			new Messi('O email foi enviado!', {title: 'Sucesso',
-				titleClass: 'success', modal: true });
+			msg_success('O email foi enviado!', 'Sucesso', true);
 		} else {
-			new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-				buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			msg_error( json.msg );
 		}
 	}).fail( function() { general_error(); } );
 	return false;
@@ -30,11 +28,9 @@ $('#email_contato_inst').submit(function(e) {
 
 		var json = myParseJSON( data );
 		if( json.status=="OK" ) {
-			new Messi('O email foi enviado!', {title: 'Sucesso',
-				titleClass: 'success', modal: true });
+			msg_success('O email foi enviado!', 'Sucesso', true);
 		} else {
-			new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-				buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+			msg_error( json.msg );
 		}
 	}).fail( function() { general_error(); } );
 	return false;

@@ -214,7 +214,7 @@ class Item extends MY_Controller {
 		} else {
 			$result = "ERROR";
 			$statusvalue = NULL;
-			$msg = 'O Item não foi marcado como doado.';
+			$msg = 'Ocorreu uma falha ao marcar o item como Doado';
 		}
 		echo json_encode( array('result'=>$result, 'status'=>$statusvalue, 'msg'=>$msg) );
 	}

@@ -39,20 +39,57 @@ function go_home() {
 	location.href = site_root;
 }
 
-function general_error( msg ) {
+function msg_general_error( msg ) {
 	if( msg==null ) {
-		msg = lang['dist_general_error'];
+		msg = lang['dist_msg_general_error'];
 	}
+	
 	new Messi( msg, {title: 'Oops...', titleClass: 'anim error', 
-		buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+		buttons: [{id: 0, label: 'Fechar', val: 'X'}] });
+}
+
+function msg_success(msg, title, modal, custom_action) {
+	if( modal==null ) {
+		modal = false;
+	}
+
+	if( custom_action ) {
+		new Messi(msg, {title: title, 
+			titleClass: 'anim success', modal: modal,
+			buttons: [{id: 0, label: 'OK', val: 'S'}], 
+			callback: custom_action } );
+	} else {
+		new Messi(msg, {title: title, 
+			titleClass: 'anim success', modal: modal } );
+	}
+}
+
+function msg_confirm(msg, title, custom_action) {
+	new Messi(msg, {title: title, modal: true,
+		buttons: [{id: 0, label: 'Sim', val: 'S'}, 
+		{id: 1, label: 'Não', val: 'N'}], 
+		callback: custom_action } );
+}
+
+function msg_error( msg, title ) {
+	if( title==null ) {
+		title = 'Oops...';
+	}
+
+	new Messi( msg, {title: title, titleClass: 'anim error', 
+		modal: true, buttons: [{id: 0, label: 'Fechar', val: 'X'}]} );
+}
+
+function msg_general( msg, title, modal ) {
+	new Messi( msg, {title: title, modal: modal} );
 }
 
 function load_infowindow_content(infowindow, user_id){
 	$.ajax({
 		url: site_root +'usuario/map_infowindow/' + user_id,
 		success: function(data) {
+			$('#iw_loading').fadeOut('fast');
 			infowindow.setContent( data );
-			$('#iw_current').hide().fadeIn('slow');
 		}
 	});
 }
@@ -89,14 +126,11 @@ $(function() {
 			$("#pref_email").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status == "OK" ) {
-				new Messi(json.msg, {title: lang['dist_lbl_success'],
-					titleClass: 'anim success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}] });
+				msg_success(json.msg, lang['dist_lbl_success'], true);
 			} else {
-				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error(json.msg);
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 
@@ -106,16 +140,12 @@ $(function() {
 			$("#usuario_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(lang['dist_newuser_ok2'], {title: lang['dist_lbl_success'], 
-					titleClass: 'dist_lbl_success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}], 
-					callback: function(val) { go_home(); } });
-
+				msg_success(lang['dist_newuser_ok2'], lang['dist_lbl_success'],
+					true, function(val) { go_home(); });
 			} else {
-				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 
@@ -125,58 +155,25 @@ $(function() {
 			$("#usuario_update").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['dist_lbl_success'],
-					titleClass: 'dist_lbl_success', modal: true });
+				msg_success( json.msg, lang['dist_lbl_success'], true);
 			} else {
-				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
-
-	// $('#upload_avatar').submit(function(e) {
-	// 	e.preventDefault();
-	// 	$.ajaxFileUpload({
-	// 		url 		   : site_root +'image/upload_avatar/',
-	// 		secureuri      : false,
-	// 		fileElementId  :'userfile',
-	// 		contentType    : 'application/json; charset=utf-8',
-	// 		dataType	   : 'json',
-	// 		data        : {
-	// 			'thumbs'           : $('#thumbs').val()
-	// 		},
-	// 		success  : function (data) {
-	// 			if( data.status != 'error') {
-	// 				$('#user_avatar').attr('src',data.img_src);
-	// 				new Messi(data.msg, {title: lang['dist_lbl_success'], 
-	// 					titleClass: 'dist_lbl_success', modal: true });
-	// 			} else {
-	// 				new Messi(data.msg, {title: lang['dist_lbl_error'],
-	// 					titleClass: 'anim error',
-	// 					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-	// 			}
-	// 		},
-	// 		error : function (data, status, e) {
-	// 			general_error( lang['dist_error_upload'] );
-	// 		}
-	// 	});
-	// 	return false;
-	// });
 
 	$('#item_insert').submit(function(e) {
 		e.preventDefault();
 		$.post($("#item_insert").attr("action"), $("#item_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['dist_lbl_success'], 
-					titleClass: 'dist_lbl_success', modal: true, buttons: [{id: 0, label: 'OK', val: 'S'}], 
-					callback: function(val) { location.href = site_root+'usuario/meus_itens'; } });
+				msg_success( json.msg, lang['dist_lbl_success'], true,
+					function(val) { location.href = site_root+'usuario/meus_itens'; } );
 			} else {
-				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 
@@ -186,15 +183,11 @@ $(function() {
 			$("#item_update").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: lang['dist_lbl_success'], 
-					titleClass: 'anim success', modal: true,
-					buttons: [{id: 0, label: 'OK', val: 'S'}] });
-
+				msg_success( json.msg, lang['dist_lbl_success'], true);
 			} else {
-				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 
@@ -202,20 +195,21 @@ $(function() {
 		e.preventDefault();
 		var itemid = $(this).data('itemid');
 		var parentDiv = $(this).parents('.item_single');
-		new Messi('Tem certeza que deseja remover este item?', {title: 'Remover item', 
-				titleClass: 'dist_lbl_success', modal: true,
-				buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
-					if (val=='S') {
-						$.post(site_root+'item/delete/'+itemid, function(data){
-							var json = myParseJSON(data);
-							if (json.status=="OK") {
-								parentDiv.remove(); 
-							};
-						}).fail( function(){ general_error();} );
-					}
+
+		msg_confirm('Tem certeza que deseja remover este item?', 'Remover',
+			function( val ) { 
+				if( val=='S' ) {
+					$.post(site_root+'item/delete/'+itemid, function(data) {
+						var json = myParseJSON(data);
+						if (json.status=="OK") {
+							parentDiv.remove(); 
+						} else {
+							msg_error( json.msg );				
+						}
+					} ).fail( function() { msg_general_error(); } );
 				}
-			}
-		);
+			} );
+
 		return false;
 	});
 
@@ -243,20 +237,12 @@ $(function() {
 		var btn = $(this);
 		var itemstatus = btn.attr('data-status');
 		if (itemstatus == 'D') {
-			new Messi('Este item já foi marcado como doado', { title: 'Atenção', titleClass: 'anim error', modal: false });
+			msg_general('Este item já foi marcado como doado', 'Atenção');
 		} else {
-			new Messi('Confirma que o item foi doado? Após marcar como doado você não poderá mais fazer alterações neste item.', {
-					title: 'Confirmar doação', 
-					titleClass: 'dist_lbl_success', 
-					modal: true, 
-					buttons: [{id: 0, label: 'Sim', val: 'S'},{id: 1, label: 'Não', val: 'N'}], callback: function(val) { 
-						if (val=='S') {
-							marca_item_doado(btn);
-						}
-					}
-				}
-			);
-		};
+			msg_confirm('Essa ação é irreversível e você não poderá mais modificar este item.',
+				'Confirmar doação',
+				function(val) { if (val=='S') { marca_item_doado(btn); } } );
+		}
 		return false;
 	});
 
@@ -266,17 +252,16 @@ $(function() {
 			$("#interesse_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				new Messi(json.msg, {title: 'Interesse incluído com sucesso!', titleClass: 'dist_lbl_success', modal: true });
+				msg_success('O novo ineresse foi cadastrado', lang['dist_lbl_success'], true);
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
                 	$('#interesses_none').hide();
                     $('#interesses table').append(data);
                 });
 			} else {
-				new Messi( json.msg, {title: 'Oops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 
@@ -290,13 +275,13 @@ $(function() {
 			dataType	: 'json',
 			success     : function (data) {
 				if ( data.status === "success" ) {
-					new Messi(data.msg, {title: 'Interesse atualizado com sucesso!', titleClass: 'dist_lbl_success', modal: true });
-				} else {			
-					new Messi( data.msg, {title: lang['dist_lbl_error'], titleClass: 'anim error', buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+					msg_success( data.msg, lang['dist_lbl_success'], true);
+				} else {
+					msg_error( data.msg );
 				}
 			},
 			error : function (data, status, e) {
-				general_error( 'Ocorreu uma falha ao Atualizar o Interesse, tente mais tarde' );
+				msg_general_error();
 			}
 		});
 		return false;
@@ -313,19 +298,7 @@ $(function() {
 		return false;
 	});
 
-	$(document).on('click', '.delete_file_link', function(e) {
-		e.preventDefault();
-		var btn = $(this);
-		new Messi(lang['dist_imgdel_confirm'], {modal: true,
-			buttons: [{id: 0, label: 'Sim', val: 'S'},
-			{id: 1, label: 'Não', val: 'N'}], 
-			callback: function(val) { if(val=='S') delete_image(btn); }});
-
-		return false;
-	});
-
 	$('#contato').submit(function(e) {
-		
 		e.preventDefault();
 
 		var action = $("#contato").attr("action");
@@ -333,15 +306,12 @@ $(function() {
 
 		$.post(action, formdata, function(data) {
 			var json = myParseJSON( data );
-			console.log(json);
 			if( json.status=="OK" ) {
-				new Messi('O email foi enviado!', {title: 'Sucesso',
-					titleClass: 'success', modal: true });
+				msg_success('Sua mensagem foi enviada!', 'Sucesso', true);
 			} else {
-				new Messi( json.msg, {title: 'Ops...', titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( json.msg );
 			}
-		}).fail( function() { general_error(); } );
+		}).fail( function() { msg_general_error(); } );
 		return false;
 	});
 });
@@ -368,18 +338,15 @@ function do_upload_avatar() {
 		success  : function (data) {
 			if( data.status != 'error') {
 				$('#user_avatar').attr('src',data.img_src);
-				new Messi(data.msg, {title: lang['dist_lbl_success'], 
-					titleClass: 'dist_lbl_success', modal: true });
+				msg_success( data.msg, lang['dist_lbl_success'], true);
 			} else {
 				$('#user_avatar').attr('src', originalImg );
-				new Messi(data.msg, {title: lang['dist_lbl_error'],
-					titleClass: 'anim error',
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( data.msg );
 			}
 		},
 		error : function (data, status, e) {
 			$('userfile').attr('src', originalImg );
-			general_error( lang['dist_error_upload'] );
+			msg_general_error( lang['dist_error_upload'] );
 		}
 	});
 
@@ -433,14 +400,12 @@ function do_upload_item_image( img_id, isnew ) {
 	                }
                 });
             } else {
-                new Messi(data.msg, {title: lang['dist_lbl_error'],
-                	titleClass: 'anim error', 
-                	buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( data.msg );
 				$('#'+img_tag_id).attr('src', originalImg);
             }
         },
         error : function (data, status, e) {
-			general_error( lang['dist_error_upload'] );
+			msg_general_error( lang['dist_error_upload'] );
 			$('#'+img_tag_id).attr('src', originalImg);
 		}
     });
@@ -467,25 +432,24 @@ function activ_deactiv_interesse( btn, action ) {
 				}
 				return true;
 			} else {
-				new Messi( data.msg, {title: lang['dist_lbl_error'],
-					titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
+				msg_error( data.msg );
 				return false;
 			}
 		},
 		error : function (data, status, e) {
-			general_error( 'Ocorreu uma falha ao Ativar/Desativar o Interesse, tente mais tarde' );
+			msg_general_error();
 			return false;
 		}
 	});
 }
 
 function activ_deactiv_item(btn, action) {
-	$.post(site_root+'item/changestatus/'+btn.data('itemid'), { status: action } ,function(data){
+	$.post( site_root+'item/changestatus/'+btn.data('itemid'),
+		{ status: action } , function(data) {
 		var json = myParseJSON(data);
 		if (json.result === "OK") {
-			new Messi(json.msg, {title: 'O status do item foi alterado com sucesso',
-				titleClass: 'dist_lbl_success', modal: true });
+			msg_success( json.msg, lang['dist_lbl_success'], true);
+
 			if (json.status === 'I') {
 				btn.removeClass('active');
 				btn.html('<i class="fa fa-square-o"></i>&nbsp;Cancelar Item');
@@ -498,48 +462,22 @@ function activ_deactiv_item(btn, action) {
 				btn.next().addClass('disabled').attr('disabled', true);
 			};
 		} else {
-			new Messi(json.msg, { title: 'Erro na atualização do item', titleClass: 'anim error', modal: false });
+			msg_error( json.msg );
 		}
-	}).fail( function() { general_error(); } );;
+	}).fail( function() { msg_general_error(); } );;
 }
 
 function marca_item_doado(btn) {
 	$.post(site_root+'item/doado/'+btn.data('itemid'), { status: 'D' }, function(data) {
 		var json = myParseJSON( data );
 		if (json.result === "OK") {
-			new Messi(json.msg, { title: 'Doação realizada', titleClass: 'dist_lbl_success', modal: false });
+			msg_success('O item foi marcado como \'Doado\'', 'Obrigado!', true);
 			btn.addClass('active');
 			btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Doado');
 			btn.attr('data-status', 'D');
 			btn.siblings('button').addClass('disabled').attr('disabled', true);
 		} else {
-			new Messi(json.msg, { title: 'Erro na atualização do item', titleClass: 'anim error', modal: false });
+			msg_error( json.msg );
 		};
-	}).fail( function() { general_error(); } );
+	}).fail( function() { msg_general_error(); } );
 };
-
-function delete_image( link ) {
-	$.ajax({
-		url         : site_root + 'image/delete_image/' + link.data('file_id'),
-		contentType : 'charset=utf-8',
-		dataType 	: 'json',
-		success     : function (data) {
-			var images = $('#images');
-			if (data.status === "success") {
-				link.parent('div').fadeOut('fast', function() {
-					$(this).remove();
-					if (images.find('div').length === 0) {
-						images.html('<p>Sem imagens.</p>');
-					}
-				});
-				mrkImagesCount--;
-			} else {
-				new Messi(data.msg, {title: lang['error'], titleClass: 'anim error', 
-					buttons: [{id: 0, label: 'Fechar', val: 'X'}]});
-			}
-		},
-		error : function (data, status, e) {
-			general_error( lang['dist_imgdel_nok'] );
-		}
-	});
-}
