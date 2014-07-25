@@ -14,6 +14,11 @@ $(document).ready(function() {
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
+
+	$(".fancybox").fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});	
 })
 </script>
 <?php if( !empty($user) ): ?>
@@ -36,7 +41,7 @@ $(document).ready(function() {
 				<?php if( count($item['imagens']) ) {
 					foreach ($item['imagens'] as $file) {
 						$thumb = thumb_filename($file, 120);
-						echo "<img src=".base_url("files/".$thumb)." />";
+						echo "<a href='".base_url('files/'.$file)."' class='fancybox' rel='fotos_".$item_id."'><img src=".base_url("files/".$thumb)." /></a>";
 					}
 				} ?>
 			</div>

@@ -86,7 +86,7 @@ class Image extends MY_Controller {
 			}
 		}
 
-		echo json_encode(array('status' => $status, 'msg' => $msg,
+		echo json_encode( array('status' => $status, 'msg' => $msg,
 			"file_id" => $file_id) );
 	} // upload_marker_imagem
 
@@ -151,26 +151,26 @@ class Image extends MY_Controller {
 		echo json_encode(array('status' => $status, 'msg' => $msg, "img_src" => $img_src) );
 	} // upload_marker_imagem
 
-	public function delete_image( $id ) {
-		if( !$this->is_user_logged_in ) {
-			$status = "error";
-			$msg = xlang('dist_errsess_expire');
-			echo json_encode( array('status' => $status, 'msg' => $msg) );
-			return;
-		}
+	// public function delete_image( $id ) {
+	// 	if( !$this->is_user_logged_in ) {
+	// 		$status = "error";
+	// 		$msg = xlang('dist_errsess_expire');
+	// 		echo json_encode( array('status' => $status, 'msg' => $msg) );
+	// 		return;
+	// 	}
 
-		$status = $msg = "";
+	// 	$status = $msg = "";
 		
-		if( !$this->image_model->delete( $id ) ) {
- 			$status = 'error';
-      		$msg = xlang('dist_imgdel_nok');
-		} else {
-			$status = "success";
-			$msg = xlang('dist_imgdel_ok');
-		}
-		echo json_encode( array('status' => $status,
-			'msg' => $msg) );
-	}
+	// 	if( !$this->image_model->delete( $id ) ) {
+ // 			$status = 'error';
+ //      		$msg = xlang('dist_imgdel_nok');
+	// 	} else {
+	// 		$status = "success";
+	// 		$msg = xlang('dist_imgdel_ok');
+	// 	}
+	// 	echo json_encode( array('status' => $status,
+	// 		'msg' => $msg) );
+	// }
 
 	public function get_image($image_id) {
 		$image_data = $this->image_model->get_by_id($image_id);
