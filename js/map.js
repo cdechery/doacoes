@@ -268,7 +268,7 @@ $(document).ready(function(){
 		$('#filtro_texto').hide();
 	});
 
-	$('.checks, #filter-item, #filter-inst, #local, #filtro_texto').click(function(e) {
+	$('.checks, #filter-item, #filter-inst, #local').click(function(e) {
 		e.stopPropagation(); 
 	});
 

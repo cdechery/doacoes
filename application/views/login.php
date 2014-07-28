@@ -15,7 +15,7 @@
 			<input type="password" name="password" id="password" placeholder="Senha" />
 		</div>
 		<div id="lembrasenha" class="form-group checkbox clearfix">
-			<a class="various" href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe">
+			<a href="<?php echo base_url()?>usuario/reset_password" data-fancybox-type="iframe">
 				<?php echo xlang('dist_resetpw_link')?>
 			</a>
 			<label>
@@ -27,24 +27,8 @@
 		</div>
 	</form>
 
-	<script>
-		$(document).ready(function() {
-		$(".various").fancybox({
-			maxWidth	: 320,
-			maxHeight	: 129,
-			fitToView	: false,
-			width		: '90%',
-			height		: '90%',
-			autoSize	: false,
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
-		});
-		})
-	</script>
-
 </div>
 
 <div id="link_cadastro">
-	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/novo')?>">Faça seu cadastro</a>
+	Novo por aqui?&nbsp;&nbsp;<a href="#cadastro_window">Faça seu cadastro</a>
 </div>
