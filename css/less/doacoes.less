@@ -74,15 +74,6 @@ section.contents {
 		}
 	}
 }
-
-/* box fundo branco com rounded corners padrão */
-.roundbox {
-	background-color: #fff;
-	padding: 25px;
-	border-radius: 14px;
-	min-height: 300px;
-}
-
 /* cols float padrão (par) */
 .col {
 	.column(6);
@@ -91,11 +82,18 @@ section.contents {
 	}
 }
 
-div.wrap960 {
+.wrap960 {
 	margin: 0 auto;
 	width: 960px;
 	position: relative;
 	.clearfix;
+}
+
+/* box fundo branco com rounded corners padrão */
+.roundbox {
+	background-color: #fff;
+	border-radius: 18px;
+	padding: 30px;
 }
 
 /* inicio estilos slonga */
@@ -264,7 +262,7 @@ section#home {
 		padding: 0 18px;
 		font-size: .9em;
 		background-color: @azulescuro;
-		color:#fff;
+		color: #fff;
 		#filtro_texto { /* janela localização */
 			z-index: 2000;
 			position: absolute;
@@ -272,15 +270,15 @@ section#home {
 			top: -140px;
 			width: 300px;
 			height: 140px;
-			border: 1px solid @azulescuro;
-			background-color: #fff;
+			border: 1px solid @azulcaixinha;
+			background-color: @azulescuro;
 			padding: 20px 30px;
 			p:first-child {
 				margin: 0 0 10px;
-				color:@azulescuro!important;
-				a {
-					font-weight: 400;
-				}
+			}
+			a {
+				font-weight: 400;
+				color: @amarelo!important;
 			}
 			input[type=text] {
 				width: 100%;
@@ -291,7 +289,7 @@ section#home {
 			padding: 7px 0 0;
 			button {
 				.button-size(6px, 12px, .8em, 12px, 8px);
-				.button-variant(#fff; @azulmedio);
+				.button-variant(#fff; @verde_botao);
 				font-weight: 300;
 				text-transform: uppercase;
 				font-size: .6em;
@@ -304,6 +302,7 @@ section#home {
 			text-transform: uppercase;
 			font-size: .8em;
 			font-weight: 900;
+			color: @amarelo;
 		}
 		span {
 			font-weight: 700;
@@ -322,7 +321,8 @@ section#home {
 				margin: 0;
 				position: relative;
 				&:hover {
-					color: @amarelo;
+					color: #fff;
+					background-color: @azulcaixinha;
 					> div {
 						display: block!important; 
 					}
@@ -334,17 +334,17 @@ section#home {
 					top: -120px;
 					width: 344px;
 					height: 120px;
-					border: 1px solid @azulescuro;
-					background-color: #fff;
+					border: 1px solid @azulcaixinha;
+					background-color: @azulescuro;
 					padding: 20px 30px;
 					h4 {
 						margin: 0 0 10px;
-						color:@azulescuro!important;
+						color:@amarelo!important;
 					}
 					.col {
 						.column(2);
 						margin: 0 0;
-						color:@azulescuro!important;
+						color:#fff!important;
 					}
 				}
 				> div#filtro_ints {
@@ -418,7 +418,7 @@ div#link_cadastro {
 }
 
 #user-form {
-	.column(9);
+	.column(7);
 	margin-left: 0;
 	#map_canvas {
 		margin: 30px 0;
@@ -456,6 +456,7 @@ form#newitem {
 	height: 200px;
 	margin-bottom: 20px;
 	border-radius: 12px;
+	border: 1px solid #ccc;
 	position: relative;
 	padding: 20px;
 	h3 {
@@ -483,7 +484,7 @@ form#newitem {
 			.button-variant(@azulescuro; @azul);
 			&.item-modify {
 				background-color: @amarelo_botao;
-				color: #aa5c00;
+				color: @cobre;
 			}
 			&.item-status {
 				/*background-color: @azul;
@@ -517,8 +518,8 @@ form#newitem {
 #interesses {
 	margin: 30px 0;
 	background-color: #fff;
-	padding: 20px;
-	border-radius: 14px;
+	// padding: 20px;
+	// border-radius: 14px;
 	table { 
 		width: 100%;
 		thead {
@@ -540,9 +541,10 @@ form#newitem {
 	button {
 		border: none;
 		.button-size(6px, 12px, 14px, 1.2em, 4px);
-		.button-variant(#fff, @amarelo_botao);
+		.button-variant(@cobre, @amarelo_botao);
 		&.activ_interesse_btn {
 			background-color: @azulescuro;
+			color:#fff;
 		}
 		&.blue {
 			background-color: @azul!important;

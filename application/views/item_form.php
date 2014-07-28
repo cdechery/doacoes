@@ -16,7 +16,8 @@
 
 <h2>Cadastro de Itens</h2>
 
-<aside id="image" class="col roundbox">
+<aside id="image" class="col">
+	
 	<h3>Imagens do item</h3>
 
 	<form method="post" action="<?php echo base_url();?>image/upload_item_image" id="upload_item_image" enctype="multipart/form-data">

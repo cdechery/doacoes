@@ -1,4 +1,5 @@
-	</div>
+		</div><!-- roundbox -->
+	</div><!-- wrap960 -->
 </section>	
 
 <!-- <footer>

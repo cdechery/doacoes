@@ -9,7 +9,7 @@
 
 <p>Selecione abaixo quais emails deseja receber.</p>
 
-<div class="roundbox">
+<div>
 
 	<form id="pref_email" method="post" action="<?php echo base_url('usuario/salvar_pref_email')?>">
 	

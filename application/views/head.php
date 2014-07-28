@@ -129,3 +129,4 @@
 ?>
 <section class="contents">
 	<div class="wrap960">
+		<div class="roundbox clearfix">

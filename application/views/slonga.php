@@ -49,7 +49,7 @@
 				<?php endif; ?>
 			</div>
 
-			<h4>Filtrar resultados: </h4>
+			<h4>Filtrar resultados</h4>
 
 			<span>Mostrar&nbsp;&nbsp;</span><i class="fa fa-angle-right"></i>
 			<ul>
