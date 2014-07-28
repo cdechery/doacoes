@@ -107,20 +107,20 @@ header#main {
 	h1 {
 		margin: 16px 0 0;
 		display: inline-block;
-		width: 375px;
-		height: 57px;
+		width: 195px;
+		height: 45px;
 		text-indent: 100%;
 		white-space: nowrap;
 		overflow: hidden;
 		a {
 			display: block;
 			background: url('../images/logo.png') 0 0 no-repeat;
-			width: 375px;
-			height: 57px;
+			width: 195px;
+			height: 45px;
 		}
 	}
 	nav#top {
-		margin: 23px 0 0;
+		margin: 28px 0 0;
 		width: 600px;
 		text-align: right;
 		position: absolute;
@@ -146,10 +146,13 @@ header#main {
 				}
 			}
 			li#user-btn {
-				text-transform: none;
 				position: relative;
 				.button-size(6px, 12px, inherited, 12px, 4px);
-				.button-variant(#fff; @azulescuro);
+				.button-variant(#fff; @azulcaixinha);
+				a {
+					text-transform: none;
+					font-weight: 400!important;
+				}
 				i {
 					color: yellow;
 				}
@@ -158,12 +161,11 @@ header#main {
 		#user-menu {
 			display: none;
 			position: absolute;
-			top: 30px;
-			right:-10px;
+			top: 27px;
+			right: 0;
 			z-index: 5000;
 			width: 150px;
 			background-color: #fff;
-			border-radius: 4px 4px 4px 4px;
 			-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
 			-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
 			box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
@@ -261,9 +263,9 @@ section#home {
 		border-radius: 16px;
 		padding: 0 18px;
 		font-size: .9em;
-		border: 1px solid @azulescuro;
-		color: @azulescuro;
-		#filtro_texto {
+		background-color: @azulescuro;
+		color:#fff;
+		#filtro_texto { /* janela localização */
 			z-index: 2000;
 			position: absolute;
 			right: 20px;
@@ -271,7 +273,7 @@ section#home {
 			width: 300px;
 			height: 140px;
 			border: 1px solid @azulescuro;
-			background-color: @azul;
+			background-color: #fff;
 			padding: 20px 30px;
 			p:first-child {
 				margin: 0 0 10px;
@@ -320,8 +322,7 @@ section#home {
 				margin: 0;
 				position: relative;
 				&:hover {
-					background-color: @azulescuro;
-					color: #fff;
+					color: @amarelo;
 					> div {
 						display: block!important; 
 					}
@@ -334,7 +335,7 @@ section#home {
 					width: 344px;
 					height: 120px;
 					border: 1px solid @azulescuro;
-					background-color: @azul;
+					background-color: #fff;
 					padding: 20px 30px;
 					h4 {
 						margin: 0 0 10px;
