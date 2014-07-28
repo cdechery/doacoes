@@ -27,7 +27,7 @@ class Login extends MY_Controller {
 		$head_data = array("min_template"=>"image_view",
 			"title"=>$this->params['titulo_site'].": Login");
 
-		$this->load->view('head', $head_data);
+		$this->load->view('head_login', $head_data);
 		$this->load->view('login',
 			array('next'=>$next, 'msg'=>$msg) );
 		$this->load->view('foot');

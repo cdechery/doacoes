@@ -61,7 +61,7 @@ section.contents {
 	width: 100%;
 	padding: 25px 0 60px;
 	min-height: 300px;
-	/* tamanho texto padráo. ver depois. 
+	/* tamanho texto padráo. ver depois.
 	font-size: 1.2em; */
 	/* entrelinha texto padrão */
 	p {
@@ -101,22 +101,21 @@ div.wrap960 {
 
 header#main {
 	width: 100%;
-	height: 70px;
+	height: 75px;
 	background-color: @azultopo;
-	#marca { /* imagens bonecos, tirei */
-		width:120px;
-		height: 90px;
-		background: #007095 url('../images/bonecos.png') 50% 50% no-repeat;
-		float: left;
-		margin-right: 25px;
-	}
 	h1 {
 		margin: 16px 0 0;
 		display: inline-block;
-		font-size: 1.9em;
-		font-weight: 900;
+		width: 375px;
+		height: 57px;
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
 		a {
-			color: #fff;
+			display: block;
+			background: url('../images/logo.png') 0 0 no-repeat;
+			width: 375px;
+			height: 57px;
 		}
 	}
 	nav#top {
@@ -133,11 +132,11 @@ header#main {
 			padding: 0;
 			> li {
 				display: inline-block;
-				text-transform: uppercase;
 				margin-left: 15px;
 				> a {
 					color: #fff;
 					text-decoration: none;
+					text-transform: uppercase;
 					font-size: .8em;
 					font-weight: 900;
 					&:hover {
@@ -190,69 +189,40 @@ header#main {
 section#map {
 	width: 100%;
 	position: relative;
-	.wrap960 {
-		z-index: 1000;
-		position: static;
-		#hide { /* botão mostrar e esconder filtros */
-			position: absolute;
-			top: 30px;
-			right: 100px;
-			z-index: 4;
-			width:40px;
-			height: 40px;
-			color: #fff;
-			text-align: center;
-			line-height: 2em;
-			cursor: pointer;
-		}
-		#busca_mapa {
-			margin-top: 20px;
-			input[type=text] {
-				min-height: none;
-				min-width: 200px;
-				padding: 0 12px;
-				line-height: .8;
-			}
-			span {
-				font-weight: 700;
-			}
-		}
-		#filtros {
-			width: 450px;
-			min-height: 120px;
+	#texto_apres_cont {
+		position: absolute;
+		z-index: 4;
+		width: 100%;
+		#texto_apres {
+			width: 90%;
+			height: 500px;
+			margin: 0 auto;
+			border-radius: 16px;
 			background-image: url('../images/bg_filtros.png');
-			border-radius: 6px;
-			padding: 20px;
-			position: absolute;
-			right: 100px;
-			top: 30px;
-			font-size: .9em;
 			color: #fff;
-			z-index: 2;
-			header p {
-				margin:0 0 15px;
+			position: relative;
+			h3 {
+				color: @amarelo;
 			}
-			h4 {
-				margin: 0 0 10px;
-				color: @amarelo_botao;
-			}
-			div.col {
-				.column(2);
-				margin: 25px 0;
-			}
-			button {
-				.button-size(6px, 12px, .8em, 12px, 4px);
-				.button-variant(#fff; @azulescuro);
-			}
-			a#raios {
-				color: #fff;
-				display: inline-block;
+			#close {
 				position: absolute;
-				bottom: 20px;
 				right: 20px;
+				top:20px;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				font-weight: 300;
+				font-size: 1.4em;
+				cursor: pointer;
 				&:hover {
-					color: @amarelo_botao;
+					color: #000;
 				}
+			}
+			#texto {
+				position: relative;
+				top: 135px;
+				margin: 0 auto;
+				width: 50%;
 			}
 		}
 	}
@@ -280,43 +250,157 @@ section#map {
 	}
 }
 
-/* section home (texto, botões login, etc) */
+/* section home */
 
 section#home {
 	.wrap960 {
 		margin-top: 10px; /* afastar título texto do mapa */
 	}
-	p {
-		font-size: 1.2em;
-		line-height: 1.8em;
-		padding: 0 20px;
-		color: #000;
-		&:first-child {
-			margin-top: 0;
+	#filtros {
+		border-radius: 16px;
+		padding: 0 18px;
+		font-size: .9em;
+		border: 1px solid @azulescuro;
+		color: @azulescuro;
+		#filtro_texto {
+			z-index: 2000;
+			position: absolute;
+			right: 20px;
+			top: -140px;
+			width: 300px;
+			height: 140px;
+			border: 1px solid @azulescuro;
+			background-color: @azul;
+			padding: 20px 30px;
+			p:first-child {
+				margin: 0 0 10px;
+				color:@azulescuro!important;
+				a {
+					font-weight: 400;
+				}
+			}
+			input[type=text] {
+				width: 100%;
+			}
 		}
-	}
-	#botoes {
-		margin-top: 35px;
-		text-align: center;
-		#tenho {
-			margin-right: 30px;
-			.btn-gradient(#b2c200, @verde, #859100, #9acc85, #636c00);
+		#botoes {
+			float:right;
+			padding: 7px 0 0;
+			button {
+				.button-size(6px, 12px, .8em, 12px, 8px);
+				.button-variant(#fff; @azulmedio);
+				font-weight: 300;
+				text-transform: uppercase;
+				font-size: .6em;
+			}
 		}
-		#preciso {
-			.btn-gradient(#00a9cf, @azultopo, #00758f, #54a3f7, #154682);
+		> h4 {
+			margin: 0 14px 0 0;
+			padding: 0;
+			display: inline-block;
+			text-transform: uppercase;
+			font-size: .8em;
+			font-weight: 900;
+		}
+		span {
+			font-weight: 700;
+			text-transform: uppercase;
+			font-size: .8em;
+		}
+		ul {
+			list-style: none;
+			display: inline-block;
+			margin: 0 14px 0 0;
+			padding: 0;
+			li {
+				cursor: pointer;
+				display: inline-block;
+				padding: 10px 8px;
+				margin: 0;
+				position: relative;
+				&:hover {
+					background-color: @azulescuro;
+					color: #fff;
+					> div {
+						display: block!important; 
+					}
+				}
+				> div.checks { /* divs com checkboxes */
+					z-index: 2000;
+					position: absolute;
+					left: 0;
+					top: -120px;
+					width: 344px;
+					height: 120px;
+					border: 1px solid @azulescuro;
+					background-color: @azul;
+					padding: 20px 30px;
+					h4 {
+						margin: 0 0 10px;
+						color:@azulescuro!important;
+					}
+					.col {
+						.column(2);
+						margin: 0 0;
+						color:@azulescuro!important;
+					}
+				}
+				> div#filtro_ints {
+					width: 180px!important;
+				}
+			}
 		}
 	}
 }
 
 /* view login */
 
-form#login {
-	.column(8);
-	margin-left: 0;
+div#login {
+	width: 420px;
+	padding: 20px 30px;
+	background-color: @azulescuro;
+	margin: 10% auto 30px;
+	border-radius: 16px;
+	#erromsg {
+		text-align: center;
+		margin: 20px 0;
+		font-weight: 700;
+		color: @amarelo;
+	}
+	label {
+		font-size: 1em;
+		color:#fff;
+		text-transform: none!important;
+	}
+	header {
+		text-align: center;
+		margin: 0 0 30px;
+	}
+	input[type=text], input[type=password] {
+		width: 100%;
+		font-size: 1.2em;
+		margin: 0 0 15px!important;
+	}
+	input[type=submit] {
+		width: 100%;
+		.button-size(16px, 16px, 1.4em, 12px, 8px);
+		.button-variant(#fff; @verde_botao);
+		font-weight: 400;
+	}
+	#lembrasenha {
+		a:first-child {
+			float: right;
+			color:#fff;
+		}
+	}
 }
 
-form#login + aside { /* usado na página de login, por enquanto */
-	.column(4);
+div#link_cadastro {
+	color: @azulescuro;
+	text-align: center;
+	a {
+		font-weight: 700;
+	}
 }
 
 /* view user_form */

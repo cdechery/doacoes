@@ -96,17 +96,8 @@ function load_infowindow_content(infowindow, user_id){
 
 $(function() {
 
-	var showmap = true;
-
-	$('#map #hide').on('click', function(){
-		if(showmap == true) {
-			$('#map #filtros').toggle();
-			$(this).html('<i class="fa fa-plus-square"></i>').find('i').css('color', '#000');
-		} else {
-			$('#map #filtros').toggle();
-			$(this).html('<i class="fa fa-minus-square"></i>').find('i').css('color', '#fff');
-		}
-		showmap = !showmap;
+	$('#texto_apres_cont #close').on('click', function(){
+		$('#map #texto_apres_cont').hide();
 	});
 
 	$('#user-btn').on('mouseover', function(){
@@ -481,3 +472,4 @@ function marca_item_doado(btn) {
 		};
 	}).fail( function() { msg_general_error(); } );
 };
+

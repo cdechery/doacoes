@@ -153,68 +153,54 @@ function showAllActive() {
 	}
 }
 
+// funções menu mostrar
 function showAll() {
-	$('#filtro_ints').hide();
-	$('#filtro_itens').hide();
-	$('#filtro_texto').show();
-
+	$('.checks').hide();
 	activeMarkers = markers_settings;
 	for(var i=0; i<activeMarkers.length; i++) {
 		showHideMarker(activeMarkers[i].mrk, true);
 	}
-
 	buildNextPrevPointers( activeMarkers );
 }
 
 function showPeople() {
-	$('#filtro_ints').hide();
-	$('#filtro_itens').hide();
-	$('#filtro_texto').show();
-
+	$('.checks').hide();
 	activeMarkers = new Array();
 	for(var i=0; i<markers_settings.length; i++) {
 		var isPessoa = ( markers_settings[i]['type']=='P' );
 		var mrk = markers_settings[i].mrk;
-
 		showHideMarker( mrk, isPessoa );
-
 		if( isPessoa ) {
 			activeMarkers.push( markers_settings[i] );
 		}
 	}
-
 	buildNextPrevPointers( activeMarkers );
 }
 
 function showInstitutions() {
-	$('#filtro_ints').hide();
-	$('#filtro_itens').hide();
-	$('#filtro_texto').show();
-
+	$('.checks').hide();
 	activeMarkers = new Array();
 	for(var i=0; i<markers_settings.length; i++) {
 		var isInst = ( markers_settings[i]['type']=='I' );
 		var mrk = markers_settings[i].mrk;
-
 		if( isInst ) {
 			activeMarkers.push( markers_settings[i] );
 		}
 		showHideMarker( mrk, isInst );
 	}
-
 	buildNextPrevPointers( activeMarkers );
 }
 
+
+// funções menu filtrar
 function showFilterItem() {
-	$('#filtro_ints').hide();
-	$('#filtro_texto').hide();
-	$('#filtro_itens').show();
+	$('.checks').hide();
+	$('#filtro_itens').toggle();
 }
 
 function showFilterInt() {
-	$('#filtro_itens').hide();
-	$('#filtro_texto').hide();
-	$('#filtro_ints').show();
+	$('.checks').hide();
+	$('#filtro_ints').toggle();
 }
 
 function filterItem() {
@@ -240,10 +226,13 @@ function filterItem() {
 		var match = matchFiltersItem(mrk, checkedCats, checkedSits);
 		showHideMarker(mrk.mrk, match);
 	}
+
 }
 
 function filterInt() {
+	
 	var checkedCats = Array();
+	
 	$('.filtroInstCat:checked').each(function() {
 		checkedCats.push( $(this).val() );
 	});
@@ -259,12 +248,59 @@ function filterInt() {
 		var matchCats = matchFiltersInt(mrk, checkedCats, Array() );
 		showHideMarker(mrk.mrk, matchCats);
 	}
+
 }
 
 var radiusShown = true;
+
 function hideRadiusCircles() {
 	radiusShown = !radiusShown;
 	for(var i=0; i<radiusCircles.length; i++) {
 		radiusCircles[i].setVisible(radiusShown);
 	}
 }
+
+// eventos nos seletores
+$(document).ready(function(){
+
+	$('html').click(function(){
+		$('.checks').hide();
+		$('#filtro_texto').hide();
+	});
+
+	$('.checks, #filter-item, #filter-inst, #local, #filtro_texto').click(function(e) {
+		e.stopPropagation(); 
+	});
+
+	// raios
+	$('#raios').click(function(){
+		hideRadiusCircles();
+	});
+
+	// localizacao
+	$('#local').click(function(){
+		$('.checks').hide();
+		$('#filtro_texto').toggle();
+	});
+	
+	// mostrar
+	$('#show-all').click(function(){
+		showAll();
+	});
+	$('#show-pessoas').click(function(){
+		showPeople();
+	});
+	$('#show-inst').click(function(){
+		showInstitutions();
+	});
+	
+	// filtrar
+	$('#filter-item').click(function(){
+		showFilterItem();
+	});
+	$('#filter-inst').click(function(){
+		showFilterInt();
+	});
+
+});
+

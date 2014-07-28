@@ -63,7 +63,7 @@ $(document).ready(function() {
 <body id="home">
 <header id="main">
 	<div class="wrap960">
-		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
+		<h1><a href="<?php echo base_url();?>">interessa.org</a></h1>
 		<nav id="top">
 			<ul>
 				<li>
