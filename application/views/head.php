@@ -10,7 +10,7 @@
 	}
 	
 	if( !isset($min_template) ) {
-		$min_template = "basic";
+		$min_template = "image_view";
 	}
 
 	$min_debug = "";
@@ -122,11 +122,11 @@
 		function logonFB() {
 			window.location = '<?php echo base_url('login/fblogin') ?>';
 		}
+</script>
 
-	</script>
 <?php
 	 }
 ?>
 <section class="contents">
 	<div class="wrap960">
-		<div class="roundbox clearfix">
+		<!-- <div class="roundbox clearfix"> -->

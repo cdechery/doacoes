@@ -111,10 +111,10 @@ class Usuario extends MY_Controller {
 	public function escolhe_tipo() {
 		$this->session->unset_userdata('tipo_cadastro');
 
-		$head_data = array("title"=>$this->params['titulo_site']);
-		$this->load->view('head', $head_data);
-		$this->load->view('tipo_usuario');
-		$this->load->view('foot');
+		// $head_data = array("title"=>$this->params['titulo_site']);
+		// $this->load->view('head', $head_data);
+		$this->load_ajax('tipo_usuario');
+		// $this->load->view('foot');
 	}
 
 	public function novo($tipo = NULL) {

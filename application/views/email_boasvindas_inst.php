@@ -1,9 +1,13 @@
-OlÃ¡ <?php echo $nome?>,
+Olá <?php echo $nome?>,
 
 seja bem-vindo ao nosso site. Esse email serve apenas para confirmar o seu cadastro.
-VocÃª jÃ¡ pode acessar e comeÃ§ar a cadastrar seus Interesses e assim serÃ¡ avisado quando algo for cadastrado na Ã¡rea e categorias selecionadas.
+Você já pode acessar e começar a cadastrar seus Interesses e assim será avisado quando algo for cadastrado na área e categorias selecionadas.
 
-Qualquer dÃºvida ou problema, conte com a gente.
+Você pode também cadastrar Itens para doação e procurar pelo que lhe interessa no site.
 
-Um abraÃ§o,
+Qualquer dúvvida ou problema, conte com a gente.
+
+Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os Termos de Serviço.
+
+Um abraço,
 Equipe Interessa.org

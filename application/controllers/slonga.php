@@ -7,7 +7,7 @@ class Slonga extends MY_Controller {
 	}
 
 	public function index() {
-		
+
 		$this->load->library('googlemaps');
 		$config = array();
 		$config['center'] = $this->params['mapa']['default_loc'];
@@ -29,6 +29,7 @@ class Slonga extends MY_Controller {
 
 		$this->load->model('mapa_model');
 		$map_result = $this->mapa_model->get_all();
+		//var_dump($map_result);
 
 		$custom_js_global = "";
 		$custom_js_init = "";

@@ -1,16 +1,37 @@
-		</div><!-- roundbox -->
+		<!-- </div> --> <!-- roundbox -->
 	</div><!-- wrap960 -->
 </section>	
 
-<!-- <footer>
+<footer>
 	<div class="wrap960">
-		<p style="text-align: right;">&copy; 2013  &bull; Powered by <a href="http://xumb.frofens.org">Xumb</a></p>
+		<p style="font-size: small; text-align: center;"><a href="<?php echo base_url('termos')?>">Termos de Serviço</a> | <a href="<?php echo base_url('sobre')?>">Sobre o site</a> | <a href="<?php echo base_url('contato')?>">Fale conosco</a> |
+		<?php if( $login_data['logged_in'] ): ?>
+		 <a href="<?php echo base_url('usuario/logout')?>">Sair</a>
+		<?php else: ?>
+		 <a id="escolhe_tipo_link" href="<?php echo base_url('usuario/novo')?>" class="escolhetipo_box fancybox.ajax">Faça seu cadastro</a></p>
+		<?php endif; ?>
+		</p>
 	</div>
 </footer>
- -->
-<?php if( ENVIRONMENT!='production' ) { ?>
+ 
+ <?php if( ENVIRONMENT!='production' ) { ?>
 	<div id="error-details" style="display: none">&nbsp;</div>
 <?php } // if ENV ?>
+<script>
+	$(".escolhetipo_box").fancybox({
+		padding		: 25,
+		maxWidth	: 400,
+		maxHeight	: 300,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+</script>
 
 </body>
 </html>
