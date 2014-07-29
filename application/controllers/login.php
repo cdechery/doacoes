@@ -100,10 +100,10 @@ class Login extends MY_Controller {
 					if( $tipo ) {
 						redirect( base_url('usuario/novo/'.$tipo ) );
 					} else {
-						redirect( base_url('usuario/tipo') );
+						redirect( base_url() );
 					}
 				}
-			} catch (FacebookApiException $e) {
+			} catch( FacebookApiException $e ) {
 				error_log($e);
 				$fbuser = null;
 				// TODO tratar erro

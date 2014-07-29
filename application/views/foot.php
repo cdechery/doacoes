@@ -31,7 +31,14 @@
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
-</script>
 
+<?php
+	$fbReg = $this->input->cookie('FbRegPending');
+	$tipo = $this->session->userdata('tipo_cadastro');
+	if( $fbReg && !$tipo ) {
+		echo "$('#escolhe_tipo_link').click();";		
+	}
+?>
+</script>
 </body>
 </html>

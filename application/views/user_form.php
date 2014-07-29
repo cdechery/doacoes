@@ -109,7 +109,8 @@ window.onload = initialize;
 <?php
 	if( $fromFacebook ) {
 ?>
-	new Messi('Para finalizar o cadastro, precisamos de mais algumas informações');
+	new Messi('Para finalizar o cadastro, precisamos de mais algumas informações.<br>Por favor preencha os campos em branco.',
+		{ title: 'Cadastro via Facebook', modal: true } );
 <?php	
 	}
 ?>

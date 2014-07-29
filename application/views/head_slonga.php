@@ -98,7 +98,7 @@ $(document).ready(function() {
 	</div>
 </header>
 <?php
-	$wait_img = base_url('icons/ajax-loader.gif');
+	$wait_img = base_url('icons/connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
 	$enableFB = (ENVIRONMENT=='production');
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
 				if (response.status === 'connected') {
 					new Messi('Estamos fazendo seu login no Facebook, aguarde '+
 						'<img src="<?php echo $wait_img?>">',
-						{ title: 'Conectando', modal: true } );
+						{ title: 'Conectando ...', modal: true } );
 					logonFB();
 				} else if (response.status === 'not_authorized') {
 					FB.login();

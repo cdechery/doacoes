@@ -1,16 +1,25 @@
 <section id="map">
 	
+<?php
+	$welcomeShown = $this->session->userdata('WelcomeShown');
+	if( !$login_data['logged_in'] && !$welcomeShown ) {
+?>
 	<div id="texto_apres_cont">
 		<div id="texto_apres">
 			<div id="close">X</div>
 			<div id="texto">
-				<h3>Bem-vindo ao interessa.org</h3>
-				<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
-				<p>Para saber melhor como funciona e como participar do Interessa.org visite <a href="<?php echo base_url('sobre')?>">nossa apresentação.</a></p>
+				<h3>Bem-vindo ao Interessa.org</h3>
+				<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
+				<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
+				<p>Se já quiser se cadastrar use os botões abaixo:</p>
+				<input type="button" class="escolhetipo_box fancybox.ajax" value="Cadastrar" href="<?php echo base_url('usuario/escolhe_tipo')?>"> <button>Botão do Facebook</button>
 			</div>
 		</div>
 	</div>
-	
+<?php
+		$this->session->set_userdata('WelcomeShown', TRUE);
+	}
+?>	
 	<form name="__map">
 		<?php echo $map['js']; ?>
 		<?php echo $map['html']; ?>

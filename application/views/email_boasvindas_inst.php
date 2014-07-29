@@ -7,7 +7,7 @@ Você pode também cadastrar Itens para doação e procurar pelo que lhe interes
 
 Qualquer dúvvida ou problema, conte com a gente.
 
-Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os Termos de Serviço.
+Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os <a href="<?php echo base_url('termos')?>">Termos de Serviço</a>.
 
 Um abraço,
 Equipe Interessa.org

@@ -5,7 +5,7 @@ Você já pode acessar e começar a cadastrar seus Itens e/ou procurar outros qu
 
 Não se esqueça também de cadastrar seus Interesses para que possa ser avisado quando algo for cadastrado na sua área.
 
-Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os Termos de Serviço.
+Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os <a href="<?php echo base_url('termos')?>">Termos de Serviço</a>.
 
 Qualquer dúvida ou problema, conte com a gente.
 
