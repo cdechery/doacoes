@@ -57,7 +57,8 @@
 			return true;
 
 		} else {
-			return $CI->email->message( $emailmsg );
+			$CI->email->message( $emailmsg );
+			return $CI->email->send();
 		}
 	}
 ?>

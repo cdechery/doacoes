@@ -1,7 +1,6 @@
 .gitignore
 files/*
 application/logs/*
-application/config/*
 *.sublime-project
 *.sublime-workspace
 ci_ide_helper.php
