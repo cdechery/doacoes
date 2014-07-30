@@ -12,31 +12,8 @@ $(document).ready(function() {
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
-// 	// cadastro
-// 	$("#link_cadastro a").fancybox({
-// 		maxWidth	: 500,
-// 		maxHeight	: 300,
-// 		fitToView	: false,
-// 		width		: '90%',
-// 		height		: '90%',
-// 		autoSize	: false,
-// 		closeClick	: false,
-// 		openEffect	: 'none',
-// 		closeEffect	: 'none'
-// 	});
-// });
 </script>
 
-<!-- <div id="cadastro_window" style="display:none">
-	<p>Você está criando um cadastro novo para:</p>
-	<div class="col">
-		<a href="<?php echo base_url('usuario/novo/P')?>">Pessoa</a> - para <strong>fazer</strong> e receber doações. Só aparecem no mapa Pessoas com Itens para doar.
-	</div>
-	<div class="col">
-		<a href="<?php echo base_url('usuario/novo/I')?>">Instituição</a> - para fazer e <strong>receber</strong> doações. Todas aparecem no mapa, independente de ter Itens ou não.
-	</div>
-</div>
- -->
 <div id="login">
 	<header>
 			<span style="text-align: center; color: white; font-size:2em; font-weight: strong;">Login</span>
@@ -68,5 +45,21 @@ $(document).ready(function() {
 </div>
 
 <div id="link_cadastro">
-	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/novo')?>" class="escolhetipo_box fancybox.ajax">Faça seu cadastro</a>
+	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="escolhetipo_box fancybox.ajax">Faça seu cadastro</a>
 </div>
+<script>
+	$(".escolhetipo_box").fancybox({
+		padding		: 25,
+		maxWidth	: 400,
+		maxHeight	: 300,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+</script>
+

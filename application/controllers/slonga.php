@@ -143,8 +143,8 @@ class Slonga extends MY_Controller {
 
 		$cust_js = array('js/map.js');
 
-		$this->load->view('head_slonga', array('title'=>'Slonga!!!',
-			'min_template'=>'image_view', 'cust_js'=>$cust_js));
+		$this->load->view('head', array('title'=>'Slonga!!!',
+			'min_template'=>'image_view', 'cust_js'=>$cust_js, 'home'=>1));
 		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');
 	}

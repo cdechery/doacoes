@@ -35,6 +35,10 @@ function countOcurrences(str, value){
    return str.match(regExp) ? str.match(regExp).length : 0;  
 }
 
+function logonFB() {
+	location.href = site_root+'login/fblogin';
+}
+
 function go_home() {
 	location.href = site_root;
 }
@@ -131,8 +135,13 @@ $(function() {
 			$("#usuario_insert").serialize(), function(data) {
 			var json = myParseJSON( data );
 			if( json.status=="OK" ) {
-				msg_success(lang['dist_newuser_ok2'], lang['dist_lbl_success'],
-					true, function(val) { go_home(); });
+				if( json.fb ) {
+					msg_success( json.msg, lang['dist_lbl_success'],
+						true, function(val) { logonFB(); });
+				} else {
+					msg_success(json.msg, lang['dist_lbl_success'],
+						true, function(val) { go_home(); });
+				}
 			} else {
 				msg_error( json.msg );
 			}

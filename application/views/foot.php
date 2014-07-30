@@ -17,28 +17,5 @@
  <?php if( ENVIRONMENT!='production' ) { ?>
 	<div id="error-details" style="display: none">&nbsp;</div>
 <?php } // if ENV ?>
-<script>
-	$(".escolhetipo_box").fancybox({
-		padding		: 25,
-		maxWidth	: 400,
-		maxHeight	: 300,
-		fitToView	: false,
-		width		: '90%',
-		height		: '90%',
-		autoSize	: false,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-
-<?php
-	$fbReg = $this->input->cookie('FbRegPending');
-	$tipo = $this->session->userdata('tipo_cadastro');
-	if( $fbReg && !$tipo ) {
-		echo "$('#escolhe_tipo_link').click();";		
-	}
-?>
-</script>
 </body>
 </html>

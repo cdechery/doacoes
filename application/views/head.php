@@ -3,14 +3,13 @@
 <head>
 <meta charset="<?php echo $this->config->item('charset');?>"/>
 <?php
-	
 	if( !isset($title) ) {
 		echo "ERROR: Title not defined!";
 		return;
 	}
 	
 	if( !isset($min_template) ) {
-		$min_template = "image_view";
+		$min_template = "basic";
 	}
 
 	$min_debug = "";
@@ -20,6 +19,11 @@
 
 	if( !isset($login_data) ) {
 		$login_data['logged_in'] = FALSE;
+	}
+
+	$bodyId = "";
+	if( isset($home) ) {
+		$bodyId = "id='home'";
 	}
 
 ?>
@@ -45,7 +49,7 @@
 ?>
 <title><?php echo $title; ?></title>
 </head>
-<body>
+<body <?php echo $bodyId?>>
 <header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
@@ -83,50 +87,65 @@
 	</div>
 </header>
 <?php
-	$wait_img = base_url('icons/ajax-loader.gif');
+	$wait_img = base_url('icons/connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
-	$enableFB = (ENVIRONMENT=='production');
+	$enableFB = true;//(ENVIRONMENT=='production');
 
 	if( false == $login_data['logged_in'] && false == $fbReg && $enableFB ) {
 ?>
-	<script>
-		window.fbAsyncInit = function() {		
-			FB.init({
-				appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
-				status     : true, // check login status
-				cookie     : true, // enable cookies to allow the server to access the session
-				xfbml      : true  // parse XFBML
-			});
-			FB.Event.subscribe('auth.authResponseChange', function(response) {
-				if (response.status === 'connected') {
-					new Messi('Estamos fazendo seu login no Facebook, aguarde '+
-						'<img src="<?php echo $wait_img?>">',
-						{ title: 'Conectando', modal: true } );
-					logonFB();
-				} else if (response.status === 'not_authorized') {
-					FB.login();
-				} else {
-					FB.login();
-				}
-			});
-		};
+<script>
+	window.fbAsyncInit = function() {		
+		FB.init({
+			appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
+			status     : true, // check login status
+			cookie     : true, // enable cookies to allow the server to access the session
+			xfbml      : true  // parse XFBML
+		});
+		FB.Event.subscribe('auth.authResponseChange', function(response) {
+			if (response.status === 'connected') {
+				new Messi('Estamos fazendo seu login no Facebook, aguarde '+
+					'<img src="<?php echo $wait_img?>">',
+					{ title: 'Conectando ...', modal: true } );
+				logonFB();
+			} else if (response.status === 'not_authorized') {
+				FB.login();
+			} else {
+				FB.login();
+			}
+		});
+	};
 
-		(function(d){
-			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement('script'); js.id = id; js.async = true;
-			js.src = "//connect.facebook.net/pt_BR/all.js";
-			ref.parentNode.insertBefore(js, ref);
-		}(document));
-
-		function logonFB() {
-			window.location = '<?php echo base_url('login/fblogin') ?>';
-		}
+	(function(d){
+		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement('script'); js.id = id; js.async = true;
+		js.src = "//connect.facebook.net/pt_BR/all.js";
+		ref.parentNode.insertBefore(js, ref);
+	}(document));
 </script>
-
 <?php
 	 }
 ?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".itembox").fancybox({
+			wrapCSS		: 'fancybox-item',
+			padding		: 25,
+			maxWidth	: 300,
+			maxHeight	: 410,
+			fitToView	: false,
+			width		: '90%',
+			height		: '90%',
+			autoSize	: false,
+			type		: 'ajax',
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	})
+</script>
+<?php if( empty($home) ): ?>
 <section class="contents">
 	<div class="wrap960">
 		<!-- <div class="roundbox clearfix"> -->
+<?php endif; ?>

@@ -108,13 +108,18 @@ class Usuario extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
-	public function escolhe_tipo() {
+	public function escolhe_tipo($windowed = "") {
 		$this->session->unset_userdata('tipo_cadastro');
 
-		// $head_data = array("title"=>$this->params['titulo_site']);
-		// $this->load->view('head', $head_data);
-		$this->load_ajax('tipo_usuario');
-		// $this->load->view('foot');
+		if( $windowed==="" ) {
+			$head_data = array("title"=>$this->params['titulo_site']);
+			$this->load->view('head', $head_data);
+			$this->load->view('tipo_usuario');
+			$this->load->view('foot');
+		} else {
+			$this->load_ajax('tipo_usuario');
+		}
+
 	}
 
 	public function novo($tipo = NULL) {
@@ -209,7 +214,7 @@ class Usuario extends MY_Controller {
 			delete_cookie('FbRegPending');
 		}
 
-		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
+		echo json_encode( array('status'=>$status, 'msg'=>$msg, 'fb'=>$fbReg) );
 	}
 
 	public function modificar() {
