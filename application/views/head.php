@@ -50,6 +50,16 @@
 <title><?php echo $title; ?></title>
 </head>
 <body <?php echo $bodyId?>>
+<script type="text/javascript">
+	img_preload([
+		'<?php echo base_url("icons/ajax-loader.gif")?>',
+		'<?php echo base_url("icons/ajax-loader-80.gif")?>',
+		'<?php echo base_url("icons/ajax-loader-120.gif")?>',
+		'<?php echo base_url("icons/ajax-loader-200.gif")?>',
+		'<?php echo base_url("icons/ajax-loader-small.gif")?>',
+		'<?php echo base_url("icons/connecting.gif")?>'
+	]);
+</script>
 <header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>

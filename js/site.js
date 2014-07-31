@@ -98,6 +98,12 @@ function load_infowindow_content(infowindow, user_id){
 	});
 }
 
+function img_preload( arrayOfImages ) {
+    $(arrayOfImages).each(function () {
+        $('<img />').attr('src',this).appendTo('body').hide();
+    });
+}
+
 $(function() {
 
 	$('#texto_apres_cont #close').on('click', function(){
