@@ -74,7 +74,7 @@ class Usuario extends MY_Controller {
 
 		$udata = $this->usuario_model->get_data( $this->login_data['user_id'] );
 
-		$head_data = array("title"=>$this->params['titulo_site']);
+		$head_data = array("title"=>"Preferências de Email");
 		$this->load->view('head', $head_data);
 		$this->load->view('pref_email', array('data'=>$udata));
 		$this->load->view('foot');
@@ -112,7 +112,7 @@ class Usuario extends MY_Controller {
 		$this->session->unset_userdata('tipo_cadastro');
 
 		if( $windowed==="" ) {
-			$head_data = array("title"=>$this->params['titulo_site']);
+			$head_data = array("title"=>"Novo usuário: Qual tipo?");
 			$this->load->view('head', $head_data);
 			$this->load->view('tipo_usuario');
 			$this->load->view('foot');
@@ -148,7 +148,7 @@ class Usuario extends MY_Controller {
 			$cust_css = $cust_js = array();
 		}
 		
-		$head_data = array("title"=>$this->params['titulo_site'],
+		$head_data = array("title"=>"Novo Usuário",
 			'cust_js'=>$cust_js,
 			'cust_css'=>$cust_css);
 		$this->load->view('head', $head_data);
@@ -234,7 +234,7 @@ class Usuario extends MY_Controller {
 		}
 
 		$head_data = array("min_template"=>"image_upload",
-			"title"=>$this->params['titulo_site'],
+			"title"=>"Modificar Usuário",
 			'cust_css'=>$cust_css, 'cust_js'=>$cust_js);
 		$this->load->view('head', $head_data);
 
@@ -427,7 +427,7 @@ class Usuario extends MY_Controller {
 		$this->load->model('item_model');
 		$itens = $this->item_model->get_user_items( $user_id );
 
-		$head_data = array('min_template'=>'image_view', "title"=>'Itens');
+		$head_data = array('min_template'=>'image_view', "title"=>'Itens do Usuário');
 		$this->load->view('head', $head_data);
 
 		$arrItems = array();
@@ -461,7 +461,7 @@ class Usuario extends MY_Controller {
 			redirect( base_url('item/novo') );
 		}
 
-		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
+		$head_data = array('min_template'=>'image_upload', "title"=>"Meus Itens");
 		$this->load->view('head', $head_data);
 
 		$arrItems = array();

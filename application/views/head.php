@@ -89,7 +89,7 @@
 <?php
 	$wait_img = base_url('icons/connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
-	$enableFB = true;//(ENVIRONMENT=='production');
+	$enableFB = (ENVIRONMENT=='production');
 
 	if( false == $login_data['logged_in'] && false == $fbReg && $enableFB ) {
 ?>

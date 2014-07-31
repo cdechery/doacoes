@@ -44,7 +44,7 @@ class Item extends MY_Controller {
 
 		$this->load->helper('image_helper');
 
-		$head_data = array('min_template'=>'image_upload', "title"=>$this->params['titulo_site']);
+		$head_data = array('min_template'=>'image_upload', "title"=>"Novo Item");
 		$this->load->view('head', $head_data);
 
 		$temp_id = $this->item_model->get_temp_id($this->login_data['user_id']);
@@ -240,7 +240,7 @@ class Item extends MY_Controller {
 		$situacoes = $this->situacao_model->get_all();
 
 		$head_data = array("min_template"=>"image_upload",
-			"title"=>$this->params['titulo_site']);
+			"title"=>"Modificar Item");
 
 		$this->load->view('head', $head_data);
 
@@ -281,7 +281,7 @@ class Item extends MY_Controller {
 		}
 
 		$head_data = array('min_template'=>'image_upload',
-			"title"=>$this->params['titulo_site']);
+			"title"=>"Listar Itens");
 		$this->load->view('head', $head_data);
 
 		$this->load->helper('image_helper');

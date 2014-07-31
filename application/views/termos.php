@@ -21,7 +21,7 @@
 	a) Ao demonstrar interesse em um item e enviar mensagem (através do site) ao doador, o usuário interessado estará revelando seu endereço de email ao doador;
 	b) Se o doador decidir responder à mensagem para dar continuidade à negociação da doação, este estará revelando seu endereço de email ao interessado;
 	c) O doador se reserva no direito de não responder às mensagens que recebe por qualquer que seja o motivo;
-	d) O interessado se reserva no direito de desistir do item a qualquer momento por que qualquer que seja o motivo;
+	d) O interessado se reserva no direito de desistir do item a qualquer momento por qualquer que seja o motivo;
 	e) Toda comunicação de negociação (com exceção da primeira mensagem, enviada pelo site) é realizada através dos emails pessoais das duas partes sem qualquer conhecimento e envolvimento do Interessa. Isto posto, a conduta das partes na negociação é de total responsabilidade dos próprios e não é possível ao Interessa garantir qualquer coisa nesse sentido, nem sobre a conduta, nem sobre a concretização das transações.
 </p>
 

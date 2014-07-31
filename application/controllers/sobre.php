@@ -7,7 +7,7 @@ class Sobre extends MY_Controller {
 	}
 
 	public function index() {
-		$this->load->view('head', array('title'=>'Sobre'));
+		$this->load->view('head', array('title'=>'Sobre o Interessa.org'));
 		$this->load->view('sobre');
 		$this->load->view('foot');
 	}

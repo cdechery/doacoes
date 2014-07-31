@@ -7,7 +7,7 @@ class Termos extends MY_Controller {
 	}
 
 	public function index() {
-		$this->load->view('head', array('title'=>'Termos'));
+		$this->load->view('head', array('title'=>'Termos de Serviço'));
 		$this->load->view('termos');
 		$this->load->view('foot');
 	}
