@@ -92,8 +92,8 @@ function load_infowindow_content(infowindow, user_id){
 	$.ajax({
 		url: site_root +'usuario/map_infowindow/' + user_id,
 		success: function(data) {
-			$('#iw_loading').fadeOut('fast');
-			infowindow.setContent( data );
+			// $('#iw_loading').fadeOut('fast');
+			$('#iw_loading').html(data).fadeIn('slow');
 		}
 	});
 }

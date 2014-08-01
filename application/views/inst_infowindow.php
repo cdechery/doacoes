@@ -22,14 +22,15 @@
 
 	if( !empty($out_inters) ) {
 		$out_inters = "Interessado em: ".$out_inters;
+	} else {
+		$out_inters = "Interessado em: <i>não determinado</i>";
 	}
 ?>
 <div id="iw_current" style="width:300px; display: box;">
 	<h3>
-		<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a style="text-decoration: underline;" href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
+		<img style="vertical-align: middle;" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a style="text-decoration: underline;" href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
 	</h3>
-
-	<p><?php echo $out_inters?></p>
+	<?php echo $out_inters?><br/>
 <?php
 	
 	$numItems = 0;
