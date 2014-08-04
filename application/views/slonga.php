@@ -1,10 +1,5 @@
 <section id="map">
-	
-<?php
-	//$welcomeShown = $this->session->userdata('WelcomeShown');
-	//if( !$login_data['logged_in'] && !$welcomeShown ) {
-?>
-	<div id="texto_apres_cont">
+	<div id="texto_apres_cont" style="display: none">
 		<div id="texto_apres">
 			<div id="close">X</div>
 			<div id="texto">
@@ -19,10 +14,7 @@
 			</div>
 		</div>
 	</div>
-<?php
-		//$this->session->set_userdata('WelcomeShown', TRUE);
-	// }
-?>	
+
 	<form name="__map">
 		<?php echo $map['js']; ?>
 		<?php echo $map['html']; ?>
@@ -109,3 +101,13 @@
 			</ul>
 		
 		</div>
+<script type="text/javascript">
+if( typeof(Storage) !== "undefined" ) {
+	if( !localStorage.welcomeShown ) {
+		localStorage.setItem('welcomeShown', 1);
+		setTimeout( function() {
+			$('#texto_apres_cont').fadeIn('slow');
+		}, 1500);
+	}
+}
+</script>		
