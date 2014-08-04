@@ -94,6 +94,7 @@ section.contents {
 	background-color: #fff;
 	border-radius: 18px;
 	padding: 30px;
+	border:1px solid #ccc;
 }
 
 /* inicio estilos slonga */
@@ -203,12 +204,12 @@ section#map {
 			color: #fff;
 			position: relative;
 			h3 {
-				color: @amarelo;
+				color: #fff;
 			}
 			#close {
 				position: absolute;
 				right: 20px;
-				top:20px;
+				top: 20px;
 				width: 30px;
 				height: 30px;
 				text-align: center;
@@ -221,9 +222,16 @@ section#map {
 			}
 			#texto {
 				position: relative;
-				top: 135px;
+				top: 110px;
 				margin: 0 auto;
 				width: 50%;
+			}
+			.buttons {
+				margin-top: 30px;
+				input[type=button] {
+					.button-size(6px, 12px, .8em, 12px, 8px);
+					.button-variant(#000; @amarelo_botao);
+				}
 			}
 		}
 	}
@@ -357,7 +365,7 @@ section#home {
 
 /* view login */
 
-div#login {
+#login-page {
 	width: 420px;
 	padding: 20px 30px;
 	background-color: @azulescuro;
@@ -397,9 +405,55 @@ div#login {
 	}
 }
 
+/* fancybox lembrar senha */
+#forgot_pass {
+	background-color: #fff; /* tirando fundo azul herdado do body */
+	h4 {
+		margin: 0 0 20px;
+	}
+}
+
+/* fancybox cadastro */
+
 #cadastro_window {
+	background-color: #fff;
+	p:first-child {
+		margin-top: 0;
+	}
+	img#pessoa {
+		width: 80px;
+		height: 75px;
+		background: url('../images/simbolos_pessoa_inst.png') 0 0 no-repeat;
+	}
+	img#instit {
+		width: 80px;
+		height: 75px;
+		background: url('../images/simbolos_pessoa_inst.png') 100% 0 no-repeat;
+	}
 	.col {
-		.column(3);
+		.column(4);
+		margin-top: 15px;
+		height: 230px;
+		position: relative;
+		h3 {
+			margin:10px 0;
+			text-transform: uppercase;
+			color: #000;
+		}
+		p {
+			margin-top: 0;
+		}
+		.go {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			a {
+				font-weight: bold;
+			}
+		}
+		&:first-of-type {
+			margin-left: 0;
+		}
 	}
 }
 
@@ -411,18 +465,32 @@ div#link_cadastro {
 	}
 }
 
-/* view user_form */
+/* página cadastro */
 
-#foto {
-	.column(3);
-}
-
-#user-form {
-	.column(7);
-	margin-left: 0;
+#cadastro {
+	.col1 {
+		.column(6);
+		margin-left:0;
+	}
+	.col2 {
+		.column(5);
+	}
+	.form-group .form-group-col {
+		.column(3);
+		margin:0;
+	}
+	#foto {
+		border: red;
+		display: block;
+	}
+	.submit {
+		padding-top: 40px;
+		.column(11);
+	}
 	#map_canvas {
+		background-color: yellow;
 		margin: 30px 0;
-		width: 420px;
+		width: 350px;
 		height: 300px;
 	}
 }
@@ -518,13 +586,11 @@ form#newitem {
 #interesses {
 	margin: 30px 0;
 	background-color: #fff;
-	// padding: 20px;
-	// border-radius: 14px;
 	table { 
 		width: 100%;
 		thead {
 			text-align: left;
-			color: @azulescuro;
+			color: #000;
 		}
 		td {
 			color: #000;
@@ -559,6 +625,12 @@ form#newitem {
 		.button-size(6px, 12px, inherited, 12px, 4px);
 		.button-variant(#fff; @verde_botao);
 	}
+}
+
+/* página de contato */
+
+#contato {
+	.column(8);
 }
 
 /* prefs email */
@@ -635,10 +707,10 @@ footer {
 /* CLEARFIX */
 
 .clearfix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 

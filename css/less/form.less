@@ -42,16 +42,19 @@ input[type=text]:disabled {
 	opacity: 1;
 }
 
-input[type=text]::-moz-placeholder { 
+input[type=text]::-moz-placeholder, 
+input[type=password]::-moz-placeholder { 
 	font-weight: 300;
 	color: #999; 
 	opacity: 1;
 }
-input[type=text]:-ms-input-placeholder { 
+input[type=text]:-ms-input-placeholder,
+input[type=password]:-ms-input-placeholder { 
 	font-weight: 300;
 	color: #999;
 }
-input[type=text]::-webkit-input-placeholder { 
+input[type=text]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder { 
 	font-weight: 300;
 	color: #999;
 }

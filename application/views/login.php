@@ -2,26 +2,37 @@
 $(document).ready(function() {
 	// esqueceu senha
 	$("#lembrasenha a").fancybox({
-		maxWidth	: 320,
-		maxHeight	: 129,
 		fitToView	: false,
-		width		: '90%',
-		height		: '90%',
+		width		: '300px',
+		height		: '100px',
 		autoSize	: false,
 		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
+	$(".escolhetipo_box").fancybox({
+		padding		: 25,
+		fitToView	: false,
+		width		: '630px',
+		height		: '310px',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
 </script>
 
-<div id="login">
+<div id="login-page">
+
 	<header>
 			<span style="text-align: center; color: white; font-size:2em; font-weight: strong;">Login</span>
 	</header>
 	
 	<div id="erromsg"><?php echo $msg?></div>
 
-	<form id="login" method="post" action="<?php echo base_url()?>login/verificar">
+	<form method="post" action="<?php echo base_url()?>login/verificar">
 		<input type="hidden" name="next" value="<?php echo $next?>">
 		<div class="form-group">
 			<input type="text" name="login" id="login" placeholder="Login" />
@@ -47,19 +58,4 @@ $(document).ready(function() {
 <div id="link_cadastro">
 	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="escolhetipo_box fancybox.ajax">Faça seu cadastro</a>
 </div>
-<script>
-	$(".escolhetipo_box").fancybox({
-		padding		: 25,
-		maxWidth	: 400,
-		maxHeight	: 300,
-		fitToView	: false,
-		width		: '90%',
-		height		: '90%',
-		autoSize	: false,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-</script>
 

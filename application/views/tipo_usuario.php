@@ -1,10 +1,16 @@
-<p>Você está criando um cadastro novo para:</p>
-
-<ul>
-	<li>
-		<a href="<?php echo base_url('usuario/novo/P')?>">Pessoa</a> - para <strong>fazer</strong> e receber doações. Só aparecem no mapa Pessoas com Itens para doar.
-	</li>
-	<li>
-		<a href="<?php echo base_url('usuario/novo/I')?>">Instituição</a> - para fazer e <strong>receber</strong> doações. Todas aparecem no mapa, independente de ter Itens ou não.
-	</li>
-</ul>
+<div id="cadastro_window">
+	<p>No interessa.org voce pode se cadastrar de duas maneias: como Pessoa ou Organizacao. Veja qual a que se encaixa melhor em seu perfil:</p>
+	<div class="col">
+		<img src="<?php echo base_url('images/pixel.gif')?>" id="pessoa">
+		<h3>Pessoa</h3>
+		<p>Para fazer e receber doações. Só aparecem no mapa Pessoas com Itens para doar.</p>
+		<div class="go"><a href="<?php echo base_url('usuario/novo/P')?>">Faça seu cadastro como Pessoa >></a></div>
+	</div>
+	<div class="col">
+		<img src="<?php echo base_url('images/pixel.gif')?>" id="instit">
+		<h3>Instituição</h3>
+		<p>Para fazer e receber doações. Todas aparecem no mapa, independente de ter Itens ou não.</p>
+		<div class="go"><a href="<?php echo base_url('usuario/novo/I')?>">Faça seu cadastro como organização >></a></div>
+	</div>
+</div>
+		

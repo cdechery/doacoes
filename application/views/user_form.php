@@ -23,7 +23,7 @@
 		$hiddenAvatar = '<input type="hidden" name="avatar" value="'.$avatar.'">';
 	}
 
-	$avatar = user_avatar($avatar, 200);
+	$avatar = user_avatar($avatar, 60);
 
 	$login_disabled = "";
 	if( $action=="update" ) {
@@ -116,87 +116,104 @@ window.onload = initialize;
 ?>
 </script>
 
-<h2>
-	<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
-</h2>
+<div id="cadastro" class="roundbox clearfix">
 
-<div id="user-form">
+	<h2>
+		<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
+	</h2>
+		
 	<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
+		
 		<input type="hidden" name="id" value="<?php echo $id ?>">
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
 		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
-		<?php echo $hiddenAvatar?>
-		<div class="form-group">
-			<label>Login</label>
-			<input type="text" name="login" value="<?php echo $login; ?>" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
-		</div>
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" name="email" value="<?php echo $email?>" title="Email" placeholder="Seu email" />
-		</div>
-		<div class="form-group">
-			<label>Nome</label>
+		
+		<div class="col1">
+
+			<?php echo $hiddenAvatar?>
+
+			<?php if( $action=="update" ) { ?>
+				<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
+					<div class="form-group">
+						<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
+						<input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
+						<label>Sua imagem</label>
+						<input type="file" id="userfile" name="userfile" style="display: none;" onChange="do_upload_avatar();" />
+						<a href="#" id="foto" onClick="document.getElementById('userfile').click();">
+							<img title="Clique aqui para alterar sua foto" id="user_avatar" src="<?php echo $avatar?>"/>
+						</a>
+					</div>
+				</form>
+			<?php } ?>
+
 			<div class="form-group">
-				<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
-				<?php if( $tipo=="P") : ?>
-				<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
-				<?php endif; ?>
-			</div>
-		</div>
-<?php
-	if( $tipo=="P") {
-		$sexoM = ($sexo=="M")?"checked":"";
-		$sexoF = ($sexo=="F")?"checked":"";
-?>
-			<div class="form-group">
-				<label>Nascimento</label>
-				<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+				<label>Login</label>
+				<input type="text" name="login" value="<?php echo $login; ?>" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />
 			</div>
 			<div class="form-group">
-				<label>Sexo</label>
+				<label>Senha</label>
 				<div class="form-group">
-					<input type="radio" name="sexo" value="M" <?php echo $sexoM?>> Masculino&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="sexo" value="F" <?php echo $sexoF?>> Feminino
+					<input type="password" class="horizontal" name="password" value="" placeholder="Escolha uma senha" >
+					<input type="password" class="horizontal" name="password_2" value="" placeholder="Repita a senha">
 				</div>
 			</div>
-<?php
-	} // tipo==P
-?>
-		<div class="form-group">
-			<label>Senha</label>
 			<div class="form-group">
-				<input type="password" class="horizontal" name="password" value="" placeholder="Escolha uma senha" >
-				<input type="password" class="horizontal" name="password_2" value="" placeholder="Repita a senha">
+				<label>Email</label>
+				<input type="text" name="email" value="<?php echo $email?>" title="Email" placeholder="Seu email" />
 			</div>
+			<div class="form-group">
+				<label>Nome</label>
+				<div class="form-group">
+					<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
+					<?php if( $tipo=="P") : ?>
+					<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
+					<?php endif; ?>
+				</div>
+			</div>
+			
+			<?php
+				if( $tipo=="P") {
+					$sexoM = ($sexo=="M")?"checked":"";
+					$sexoF = ($sexo=="F")?"checked":"";
+			?>
+						<div class="form-group">
+							<div class="form-group-col">
+								<label>Nascimento</label>
+								<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+							</div>
+							<div class="form-group-col">
+								<label>Sexo</label>
+								<div class="form-group">
+									<input type="radio" name="sexo" value="M" <?php echo $sexoM?>> Masculino&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="sexo" value="F" <?php echo $sexoF?>> Feminino
+								</div>
+							</div>
+						</div>
+			<?php
+				} // tipo==P
+			?>
+	
 		</div>
-		<div class="form-group">
-			<label>Localização</label>
-			<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
+
+		<div class="col2">
+		
+			<div class="form-group">
+				<label>Localização</label>
+				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
+			</div>
+			
+			<div id="map_canvas"></div>
+
 		</div>
-		<div id="map_canvas"></div>
-		<div class="form-group">
+
+		<div class="form-group submit">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 		</div>
-	</form>
-</div>
 
-<div id="foto">
-	<?php if( $action=="update" ) { ?>
-		<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
-			<div class="form-group">
-				<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
-				<input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
-				<input type="file" id="userfile" name="userfile" style="display: none;" onChange="do_upload_avatar();" />
-<!-- 				<input type="button" value="Procurar" onclick="document.getElementById('userfile').click();" />
- -->			</div>
-			<a href="#" onClick="document.getElementById('userfile').click();"><img title="Clique aqui para alterar sua foto" id="user_avatar" src="<?php echo $avatar?>"/></a>
-<!-- 			<div class="form-group" style="text-align:right;">
-				<input type="submit" name="Upload" id="submit" value="<?php echo xlabel('upload')?>" />
-			</div>
- -->		</form>
-	<?php } ?>
-</div>
+	</form>
+
+</div><!-- cadastro -->
 
 <script>
 	$( document ).ready(function() {
