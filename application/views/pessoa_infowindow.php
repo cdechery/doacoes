@@ -13,7 +13,8 @@
 	}
 
 ?>
-<div id="iw_current" style="width:300px; display: box;">
+<div>
+	
 	<h3>
 		<img style="vertical-align: middle;" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a style="text-decoration: underline;" href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
 	</h3>
@@ -32,10 +33,10 @@
 		}
 	}
 ?>
+
 </div>
-<div style="float: left; width: 50%; text-align: left;">
+
+<nav>
 	<a href="#" onClick="prevMarker();">< anterior</a>
-</div>
-<div style="float: left; width: 50%; text-align: right;">
 	<a href="#" onClick="nextMarker();">próximo ></a>
-</div>
+</nav>
