@@ -1,4 +1,4 @@
-Prezado(a) <?php echo $nome?>,
+<h3>Prezado(a) <?php echo $nome?>,</h3>
 
 <p>Estamos lhe enviando esse email para avisar que um ou mais Interesses cadastrados em nosso site<br>
 expiraram e foram excluídos.</p>
