@@ -146,7 +146,7 @@ $(function() {
 						true, function(val) { logonFB(); });
 				} else {
 					msg_success(json.msg, lang['dist_lbl_success'],
-						true, function(val) { go_home(); });
+						true, function(val) { location.href=site_root+'login'; });
 				}
 			} else {
 				msg_error( json.msg );

@@ -23,7 +23,7 @@
 		$hiddenAvatar = '<input type="hidden" name="avatar" value="'.$avatar.'">';
 	}
 
-	$avatar = user_avatar($avatar, 60);
+	$avatar = user_avatar($avatar, 200);
 
 	$login_disabled = "";
 	if( $action=="update" ) {
@@ -200,7 +200,7 @@ window.onload = initialize;
 		
 			<div class="form-group">
 				<label>Localização</label>
-				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização" />
+				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização"/> <input type="button" href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax' value="?"> 
 			</div>
 			
 			<div id="map_canvas"></div>
@@ -217,6 +217,19 @@ window.onload = initialize;
 
 <script>
 	$( document ).ready(function() {
+		$(".locationbox").fancybox({
+			padding		: 25,
+			maxWidth	: 400,
+			maxHeight	: 300,
+			fitToView	: false,
+			width		: '90%',
+			height		: '90%',
+			autoSize	: false,
+			type		: 'ajax',
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
 		$(window).keydown(function(event){
 			if(event.keyCode == 13) {
 				event.preventDefault();

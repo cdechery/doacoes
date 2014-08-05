@@ -394,25 +394,8 @@ class Usuario extends MY_Controller {
 		$this->email->send();		
 	}
 
-	private function set_location($lat, $long) {
-		$status = "";
-		$msg = "";
-
-		if( !$this->is_user_logged_in ) {
-			$status = "error";
-			$msg = xlang('dist_errsess_expire');
-		} else {
-			$ret = $this->usuario_model->update_lat_long($this->login_data['user_id'], $lat, $long);
-			if( $ret ) {
-				$status = "OK";
-				$msg = "Localização atualizada com sucesso";
-			} else {
-				$status = "ERRO";
-				$msg = "Não foi possível atualizar a localização";
-			}
-		}
-		
-		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
+	public function ajuda_localizacao() {
+		$this->load_ajax('ajuda_localizacao');
 	}
 
 	public function itens( $user_id = 0 ) {
