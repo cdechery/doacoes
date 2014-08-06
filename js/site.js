@@ -304,11 +304,11 @@ $(function() {
 		return false;
 	});
 
-	$('#contato').submit(function(e) {
+	$('#contato form').submit(function(e) {
 		e.preventDefault();
 
-		var action = $("#contato").attr("action");
-		var formdata = $("#contato").serialize();
+		var action = $("#contato form").attr("action");
+		var formdata = $("#contato form").serialize();
 
 		$.post(action, formdata, function(data) {
 			var json = myParseJSON( data );
