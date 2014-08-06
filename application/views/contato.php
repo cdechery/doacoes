@@ -32,10 +32,14 @@
 			<label>Sua mensagem:</label>
 			<textarea name="corpo" placeholder="Entre sua mensagem" cols="20" rows="4"></textarea>
 		</div>
-		<div class="form-group submit">
+		<div class="form-group">
 			<input type="submit" value="Enviar">
 		</div>
 
 	</form>
+
+	<aside>
+		Escreva pra gente se tiver problemas, dúvidas, sei lá.
+	</aside>
 
 </div>
