@@ -136,24 +136,6 @@
 <?php
 	 }
 ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".itembox").fancybox({
-			wrapCSS		: 'fancybox-item',
-			padding		: 25,
-			maxWidth	: 300,
-			maxHeight	: 410,
-			fitToView	: false,
-			width		: '90%',
-			height		: '90%',
-			autoSize	: false,
-			type		: 'ajax',
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
-		});
-	})
-</script>
 <?php if( empty($home) ): ?>
 <section class="contents">
 	<div class="wrap960">

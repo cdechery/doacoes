@@ -1,26 +1,3 @@
-<script>
-$(document).ready(function() {
-	$(".itembox").fancybox({
-		wrapCSS		: 'fancybox-item',
-		padding		: 25,
-		width	: 400,
-		// maxHeight	: 410,
-		fitToView	: false,
-		// width		: '90%',
-		// height		: '90%',
-		autoSize	: true,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-
-	$(".fancybox").fancybox({
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});	
-})
-</script>
 <?php if( !empty($user) ): ?>
 <div id="user_ites" class="clearfix">
 	<h3><img src="<?php echo user_avatar($user['avatar'], 80) ?>">
@@ -61,3 +38,24 @@ $(document).ready(function() {
 	} // foreach items
 ?>	
 </div>
+<script type="text/javascript">
+	$(".itembox").fancybox({
+		wrapCSS		: 'fancybox-item',
+		padding		: 25,
+		maxWidth	: 300,
+		maxHeight	: 410,
+		fitToView	: false,
+		width		: '90%',
+		height		: '90%',
+		autoSize	: false,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+	
+	$(".fancybox").fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});	
+</script>

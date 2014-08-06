@@ -180,7 +180,7 @@ window.onload = initialize;
 						<div class="form-group">
 							<div class="form-group-col">
 								<label>Nascimento</label>
-								<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" title="Data de Nascimento" placeholder="Sua data de nascimento" />
+								<input type="text" id="dtnascimento" name="nascimento" value="<?php echo $data_nascimento; ?>" maxlength="10" title="Data de Nascimento" placeholder="DD/MM/AAAA" onKeyup="dateFormat(this);"/>
 							</div>
 							<div class="form-group-col">
 								<label>Sexo</label>
@@ -230,6 +230,7 @@ window.onload = initialize;
 			openEffect	: 'none',
 			closeEffect	: 'none'
 		});
+
 		$(window).keydown(function(event){
 			if(event.keyCode == 13) {
 				event.preventDefault();
@@ -237,11 +238,18 @@ window.onload = initialize;
 			}
 		});
 	});
-	<?php
-		if( $tipo=="P") {
-	?>
-	$('#dtnascimento').datepick( {prevText: '',nextText: '', yearRange: 'any', alignment: 'bottomRight' } );
-	<?php
+
+	function dateFormat( el ) {
+		value = el.value;
+		switch( value.length ) {
+			case 2:
+				el.value += '/';
+				return false;
+			case 5:
+				el.value += '/';
+				return false;
+			default:
+				break;
 		}
-	?>
+	}	
 </script>

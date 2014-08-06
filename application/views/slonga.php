@@ -101,13 +101,31 @@
 			</ul>
 		
 		</div>
+	$(document).ready(function() {
 <script type="text/javascript">
-if( typeof(Storage) !== "undefined" ) {
-	if( !localStorage.welcomeShown ) {
-		localStorage.setItem('welcomeShown', 1);
-		setTimeout( function() {
-			$('#texto_apres_cont').fadeIn('slow');
-		}, 1500);
-	}
-}
+	$(document).ready(function() {
+		$(".itembox").fancybox({
+			wrapCSS		: 'fancybox-item',
+			padding		: 25,
+			maxWidth	: 300,
+			maxHeight	: 410,
+			fitToView	: false,
+			width		: '90%',
+			height		: '90%',
+			autoSize	: false,
+			type		: 'ajax',
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+
+		if( typeof(Storage) !== "undefined" ) {
+			if( !localStorage.welcomeShown ) {
+				localStorage.setItem('welcomeShown', 1);
+				setTimeout( function() {
+					$('#texto_apres_cont').fadeIn('slow');
+				}, 1000);
+			}
+		}
+	});
 </script>		

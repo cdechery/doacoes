@@ -25,7 +25,9 @@
 				<option value=""></option>
 				<option value="duvida">Dúvida</option>
 				<option value="critica">Reclamação</option>
+				<option value="sugestao">Sugestão</option>
 				<option value="problema">Erro no site</option>
+				<option value="elogio">Elogio</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -39,7 +41,10 @@
 	</form>
 
 	<aside>
-		Escreva pra gente se tiver problemas, dúvidas, sei lá.
+		<p>Se tiver qualquer dúvida sobre o funcionamento do site, tente primeiro procurar <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
+		<p>Ainda não temos uma seção de ajuda formatada, então não se acanhe se sua dúvida for simples. Prometo que não demoramos pra responder.</p>
+		<p>Nem tudo na vida são flores e pode ser que o site apresente problemas. Por favor, nos ajude sempre a melhorar nos avisando e fornecendo o máximo de informações.</p>
+		<p>Sugestões e elogios são bem-vindos também, é claro. =]</p>
 	</aside>
 
 </div>
