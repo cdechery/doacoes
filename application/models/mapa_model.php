@@ -17,7 +17,7 @@ class Mapa_model extends MY_Model {
 		$this->db->join('categoria c', 'c.id = i.categoria_id');
 		$this->db->join('situacao s', 's.id = i.situacao_id');
 		$this->db->where('u.tipo','P'); //Pessoa
-		$this->db->where('i.status','I'); //Disponivel
+		$this->db->where('i.status','A'); //Ativo
 		$this->db->order_by('u.id', 'asc');
 		$pessoas = $this->db->get()->result();
 

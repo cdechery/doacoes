@@ -182,7 +182,7 @@ class Item extends MY_Controller {
 		}
 
 		$status = $this->input->post('status');
-		$statusname = $status === 'I' ? 'Ativo' : 'Inativo';
+		$statusname = $status === 'A' ? 'Ativo' : 'Inativo';
 		if($this->item_model->change_status($id, $status)) {
 			$result = "OK";
 			$statusvalue = $status;

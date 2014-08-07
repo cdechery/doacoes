@@ -54,7 +54,7 @@ class Item_model extends MY_Model {
 	public function insert( $item_data ) {
 		$insert_data = array(
 			'descricao' => $item_data['desc'],
-			'status' => 'I', // disponivel
+			'status' => 'A', // Ativo
 			'titulo' => $item_data['titulo'],
 			'categoria_id' => $item_data['categ'],
 			'usuario_id' => $item_data['usuario_id'],

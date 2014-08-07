@@ -230,10 +230,10 @@ $(function() {
 		e.preventDefault();
 		var btn = $(this);
 		var itemstatus = btn.attr('data-status');
-		if (itemstatus == 'I') {
-			activ_deactiv_item(btn, '0');
-		} else {
+		if (itemstatus == 'A') {
 			activ_deactiv_item(btn, 'I');
+		} else {
+			activ_deactiv_item(btn, 'A');
 		}
 		return false;
 	});
@@ -456,15 +456,15 @@ function activ_deactiv_item(btn, action) {
 		if (json.result === "OK") {
 			msg_success( json.msg, lang['dist_lbl_success'], true);
 
-			if (json.status === 'I') {
+			if (json.status === 'A') {
 				btn.removeClass('active');
-				btn.html('<i class="fa fa-square-o"></i>&nbsp;Cancelar Item');
-				btn.attr('data-status', 'I');
+				btn.html('<i class="fa fa-square-o"></i>&nbsp;Desativar Item');
+				btn.attr('data-status', 'A');
 				btn.next().removeClass('disabled').attr('disabled', false);
 			} else {
 				btn.addClass('active');
 				btn.html('<i class="fa fa-check-square-o"></i>&nbsp;Ativar Item');
-				btn.attr('data-status', '0');
+				btn.attr('data-status', 'I');
 				btn.next().addClass('disabled').attr('disabled', true);
 			};
 		} else {
