@@ -7,7 +7,7 @@ Você já pode acessar e começar a cadastrar seus Interesses e assim será avis
 
 <p>Qualquer dúvvida ou problema, conte com a gente.</p>
 
-<p>Importante 1: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os <a href="<?php echo base_url('termos')?>">Termos de Serviço</a>.</p>
+<p>Importante: ao acessar e utilizar o site, você estará automaticamente declarando estar de acordo com os <a href="<?php echo base_url('termos')?>">Termos de Serviço</a>.</p>
 
-<p>Um abraço,
+<p>Um abraço,<br>
 Equipe Interessa.org</p>

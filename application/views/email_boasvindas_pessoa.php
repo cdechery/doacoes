@@ -9,5 +9,5 @@ Você já pode acessar e começar a cadastrar seus Itens e/ou procurar outros qu
 
 <p>Qualquer dúvida ou problema, conte com a gente.</p>
 
-<p>Um abraço,
+<p>Um abraço,<br>
 Equipe Interessa.org</p>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>interessa.org</title>
+	<title>Interessa.org</title>
 </head>
 <body style="margin:0;padding:0;">
 	
@@ -18,7 +18,7 @@
 				<table cellpadding="0" cellspacing="0" style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px; width:650px; background-color:#2b72a3;">
 					<tr>
 						<td style="">
-							<img src="../images/logo.png" alt="interessa.org">
+							<img src="<?php echo base_url('images/logo.png')?>" alt="interessa.org">
 						</td>
 					</tr>
 				</table>
@@ -26,4 +26,4 @@
 				<!-- MIOLO -->
 				<table cellpadding="0" cellspacing="0" style="width:650px; border: 1px solid #ccc;">
 					<tr>
-						<td style="padding-left:30px; padding-right:30px; padding-top:20px; width:590px; font-family:Arial, sans-serif; font-size:14px;">
+						<td style="padding-left:30px; padding-right:30px; padding-top:5px; width:590px; font-family:Arial, sans-serif; font-size:14px;">

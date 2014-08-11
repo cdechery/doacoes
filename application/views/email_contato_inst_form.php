@@ -21,7 +21,7 @@
 		<input type="text" name="assunto" value="Olá, <?php echo $to_user['nome']?>">
 	</div>
 	<div class="form-group">
-		<label>Mensagem (opcional): </label>
+		<label>Mensagem: </label>
 		<textarea cols="30" rows="4" name="corpo"></textarea>
 	</div>
 	<div class="form-group submit">

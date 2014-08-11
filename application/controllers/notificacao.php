@@ -38,7 +38,7 @@ class Notificacao extends MY_Controller {
 		if( $prepare > 0 ) {
 			$new_notifs = $this->notificacao_model->get_pending_notifs();
 			log_message('info',
-				'Encontradas '.$new_notifs.' novas notificacoes');
+				'Encontradas '.count($new_notifs).' novas notificacoes');
 			$this->processa_notifs( $new_notifs );
 			$this->notificacao_model->purge();
 			log_message('info',
@@ -55,7 +55,7 @@ class Notificacao extends MY_Controller {
 	private function processa_notifs( $result_set ) {
 		$size = count($result_set);
 		$user_id = 0;
-		$user_email = "";
+		$user_email = $name = "";
 		$user_itens = array();
 		$fg_notif = "";
 
@@ -68,7 +68,7 @@ class Notificacao extends MY_Controller {
 					log_message('info',
 						'Enviando email para $user_email, '.count($user_itens).' itens');
 
-					$params = $this->monta_email( $user_email, $user_itens);
+					$params = $this->monta_email( $user_email, $name, $user_itens);
 					$mail_sent = send_email( $params );
 				}
 
@@ -86,6 +86,7 @@ class Notificacao extends MY_Controller {
 				'titulo'=>$row->titulo, 'nome_arquivo'=>$row->nome_arquivo );
 			$user_id = $row->usuario_id;
 			$user_email = $row->email;
+			$name = $row->nome;
 		}
 
 		
@@ -93,7 +94,7 @@ class Notificacao extends MY_Controller {
 			log_message('info',
 				'Enviando email para $user_email, '.count($user_itens).' itens');
 
-			$params = $this->monta_email( $user_email, $user_itens);
+			$params = $this->monta_email( $user_email, $name, $user_itens);
 			$mail_sent = send_email( $params );
 		}
 
@@ -105,9 +106,9 @@ class Notificacao extends MY_Controller {
 		}
 	}
 
-	private function monta_email($para, $itens) {
+	private function monta_email($para, $nome, $itens) {
 		$corpo = $this->load->view('email_notif_itens',
-			array('itens'=>$itens), TRUE);
+			array('itens'=>$itens, 'nome'=>$nome), TRUE);
 
 		$params = array(
 			'to_email'=> $para,

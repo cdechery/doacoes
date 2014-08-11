@@ -1,12 +1,13 @@
-<p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias que você configurou.</p>
+<h3>Olá <?php echo $nome?>,</h3>
+<p>De acordo com seus Interesses cadastrados em nosso site, estamos enviando este email com Itens nas categorias (e distâncias) que você configurou.</p>
 <?php
 	$path = $params['upload']['path'];
 	foreach ($itens as $item) {
-		$img = item_image($item['nome_arquivo'], 80);
+		$img = item_image($item['nome_arquivo'], 120);
 ?>
 <div style="float: left">
 <img src="<?php echo $img?>"><br>
-<?php echo $item['id']."-".$item['titulo']?>
+<?php echo $item['titulo']?>
 </div>
 <?php
 	} // foreach

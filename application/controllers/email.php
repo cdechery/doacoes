@@ -53,10 +53,12 @@ class Email extends MY_Controller {
 			$assunto = "Me interessei por um item seu";
 		}
 
-		$msg = "O(a) usuario(a) ".$form_data['de_nome']." se interessou pelo seu item: ".$item['titulo']."<br><br>";
+		$msg = "<h3>Oi ".$form_data['para_nome'].",</h3>";
+		$msg .="o(a) usuário(a) <b>".$form_data['de_nome']."</b> se interessou pelo seu item: <b>".$item['titulo']."</b><br><br>";
 		$msg .= "Para entrar em contato com ele(a), basta responder a este email.";
 		if( !empty($form_data['corpo']) ) { 
-			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>".$form_data['corpo'];
+			$msg .= "<br><br>Abaixo a mensagem que ele(a) deixou pra você: <br>";
+			$msg .= "<div style='padding-left:2em'>".nl2br($form_data['corpo'])."</div>";
 		}
 		$corpo = $this->load->view('email_quer_item',
 			array('corpo'=>$msg), TRUE);
@@ -65,7 +67,7 @@ class Email extends MY_Controller {
 			'to_email'=> $form_data['para_email'],
 			'to_name'=>$form_data['para_nome'],
 			'from_email'=>'noreply@interessa.org',
-			'from_name'=>$form_data['de_nome']." - Interessa",
+			'from_name'=>$form_data['de_nome']." - Interessa?",
 			'subject'=>$assunto,
 			'body'=>$corpo
 		);
@@ -117,9 +119,10 @@ class Email extends MY_Controller {
 
 		$form_data = $this->input->post(NULL, TRUE);
 
-		$msg = "Olá ".$form_data['para_nome'].", o(a) ".$form_data['de_nome']." usou nosso site ".
-			"para te mandar uma mensagem, veja abaixo:<br> ";
-		$msg .= $form_data['corpo'];
+		$msg = "<h3>Temos um recado para: ".$form_data['para_nome']."</h3>";
+		$msg .= "o(a) <b>".$form_data['de_nome']."</b> usou nosso site ".
+				"para te mandar uma mensagem, veja abaixo:<br><br>";
+		$msg .= "<div style='padding-left:2em'>".nl2br($form_data['corpo'])."</div>";
 		$corpo = $this->load->view('email_contato_inst',
 			array('corpo'=>$msg), TRUE);
 
@@ -127,7 +130,7 @@ class Email extends MY_Controller {
 			'to_email'=> $form_data['para_email'],
 			'to_name'=>$form_data['para_nome'],
 			'from_email'=>'noreply@interessa.org',
-			'from_name'=>$form_data['de_nome']." - Interessa",
+			'from_name'=>$form_data['de_nome']." - Interessa?",
 			'subject'=>$form_data['assunto'],
 			'body'=>$corpo
 		);

@@ -46,9 +46,9 @@
 
 		if( $sim_only ) {
 			
-			$emailmsg .= '\n\n<!--\n';
+			$emailmsg .= '<!--';
 			$emailmsg .= var_export($params, true);
-			$emailmsg .= '\n-->';
+			$emailmsg .= '-->';
 
 			$tmp_emailfile = 'email'.uniqid().'.html';
 			$file = fopen("./emails/".$tmp_emailfile, "w");
