@@ -198,7 +198,7 @@ window.onload = initialize;
 
 		<div class="col2">
 		
-			<div class="form-group">
+			<div id="loc" class="form-group">
 				<label>Localização</label>
 				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização"/> <input type="button" href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax' value="?"> 
 			</div>
@@ -219,11 +219,8 @@ window.onload = initialize;
 	$( document ).ready(function() {
 		$(".locationbox").fancybox({
 			padding		: 25,
-			maxWidth	: 400,
-			maxHeight	: 300,
-			fitToView	: false,
-			width		: '90%',
-			height		: '90%',
+			width		: '400px',
+			height		: '300px',
 			autoSize	: false,
 			type		: 'ajax',
 			closeClick	: false,

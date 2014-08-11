@@ -14,9 +14,53 @@
 		"update"=>xlabel('update'));
 ?>
 
-<div class="roundbox clearfix">
+<div id="newitem" class="roundbox clearfix">
 
 	<h2>Cadastro de Itens</h2>
+
+	<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>">
+		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+		<input type="hidden" name="temp_id" id="temp_id" value="<?php echo $temp_id ?>">
+		<input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $login_data['user_id'] ?>">
+	    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
+		<div class="form-group">
+			<label>Categoria:</label>
+			<select name="categ">
+				<option value="">Categoria</option>
+				<?php
+					$selected = "";
+					foreach ($categorias as $cat) {
+						$selected = ($cat->id==$categoria_id)?"selected":"";
+						echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->nome.'</option>\n';
+					}
+				?>
+			</select> <input type="button" href="<?php echo base_url('item/get_categorias')?>" class='catbox fancybox.ajax' value="?"> 
+		</div>
+		<div class="form-group">
+			<label>Situação:</label>
+			<select name="sit">
+				<option value="">Situação</option>
+				<?php
+					$selected = "";
+					foreach ($situacoes as $sit) {
+						$selected = ($sit->id==$situacao_id)?"selected":"";
+						echo '<option value="'.$sit->id.'" '.$selected.'>'.$sit->descricao.'</option>\n';
+					}
+				?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Nome do item:</label>
+			<input type="text" name="titulo" value="<?php echo $titulo ?>" title="Título" />
+		</div>
+		<div class="form-group">
+			<label>Descrição:</label>
+			<textarea name="desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
+		</div>
+		<div class="form-group submit">
+			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
+		</div>
+	</form>
 
 	<aside id="image" class="col">
 		
@@ -70,52 +114,6 @@
 		</form>
 
 	</aside>
-
-	<div id="newitem">
-		<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>">
-			<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
-			<input type="hidden" name="temp_id" id="temp_id" value="<?php echo $temp_id ?>">
-			<input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $login_data['user_id'] ?>">
-		    <input type="hidden" name="thumbs" id="thumbs" value="<?php echo implode('|',$params['image_settings']['thumb_sizes'])?>"/>
-			<div class="form-group">
-				<label>Categoria:</label>
-				<select name="categ">
-					<option value="">Categoria</option>
-					<?php
-						$selected = "";
-						foreach ($categorias as $cat) {
-							$selected = ($cat->id==$categoria_id)?"selected":"";
-							echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->nome.'</option>\n';
-						}
-					?>
-				</select> <input type="button" href="<?php echo base_url('item/get_categorias')?>" class='catbox fancybox.ajax' value="?"> 
-			</div>
-			<div class="form-group">
-				<label>Situação:</label>
-				<select name="sit">
-					<option value="">Situação</option>
-					<?php
-						$selected = "";
-						foreach ($situacoes as $sit) {
-							$selected = ($sit->id==$situacao_id)?"selected":"";
-							echo '<option value="'.$sit->id.'" '.$selected.'>'.$sit->descricao.'</option>\n';
-						}
-					?>
-				</select>
-			</div>
-			<div class="form-group">
-				<label>Nome do item:</label>
-				<input type="text" name="titulo" value="<?php echo $titulo ?>" title="Título" />
-			</div>
-			<div class="form-group">
-				<label>Descrição:</label>
-				<textarea name="desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
-			</div>
-			<div class="form-group submit">
-				<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
-			</div>
-		</form>
-	</div><!-- newitem -->
 
 </div>
 

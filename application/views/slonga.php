@@ -1,28 +1,29 @@
-<section id="map">
-	<div id="texto_apres_cont" style="display: none">
-		<div id="texto_apres">
-			<div id="close">X</div>
-			<div id="texto">
-				<h3>Bem-vindo ao Interessa.org</h3>
-				<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
-				<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
-				<p>Se já quiser se cadastrar use os botões abaixo:</p>
-				<div class="buttons">
-					<input type="button" class="escolhetipo_box fancybox.ajax" value="Cadastrar" href="<?php echo base_url('usuario/escolhe_tipo')?>">&nbsp;&nbsp;&nbsp;
-					<input type="button" value="Facebook">
+<section id="home" class="contents">
+
+	<section id="map">
+		
+		<div id="texto_apres_cont" style="display: none">
+			<div id="texto_apres">
+				<div id="close">X</div>
+				<div id="texto">
+					<h3>Bem-vindo ao Interessa.org</h3>
+					<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
+					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
+					<p>Se já quiser se cadastrar use os botões abaixo:</p>
+					<div class="buttons">
+						<input type="button" class="escolhetipo_box fancybox.ajax" value="Cadastrar" href="<?php echo base_url('usuario/escolhe_tipo')?>">&nbsp;&nbsp;&nbsp;
+						<input type="button" value="Facebook">
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<form name="__map">
-		<?php echo $map['js']; ?>
-		<?php echo $map['html']; ?>
-	</form>
+		<form name="__map">
+			<?php echo $map['js']; ?>
+			<?php echo $map['html']; ?>
+		</form>
 
-</section>
-
-<section id="home" class="contents">
+	</section>
 	
 	<div class="wrap960">
 		
@@ -35,7 +36,7 @@
 						$centro = "Sua localização";
 				} ?>
 				<p>Exibindo: <span id="exibindo_mapa"><?php echo $centro?></span></p>
-				<input type="text" style="color: black" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
+				<input type="text" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
 				<?php if( $login_data['logged_in']) : ?>
 					<p>Retornar para <a href="#" onClick="map.setCenter( user_location ); $('#exibindo_mapa').html('Sua localização');">sua localização</a></p>
 				<?php endif; ?>
@@ -100,32 +101,4 @@
 				</li>
 			</ul>
 		
-		</div>
-	$(document).ready(function() {
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".itembox").fancybox({
-			wrapCSS		: 'fancybox-item',
-			padding		: 25,
-			maxWidth	: 300,
-			maxHeight	: 410,
-			fitToView	: false,
-			width		: '90%',
-			height		: '90%',
-			autoSize	: false,
-			type		: 'ajax',
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
-		});
-
-		if( typeof(Storage) !== "undefined" ) {
-			if( !localStorage.welcomeShown ) {
-				localStorage.setItem('welcomeShown', 1);
-				setTimeout( function() {
-					$('#texto_apres_cont').fadeIn('slow');
-				}, 1000);
-			}
-		}
-	});
-</script>		
+		</div>		

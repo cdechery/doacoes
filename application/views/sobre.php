@@ -5,12 +5,12 @@
 
 	<h3>Como funciona?</h3>
 
-	<div>
+	<div class="col">
 		<h4>para pessoas:</h4>
 		<p>Se você estiver procurando alguém interessado em algo que você não precisa ou não usa mais, basta você se cadastrar, depois incluir os itens que tem aí sobrando e acumulando pó. No mapa você consegue filtrar as pessoas interessadas nas categorias de item que você cadastrou. Se elas tiverem 'Interesses' cadastrados, serão avisadas automaticamente das coisas que você cadastrar.
 	</div>
 
-	<div>
+	<div class="col">
 		<h4>para instituições:</h4>
 		<p>Usuários cadastrados como Instituições podem cadastrar Itens e Interesses da mesma forma que Pessoas. A diferença é que a validade dos Interesses é maior, e, como o foco da Instiuição é mais em receber itens do que doar, todas são exibidas no mapa independente de ter algo a doar ou não - dessa forma fica mais fácil achar alguma Interessada em receber aquilo que você quer doar.	
 	</div>

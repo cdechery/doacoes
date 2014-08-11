@@ -2,7 +2,8 @@
 
 /* body */
 
-body {
+html, body {
+	min-height: 100%;
 	margin:0;
 	padding:0;
 	font-family: 'Lato', sans-serif;
@@ -17,7 +18,7 @@ body {
 
 /* meu normalize. ver se já não existe isso no normalize.css */
 
-div, aside, h1, section {
+div, aside, h1, header, section, footer {
 	box-sizing: border-box;
 }
 
@@ -26,7 +27,7 @@ header, section, footer {
 }
 
 section {
-	h2:first-child, h2:first-of-type {
+	h2:first-child, h3:first-of-type {
 		margin-top: 0; /* normalizando margem do header */
 	}
 }
@@ -56,24 +57,6 @@ h3 {
 
 @import 'form.less';
 
-/* class section padrão */
-
-section.contents {
-	width: 100%;
-	padding: 25px 0 60px;
-	min-height: 300px;
-	/* tamanho texto padráo. ver depois.
-	font-size: 1.2em; */
-	/* entrelinha texto padrão */
-	p {
-		line-height: 1.5em;
-	}
-	form {
-		h5:first-child {
-			display: none; /* mensagem de erro. TESTAR ISSO */
-		}
-	}
-}
 /* cols float padrão (par) */
 .col {
 	.column(6);
@@ -95,6 +78,24 @@ section.contents {
 	border-radius: 18px;
 	padding: 30px;
 	border:1px solid #ccc;
+}
+
+/* class section padrão */
+
+section.contents {
+	width: 100%;
+	padding: 25px 0 0;
+	/* tamanho texto padráo. ver depois.
+	font-size: 1.2em; */
+	/* entrelinha texto padrão */
+	p {
+		line-height: 1.5em;
+	}
+	form {
+		h5:first-child {
+			display: none; /* mensagem de erro. TESTAR ISSO */
+		}
+	}
 }
 
 /* inicio estilos slonga */
@@ -280,11 +281,17 @@ section#map {
 	}
 }
 
+/* drop-down do google places */
+.pac-container {
+	z-index:2000!important;
+}
+
 /* section home */
 
 section#home {
+	padding-top: 0!important;
 	.wrap960 {
-		margin-top: 10px; /* afastar título texto do mapa */
+		margin-top: 25px; /* afastar título texto do mapa */
 	}
 	#filtros {
 		border-radius: 16px;
@@ -311,6 +318,7 @@ section#home {
 			}
 			input[type=text] {
 				width: 100%;
+				color: #000;
 			}
 		}
 		#botoes {
@@ -508,6 +516,11 @@ div#link_cadastro {
 		padding-top: 40px;
 		.column(11);
 	}
+	#loc {
+		input[type=text]:first-of-type {
+			display: inline-block;
+		}
+	}
 	#map_canvas {
 		background-color: yellow;
 		margin: 30px 0;
@@ -530,14 +543,13 @@ header#itens {
 	}
 }
 
-aside#image {
-	float: right;
-	width: 350px;
-}
-
-form#newitem {
-	float: left;
-	width: 500px;
+#newitem {
+	form {
+		.column(6);
+	}
+	aside {
+		.column(5);
+	}
 }
 
 .item_single { /* user_item_list */
@@ -648,14 +660,27 @@ form#newitem {
 	}
 }
 
+/* página sobre */
+#sobre {
+	.col {
+		.column(5);
+		padding-right: 40px;
+	}
+}
+
 /* página de contato */
 
 #contato {
 	form {
-		.column(8);
+		.column(7);
 	}
 	aside {
-		.column(3);
+		.column(4);
+		font-size: .9em;
+		line-height: 1.4em;
+		p:first-child {
+			margin-top: 0;
+		}
 	}
 }
 
@@ -677,7 +702,7 @@ form#newitem {
 	.label {
 		margin: 0 0;
 		font-size: .9em;
-		color:#ccc;
+		color:#999;
 		text-transform: uppercase;
 		& + p {
 			margin: 0;
@@ -728,6 +753,14 @@ form#newitem {
 /* footer */
 
 footer {
+	padding-top: 30px;
+	height: 100px;
+	width: 100%;
+	nav {
+		text-align: center;
+		font-size: .9em;
+		text-transform: uppercase;
+	}
 }
 
 /* CLEARFIX */

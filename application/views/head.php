@@ -48,6 +48,42 @@
 	}
 ?>
 <title><?php echo $title; ?></title>
+<script>
+	$(document).ready(function(){
+		/* 'sticky footer' */
+		var dh = $(document).height(); //document height here
+		var hh = $('header').height(); //header height
+		var fh = $('footer').height(); //footer height
+		var wh = Number(dh - hh - fh); //this is the height for the wrapper
+		$('section.contents').css('min-height', wh); //set the height for the wrapper div
+	});
+</script>
+<?php if(isset($home)) { ?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".itembox").fancybox({
+			wrapCSS		: 'fancybox-item',
+			padding		: 25,
+			fitToView	: false,
+			width		: '400px',
+			height		: '350px',
+			autoSize	: false,
+			type		: 'ajax',
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+		if( typeof(Storage) !== "undefined" ) {
+			if( !localStorage.welcomeShown ) {
+				localStorage.setItem('welcomeShown', 1);
+				setTimeout( function() {
+					$('#texto_apres_cont').fadeIn('slow');
+				}, 1000);
+			}
+		}
+	});
+</script>
+<?php } ?>
 </head>
 <body <?php echo $bodyId?>>
 <script type="text/javascript">
@@ -137,7 +173,6 @@
 	 }
 ?>
 <?php if( empty($home) ): ?>
-<section class="contents">
-	<div class="wrap960">
-		<!-- <div class="roundbox clearfix"> -->
+	<section class="contents">
+		<div class="wrap960">
 <?php endif; ?>

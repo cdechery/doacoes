@@ -1,5 +1,5 @@
 <div id="cadastro_window">
-	<p>No interessa.org voce pode se cadastrar de duas maneias: como Pessoa ou Organizacao. Veja qual a que se encaixa melhor em seu perfil:</p>
+	<p>No interessa.org voce pode se cadastrar de duas maneias: como Pessoa ou Instituição. Veja qual a que se encaixa melhor em seu perfil:</p>
 	<div class="col">
 		<img src="<?php echo base_url('images/pixel.gif')?>" id="pessoa">
 		<h3>Pessoa</h3>
