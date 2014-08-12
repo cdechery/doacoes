@@ -23,7 +23,7 @@ class Contato extends MY_Controller {
 			array('body'=>$form_data), TRUE);
 
 		$params = array(
-			'to_email'=> 'noreply@interessa.org',
+			'to_email'=> 'webmaster@interessa.org',
 			'to_name'=>'Interessa.org',
 			'from_email'=>$form_data['email'],
 			'from_name'=>$form_data['nome'],

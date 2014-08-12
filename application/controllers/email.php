@@ -67,6 +67,7 @@ class Email extends MY_Controller {
 			'to_email'=> $form_data['para_email'],
 			'to_name'=>$form_data['para_nome'],
 			'from_email'=>'noreply@interessa.org',
+			'reply_to'=> $form_data['de_email'],
 			'from_name'=>$form_data['de_nome']." - Interessa?",
 			'subject'=>$assunto,
 			'body'=>$corpo
@@ -131,6 +132,7 @@ class Email extends MY_Controller {
 			'to_name'=>$form_data['para_nome'],
 			'from_email'=>'noreply@interessa.org',
 			'from_name'=>$form_data['de_nome']." - Interessa?",
+			'reply_to'=> $form_data['de_email'],
 			'subject'=>$form_data['assunto'],
 			'body'=>$corpo
 		);
