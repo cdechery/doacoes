@@ -117,7 +117,7 @@ class Usuario extends MY_Controller {
 			$this->load->view('tipo_usuario');
 			$this->load->view('foot');
 		} else {
-			$this->load_ajax('tipo_usuario');
+			$this->load_ajax('tipo_usuario_w');
 		}
 
 	}

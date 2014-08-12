@@ -1,4 +1,4 @@
-<div id="cadastro_window" class="roundbox clearfix">
+<div id="cadastro_window">
 	<p>No <strong>interessa.org</strong> você pode se cadastrar de duas maneiras: como Pessoa ou Instituição.<br>
 	Veja qual a que se encaixa melhor em seu perfil:</p>
 	<div class="col">
