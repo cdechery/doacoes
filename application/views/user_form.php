@@ -160,14 +160,16 @@ window.onload = initialize;
 			</div>
 			<div class="form-group">
 				<label>Email</label>
-				<input type="text" name="email" value="<?php echo $email?>" title="Email" placeholder="Seu email" />
+				<input type="text" class="largeplus" name="email" value="<?php echo $email?>" title="Email" placeholder="Seu email" />
 			</div>
 			<div class="form-group">
 				<label>Nome</label>
 				<div class="form-group">
-					<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
 					<?php if( $tipo=="P") : ?>
-					<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
+						<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
+						<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
+					<?php else: ?>
+						<input type="text" class="largeplus" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
 					<?php endif; ?>
 				</div>
 			</div>
