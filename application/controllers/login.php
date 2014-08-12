@@ -71,6 +71,8 @@ class Login extends MY_Controller {
 		$logoutURL = null;
 		$loginURL = null;
 
+		$this->session->set_userdata('FbLoginPending', "1");
+
         // load the facebook library
         $this->load->library("facebook",$this->params['facebook'] );
 
@@ -85,8 +87,9 @@ class Login extends MY_Controller {
 				$this->load->model('usuario_model');
 				$usuario = $this->usuario_model->get_data_email( $fbuser['email'] );
 
-				if( FALSE!=$usuario ) { 
+				if( FALSE!=$usuario ) {
 					set_user_session( $usuario['id'] );
+					$this->session->unset_userdata('FbLoginPending');
 					redirect( base_url() );
 				} else { //novo
 					$this->input->set_cookie('FbRegPending', "1", 259000 );
@@ -97,6 +100,8 @@ class Login extends MY_Controller {
 
 					$this->session->set_userdata('fbuserdata', $fbuser );
 					$tipo = $this->session->userdata('tipo_cadastro');
+
+					$this->session->unset_userdata('FbLoginPending');
 					if( $tipo ) {
 						redirect( base_url('usuario/novo/'.$tipo ) );
 					} else {
@@ -105,12 +110,9 @@ class Login extends MY_Controller {
 				}
 			} catch( FacebookApiException $e ) {
 				error_log($e);
-				$fbuser = null;
-				// TODO tratar erro
 			}
         } else {
-        	$scope = array('scope' => 'email');
-            $loginURL = $this->facebook->getLoginUrl( $scope );
+        	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
         }
 	}
 

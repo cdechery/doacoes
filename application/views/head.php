@@ -58,7 +58,7 @@
 		$('section.contents').css('min-height', wh); //set the height for the wrapper div
 	});
 </script>
-<?php if(isset($home)) { ?>
+<?php if(isset($home)):  ?>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".itembox").fancybox({
@@ -83,7 +83,7 @@
 		}
 	});
 </script>
-<?php } ?>
+<?php endif; ?>
 </head>
 <body <?php echo $bodyId?>>
 <script type="text/javascript">
@@ -135,9 +135,12 @@
 <?php
 	$wait_img = base_url('icons/connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
+	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
 
-	if( false == $login_data['logged_in'] && false == $fbReg && $enableFB ) {
+	if( false == $fbLogin &&
+		false == $login_data['logged_in'] &&
+		false == $fbReg && $enableFB ) {
 ?>
 <script>
 	window.fbAsyncInit = function() {		
