@@ -209,6 +209,8 @@ window.onload = initialize;
 
 		</div>
 
+		<br clear="all"><br>
+
 		<div class="form-group">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 		</div>
