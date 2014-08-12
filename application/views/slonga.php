@@ -67,20 +67,32 @@
 			<ul>
 				<li id="filter-item">
 					Itens
-					<div id="filtro_itens" class="checks" style="display:none;" class="clearfix">	
+					<div id="filtro_itens" class="checks" style="display:none;" class="clearfix">
+						<h4>Categorias</h4>
 						<div class="col">
-							<h4>Categorias</h4>
 							<?php
 								foreach ($categorias as $cat) {
-									echo "<input class='filterItemCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterItem();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									if ($cat->id <= 5) {
+										echo "<input class='filterItemCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterItem();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									}
 								}
 							?>
 						</div>
 						<div class="col">
+							<?php
+								foreach ($categorias as $cat) {
+									if ($cat->id > 5) {
+										echo "<input class='filterItemCat' type=checkbox name=cat".$cat->id." value=".$cat->id." onClick='filterItem();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									}
+								}
+							?>
+						</div>
+						<br clear="all">
+						<div id="sit">
 							<h4>Situações</h4>
 							<?php
 								foreach ($situacoes as $sit) {
-									echo "<input class='filterItemSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterItem();'>&nbsp;&nbsp;".$sit->descricao."<br>";
+									echo "<input class='filterItemSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterItem();'>&nbsp;&nbsp;".$sit->descricao."&nbsp;&nbsp;&nbsp;";
 								}
 							?>
 						</div>
@@ -88,12 +100,23 @@
 				</li>
 				<li id="filter-inst">
 					Interesses
-					<div id="filtro_ints" class="checks" style="display: none;"class="clearfix">
+					<div id="filtro_ints" class="checks" style="display: none;" class="clearfix">
+						<h4>Interessado em</h4>
 						<div class="col">
-							<h4>Interessado em</h4>
 							<?php
 								foreach ($categorias as $cat) {
-									echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInt();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									if ($cat->id <= 5) {
+										echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInt();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									}
+								}
+							?>
+						</div>
+						<div class="col">
+							<?php
+								foreach ($categorias as $cat) {
+									if ($cat->id > 5) {
+										echo "<input class='filtroInstCat' type=checkbox name=icat".$cat->id." value=".$cat->id." onClick='filterInt();'>&nbsp;&nbsp;".$cat->nome."<br>";
+									}
 								}
 							?>
 						</div>

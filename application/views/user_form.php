@@ -200,14 +200,14 @@ window.onload = initialize;
 		
 			<div id="loc" class="form-group">
 				<label>Localização</label>
-				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização"/> <input type="button" href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax' value="?"> 
+				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax'><i class="fa fa-question-circle"></i></a> 
 			</div>
 			
 			<div id="map_canvas"></div>
 
 		</div>
 
-		<div class="form-group submit">
+		<div class="form-group">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
 		</div>
 
