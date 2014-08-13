@@ -45,7 +45,7 @@ class Usuario extends MY_Controller {
 			return;
 		}
 
-		$this->load->helper('image');
+		$this->
 
 		$udata = $this->usuario_model->get_data($user_id);
 
@@ -395,7 +395,7 @@ class Usuario extends MY_Controller {
 			redirect( base_url() );
 		}
 
-		$this->load->helper('image');
+		$this->
 
 		$user_data = $this->usuario_model->get_data( $user_id );
 
@@ -427,7 +427,7 @@ class Usuario extends MY_Controller {
 			$this->show_access_error();
 		}
 
-		$this->load->helper('image');
+		$this->
 
 		$this->load->model('item_model');
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );

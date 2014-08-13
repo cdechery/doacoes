@@ -42,8 +42,6 @@ class Item extends MY_Controller {
 		$this->load->model('situacao_model');
 		$situacoes = $this->situacao_model->get_all();
 
-		$this->load->helper('image_helper');
-
 		$head_data = array('min_template'=>'image_upload', "title"=>"Novo Item");
 		$this->load->view('head', $head_data);
 
@@ -224,8 +222,6 @@ class Item extends MY_Controller {
 		if( $msg ) {
 			show_error( $msg );
 		}
-
-		$this->load->helper('image_helper');
 
 		$item_data = $this->item_model->get( $item_id );
 		$item_data['action'] = 'update';

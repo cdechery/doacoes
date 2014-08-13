@@ -88,12 +88,12 @@
 <body <?php echo $bodyId?>>
 <script type="text/javascript">
 	img_preload([
-		'<?php echo base_url("icons/ajax-loader.gif")?>',
-		'<?php echo base_url("icons/ajax-loader-80.gif")?>',
-		'<?php echo base_url("icons/ajax-loader-120.gif")?>',
-		'<?php echo base_url("icons/ajax-loader-200.gif")?>',
-		'<?php echo base_url("icons/ajax-loader-small.gif")?>',
-		'<?php echo base_url("icons/connecting.gif")?>'
+		'<?php echo img_url("ajax-loader.gif")?>',
+		'<?php echo img_url("ajax-loader-80.gif")?>',
+		'<?php echo img_url("ajax-loader-120.gif")?>',
+		'<?php echo img_url("ajax-loader-200.gif")?>',
+		'<?php echo img_url("ajax-loader-small.gif")?>',
+		'<?php echo img_url("connecting.gif")?>'
 	]);
 </script>
 <header id="main">
@@ -133,7 +133,7 @@
 	</div>
 </header>
 <?php
-	$wait_img = base_url('icons/connecting.gif');
+	$wait_img = img_url('connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');

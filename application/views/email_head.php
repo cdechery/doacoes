@@ -18,7 +18,7 @@
 				<table cellpadding="0" cellspacing="0" style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px; width:650px; background-color:#2b72a3;">
 					<tr>
 						<td style="">
-							<img src="<?php echo base_url('images/logo.png')?>" alt="interessa.org">
+							<img src="<?php echo img_url('logo.png')?>" alt="interessa.org">
 						</td>
 					</tr>
 				</table>

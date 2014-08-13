@@ -14,7 +14,7 @@
 				<?php if( count($item['imagens']) ) {
 					foreach ($item['imagens'] as $file) {
 						$thumb = thumb_filename($file, 120);
-						echo "<img src=".base_url("files/".$thumb)." />";
+						echo "<img src=".user_img_url($thumb)." />";
 					}
 				} ?>
 			</div>

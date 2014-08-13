@@ -3,7 +3,7 @@
 	if( count($imagens) ) {
 			$thumb = thumb_filename($imagens[0], 220);
 ?>
-		<img src="<?php echo base_url("files/".$thumb)?>">
+		<img src="<?php echo user_img_url($thumb)?>">
 <?php
 	}
 ?>	

@@ -15,27 +15,45 @@ function thumb_filename($filename, $thumbSize) {
 	
 }
 
-function user_avatar($avatar, $size) {
-	$default = 'images/default_avatar_'.$size.'.gif';
-	if( empty($avatar) ) {
-		return base_url($default);
+function img_url($image) {
+	$CI =& get_instance();
+	$path = $CI->config->item('base_img_url');
+
+	if( ENVIRONMENT=='production' ) {
+		return $path . $image;
 	} else {
-		$CI =& get_instance();
+		return $path . 'images/' .$image;
+	}
+}
+
+function user_img_url($image) {
+	$CI =& get_instance();
+	$path = $CI->config->item('base_user_img_url');
+
+	if( ENVIRONMENT=='production' ) {
+		return $path . $image;
+	} else {
 		$params = $CI->config->item('site_params');
-		$path = $params['upload']['path'];
-		return base_url($path.thumb_filename($avatar, $size));
+		$dir = $params['upload']['path'];
+		return $path . $dir . $image;
+	}
+}
+
+function user_avatar($avatar, $size) {
+	$default = 'default_avatar_'.$size.'.gif';
+	if( empty($avatar) ) {
+		return img_url($default);
+	} else {
+		return user_img_url( thumb_filename($avatar, $size) );
 	}
 }
 
 function item_image($img, $size) {
-	$default = 'images/default_item_img_'.$size.'.png';
+	$default = 'default_item_img_'.$size.'.png';
 	if( empty($img) ) {
-		return base_url($default);
+		return img_url( $default );
 	} else {
-		$CI =& get_instance();
-		$params = $CI->config->item('site_params');
-		$path = $params['upload']['path'];
-		return base_url($path.thumb_filename($img, $size));
+		return user_img_url( thumb_filename($img, $size) );
 	}
 }
 

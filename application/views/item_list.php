@@ -21,7 +21,7 @@
 				<?php if( count($item['imagens']) ) {
 					foreach ($item['imagens'] as $file) {
 						$thumb = thumb_filename($file, 120);
-						echo "<a href='".base_url('files/'.$file)."' class='fancybox' rel='fotos_".$item_id."'><img src=".base_url("files/".$thumb)." /></a>";
+						echo "<a href='".user_img_url($file)."' class='fancybox' rel='fotos_".$item_id."'><img src=".user_img_url($thumb)." /></a>";
 					}
 				} ?>
 			</div>

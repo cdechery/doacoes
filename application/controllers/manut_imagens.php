@@ -4,7 +4,7 @@ class Manut_imagens extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('image');
+		$this->
 	}
 
 	public function index() {

@@ -30,7 +30,6 @@ class Email extends MY_Controller {
 				200, 'Impossível enviar mensagem', 'ajax');			
 		}
 
-		$this->load->helper('image_helper');
 		$this->load_ajax('email_item_form',
 			array('item'=>$item, 'from_user'=>$from_user,
 				'to_user'=>$to_user) );
@@ -90,7 +89,6 @@ class Email extends MY_Controller {
 		}
 
 		$this->load->model('usuario_model');
-		$this->load->helper('image_helper');
 
 		$from_user = $this->usuario_model->get_data( $this->login_data['user_id'] );
 		$to_user = $this->usuario_model->get_data( $inst_id );

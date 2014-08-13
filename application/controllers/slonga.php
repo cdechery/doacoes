@@ -61,9 +61,9 @@ class Slonga extends MY_Controller {
 			$marker['onclick'] = 'map.setCenter(this.position); map.panBy(0, -120);';
 
 			if( $row->tipo=='P' ) {
-				$marker['icon'] = base_url().'icons/pessoa.png';
+				$marker['icon'] = img_url('pessoa.png');
 			} else {
-				$marker['icon'] = base_url().'icons/inst.png';
+				$marker['icon'] = img_url('inst.png');
 			}
 
 			$marker['id'] = $row->user_id;
@@ -93,9 +93,9 @@ class Slonga extends MY_Controller {
 			$marker['clickable'] = false;
 
 			if( $row->tipo=='P' ) {
-				$marker['icon'] = base_url().'icons/active_pessoa.png';
+				$marker['icon'] = img_url('active_pessoa.png');
 			} else {
-				$marker['icon'] = base_url().'icons/active_inst.png';
+				$marker['icon'] = img_url('active_inst.png');
 			}
 
 			$marker['id'] = $user_data['id'];

@@ -9,7 +9,7 @@
 		foreach ($imgdata as $img) {
 			$thumb = thumb_filename($img->nome_arquivo, 80);
 ?>
-	<img src="<?php echo base_url('files/'.$thumb)?>">
+	<img src="<?php echo item_image($thumb)?>">
 <?php
 		}
 	}

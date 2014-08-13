@@ -42,9 +42,9 @@
 		if( $numItems>$maxItems ) $nodisplay = "style='display:none;'";
 		if( isset($item['imagens']) ) {
 			$thumb = thumb_filename($item['imagens'][0], 60);
-			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."files/".$thumb."''></a>";
+			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".user_img_url($thumb)."''></a>";
 		} else {
-			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."images/default_item_img.gif'></a>";
+			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".img_url('default_item_img_60.gif')."''></a>";
 		}
 	}
 
