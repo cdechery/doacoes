@@ -114,10 +114,10 @@ class Usuario extends MY_Controller {
 		if( $windowed==="" ) {
 			$head_data = array("title"=>"Novo usuário: Qual tipo?");
 			$this->load->view('head', $head_data);
-			$this->load->view('tipo_usuario');
+			$this->load->view('tipo_usuario', array('page'=>1));
 			$this->load->view('foot');
 		} else {
-			$this->load_ajax('tipo_usuario_w');
+			$this->load_ajax('tipo_usuario');
 		}
 
 	}
