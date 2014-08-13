@@ -18,7 +18,7 @@
 	</div>
 	<div class="form-group">
 		<label>Assunto: </label>
-		<input type="text" name="assunto" value="Olá, <?php echo $to_user['nome']?>">
+		<input type="text" name="assunto" placeholder="Olá, <?php echo $to_user['nome']?>">
 	</div>
 	<div class="form-group">
 		<label>Mensagem: </label>

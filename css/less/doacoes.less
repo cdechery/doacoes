@@ -243,38 +243,49 @@ section#map {
 		-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		.gm-style-iw { /* infowindow google maps */
+			padding: 10px;
 			h3 {
 				margin-top:0;
 				.username {
 					font-size: 1.2em;
 				}
+				a {
+					text-decoration: underline;
+				}
+				img {
+					vertical-align: bottom;
+					margin-right: 10px;
+				}
 			}
-			.itembox {
+			a.itembox { /* link para imagens de item */
 				display: inline-block;
 				border:1px solid #ccc;
 				margin-right: 10px;
 				line-height: .8em;
 			}
 			.iw_loading_box {
+				position: relative;
 				width: 320px;
 				height: 170px;
-				margin: 0;
-				display: block;
 			}
-			.iw_loading_img {
-				position: absolute;
-				margin: auto;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
+			#envia-msg a {
+				.button-size(8px, 14px, 1em, 12px, 8px);
+				.button-variant(#fff; @azulmedio);
+				font-weight: 700;
 			}
 			nav {
-				margin-top: 20px;
-				text-align: right;
-				a:first-child {
-					display: inline-block;
-					float: left;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				a {
+					.button-size(6px, 12px, .9em, 12px, 8px);
+					.button-variant(#fff; @verde_botao);
+					font-weight: 700;
+					&:first-child {
+						display: inline-block;
+						float: right;
+					}
 				}
 			}
 		}
@@ -558,6 +569,14 @@ header#itens {
 	}
 }
 
+/* página de itens de usuário */
+
+header#user_itens {
+	img {
+		margin-right: 10px;
+	}
+}
+
 .item_single { /* user_item_list */
 	background-color: #fff;
 	height: 200px;
@@ -726,7 +745,7 @@ header#itens {
 		padding: 0 12px;
 		line-height: .8;
 	}
-	input[type="button"] {
+	input[type="button"], button {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -767,7 +786,7 @@ footer {
 	width: 100%;
 	nav {
 		text-align: center;
-		font-size: .9em;
+		font-size: .7em;
 		text-transform: uppercase;
 	}
 }

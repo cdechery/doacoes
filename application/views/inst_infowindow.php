@@ -26,12 +26,13 @@
 		$out_inters = "Interessado em: <i>não determinado</i>";
 	}
 ?>
-<div>
-	
-	<h3>
-		<img style="vertical-align: middle;" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a style="text-decoration: underline;" href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
-	</h3>
-	<?php echo $out_inters?><br/>
+
+<h3>
+	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
+</h3>
+
+<p><?php echo $out_inters?></p>
+
 <?php
 	
 	$numItems = 0;
@@ -43,20 +44,18 @@
 			$thumb = thumb_filename($item['imagens'][0], 60);
 			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."files/".$thumb."''></a>";
 		} else {
-			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."images/default_item_img.gif' style='width:60px;height:60px;'></a>";
+			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".base_url()."images/default_item_img.gif'></a>";
 		}
 	}
 
 ?>
 <?php if( $login_data['logged_in'] ): ?>
-	<p>
-		<a style="font-weight:700;" href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class="itembox fancybox.ajax">Enviar Mensagem</a>
-	</p>
+	<div id="envia-msg">
+		<a href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class="itembox fancybox.ajax">Enviar Mensagem</a>
+	</div>
 <?php endif; ?>
 
-</div>
-
 <nav>
-	<a href="#" onClick="prevMarker();">< anterior</a>
 	<a href="#" onClick="nextMarker();">próximo ></a>
+	<a href="#" onClick="prevMarker();">< anterior</a>
 </nav>

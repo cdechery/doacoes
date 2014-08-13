@@ -9,7 +9,7 @@
 		foreach ($imgdata as $img) {
 			$thumb = thumb_filename($img->nome_arquivo, 80);
 ?>
-<img src="<?php echo base_url('files/'.$thumb)?>">
+	<img src="<?php echo base_url('files/'.$thumb)?>">
 <?php
 		}
 	}
@@ -19,7 +19,7 @@
 <?php
 	if( $login_data['logged_in'] ) {
 ?>
-<input type="button" value="Eu quero!" class='itembox fancybox.ajax' href="<?php echo base_url("email/quer_item/".$idata["id"])?>">
+<button class="itembox fancybox.ajax" ref="<?php echo base_url("email/quer_item/".$idata["id"])?>">Me interessa!</button>
 <?php
 	}
 ?>
