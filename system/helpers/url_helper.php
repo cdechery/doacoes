@@ -71,6 +71,26 @@ if ( ! function_exists('base_url'))
 // ------------------------------------------------------------------------
 
 /**
+ * Static URL
+ * 
+ * Returns the static URL to be used in production environment
+ * or just the base_url for local and testing
+ *
+ * @access	public
+ * @param string
+ * @return	string
+ */
+if ( ! function_exists('static_url'))
+{
+	function static_url($uri = '')
+	{
+		$CI =& get_instance();
+		return $CI->config->item('base_static_url') . $uri;
+	}
+}
+// ------------------------------------------------------------------------
+
+/**
  * Current URL
  *
  * Returns the full URL (including segments) of the page where this

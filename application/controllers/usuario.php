@@ -45,8 +45,6 @@ class Usuario extends MY_Controller {
 			return;
 		}
 
-		$this->
-
 		$udata = $this->usuario_model->get_data($user_id);
 
 		$this->load->model('item_model');
@@ -426,8 +424,6 @@ class Usuario extends MY_Controller {
 		if( !$this->is_user_logged_in ) {
 			$this->show_access_error();
 		}
-
-		$this->
 
 		$this->load->model('item_model');
 		$itens = $this->item_model->get_user_items( $this->login_data['user_id'] );
