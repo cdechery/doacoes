@@ -56,6 +56,6 @@
 <?php endif; ?>
 
 <nav>
-	<a href="#" onClick="nextMarker();">próximo ></a>
-	<a href="#" onClick="prevMarker();">< anterior</a>
+	<a href="#" onClick="nextMarker();">próximo&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a>
+	<a href="#" onClick="prevMarker();"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;anterior</a>
 </nav>
