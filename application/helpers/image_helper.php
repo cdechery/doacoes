@@ -19,10 +19,10 @@ function img_url($image) {
 	$CI =& get_instance();
 	$path = $CI->config->item('base_img_url');
 
-	if( ENVIRONMENT=='production' ) {
+	if( $path ) {
 		return $path . $image;
 	} else {
-		return $path . 'images/' .$image;
+		return base_url('images/'.$image);
 	}
 }
 
@@ -30,12 +30,12 @@ function user_img_url($image) {
 	$CI =& get_instance();
 	$path = $CI->config->item('base_user_img_url');
 
-	if( ENVIRONMENT=='production' ) {
+	if( $path ) {
 		return $path . $image;
 	} else {
 		$params = $CI->config->item('site_params');
 		$dir = $params['upload']['path'];
-		return $path . $dir . $image;
+		return base_url($dir . $image);
 	}
 }
 

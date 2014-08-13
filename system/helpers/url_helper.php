@@ -85,7 +85,8 @@ if ( ! function_exists('static_url'))
 	function static_url($uri = '')
 	{
 		$CI =& get_instance();
-		return $CI->config->item('base_static_url') . $uri;
+		$base = $CI->config->item('base_static_url');
+		return ($base)? $base.$uri : base_url($uri);
 	}
 }
 // ------------------------------------------------------------------------

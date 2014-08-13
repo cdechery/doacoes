@@ -27,7 +27,7 @@
 	}
 
 ?>
-<script type="application/javascript" src="<?php echo base_url('javascript')?>"></script>
+<script type="application/javascript" src="<?php echo static_url('javascript')?>"></script>
 <script type="application/javascript" src="<?php echo static_url('min/g='.$min_template.'_js'.$min_debug)?>"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="<?php echo static_url('min/g='.$min_template.'_css'.$min_debug)?>"/>
