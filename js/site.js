@@ -45,7 +45,7 @@ function go_home() {
 
 function msg_general_error( msg ) {
 	if( msg==null ) {
-		msg = lang['dist_msg_general_error'];
+		msg = lang['dist_general_error'];
 	}
 	
 	new Messi( msg, {title: 'Oops...', titleClass: 'anim error', 

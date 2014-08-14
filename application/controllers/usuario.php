@@ -393,8 +393,6 @@ class Usuario extends MY_Controller {
 			redirect( base_url() );
 		}
 
-		$this->
-
 		$user_data = $this->usuario_model->get_data( $user_id );
 
 		$this->load->model('item_model');
