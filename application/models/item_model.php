@@ -14,12 +14,17 @@ class Item_model extends MY_Model {
 
 	public function get_list( $item_ids ) {
 		$this->db->select('it.id, it.titulo, it.status,
+			it.data_inclusao, it.data_doacao,
 			it.descricao, it.categoria_id, im.id imagem_id,
+			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtinc_format,
+			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtdoa_format,
 			im.nome_arquivo, max(im.id)', FALSE);
 		$this->db->from('item it');
 		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
 		$this->db->where_in('it.id', $item_ids );
 		$this->db->group_by('it.id');
+		$this->db->order_by('it.status', 'asc');
+		$this->db->order_by('it.data_inclusao', 'desc');
 		$items = $this->db->get()->result();
 
 		return $items;
@@ -42,10 +47,16 @@ class Item_model extends MY_Model {
 
 	public function get_user_items( $usuario_id ) {
 		$this->db->select('it.id item_id, it.titulo, 
-			it.descricao, it.status, it.categoria_id, im.id imagem_id, im.nome_arquivo');
+			it.descricao, it.status, it.categoria_id,
+			it.data_inclusao, it.data_doacao,
+			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtinc_format,
+			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtdoa_format,
+			im.id imagem_id, im.nome_arquivo', FALSE);
 		$this->db->from('item it');
 		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
 		$this->db->where('it.usuario_id', $usuario_id);
+		$this->db->order_by('it.status', 'asc');
+		$this->db->order_by('it.data_inclusao', 'desc');
 		$items = $this->db->get()->result();
 
 		return $items;

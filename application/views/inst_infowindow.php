@@ -5,6 +5,8 @@
 
 	$arrItems = array();
 	foreach ($items as $item) {
+		if( $item->status != 'A' ) continue;
+		
 		$arrItems[ $item->item_id ]['titulo'] = $item->titulo;
 		$arrItems[ $item->item_id ]['descricao'] = $item->descricao;
 		if( !empty($item->nome_arquivo ) ) {

@@ -16,17 +16,19 @@
 						$thumb = thumb_filename($file, 120);
 						echo "<img src=".user_img_url($thumb)." />";
 					}
+				} else {
+						echo "<div style='text-align: center;'>Sem imagens</div>";
 				} ?>
 			</div>
 			<h3><?php echo $item['data']->titulo ?></h3>
 			<p><?php echo $item['data']->descricao ?></p>
 			<div class="action">
 				
+				<p style="font-size: small; color: gray;">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 				<?php if ($item['data']->status === 'D') { ?>
-
 					<button class="item-modify disabled" disabled data-itemid="<?php echo $item_id; ?>" title="Editar Item"><i class="fa fa-pencil"></i>&nbsp;Editar Item</button>
 					<button class="item-status disabled" disabled data-itemid="<?php echo $item_id; ?>" data-status="I"><i class="fa fa-check-square-o"></i>&nbsp;Item Ativo</button>
-					<button class="item-doado active" data-itemid="<?php echo $item_id; ?>" data-status="D"><i class="fa fa-check-square-o"></i>&nbsp;Doado</button>
+					<button class="item-doado active" data-itemid="<?php echo $item_id; ?>" data-status="D"><i class="fa fa-check-square-o"></i>&nbsp;Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				
 				<?php } else { ?>
 					

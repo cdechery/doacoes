@@ -1,10 +1,8 @@
 <?php if( !empty($user) ): ?>
-
 	<header id="user_itens" class="clearfix">
 		<h3><img src="<?php echo user_avatar($user['avatar'], 40) ?>">
 		Listando itens do <?php echo $user['nome']?></h3>
 	</header>
-
 <?php endif; ?>
 
 <div id="show_itens" class="clearfix">
@@ -23,16 +21,18 @@
 						$thumb = thumb_filename($file, 120);
 						echo "<a href='".user_img_url($file)."' class='fancybox' rel='fotos_".$item_id."'><img src=".user_img_url($thumb)." /></a>";
 					}
+				} else {
+						echo "<div style='text-align: center;'>Sem imagens</div>";
 				} ?>
 			</div>
 			<h3><?php echo $item['data']->titulo ?></h3>
 			<p><?php echo $item['data']->descricao ?></p>
 			<div class="action">
-				
+				<p style="font-size: small; color: gray;">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 				<?php if ($item['data']->status == 'D'): { ?>
-					<button class="item-list active"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado</button>
+					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				<?php } elseif ( $login_data['logged_in'] ) : ?>
-					<button class='itembox active fancybox.ajax' href="<?php echo base_url("email/quer_item/".$item_id)?>">Me interessa!</button>
+					<button class='itembox active fancybox.ajax' href="<?php echo base_url("email/quer_item/".$item_id)?>">Me Interessa!</button>
 				<?php endif; ?>
 				
 			</div>
