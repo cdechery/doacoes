@@ -215,17 +215,8 @@ class Usuario extends MY_Controller {
 		$this->load->helper('image_helper');
 		$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
 
-		$cust_js = array('js/jquery.plugin.min.js', 
-			'js/jquery.datepick.min.js', 'js/jquery.datepick-pt-BR.js');
-		$cust_css = array('css/redmond.datepick.css');
-
-		if( $user_data['tipo']=="I" ) {
-			$cust_css = $cust_js = array();
-		}
-
 		$head_data = array("min_template"=>"image_upload",
-			"title"=>"Modificar Usuário",
-			'cust_css'=>$cust_css, 'cust_js'=>$cust_js);
+			"title"=>"Modificar Usuário");
 		$this->load->view('head', $head_data);
 
 		$user_data['action'] = 'update';
@@ -366,22 +357,20 @@ class Usuario extends MY_Controller {
 
 	private function send_pwd_email($email, $password) {
 		$this->load->library('email');
+		$this->load->helper('email');
 
-		$this->email->from($this->params['email']['from'], $this->params['email']['name']);
-		$this->email->to( $email ); 
+		$corpo = $this->load->view('email_reset_senha',
+			array('password'=>$password), TRUE );
 
-		$this->email->subject('QuemPrecisa: Sua nova senha');
-		$message = 'Vode pediu uma nova senha no nosso site.
+		$params = array(
+			'to_email'=> $email,
+			'from_email'=>'noreply@interessa.org',
+			'from_name'=>"Interessa.org",
+			'subject'=> "Sua nova senha",
+			'body'=> $corpo
+		);
 
-					Aqui esta: '.$password.'
-					
-					Sugerimos que voce acesse agora mesmo, troque sua senha e 
-					depois apague esse email. Voce sempre podera usar essa funcao 
-					no futuro, se precisar. :)';
-
-		$this->email->message( $message );	
-
-		$this->email->send();		
+		send_email( $params );
 	}
 
 	public function ajuda_localizacao() {

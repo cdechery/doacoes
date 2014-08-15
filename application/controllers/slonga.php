@@ -128,7 +128,7 @@ class Slonga extends MY_Controller {
 		$custom_js_global .= "var num_circles = ".count($this->googlemaps->circles).";";
 		$custom_js_global .= "var user_location = new google.maps.LatLng( ".$user_location." );";
 		
-		$custom_js_init .= "var activeMarkers = markers_settings;";
+		$custom_js_init .= "activeMarkers = markers_settings;";
 		$custom_js_init .= "buildNextPrevPointers( activeMarkers );";
 
 		$config['custom_js_global'] = $custom_js_global;

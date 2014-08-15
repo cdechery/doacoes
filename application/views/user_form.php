@@ -121,14 +121,6 @@ window.onload = initialize;
 	<h2>
 		<?php echo $login_disabled ? "Editar perfil" : "Cadastro de ".$lblTipo; ?>
 	</h2>
-		
-	<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
-		
-		<input type="hidden" name="id" value="<?php echo $id ?>">
-		<input type="hidden" name="lat" value="<?php echo $lat ?>">
-		<input type="hidden" name="lng" value="<?php echo $lng ?>">
-		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
-		
 		<div class="col1">
 
 			<?php echo $hiddenAvatar?>
@@ -147,6 +139,12 @@ window.onload = initialize;
 				</form>
 			<?php } ?>
 
+	<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
+		
+		<input type="hidden" name="id" value="<?php echo $id ?>">
+		<input type="hidden" name="lat" value="<?php echo $lat ?>">
+		<input type="hidden" name="lng" value="<?php echo $lng ?>">
+		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
 			<div class="form-group">
 				<label>Login</label>
 				<input type="text" name="login" value="<?php echo $login; ?>" <?php echo $login_disabled; ?> title="Login" placeholder="Seu login" />

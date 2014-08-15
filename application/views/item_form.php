@@ -13,10 +13,9 @@
 	$actions = array("insert"=>xlabel('insert'),
 		"update"=>xlabel('update'));
 ?>
-
 <div id="newitem" class="roundbox clearfix">
 
-	<h2>Cadastro de Itens</h2>
+	<h2>Cadastro de Item</h2>
 
 	<form method="POST" name="itemData" action="<?php echo base_url()?>item/<?php echo $action; ?>" id="item_<?php echo $action?>">
 		<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
@@ -26,7 +25,7 @@
 		<div class="form-group">
 			<label>Categoria:</label>
 			<select name="categ">
-				<option value="">Categoria</option>
+				<option value=""></option>
 				<?php
 					$selected = "";
 					foreach ($categorias as $cat) {
@@ -39,7 +38,7 @@
 		<div class="form-group">
 			<label>Situação:</label>
 			<select name="sit">
-				<option value="">Situação</option>
+				<option value=""></option>
 				<?php
 					$selected = "";
 					foreach ($situacoes as $sit) {
@@ -55,15 +54,15 @@
 		</div>
 		<div class="form-group">
 			<label>Descrição:</label>
-			<textarea name="desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
+			<textarea name="desc" id="item_desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
+			<div id="charNum" style="float: right; font-size: small; padding-right: 20px"></div>
 		</div>
 	</form>
 
 	<aside id="image" class="col">
-		
 		<form method="post" action="<?php echo base_url();?>image/upload_item_image" id="upload_item_image" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>imagens do item</label>
@@ -78,7 +77,7 @@
 		// Imagens do item, se houver
 		foreach($images as $img) {
 			$num_imgs++;
-			$thumb = item_image($img->nome_arquivo, 80);
+			$thumb = item_image($img->nome_arquivo, 120);
 	?>
 			<input type="file" name="item_file_<?php echo $img->id?>" style="display: none;" id="item_file_<?php echo $img->id?>" onChange="do_upload_item_image(<?php echo $img->id?>, false);" />
 			<a href="#" onclick="document.getElementById('item_file_<?php echo $img->id?>').click();"/>
@@ -92,7 +91,7 @@
 	?>
 				<input type="file" name="item_file_<?php echo $i?>" style="display: none;" id="item_file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>, true);" />
 				<a href="#" onclick="document.getElementById('item_file_<?php echo $i?>').click();"/>
-					<img title="Enviar imagem" src="<?php echo item_image(null, 80)?>" id="item_img_<?php echo $i?>" data-imgid="0">
+					<img title="Enviar imagem" src="<?php echo item_image(null, 120)?>" id="item_img_<?php echo $i?>" data-imgid="0">
 				</a>
 	<?php
 			} // for imagens default
@@ -103,7 +102,7 @@
 	?>		
 			<input type="file" name="file_<?php echo $i?>" style="display: none;" id="file_<?php echo $i?>" onchange="do_upload_item_image(<?php echo $i?>,true);"/>
 			<a href="#" onclick="document.getElementById('file_<?php echo $i?>').click();"/>
-				<img title="Enviar imagem" src="<?php echo item_image(null, 80)?>" id="img_<?php echo $i?>" data-newid="0"/>
+				<img title="Enviar imagem" src="<?php echo item_image(null, 120)?>" id="img_<?php echo $i?>" data-newid="0"/>
 			</a>
 	<?php
 		} //for imagens default novo item
@@ -118,19 +117,30 @@
 </div>
 
 <script>
-$(document).ready(function() {
-	$(".catbox").fancybox({
-		padding		: 25,
-		maxWidth	: 400,
-		maxHeight	: 300,
-		fitToView	: false,
-		width		: '90%',
-		height		: '90%',
-		autoSize	: false,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
+	$('#item_desc').keyup(function() {
+	  var max = 250;
+	  var len = $(this).val().length;
+	  if (len >= max) {
+	    $('#charNum').text('Tamanho máximo atingido!');
+	  } else {
+	    var char = max - len;
+	    $('#charNum').text('Você ainda tem '+char+' caracteres');
+	  }
 	});
-})
+
+	$(document).ready(function() {
+		$(".catbox").fancybox({
+			padding		: 25,
+			maxWidth	: 400,
+			maxHeight	: 300,
+			fitToView	: false,
+			width		: '90%',
+			height		: '90%',
+			autoSize	: false,
+			type		: 'ajax',
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
 </script>

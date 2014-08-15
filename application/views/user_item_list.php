@@ -21,7 +21,7 @@
 				} ?>
 			</div>
 			<h3><?php echo $item['data']->titulo ?></h3>
-			<p><?php echo $item['data']->descricao ?></p>
+			<div><?php echo nl2br($item['data']->descricao) ?></div>
 			<div class="action">
 				
 				<p style="font-size: small; color: gray;">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>

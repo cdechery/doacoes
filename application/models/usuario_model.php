@@ -138,7 +138,7 @@ class Usuario_model extends MY_Model {
 			return false;
 		}
 
-		$upd_data = array( 'password'=>md5($new_pwd) );
+		$upd_data = array( 'senha'=>md5($new_pwd) );
 		return( $this->db->update('usuario', $upd_data, array('email' => $email)) );
 	}
 

@@ -330,7 +330,7 @@ function do_upload_avatar() {
 	avatarUploadInProgress = true;
 
 	var originalImg = $('#user_avatar').attr('src');
-	$('#user_avatar').attr('src', site_root+'icons/ajax-loader-200.gif');
+	$('#user_avatar').attr('src', site_root+'images/ajax-loader-200.gif');
 
 	$.ajaxFileUpload({
 		url 		   : site_root +'image/upload_avatar/',
@@ -381,7 +381,7 @@ function do_upload_item_image( img_id, isnew ) {
 	}
 
 	var originalImg = $('#'+img_tag_id).attr('src');
-	$('#'+img_tag_id).attr('src', site_root+'icons/ajax-loader-120.gif');
+	$('#'+img_tag_id).attr('src', site_root+'images/ajax-loader-120.gif');
 
     $.ajaxFileUpload({
         url : site_root +'image/'+action+'/',
