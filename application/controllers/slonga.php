@@ -141,10 +141,13 @@ class Slonga extends MY_Controller {
 			'categorias'=>$categorias,
 			'situacoes'=>$situacoes );
 
-		$cust_js = array('js/map.js');
+		$cust_js = array('js/map.js', 'js/jquery.tipsy.js');
+		$cust_css = array('css/tipsy.css');
 
 		$this->load->view('head', array('title'=>'Interessa.org',
-			'min_template'=>'image_view', 'cust_js'=>$cust_js, 'home'=>1));
+			'min_template'=>'image_view',
+			'cust_js'=>$cust_js, 'cust_css'=>$cust_css, 'home'=>1));
+		
 		$this->load->view("slonga", $view_data);
 		$this->load->view('foot');
 	}
