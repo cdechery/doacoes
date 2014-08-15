@@ -31,18 +31,16 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_temp_id($usuario_id) {
-		$item = $this->db->get_where('item_temp',
-			array('usuario_id'=>$usuario_id))->row();
+		$insert_array = array('usuario_id'=>$usuario_id);
+		$this->db->set('data_criacao', 'NOW()', false);
+		$this->db->insert('item_temp', $insert_array);
+		
+		return $this->db->insert_id();
+	}
 
-		if( count($item) ) {
-			return $item->id;
-		} else {
-			$insert_array = array('usuario_id'=>$usuario_id);
-			$this->db->set('data_criacao', 'NOW()', false);
-			$this->db->insert('item_temp', $insert_array);
-			
-			return $this->get_temp_id($usuario_id);
-		}
+	public function purge_old_temp() {
+		$this->db->where('data_criacao < SUBDATE(NOW(),1)',NULL, FALSE);
+		$this->db->delete('item_temp');
 	}
 
 	public function get_user_items( $usuario_id ) {
@@ -124,5 +122,4 @@ class Item_model extends MY_Model {
 			return false;
 		}
 	}
-
 }

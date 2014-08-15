@@ -54,6 +54,7 @@ class Image_model extends MY_Model {
 	
 	public function move_temp_images( $usuario_id, $item_id, $temp_id ) {
 		$upd_data = array("item_id"=>$item_id);
+
 		$this->db->set("temp_item_id", "NULL", false);
 		$this->db->where("temp_item_id", $temp_id);
 		$this->db->limit( $this->params['max_item_imgs'] );

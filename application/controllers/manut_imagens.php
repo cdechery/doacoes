@@ -4,7 +4,6 @@ class Manut_imagens extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->
 	}
 
 	public function index() {
@@ -32,7 +31,7 @@ class Manut_imagens extends MY_Controller {
     		}
 		} else {
 			log_message('error',
-				'NÃ£o foi possÃ­vel abrir o diretorio de imagens!');
+				'Não foi possível abrir o diretorio de imagens!');
 			return;
 		}
 
@@ -95,6 +94,11 @@ class Manut_imagens extends MY_Controller {
 		}
 		log_message('info',
 			'Foram criados '.$count_created_thumbs.' novos thumbnails');
+
+		log_message('info',
+			'Apagando item_temp com mais de 24h');
+		$this->load->model('item_model');
+		$this->item_model->purge_old_temp();
 
 		log_message('info',
 			'FIM do processo de manutencao de imagens');
