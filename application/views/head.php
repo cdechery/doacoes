@@ -31,6 +31,13 @@
 <script type="application/javascript" src="<?php echo static_url('min/g='.$min_template.'_js'.$min_debug)?>"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="<?php echo static_url('min/g='.$min_template.'_css'.$min_debug)?>"/>
+<style>
+	.xupa {
+		background-color: red;
+		width: 200px;
+		height: 30px;
+	}
+</style>
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -108,26 +115,29 @@
 					<a href="<?php echo base_url('contato')?>">Contato</a>
 				</li>
 					<?php if( $login_data["logged_in"] ) : ?>
-					<li id="user-btn">
-						<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
-						<div id="user-menu">
-							<ul>
-								<li><a href="<?php echo base_url('usuario/meus_itens')?>">Meus Itens</a></li>
-								<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
-								<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
-								<li><a href="<?php echo base_url('usuario/pref_email')?>">Preferências de email</a></li>
-								<li><a href="<?php echo base_url('usuario/logout')?>">Logout</a></li>
-							</ul>
-						</div>
-					</li>
-					<?php else : ?>
-					<li id="user-btn">
-						<a href="<?php echo base_url('login')?>">Login / Cadastro</a>
-					</li>
+						<li id="user-btn">
+							<a href=""><?php echo $login_data["name"]?>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+							<div id="user-menu">
+								<ul>
+									<li><a href="<?php echo base_url('usuario/meus_itens')?>">Meus Itens</a></li>
+									<li><a href="<?php echo base_url('usuario/interesses')?>">Meus Interesses</a></li>
+									<li><a href="<?php echo base_url('usuario/modificar')?>">Editar perfil</a></li>
+									<li><a href="<?php echo base_url('usuario/pref_email')?>">Preferências de email</a></li>
+									<li><a href="<?php echo base_url('usuario/logout')?>">Logout</a></li>
+								</ul>
+							</div>
+						</li>
+						<?php else : ?>
+						<li id="register">
+							<a href="<?php echo base_url('login')?>">Cadastre-se</a>
+						</li>
 					<?php endif; // if logged_in ?> 
-				<li>
-					<div class="fb-login-button" scope="email,public_profile" data-max-rows="1" data-size="large" data-show-faces="false"></div>
-				</li>
+				<?php if( !$login_data["logged_in"] ) : ?>
+					<li id="facebook">
+						Faça login pelo&nbsp;&nbsp;
+						<a class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
+					</li>
+				<?php endif; // if logged_in ?> 
 			</ul>
 		</nav>
 	</div>
@@ -137,13 +147,14 @@
 	$fbReg = $this->input->cookie('FbRegPending');
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
+	// $enableFB = true;
 
 	if( false == $fbLogin &&
 		false == $login_data['logged_in'] &&
 		false == $fbReg && $enableFB ) {
 ?>
 <script>
-	window.fbAsyncInit = function() {		
+	window.fbAsyncInit = function() {	
 		FB.init({
 			appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
 			status     : true, // check login status
