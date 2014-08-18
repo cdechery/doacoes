@@ -80,14 +80,6 @@
 			openEffect	: 'none',
 			closeEffect	: 'none'
 		});
-		if( typeof(Storage) !== "undefined" ) {
-			if( !localStorage.welcomeShown ) {
-				localStorage.setItem('welcomeShown', 1);
-				setTimeout( function() {
-					$('#texto_apres_cont').fadeIn('slow');
-				}, 1000);
-			}
-		}
 	});
 </script>
 <?php endif; ?>
@@ -146,8 +138,8 @@
 	$wait_img = img_url('connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
 	$fbLogin = $this->session->userdata('FbLoginPending');
-	$enableFB = (ENVIRONMENT=='production');
-	// $enableFB = true;
+	// $enableFB = (ENVIRONMENT=='production');
+	$enableFB = true;
 
 	if( false == $fbLogin &&
 		false == $login_data['logged_in'] &&

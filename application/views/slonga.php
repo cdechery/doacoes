@@ -1,3 +1,16 @@
+<script type="text/javascript">
+	$(document).ready( function() {
+		if( typeof(Storage) !== "undefined" ) {
+			if( !localStorage.welcomeShown ) {
+				localStorage.setItem('welcomeShown', 1);
+				setTimeout( function() {
+					$('#texto_apres_cont').fadeIn('slow');
+				}, 1000);
+			}
+		}
+	});
+</script>
+
 <section id="home" class="contents">
 
 	<section id="map">
@@ -11,8 +24,8 @@
 					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
 					<p>Se já quiser se cadastrar use os botões abaixo:</p>
 					<div class="buttons">
-						<input type="button" class="escolhetipo_box fancybox.ajax" value="Cadastrar" href="<?php echo base_url('usuario/escolhe_tipo')?>">&nbsp;&nbsp;&nbsp;
-						<input type="button" value="Facebook">
+						<button class="escolhetipo_box active fancybox.ajax" href="<?php echo base_url('usuario/escolhe_tipo')?>">Cadastrar</button>&nbsp;&nbsp;
+						ou&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="large" data-show-faces="false"></a>
 					</div>
 				</div>
 			</div>

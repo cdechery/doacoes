@@ -56,6 +56,6 @@ $(document).ready(function() {
 </div>
 
 <div id="link_cadastro">
-	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="escolhetipo_box fancybox.ajax">Faça seu cadastro</a>
+	Novo por aqui?&nbsp;&nbsp;<a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="escolhetipo_box fancybox.ajax">Preencha o cadastro</a> ou use o <a class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
 </div>
 
