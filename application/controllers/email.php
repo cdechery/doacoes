@@ -118,29 +118,44 @@ class Email extends MY_Controller {
 
 		$form_data = $this->input->post(NULL, TRUE);
 
-		$msg = "<h3>Temos um recado para: ".$form_data['para_nome']."</h3>";
-		$msg .= "o(a) <b>".$form_data['de_nome']."</b> usou nosso site ".
-				"para te mandar uma mensagem, veja abaixo:<br><br>";
-		$msg .= "<div style='padding-left:2em'>".nl2br($form_data['corpo'])."</div>";
-		$corpo = $this->load->view('email_contato_inst',
-			array('corpo'=>$msg), TRUE);
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-		$params = array(
-			'to_email'=> $form_data['para_email'],
-			'to_name'=>$form_data['para_nome'],
-			'from_email'=>'noreply@interessa.org',
-			'from_name'=>$form_data['de_nome']." - Interessa?",
-			'reply_to'=> $form_data['de_email'],
-			'subject'=>$form_data['assunto'],
-			'body'=>$corpo
-		);
+		$this->form_validation->set_error_delimiters('','</br>');
 
-		if( send_email($params) ) {
-			$status = "OK";
-			$msg = "Email enviado com sucesso";
-		} else {
+		$this->form_validation->set_rules('assunto', 'Assunto',
+			'required|min_length[3]|max_length[40]');
+		$this->form_validation->set_rules('corpo', 'Mensagem',
+			'required|min_length[20]');
+
+		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
-			$msg = "Não foi possível enviar o email";
+			$msg = validation_errors();
+		} else {
+			$msg = "<h3>Temos um recado para: ".$form_data['para_nome']."</h3>";
+			$msg .= "o(a) <b>".$form_data['de_nome']."</b> usou nosso site ".
+					"para te mandar uma mensagem, veja abaixo:<br><br>";
+			$msg .= "<div style='padding-left:2em'>".nl2br($form_data['corpo'])."</div>";
+			$corpo = $this->load->view('email_contato_inst',
+				array('corpo'=>$msg), TRUE);
+
+			$params = array(
+				'to_email'=> $form_data['para_email'],
+				'to_name'=>$form_data['para_nome'],
+				'from_email'=>'noreply@interessa.org',
+				'from_name'=>$form_data['de_nome']." - Interessa?",
+				'reply_to'=> $form_data['de_email'],
+				'subject'=>$form_data['assunto'],
+				'body'=>$corpo
+			);
+
+			if( send_email($params) ) {
+				$status = "OK";
+				$msg = "Email enviado com sucesso";
+			} else {
+				$status = "ERROR";
+				$msg = "Não foi possível enviar o email, tente mais tarde";
+			}
 		}
 
 		echo json_encode( array('status'=>$status,'msg'=>$msg) );

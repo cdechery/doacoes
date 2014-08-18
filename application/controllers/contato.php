@@ -19,24 +19,38 @@ class Contato extends MY_Controller {
 		
 		$form_data = $this->input->post(NULL, TRUE);
 		
-		$corpo = $this->load->view('email_contato',
-			array('body'=>$form_data), TRUE);
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-		$params = array(
-			'to_email'=> 'webmaster@interessa.org',
-			'to_name'=>'Interessa.org',
-			'from_email'=>$form_data['email'],
-			'from_name'=>$form_data['nome'],
-			'subject'=>$form_data['assunto'],
-			'body'=>$corpo
-		);
+		$this->form_validation->set_error_delimiters('','</br>');
 
-		if( send_email( $params ) ) {
-			$status = "OK";
-			$msg = "Email enviado com sucesso";
-		} else {
+		$this->form_validation->set_rules('assunto', 'Assunto',	'required');
+		$this->form_validation->set_rules('corpo', 'Mensagem',
+			'required|min_length[20]');
+
+		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
-			$msg = "Não foi possível enviar o email";
+			$msg = validation_errors(); 
+		} else {
+			$corpo = $this->load->view('email_contato',
+				array('body'=>$form_data), TRUE);
+
+			$params = array(
+				'to_email'=> 'webmaster@interessa.org',
+				'to_name'=>'Interessa.org',
+				'from_email'=>$form_data['email'],
+				'from_name'=>$form_data['nome'],
+				'subject'=>$form_data['assunto'],
+				'body'=>$corpo
+			);
+
+			if( send_email( $params ) ) {
+				$status = "OK";
+				$msg = "Email enviado com sucesso";
+			} else {
+				$status = "ERROR";
+				$msg = "Não foi possível enviar o email";
+			}
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
