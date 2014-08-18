@@ -12,11 +12,13 @@ class MY_Controller extends CI_Controller
 		$this->load->helper('xlogin');
 		$this->load->helper('cookie');
 
-		// This header code was necessary due to some issues with AJAX calls. It doesn't work with CI's header
-		// only with PHP's native header() function for some reason
-		$allowed_urls = $this->allowed_urls();
-		foreach( $allowed_urls as $url ) {
-			header('Access-Control-Allow-Origin: '.$url);
+		$request_headers = $this->input->request_headers();
+		if( array_key_exists('Origin', $request_headers) ) {
+			$origin = $request_headers['Origin'];
+			$allowed_urls = $this->allowed_urls();
+			if( in_array($origin, $allowed_urls) ) {
+				header('Access-Control-Allow-Origin: '.$origin );
+			}
 		}
 		
 		// params settings available to all Controllers
@@ -29,7 +31,7 @@ class MY_Controller extends CI_Controller
 		$this->load->vars( array('login_data' => $this->login_data,
 			'params'=>$this->params)  );
 		
-		$this->output->set_header('Content-type: text/html; charset='.$this->config->item('charset'));
+		header('Content-type: text/html; charset='.$this->config->item('charset'));
 	}
 
 	protected function require_auth() {

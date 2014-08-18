@@ -76,11 +76,11 @@ class Login extends MY_Controller {
         // load the facebook library
         $this->load->library("facebook",$this->params['facebook'] );
 
-        // Get User ID
-        $fbuser = $this->facebook->getUser();
-        
-        if( $fbuser ) {
-			try {
+		try {
+	        // Get User ID
+	        $fbuser = $this->facebook->getUser();
+	        
+	        if( $fbuser ) {
 				// Proceed knowing you have a logged in user who's authenticated.
 				$fbuser = $this->facebook->api('/me');
 
@@ -108,13 +108,13 @@ class Login extends MY_Controller {
 						redirect( base_url('usuario/escolhe_tipo' ) );
 					}
 				}
-			} catch( FacebookApiException $e ) {
-				error_log($e);
+			} else {
+	        	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
 			}
-        } else {
+		} catch( FacebookApiException $e ) {
         	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
-        }
+			error_log($e);
+		}
 	}
-
 }
 
