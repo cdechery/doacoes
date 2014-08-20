@@ -73,34 +73,34 @@ class Login extends MY_Controller {
 
 		$this->session->set_userdata('FbLoginPending', "1");
 
-        // load the facebook library
-        $this->load->library("facebook",$this->params['facebook'] );
+	        // load the facebook library
+	        $this->load->library("facebook",$this->params['facebook'] );
 
 		try {
-	        // Get User ID
-	        $fbuser = $this->facebook->getUser();
-	        
-	        if( $fbuser ) {
+		        // Get User ID
+		        $fbuser = $this->facebook->getUser();
+		        
+		        if( $fbuser ) {
 				// Proceed knowing you have a logged in user who's authenticated.
 				$fbuser = $this->facebook->api('/me');
-
+	
 				$this->load->model('usuario_model');
 				$usuario = $this->usuario_model->get_data_email( $fbuser['email'] );
-
+	
 				if( FALSE!=$usuario ) {
 					set_user_session( $usuario['id'] );
 					$this->session->unset_userdata('FbLoginPending');
 					redirect( base_url() );
 				} else { //novo
 					$this->input->set_cookie('FbRegPending', "1", 259000 );
-
+	
 					$this->load->model('image_model');
 					$avatar = @$this->image_model->import_fb_avatar( $fbuser['id'] );
 					$fbuser['avatar'] = ( FALSE!=$avatar )?$avatar:"";
-
+	
 					$this->session->set_userdata('fbuserdata', $fbuser );
 					$tipo = $this->session->userdata('tipo_cadastro');
-
+	
 					$this->session->unset_userdata('FbLoginPending');
 					if( $tipo ) {
 						redirect( base_url('usuario/novo/'.$tipo ) );
@@ -109,12 +109,11 @@ class Login extends MY_Controller {
 					}
 				}
 			} else {
-	        	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
+	        		$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
 			}
 		} catch( FacebookApiException $e ) {
-        	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
 			error_log($e);
+	        	$this->index("", "Falha ao conectar com o Facebook, faça aqui o login ou registro.");
 		}
 	}
 }
-
