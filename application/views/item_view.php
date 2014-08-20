@@ -7,9 +7,8 @@
 <?php
 	if( isset($imgdata) ) {
 		foreach ($imgdata as $img) {
-			$thumb = thumb_filename($img->nome_arquivo, 80);
 ?>
-	<img src="<?php echo item_image($thumb)?>">
+	<img src="<?php echo item_image($img->nome_arquivo, 80)?>">
 <?php
 		}
 	}

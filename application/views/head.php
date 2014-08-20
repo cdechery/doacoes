@@ -138,8 +138,8 @@
 	$wait_img = img_url('connecting.gif');
 	$fbReg = $this->input->cookie('FbRegPending');
 	$fbLogin = $this->session->userdata('FbLoginPending');
-	// $enableFB = (ENVIRONMENT=='production');
-	$enableFB = true;
+	$enableFB = (ENVIRONMENT=='production');
+	// $enableFB = true;
 
 	if( false == $fbLogin &&
 		false == $login_data['logged_in'] &&
