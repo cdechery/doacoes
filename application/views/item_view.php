@@ -8,7 +8,7 @@
 	if( isset($imgdata) ) {
 		foreach ($imgdata as $img) {
 ?>
-	<img src="<?php echo item_image($img->nome_arquivo, 80)?>">
+	<img src="<?php echo item_image($img->nome_arquivo, 120)?>">
 <?php
 		}
 	}
