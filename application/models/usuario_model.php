@@ -76,6 +76,7 @@ class Usuario_model extends MY_Model {
 			return 0;
 		}
 	}
+
 	public function update($user_data, $id) {
 
 		if( empty($id) || $id==0 ) {
@@ -118,6 +119,12 @@ class Usuario_model extends MY_Model {
 
 		return( $this->db->update('usuario', 
 			$upd_data, array('id' => $user_id) ) );
+	}
+
+	public function get_emails_newsletter() {
+		$this->db->select('nome, email');
+		$this->db->where('fg_geral_email = \'S\'');
+		return $this->db->get('usuario')->result();
 	}
 
 	public function update_lat_long($id, $lat, $long) {
