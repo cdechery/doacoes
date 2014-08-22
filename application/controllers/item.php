@@ -167,7 +167,7 @@ class Item extends MY_Controller {
 		}
 
 		echo json_encode( array('status'=>$status, 'msg'=>$msg ) );
-		}
+	}
 
 	public function changestatus( $id ) {
 		if( !$this->is_user_logged_in ) {
@@ -257,6 +257,8 @@ class Item extends MY_Controller {
 		$item_data = $this->item_model->get( $item_id );
 		$img_data = $this->get_images( $item_id );
 
+		$this->load->helper('html_assets');
+
 		$this->load_ajax('item_view', 
 			array('idata'=>$item_data, 'imgdata'=>$img_data));
 	}
@@ -284,5 +286,5 @@ class Item extends MY_Controller {
 		$this->load->view('item_list', array('items'=>$arrItems));
 
 		$this->load->view('foot'); // fecha tag section
-    }	
+    }
 }

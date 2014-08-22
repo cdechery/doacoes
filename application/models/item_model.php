@@ -38,6 +38,24 @@ class Item_model extends MY_Model {
 		return $this->db->insert_id();
 	}
 
+	public function get_item_button_data( $item_id ) {
+		$this->db->select('it.qtd_emails as iqtd, u.lim_emails_item as uqtd');
+		$this->db->from('item it');
+		$this->db->join('usuario u','u.id = it.usuario_id');
+		$this->db->where('it.id', $item_id );
+		return $this->db->get()->row_array();
+	}
+
+	public function update_msg_count( $item_id, $reset = FALSE ) {
+		$this->db->set('qtd_emails','qtd_emails+1', FALSE);
+		if( $reset ) {
+			$this->db->set('qtd_emails',0);
+		}
+		$this->db->where('id', $item_id);
+
+		$this->db->update('item');
+	}
+
 	public function purge_old_temp() {
 		$this->db->where('data_criacao < SUBDATE(NOW(),1)',NULL, FALSE);
 		$this->db->delete('item_temp');

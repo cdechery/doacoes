@@ -30,6 +30,7 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`usuario` (
   `fg_notif_int_email` CHAR(1) NOT NULL DEFAULT 'S' ,
   `fg_de_inst_email` CHAR(1) NOT NULL DEFAULT 'S' ,
   `fg_de_pessoa_email` CHAR(1) NOT NULL DEFAULT 'S' ,
+  `lim_emails_item` SMALLINT NOT NULL DEFAULT 10,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) 
@@ -78,6 +79,7 @@ CREATE  TABLE IF NOT EXISTS `doacoes`.`item` (
   `usuario_id` INT NOT NULL ,
   `categoria_id` INT NOT NULL ,
   `situacao_id` INT NOT NULL ,
+  'qtd_emails' SMALLINT NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_item_doador_idx` (`usuario_id` ASC) ,
   INDEX `fk_item_categoria1_idx` (`categoria_id` ASC) ,

@@ -91,15 +91,21 @@ class Usuario extends MY_Controller {
 			$user_data['fg_notif_int_email'] = isset($user_data['fg_notif_int_email'])?'S':'N';
 			$user_data['fg_de_inst_email'] = isset($user_data['fg_de_inst_email'])?'S':'N';
 			$user_data['fg_de_pessoa_email'] = isset($user_data['fg_de_pessoa_email'])?'S':'N';
+			$lim = $user_data['lim_emails_item'];
 
-			if( $this->usuario_model->update_pref_email($user_data, 
-				$this->login_data['user_id']) ) {
-
-				$status = "OK";
-				$msg = "Preferências salvas com sucesso!";
-			} else {
+			if( empty($lim) || !is_numeric($lim) || $lim==0 || $lim>99 ) {
 				$status = "ERRO";
-				$msg = "Ocorreu um erro ao salvar as preferências";
+				$msg = "Preencha corretamente o 'Limite'.<br>Deve ser um número inteiro maior que 0 e menor que 99";
+			} else {
+				if( $this->usuario_model->update_pref_email($user_data, 
+					$this->login_data['user_id']) ) {
+
+					$status = "OK";
+					$msg = "Preferências salvas com sucesso!";
+				} else {
+					$status = "ERRO";
+					$msg = "Ocorreu um erro ao salvar as preferências";
+				}
 			}
 		}
 
@@ -387,7 +393,13 @@ class Usuario extends MY_Controller {
 		$this->load->model('item_model');
 		$itens = $this->item_model->get_user_items( $user_id );
 
-		$head_data = array('min_template'=>'image_view', "title"=>'Itens do Usuário');
+		$cust_js = array('js/jquery.tipsy.js');
+		$cust_css = array('css/tipsy.css');
+
+		$head_data = array('min_template'=>'image_view',
+			"title"=>'Itens do Usuário',
+			'cust_css'=>$cust_css,
+			'cust_js'=>$cust_js);
 		$this->load->view('head', $head_data);
 
 		$arrItems = array();
@@ -399,6 +411,8 @@ class Usuario extends MY_Controller {
 				$arrItems[ $item->item_id ]['imagens'] = array();
 			}
 		}
+
+		$this->load->helper('html_assets');
 
 		$this->load->view('item_list',
 			array('items'=>$arrItems, 'user'=>$user_data) );

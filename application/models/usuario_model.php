@@ -114,7 +114,8 @@ class Usuario_model extends MY_Model {
 			'fg_geral_email' => $pref_data['fg_geral_email'],
 			'fg_notif_int_email' => $pref_data['fg_notif_int_email'],
 			'fg_de_inst_email' => $pref_data['fg_de_inst_email'],
-			'fg_de_pessoa_email' => $pref_data['fg_de_pessoa_email']
+			'fg_de_pessoa_email' => $pref_data['fg_de_pessoa_email'],
+			'lim_emails_item' => $pref_data['lim_emails_item'],
 		);
 
 		return( $this->db->update('usuario', 

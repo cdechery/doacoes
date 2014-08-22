@@ -75,6 +75,7 @@ class Email extends MY_Controller {
 		if( send_email( $params ) ) {
 			$status = "OK";
 			$msg = "Email enviado com sucesso";
+			$this->item_model->update_msg_count( $item['id'] );
 		} else {
 			$status = "ERROR";
 			$msg = "Não foi possível enviar o email";

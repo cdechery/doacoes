@@ -17,8 +17,6 @@
 
 <?php
 	if( $login_data['logged_in'] ) {
-?>
-<button class="itembox fancybox.ajax" ref="<?php echo base_url("email/quer_item/".$idata["id"])?>">Me interessa!</button>
-<?php
+		echo meinteressa_button( $idata['id'] );
 	}
 ?>

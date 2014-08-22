@@ -32,7 +32,7 @@
 				<?php if ($item['data']->status == 'D'): { ?>
 					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				<?php } elseif ( $login_data['logged_in'] ) : ?>
-					<button class='itembox active fancybox.ajax' href="<?php echo base_url("email/quer_item/".$item_id)?>">Me Interessa!</button>
+					<?php echo meinteressa_button( $item['data']->item_id, 'active' ) ?>
 				<?php endif; ?>
 				
 			</div>
