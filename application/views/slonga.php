@@ -54,18 +54,18 @@
 					<p>Retornar para <a href="#" onClick="map.setCenter( user_location ); $('#exibindo_mapa').html('Sua localização');">sua localização</a></p>
 				<?php endif; ?>
 			</div>
-
+			<?php
+				array_shift($params['raios_busca']);
+			?>
 			<div id="botoes">
 				<button id="local">Mudar localização</button>
 				<?php if( $login_data['logged_in'] ): ?>
-					<button id="raios">Mostrar/esconder raios</button>
-					<?php
-						// REVER
-						// array_shift($params['raios_busca']);
-						// echo implode(" > ", $params['raios_busca']);
-					?>
+					<button id="raios" title="<?php echo implode(" > ", $params['raios_busca'])?>">Mostrar/esconder raios</button>
 				<?php endif; ?>
 			</div>
+			<script type="text/javascript">
+				$('#raios').tipsy({ gravity: 's', opacity: 0.9});
+			</script>
 
 			<h4>Filtrar resultados</h4>
 

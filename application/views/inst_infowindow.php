@@ -48,18 +48,18 @@
 
 <?php
 	
-	$numItems = 0;
-	$nodisplay = "";
-	foreach ($arrItems as $item_id => $item) {
-		$numItems++;
-		if( $numItems>$maxItems ) $nodisplay = "style='display:none;'";
-		if( isset($item['imagens']) ) {
-			$thumb = thumb_filename($item['imagens'][0], 60);
-			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".user_img_url($thumb)."''></a>";
-		} else {
-			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".img_url('default_item_img_60.gif')."''></a>";
-		}
-	}
+	// $numItems = 0;
+	// $nodisplay = "";
+	// foreach ($arrItems as $item_id => $item) {
+	// 	$numItems++;
+	// 	if( $numItems>$maxItems ) $nodisplay = "style='display:none;'";
+	// 	if( isset($item['imagens']) ) {
+	// 		$thumb = thumb_filename($item['imagens'][0], 60);
+	// 		echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".user_img_url($thumb)."''></a>";
+	// 	} else {
+	// 		echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens'><img src='".img_url('default_item_img_60.gif')."''></a>";
+	// 	}
+	// }
 
 ?>
 <?php if( $login_data['logged_in'] ): ?>

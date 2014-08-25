@@ -12,6 +12,7 @@
 		$tooltip = "Ninguém se interessou por esse Item ainda";
 		$href = "href='".base_url("email/quer_item/".$item_id)."'";
 		$class = "itembox fancybox.ajax ".$custom_css;
+		$icon = "";
 
 		if( $btn_data['iqtd'] > 0 ) {
 			$strqtd = " (".$btn_data['iqtd'].")";
@@ -19,7 +20,8 @@
 			if( $btn_data['iqtd'] >= $btn_data['uqtd'] ) {
 				$tooltip = "Esse Item já recebeu o máximo de mensagens de Interessados";
 				$href = "";
-				$class = "disabled";
+				$class = "int_button_disabled";
+				$icon = "<i class='fa fa-check-square-o'></i>&nbsp;";
 			} else {
 				if( $btn_data['iqtd']==1 ) {
 					$tooltip = "Uma pessoa interessada apenas enviou mensagem para esse Item";
@@ -29,7 +31,7 @@
 			}
 		}
 
-		$ret = "<button id='btnitem".$item_id."' class='".$class."' ".$href." title='".$tooltip."' onClick='$(this).tipsy(\"hide\");'>Me interessa!".$strqtd."</button>\n";
+		$ret = "<button id='btnitem".$item_id."' class='".$class."' ".$href." title='".$tooltip."' onClick='$(this).tipsy(\"hide\");'>".$icon."Me interessa!".$strqtd."</button>\n";
 		$ret .= "<script type='text/javascript'>$('#btnitem".$item_id."').tipsy( {gravity: 's', opacity: 1 } );</script>";
 
 		return $ret;

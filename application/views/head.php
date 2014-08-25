@@ -65,9 +65,9 @@
 			wrapCSS		: 'fancybox-item',
 			padding		: 25,
 			fitToView	: false,
-			width		: '410px',
-			height		: '350px',
-			autoSize	: false,
+			minWidth	: '410px',
+			minHeight	: '320px',
+			autoSize	: true,
 			type		: 'ajax',
 			closeClick	: false,
 			openEffect	: 'none',
@@ -114,7 +114,7 @@
 						</li>
 						<?php else : ?>
 						<li id="register">
-							<a href="<?php echo base_url('login')?>">Cadastre-se</a>
+							<a href="<?php echo base_url('login')?>">ENTRAR</a>
 						</li>
 					<?php endif; // if logged_in ?> 
 				<?php if( !$login_data["logged_in"] ) : ?>
