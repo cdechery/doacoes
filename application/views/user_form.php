@@ -123,9 +123,7 @@ window.onload = initialize;
 	</h2>
 		<div class="col1">
 
-			<?php echo $hiddenAvatar?>
-
-			<?php if( $action=="update" ) { ?>
+			<?php if( $action=="update" || ($fromFacebook) ) { ?>
 				<form method="post" action="<?php echo base_url();?>image/upload_avatar" id="upload_avatar" enctype="multipart/form-data">
 					<div class="form-group">
 						<input type="hidden" name="user_id" id="user_id" value="<?php echo $id; ?>">
@@ -141,6 +139,7 @@ window.onload = initialize;
 
 	<form method="POST" name="userData" action="<?php echo base_url()?>usuario/<?php echo $action; ?>" id="usuario_<?php echo $action?>">
 		
+		<?php echo $hiddenAvatar?>
 		<input type="hidden" name="id" value="<?php echo $id ?>">
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
