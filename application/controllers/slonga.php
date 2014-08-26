@@ -18,6 +18,10 @@ class Slonga extends MY_Controller {
 		$config['cluster'] = FALSE;
 		$config['sensor'] = TRUE;
 		$config['places'] = TRUE;
+		$config['https'] = TRUE;
+		if( ENVIRONMENT=='production') {
+			$config['apiKey'] = 'AIzaSyBh29Uw40WRIA-lVdyM0xVIVqgDVdEpp10';
+		}
 		$config['disableMapTypeControl'] = TRUE;
 		$config['disableStreetViewControl'] = TRUE;
 		$config['placesAutocompleteInputID'] = 'mapCenterTextBox';
@@ -115,7 +119,7 @@ class Slonga extends MY_Controller {
 				$circle = array();
 				$circle['center'] = $user_data['lat'].', '.$user_data['lng'];
 				$circle['radius'] = $raio*1000;
-				$circle['fillOpacity'] = '0.3';
+				$circle['fillOpacity'] = '0.18';
 				$circle['fillColor'] = $cores[ $numCircles ];
 				$this->googlemaps->add_circle($circle);
 

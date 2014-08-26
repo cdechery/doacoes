@@ -31,6 +31,8 @@
 <script type="application/javascript" src="<?php echo static_url('min/g='.$min_template.'_js'.$min_debug)?>"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="<?php echo static_url('min/g='.$min_template.'_css'.$min_debug)?>"/>
+<link rel="shortcut icon" href="<?php echo img_url('favicon.ico')?>" type="image/x-icon">
+<link rel="icon" href="<?php echo img_url('favicon.ico')?>" type="image/x-icon">
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -104,9 +106,8 @@
 		FB.init({
 			appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
 			status     : true, // check login status
-			cookie     : false, // enable cookies to allow the server to access the session
+			cookie     : true, // enable cookies to allow the server to access the session
 			xfbml      : true,  // parse XFBML
-			version	   : 'v2.0'
 		});
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
