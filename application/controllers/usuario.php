@@ -14,19 +14,19 @@ class Usuario extends MY_Controller {
 		$logoutURL = "";
 
         $this->load->library("facebook", $this->params['facebook'] );
-        $fbuser = $this->facebook->getUser();
 
-        if( $fbuser ) {
-        	$logoutFB = true;
-			try {
+		try {
+	        $fbuser = $this->facebook->getUser();
+	        if( $fbuser ) {
+    	    	$logoutFB = true;
 	        	$fbuser = $this->facebook->api('/me');
 	        	//$revoke = $this->facebook->api("/me/permissions", "DELETE");
 				$logoutURL = $this->facebook->getLogoutUrl( array('acess_token'=>$fbuser['id'],
 					'next'=>base_url()) );
-			} catch (FacebookApiException $e) {
-				error_log($e);
-				$fbuser = null;
 			}
+		} catch (FacebookApiException $e) {
+			error_log("Logout: ".$e);
+			$fbuser = null;
         }
 
 		$this->session->sess_destroy();

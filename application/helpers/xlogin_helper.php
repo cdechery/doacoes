@@ -39,17 +39,17 @@ function deauth_facebook() {
 
     $params = $CI->config->item('site_params');
     $CI->load->library("facebook", $params['facebook'] );
-    $fbuser = $CI->facebook->getUser();
 
-    if( $fbuser ) {
-		try {
+	try {
+	    if( $fbuser ) {
+		    $fbuser = $CI->facebook->getUser();
         	$revoke = $CI->facebook->api("/me/permissions", "DELETE");
         	return true;
-		} catch (FacebookApiException $e) {
-			error_log($e);
-			return false;
-		}
-    } else {
-    	return true;
-    }
+        } else {
+        	return false;
+        }
+	} catch (FacebookApiException $e) {
+		error_log("Deauth: ".$e);
+		return false;
+	}
 }
