@@ -22,7 +22,7 @@
 			</div>
 			<h3><?php echo $item['data']->titulo ?></h3>
 			<p class="data-cadastro">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
-			<div class="descricao"><?php echo nl2br($item['data']->descricao) ?></div class="descricao">
+			<div class="descricao"><?php echo nl2br(wordwrap($item['data']->descricao,70)) ?></div class="descricao">
 			<div class="action">
 				
 				<?php if ($item['data']->status === 'D') { ?>

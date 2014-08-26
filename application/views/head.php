@@ -88,6 +88,51 @@
 		'<?php echo img_url("connecting.gif")?>'
 	]);
 </script>
+<?php
+	$wait_img = img_url('connecting.gif');
+	$fbReg = $this->input->cookie('FbRegPending');
+	$fbLogin = $this->session->userdata('FbLoginPending');
+	$enableFB = (ENVIRONMENT=='production');
+	
+	$runFB = $enableFB && false == $fbLogin &&
+		false == $login_data['logged_in'] && false == $fbReg;
+
+	if( $runFB ) {
+?>
+<script>
+	window.fbAsyncInit = function() {	
+		FB.init({
+			appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
+			status     : true, // check login status
+			cookie     : false, // enable cookies to allow the server to access the session
+			xfbml      : true,  // parse XFBML
+			version	   : 'v2.0'
+		});
+		FB.Event.subscribe('auth.authResponseChange', function(response) {
+			if (response.status === 'connected') {
+				new Messi('Estamos fazendo seu login no Facebook, aguarde '+
+					'<img src="<?php echo $wait_img?>">',
+					{ title: 'Conectando ...', modal: true } );
+				logonFB();
+			} else if (response.status === 'not_authorized') {
+				FB.login();
+			} else {
+				FB.login();
+			}
+		});
+	};
+
+	(function(d){
+		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement('script'); js.id = id; js.async = true;
+		js.src = "//connect.facebook.net/pt_BR/all.js";
+		ref.parentNode.insertBefore(js, ref);
+	}(document));
+</script>
+<?php
+	 }
+?>
 <header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
@@ -117,7 +162,7 @@
 							<a href="<?php echo base_url('login')?>">ENTRAR</a>
 						</li>
 					<?php endif; // if logged_in ?> 
-				<?php if( !$login_data["logged_in"] ) : ?>
+				<?php if( $runFB ) : ?>
 					<li id="facebook">
 						Faça login pelo&nbsp;&nbsp;
 						<a class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
@@ -127,50 +172,6 @@
 		</nav>
 	</div>
 </header>
-<?php
-	$wait_img = img_url('connecting.gif');
-	$fbReg = $this->input->cookie('FbRegPending');
-	$fbLogin = $this->session->userdata('FbLoginPending');
-	$enableFB = (ENVIRONMENT=='production');
-	// $enableFB = true;
-
-	if( false == $fbLogin &&
-		false == $login_data['logged_in'] &&
-		false == $fbReg && $enableFB ) {
-?>
-<script>
-	window.fbAsyncInit = function() {	
-		FB.init({
-			appId      : '<?php echo $params["facebook"]["appId"]?>', // App ID
-			status     : true, // check login status
-			cookie     : true, // enable cookies to allow the server to access the session
-			xfbml      : true  // parse XFBML
-		});
-		FB.Event.subscribe('auth.authResponseChange', function(response) {
-			if (response.status === 'connected') {
-				new Messi('Estamos fazendo seu login no Facebook, aguarde '+
-					'<img src="<?php echo $wait_img?>">',
-					{ title: 'Conectando ...', modal: true } );
-				logonFB();
-			} else if (response.status === 'not_authorized') {
-				FB.login();
-			} else {
-				FB.login();
-			}
-		});
-	};
-
-	(function(d){
-		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement('script'); js.id = id; js.async = true;
-		js.src = "//connect.facebook.net/pt_BR/all.js";
-		ref.parentNode.insertBefore(js, ref);
-	}(document));
-</script>
-<?php
-	 }
-?>
 <?php if( empty($home) ): ?>
 	<section class="contents">
 		<div class="wrap960">

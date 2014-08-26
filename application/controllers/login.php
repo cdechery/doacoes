@@ -92,7 +92,7 @@ class Login extends MY_Controller {
 					$this->session->unset_userdata('FbLoginPending');
 					redirect( base_url() );
 				} else { //novo
-					$this->input->set_cookie('FbRegPending', "1", 7200 );
+					set_cookie('FbRegPending', '1', 7200 );
 					$this->session->unset_userdata('FbLoginPending');
 
 					$this->load->model('image_model');
