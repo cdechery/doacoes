@@ -21,10 +21,10 @@
 				} ?>
 			</div>
 			<h3><?php echo $item['data']->titulo ?></h3>
-			<div><?php echo nl2br($item['data']->descricao) ?></div>
+			<p class="data-cadastro">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
+			<div class="descricao"><?php echo nl2br($item['data']->descricao) ?></div class="descricao">
 			<div class="action">
 				
-				<p style="font-size: small; color: gray;">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 				<?php if ($item['data']->status === 'D') { ?>
 					<button class="item-modify disabled" disabled data-itemid="<?php echo $item_id; ?>" title="Editar Item"><i class="fa fa-pencil"></i>&nbsp;Editar Item</button>
 					<button class="item-status disabled" disabled data-itemid="<?php echo $item_id; ?>" data-status="I"><i class="fa fa-check-square-o"></i>&nbsp;Item Ativo</button>

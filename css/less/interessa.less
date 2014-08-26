@@ -315,7 +315,7 @@ section#home {
 		margin-top: 25px; /* afastar título texto do mapa */
 	}
 	#filtros {
-		border-radius: 16px;
+		border-radius: 10px;
 		padding: 0 18px;
 		font-size: .9em;
 		background-color: @azulescuro;
@@ -587,22 +587,25 @@ header#user_itens {
 	}
 }
 
-/* botão Me Interessa! desabilitado */
-.int_button_disabled {
-	background-color: #eee!important;
-	color: #666!important;
-}
-
-.item_single { /* user_item_list */
+.item_single { /* user_item_list e item_list */
 	background-color: #fff;
-	height: 200px;
+	height: 250px;
 	margin-bottom: 20px;
 	border-radius: 12px;
 	border: 1px solid #ccc;
 	position: relative;
 	padding: 20px;
 	h3 {
-		margin-top:0;
+		margin:0 0 0;
+	}
+	.data-cadastro {
+		margin: 0;
+		font-size: .9em;
+		color: #999;
+	}
+	.descricao {
+		width: 530px;
+		margin-top: 10px;
 	}
 	.itemdel {
 		position: absolute;
@@ -643,6 +646,7 @@ header#user_itens {
 		}
 	}
 	.thumbs {
+		text-align: right;
 		position: absolute;
 		right: 20px;
 		top: 60px;
