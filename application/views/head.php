@@ -59,9 +59,7 @@
 		var wh = Number(dh - hh - fh); //this is the height for the wrapper
 		$('section.contents').css('min-height', wh); //set the height for the wrapper div
 	});
-</script>
-<?php if(isset($home)):  ?>
-<script type="text/javascript">
+
 	$(document).ready(function() {
 		$(".itembox").fancybox({
 			wrapCSS		: 'fancybox-item',
@@ -77,7 +75,6 @@
 		});
 	});
 </script>
-<?php endif; ?>
 </head>
 <body <?php echo $bodyId?>>
 <script type="text/javascript">

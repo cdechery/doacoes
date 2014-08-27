@@ -1,7 +1,7 @@
 <?php if( !empty($user) ): ?>
 	<header id="user_itens" class="clearfix">
-		<h3><img src="<?php echo user_avatar($user['avatar'], 40) ?>">
-		Listando itens do <?php echo $user['nome']?></h3>
+		<h3><img style="vertical-align: middle" src="<?php echo user_avatar($user['avatar'], 80) ?>">
+		mostrando itens disponíveis de <?php echo $user['nome']?></h3>
 	</header>
 <?php endif; ?>
 
@@ -9,7 +9,7 @@
 
 <?php
 	if( count($items)==0 ) {
-		echo "<h4>Nenhum item para exibir</h4>";		
+		echo "<h3>Nenhum item para exibir</h3>";		
 	}
 
 	foreach ($items as $item_id => $item) {
@@ -19,7 +19,7 @@
 				<?php if( count($item['imagens']) ) {
 					foreach ($item['imagens'] as $file) {
 						$thumb = thumb_filename($file, 120);
-						echo "<a href='".user_img_url($file)."' class='fancybox' rel='fotos_".$item_id."'><img src=".user_img_url($thumb)." /></a>";
+						echo "<a href='".user_img_url($file)."' class='fancybox' rel='fotos_".$item_id."' title='".$item['data']->titulo."'><img src=".user_img_url($thumb)." /></a>";
 					}
 				} else {
 						echo "<div style='text-align: center;'>Sem imagens</div>";
@@ -42,19 +42,6 @@
 ?>	
 </div>
 <script type="text/javascript">
-	$(".itembox").fancybox({
-		wrapCSS		: 'fancybox-item',
-		padding		: 25,
-		fitToView	: false,
-		width		: '400px',
-		height		: '370px',
-		autoSize	: false,
-		type		: 'ajax',
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-	
 	$(".fancybox").fancybox({
 		openEffect	: 'none',
 		closeEffect	: 'none'

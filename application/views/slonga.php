@@ -9,6 +9,11 @@
 			}
 		}
 	});
+
+	$(".fancybox").fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
 </script>
 
 <section id="home" class="contents">

@@ -58,7 +58,13 @@
 
 		} else {
 			$CI->email->message( $emailmsg );
-			return $CI->email->send();
+			$ret = $CI->email->send();
+
+			if( !$ret ) {
+				error_log( $CI->email->print_debugger() );
+			}
+			
+			return $ret;
 		}
 	}
 ?>

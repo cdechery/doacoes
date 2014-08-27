@@ -8,7 +8,7 @@
 	if( isset($imgdata) ) {
 		foreach ($imgdata as $img) {
 ?>
-	<img src="<?php echo item_image($img->nome_arquivo, 120)?>">
+	<a href="<?php echo user_img_url($img->nome_arquivo)?>" class="fancybox" rel="<?php echo $idata['id']?>" title="<?php echo $idata['titulo']?>"><img src="<?php echo item_image($img->nome_arquivo, 120)?>"></a>
 <?php
 		}
 	}
