@@ -12,44 +12,37 @@ class Notificacao extends MY_Controller {
 	public function index() {
 		$this->require_auth();
 
+		header('Content-Type: text/plain');
+
 		$this->load->model('usuario_model');
 		$this->load->model('item_model');
 		$this->load->model('notificacao_model');
 		$this->load->helper('image_helper');
 
-		log_message('info',
-			'Iniciando processo de notificacoes');
+		output_log('Iniciando processo de notificacoes');
 		$old_notifs = $this->notificacao_model->get_pending_notifs();
-		log_message('info',
-			'Encontradas '.count($old_notifs).' notificacoes pendentes');
+		output_log('Encontradas '.count($old_notifs).' notificacoes pendentes');
 
 		if( count($old_notifs) ) {
 			$this->processa_notifs( $old_notifs );
-			log_message('info',
-				'Notificacoes pendentes processadas');
+			output_log('Notificacoes pendentes processadas');
 			$this->notificacao_model->purge();
-			log_message('info',
-				'Notificacoes processadas expurgadas');
+			output_log('Notificacoes processadas expurgadas');
 		} 
 
-		log_message('info',
-			'Preparando tabela para novas notificacoes');
+		output_log('Preparando tabela para novas notificacoes');
 		$prepare = $this->notificacao_model->prepare_notifs_table();
 		if( $prepare > 0 ) {
 			$new_notifs = $this->notificacao_model->get_pending_notifs();
-			log_message('info',
-				'Encontradas '.count($new_notifs).' novas notificacoes');
+			output_log('Encontradas '.count($new_notifs).' novas notificacoes');
 			$this->processa_notifs( $new_notifs );
 			$this->notificacao_model->purge();
-			log_message('info',
-				'Novas notificacoes expurgadas');
+			output_log('Novas notificacoes expurgadas');
 		} else {
-			log_message('info',
-				'Sem novas notificacoes');
+			output_log('Sem novas notificacoes');
 		}
 
-		log_message('info',
-			'Fim do processo de notificacoes');
+		output_log('Fim do processo de notificacoes');
 	}
 
 	private function processa_notifs( $result_set ) {
@@ -65,8 +58,7 @@ class Notificacao extends MY_Controller {
 				$mail_sent = false;
 
 				if( $fg_notif ) {
-					log_message('info',
-						'Enviando email para $user_email, '.count($user_itens).' itens');
+					output_log(		'Enviando email para $user_email, '.count($user_itens).' itens');
 
 					$params = $this->monta_email( $user_email, $name, $user_itens);
 					$mail_sent = send_email( $params );
@@ -75,8 +67,7 @@ class Notificacao extends MY_Controller {
 				if( ($fg_notif && $mail_sent) || !$fg_notif ) {
 					$this->notificacao_model->set_notificado( $user_id );
 				} else {
-					log_message('error', 
-						'Erro ao enviar email\n'.$this->last_email_err);
+					output_log('Erro ao enviar email\n'.$this->last_email_err);
 				}
 				$user_itens = array();
 			}
@@ -91,8 +82,7 @@ class Notificacao extends MY_Controller {
 
 		
 		if( $fg_notif ) {
-			log_message('info',
-				'Enviando email para $user_email, '.count($user_itens).' itens');
+			output_log('Enviando email para $user_email, '.count($user_itens).' itens');
 
 			$params = $this->monta_email( $user_email, $name, $user_itens);
 			$mail_sent = send_email( $params );
@@ -101,8 +91,7 @@ class Notificacao extends MY_Controller {
 		if( ($fg_notif && $mail_sent) || !$fg_notif ) {
 			$this->notificacao_model->set_notificado( $user_id );
 		} else {
-			log_message('error', 
-				'Erro ao enviar email\n'.$this->last_email_err);
+			output_log('Erro ao enviar email\n'.$this->last_email_err);
 		}
 	}
 

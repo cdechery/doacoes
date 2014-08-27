@@ -336,6 +336,23 @@ if ( ! function_exists('show_404'))
 // ------------------------------------------------------------------------
 
 /**
+* CUSTOM job logging function
+*
+* @access	public
+* @return	void
+*/
+if ( ! function_exists('output_log'))
+{
+	function output_log( $msg )
+	{
+		echo date('d-m-Y H:i:s').' '.$msg . "\n";
+	}
+}
+
+
+// ------------------------------------------------------------------------
+
+/**
 * Error Logging Interface
 *
 * We use this as a simple mechanism to access the logging
