@@ -1,7 +1,7 @@
 <?php if( !empty($user) ): ?>
 	<header id="user_itens" class="clearfix">
 		<h3><img style="vertical-align: middle" src="<?php echo user_avatar($user['avatar'], 80) ?>">
-		mostrando itens disponíveis de <?php echo $user['nome']?></h3>
+		mostrando itens disponíveis de <u><?php echo $user['nome']?></u></h3>
 	</header>
 <?php endif; ?>
 

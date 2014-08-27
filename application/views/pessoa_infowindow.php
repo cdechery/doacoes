@@ -14,10 +14,18 @@
 		}
 	}
 
+	$para_doar = "";
+	$qtd_itens = count($arrItems);
+	if( $qtd_itens==1 ) {
+		$para_doar = "possui <a href='".base_url('usuario/itens/'.$udata['id'])."'>um item</a> para doar";
+	} else {
+		$para_doar = "possui <a href='".base_url('usuario/itens/'.$udata['id'])."'>".$qtd_itens." itens</a> para doar";
+	}
+
 ?>
 	
 <h3>
-	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> tem <a href="<?php echo base_url('usuario/itens/'.$udata['id'])?>"><?php echo count($arrItems)?> itens</a> para doar.
+	<img style="vertical-align: middle" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
 </h3>
 
 <?php
