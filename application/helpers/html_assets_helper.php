@@ -11,7 +11,7 @@
 		$strqtd = "";
 		$tooltip = "Ninguém se interessou por esse Item ainda";
 		$href = "href='".base_url("email/quer_item/".$item_id)."'";
-		$class = "itembox fancybox.ajax ".$custom_css;
+		$class = "itembox fancybox.ajax".$custom_css;
 		$icon = "";
 
 		if( $btn_data['iqtd'] > 0 ) {
@@ -21,7 +21,7 @@
 				$tooltip = "Esse Item já recebeu o máximo de mensagens de Interessados";
 				$href = "";
 				$class = "int_button_disabled";
-				$icon = "<i class='fa fa-check-square-o'></i>&nbsp;";
+				$icon = "<i class='fa fa-meh-o'></i>&nbsp;";
 			} else {
 				if( $btn_data['iqtd']==1 ) {
 					$tooltip = "Uma pessoa interessada apenas enviou mensagem para esse Item";
