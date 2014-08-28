@@ -73,8 +73,11 @@ class Notificacao extends MY_Controller {
 			}
 
 			$fg_notif = $row->fg_notif_int_email=='S';
-			$user_itens[] = array( 'id'=>$row->item_id, 
-				'titulo'=>$row->titulo, 'nome_arquivo'=>$row->nome_arquivo );
+			
+			$user_itens[$row->item_id] = array();
+			$user_itens[$row->item_id]['titulo'] = $row->titulo;
+			$user_itens[$row->item_id]['imagens'][] = $row->nome_arquivo;
+
 			$user_id = $row->usuario_id;
 			$user_email = $row->email;
 			$name = $row->nome;
