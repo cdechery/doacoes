@@ -9,9 +9,9 @@
 		$btn_data = $CI->item_model->get_item_button_data( $item_id );
 
 		$strqtd = "";
-		$tooltip = "Ninguém se interessou por esse Item ainda";
+		$tooltip = "Ninguém se interessou por esse Item ainda, seja o primeiro!";
 		$href = "href='".base_url("email/quer_item/".$item_id)."'";
-		$class = "itembox fancybox.ajax".$custom_css;
+		$class = "me_interessa ";
 		$icon = "";
 
 		if( $btn_data['iqtd'] > 0 ) {
@@ -20,7 +20,7 @@
 			if( $btn_data['iqtd'] >= $btn_data['uqtd'] ) {
 				$tooltip = "Esse Item já recebeu o máximo de mensagens de Interessados";
 				$href = "";
-				$class = "int_button_disabled";
+				$class .= "disabled";
 				$icon = "<i class='fa fa-meh-o'></i>&nbsp;";
 			} else {
 				if( $btn_data['iqtd']==1 ) {
@@ -28,10 +28,11 @@
 				} else {
 					$tooltip = "".$btn_data['iqtd']." pessoas interessadas já enviaram mensagem para esse Item";
 				}
+				$class .= "active itembox fancybox.ajax";
 			}
 		}
 
-		$ret = "<button id='btnitem".$item_id."' class='".$class."' ".$href." title='".$tooltip."' onClick='$(this).tipsy(\"hide\");'>".$icon."Me interessa!".$strqtd."</button>\n";
+		$ret = "<button id='btnitem".$item_id."' class='".$class."' ".$href." title='".$tooltip."' onClick='$(this).tipsy(\"hide\"); return false;'>".$icon."Me interessa!".$strqtd."</button>\n";
 		$ret .= "<script type='text/javascript'>$('#btnitem".$item_id."').tipsy( {gravity: 's', opacity: 1 } );</script>";
 
 		return $ret;

@@ -824,3 +824,17 @@ footer {
 	visibility: hidden;
 }
 
+/* botao 'Me Interessa' */
+.me_interessa {
+	border: none;
+	.button-size(6px, 12px, 14px, 1.2em, 4px);
+	font-weight: bold;
+	&.active {
+		background-color: @verde_botao!important;
+		color: #fff!important;
+	}
+	&.disabled {
+		background-color: #eee!important;
+		color: #666!important;
+	}
+}

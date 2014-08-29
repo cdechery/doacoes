@@ -1,7 +1,7 @@
 <?php if( !empty($user) ): ?>
 	<header id="user_itens" class="clearfix">
 		<h3><img style="vertical-align: middle" src="<?php echo user_avatar($user['avatar'], 80) ?>">
-		mostrando itens disponíveis de <u><?php echo $user['nome']?></u></h3>
+		mostrando itens disponíveis de <i><?php echo $user['nome']?></i></h3>
 	</header>
 <?php endif; ?>
 
@@ -32,7 +32,7 @@
 				<?php if ($item['data']->status == 'D'): { ?>
 					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				<?php } elseif ( $login_data['logged_in'] ) : ?>
-					<?php echo meinteressa_button( $item['data']->item_id, 'active' ) ?>
+					<?php echo meinteressa_button( $item['data']->item_id ) ?>
 				<?php endif; ?>
 				
 			</div>
