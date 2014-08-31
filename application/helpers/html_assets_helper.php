@@ -2,7 +2,7 @@
 /*
  * Custom html assets helper
  */
-	function meinteressa_button($item_id, $custom_css = "") {
+	function meinteressa_button( $item_id ) {
 		$CI =& get_instance();
 		$CI->load->model('item_model');
 
@@ -11,7 +11,7 @@
 		$strqtd = "";
 		$tooltip = "Ninguém se interessou por esse Item ainda, seja o primeiro!";
 		$href = "href='".base_url("email/quer_item/".$item_id)."'";
-		$class = "me_interessa ";
+		$class = "me_interessa active itembox fancybox.ajax";
 		$icon = "";
 
 		if( $btn_data['iqtd'] > 0 ) {
@@ -20,7 +20,7 @@
 			if( $btn_data['iqtd'] >= $btn_data['uqtd'] ) {
 				$tooltip = "Esse Item já recebeu o máximo de mensagens de Interessados";
 				$href = "";
-				$class .= "disabled";
+				$class .= "me_interessa disabled";
 				$icon = "<i class='fa fa-meh-o'></i>&nbsp;";
 			} else {
 				if( $btn_data['iqtd']==1 ) {
@@ -28,7 +28,6 @@
 				} else {
 					$tooltip = "".$btn_data['iqtd']." pessoas interessadas já enviaram mensagem para esse Item";
 				}
-				$class .= "active itembox fancybox.ajax";
 			}
 		}
 
