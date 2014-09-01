@@ -1,6 +1,4 @@
-<p class="label">nome do item</p>
 <h3><?php echo $idata['titulo']?></h3>
-<p class="label">descrição</p>
 <p><?php echo nl2br(wordwrap($idata['descricao'],60))?></p>
 
 <div class="imgs">

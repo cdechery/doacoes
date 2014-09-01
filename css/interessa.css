@@ -1,4 +1,20 @@
 /* botão estilo bootstrap */
+/* botao 'Me Interessa' */
+.me_interessa {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1em;
+  border-radius: 4px;
+  border: none;
+}
+.me_interessa.active {
+  background-color: #2b72a3 !important;
+  color: #fff!important;
+}
+.me_interessa.disabled {
+  background-color: #eee!important;
+  color: #666!important;
+}
 /* body */
 html,
 body {
@@ -75,13 +91,33 @@ body:after {
 body:after {
   clear: both;
 }
-/* botão estilo bootstrap */
 /* estilo elementos form (inspiração bootstrap)
 http://getbootstrap.com/css/#forms-controls */
+/* botão estilo bootstrap */
+/* botao 'Me Interessa' */
+.me_interessa {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1em;
+  border-radius: 4px;
+  border: none;
+}
+.me_interessa.active {
+  background-color: #2b72a3 !important;
+  color: #fff!important;
+}
+.me_interessa.disabled {
+  background-color: #eee!important;
+  color: #666!important;
+}
 .form-group {
   /* container label + input */
 
   margin-bottom: 15px;
+}
+.form-group-horizontal input[type=text],
+.form-group-horizontal input[type=password] {
+  display: inline-block;
 }
 .submit {
   /* alinhar botão submit à direita */
@@ -107,7 +143,7 @@ textarea {
   background-color: #fff;
   background-image: none;
   border: 1px solid #cccccc;
-  border-radius: 8px;
+  border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
@@ -162,8 +198,8 @@ input[type=submit] {
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
 
   color: #ffffff;
-  background-color: #78b03d;
-  border-color: #78b03d;
+  background-color: #2b72a3;
+  border-color: #2b72a3;
 }
 /* cols float padrão (par) */
 .col {
@@ -192,7 +228,7 @@ input[type=submit] {
 /* box fundo branco com rounded corners padrão */
 .roundbox {
   background-color: #fff;
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 30px;
   border: 1px solid #ccc;
 }
@@ -297,7 +333,7 @@ header#main nav#top #user-menu {
   top: 27px;
   right: 0;
   z-index: 5000;
-  width: 150px;
+  width: 200px;
   background-color: #fff;
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
   -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
@@ -318,7 +354,8 @@ header#main nav#top #user-menu > ul li a {
   font-size: .9em;
 }
 header#main nav#top #user-menu > ul li i {
-  color: #2b72a3 !important;
+  margin-right: 10px;
+  color: #ccc!important;
 }
 /* mapa */
 section#map {
@@ -385,20 +422,22 @@ section#map #map_canvas {
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 section#map #map_canvas .gm-style-iw {
-  /* infowindow google maps */
+  /* infowindow google maps, pessoa e instituição */
 
   padding: 10px;
 }
-section#map #map_canvas .gm-style-iw h3 {
-  margin-top: 0;
+section#map #map_canvas .gm-style-iw header {
+  margin: 0 0 20px;
 }
-section#map #map_canvas .gm-style-iw h3 .username {
+section#map #map_canvas .gm-style-iw header .username {
+  font-weight: 700;
   font-size: 1.2em;
+  color: #2b72a3;
 }
-section#map #map_canvas .gm-style-iw h3 a {
+section#map #map_canvas .gm-style-iw header a {
   text-decoration: underline;
 }
-section#map #map_canvas .gm-style-iw h3 img {
+section#map #map_canvas .gm-style-iw header img {
   vertical-align: bottom;
   margin-right: 10px;
 }
@@ -415,16 +454,17 @@ section#map #map_canvas .gm-style-iw .iw_loading_box {
   width: 320px;
   height: 170px;
 }
-section#map #map_canvas .gm-style-iw #envia-msg a {
-  padding: 8px 14px;
-  font-size: 1em;
-  line-height: 12px;
-  border-radius: 8px;
-  border: none;
-  color: #ffffff;
-  background-color: #5f98bc;
-  border-color: #5f98bc;
+section#map #map_canvas .gm-style-iw #envia-msg {
+  display: inline-block;
+  padding: 6px 12px;
+  color: #2b72a3;
+  border: 1px solid #2b72a3;
   font-weight: 700;
+  border-radius: 4px;
+}
+section#map #map_canvas .gm-style-iw #envia-msg a {
+  color: #2b72a3;
+  border: none!important;
 }
 section#map #map_canvas .gm-style-iw nav {
   position: absolute;
@@ -433,18 +473,12 @@ section#map #map_canvas .gm-style-iw nav {
   width: 100%;
 }
 section#map #map_canvas .gm-style-iw nav a {
-  padding: 6px 12px;
-  font-size: 0.9em;
-  line-height: 12px;
-  border-radius: 8px;
-  border: none;
-  color: #ffffff;
-  background-color: #78b03d;
-  border-color: #78b03d;
-  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  color: #2b72a3;
+  text-decoration: underline;
 }
 section#map #map_canvas .gm-style-iw nav a:first-child {
-  display: inline-block;
   float: right;
 }
 /* drop-down do google places */
@@ -612,8 +646,10 @@ section#home #filtros ul li > div#filtro_itens #sit {
   padding: 16px 16px;
   font-size: 1.4em;
   line-height: 12px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
+  /* padding vertical, padding horizontal, font-size, line-height e border-radius */
+
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
@@ -638,10 +674,7 @@ div#link_cadastro a {
   background-color: #fff;
   /* tirando fundo azul herdado do body */
 
-  height: 150px;
-}
-#forgot_pass input[type=text] {
-  display: inline-block;
+  height: 120px;
 }
 #forgot_pass p {
   margin: 0 0 20px;
@@ -929,24 +962,30 @@ header#user_itens img {
   text-transform: none;
   font-size: 1em;
 }
-/* fancybox 'quero item' */
-.fancybox-item .label {
-  margin: 0 0;
-  font-size: .9em;
-  color: #999;
-  text-transform: uppercase;
-}
-.fancybox-item .label + p {
-  margin: 0;
-}
+/* fancyboxes 'quero item' e 'email instituição' nas 2 etapas (visualizar e enviar email) */
 .fancybox-item h3 {
   margin: 0 0 10px;
   padding: 0;
 }
-.fancybox-item input[type=text] {
-  min-width: 200px;
-  padding: 0 12px;
-  line-height: .8;
+.fancybox-item .de-para {
+  position: relative;
+  display: inline;
+  float: left;
+  width: 220px;
+  margin: 0 10px;
+  margin-top: 10px!important;
+  margin-bottom: 20px!important;
+}
+.fancybox-item .de-para img {
+  margin-right: 10px;
+}
+.fancybox-item .de i {
+  display: inline-block;
+  position: absolute;
+  top: 15px;
+  right: 10%;
+  color: #2b72a3;
+  font-size: .8em;
 }
 .fancybox-item input[type="button"],
 .fancybox-item button {
@@ -1004,21 +1043,4 @@ footer nav {
   height: 0;
   clear: both;
   visibility: hidden;
-}
-/* botao 'Me Interessa' */
-.me_interessa {
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.2em;
-  border-radius: 4px;
-  border: none;
-  font-weight: bold;
-}
-.me_interessa.active {
-  background-color: #78b03d !important;
-  color: #fff!important;
-}
-.me_interessa.disabled {
-  background-color: #eee!important;
-  color: #666!important;
 }

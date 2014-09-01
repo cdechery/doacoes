@@ -75,7 +75,7 @@ h3 {
 /* box fundo branco com rounded corners padrão */
 .roundbox {
 	background-color: #fff;
-	border-radius: 18px;
+	border-radius: 14px;
 	padding: 30px;
 	border:1px solid #ccc;
 }
@@ -174,7 +174,7 @@ header#main {
 			top: 27px;
 			right: 0;
 			z-index: 5000;
-			width: 150px;
+			width: 200px;
 			background-color: #fff;
 			-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
 			-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.55);
@@ -191,7 +191,10 @@ header#main {
 						color: @azulescuro;
 						font-size: .9em;
 					}
-					i { color: @azulescuro!important; }
+					i { 
+						margin-right: 10px;
+						color: #ccc!important;
+					}
 				}
 
 			}
@@ -254,12 +257,14 @@ section#map {
 		-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
-		.gm-style-iw { /* infowindow google maps */
+		.gm-style-iw { /* infowindow google maps, pessoa e instituição */
 			padding: 10px;
-			h3 {
-				margin-top:0;
+			header {
+				margin: 0 0 20px;
 				.username {
+					font-weight: 700;
 					font-size: 1.2em;
+					color: @azulescuro;
 				}
 				a {
 					text-decoration: underline;
@@ -280,10 +285,17 @@ section#map {
 				width: 320px;
 				height: 170px;
 			}
-			#envia-msg a {
-				.button-size(8px, 14px, 1em, 12px, 8px);
-				.button-variant(#fff; @azulmedio);
+			#envia-msg {
+				display: inline-block;
+				padding: 6px 12px;
+				color: @azulescuro;
+				border: 1px solid @azulescuro;
 				font-weight: 700;
+				border-radius: 4px;
+				a {
+					color: @azulescuro;
+					border: none!important;
+				}
 			}
 			nav {
 				position: absolute;
@@ -291,11 +303,11 @@ section#map {
 				left: 0;
 				width: 100%;
 				a {
-					.button-size(6px, 12px, .9em, 12px, 8px);
-					.button-variant(#fff; @verde_botao);
-					font-weight: 700;
+					font-size: 1.1em;
+					line-height: 1.4em;
+					color: @azulescuro;
+					text-decoration: underline;
 					&:first-child {
-						display: inline-block;
 						float: right;
 					}
 				}
@@ -452,7 +464,7 @@ section#home {
 	}
 	input[type=submit] {
 		width: 100%;
-		.button-size(16px, 16px, 1.4em, 12px, 8px);
+		.button-size(16px, 16px, 1.4em, 12px, 4px); /* padding vertical, padding horizontal, font-size, line-height e border-radius */
 		.button-variant(#fff; @azulescuro);
 		font-weight: 400;
 	}
@@ -476,10 +488,7 @@ div#link_cadastro {
 #forgot_pass {
 	padding: 30px 0 0 50px;
 	background-color: #fff; /* tirando fundo azul herdado do body */
-	height: 150px;
-	input[type=text] {
-		display: inline-block;
-	}
+	height: 120px;
 	p {
 		margin: 0 0 20px;
 		font-weight: 700;
@@ -753,26 +762,32 @@ header#user_itens {
 	}
 }
 
-/* fancybox 'quero item' */
+/* fancyboxes 'quero item' e 'email instituição' nas 2 etapas (visualizar e enviar email) */
 
 .fancybox-item {
-	.label {
-		margin: 0 0;
-		font-size: .9em;
-		color:#999;
-		text-transform: uppercase;
-		& + p {
-			margin: 0;
-		}
-	}
 	h3 {
 		margin:0 0 10px;
 		padding: 0;
 	}
-	input[type=text] {
-		min-width: 200px;
-		padding: 0 12px;
-		line-height: .8;
+	.de-para {
+		position: relative;
+		.column(3);
+		margin-top: 10px!important;
+		margin-bottom: 20px!important;
+		img {
+			margin-right: 10px;
+		}
+
+	}
+	.de {
+		i {
+			display: inline-block;
+			position: absolute;
+			top: 15px;
+			right: 10%;
+			color: @azulescuro;
+			font-size: .8em;
+		}
 	}
 	input[type="button"], button {
 		position: absolute;
@@ -828,19 +843,4 @@ footer {
 	height: 0;
 	clear: both;
 	visibility: hidden;
-}
-
-/* botao 'Me Interessa' */
-.me_interessa {
-	border: none;
-	.button-size(6px, 12px, 14px, 1.2em, 4px);
-	font-weight: bold;
-	&.active {
-		background-color: @verde_botao!important;
-		color: #fff!important;
-	}
-	&.disabled {
-		background-color: #eee!important;
-		color: #666!important;
-	}
 }

@@ -50,9 +50,9 @@
 	}
 ?>
 
-<h3>
-	<img style="vertical-align: middle" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
-</h3>
+<header>
+	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
+</header>
 
 <p><?php echo $out_inters?></p>
 
@@ -74,6 +74,7 @@
 ?>
 <?php if( $login_data['logged_in'] ): ?>
 	<div id="envia-msg">
+		<i class="fa fa-envelope"></i>
 		<a href="<?php echo base_url('email/contato_inst/'.$udata['id'])?>" class="itembox fancybox.ajax">Enviar Mensagem</a>
 	</div>
 <?php endif; ?>

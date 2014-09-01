@@ -24,9 +24,9 @@
 
 ?>
 	
-<h3>
-	<img style="vertical-align: middle" src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
-</h3>
+<header>
+	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
+</header>
 
 <?php
 	
@@ -45,8 +45,8 @@
 ?>
 
 <nav>
-	<a href="#" onClick="nextMarker();">próximo&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a>
-	<a href="#" onClick="prevMarker();"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;anterior</a>
+	<a href="#" onClick="nextMarker();">próximo&nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
+	<a href="#" onClick="prevMarker();"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;anterior</a>
 </nav>
 <script type="text/javascript">
 	$('.foto_item').tipsy( {opacity: 1});

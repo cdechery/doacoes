@@ -7,8 +7,8 @@
 <?php
 	if( $status!="success" ) {
 ?>
-	<div class="form-group">
-		<input type="text" name="email">
+	<div class="form-group-horizontal">
+		<input type="text" name="email">&nbsp;&nbsp;
 		<input type="submit" value="Ok">
 	</div>
 
