@@ -75,7 +75,7 @@
 	$(document).ready(function() {
 		$(".itembox").fancybox({
 			wrapCSS		: 'fancybox-item',
-			padding		: 25,
+			padding		: 0,
 			fitToView	: false,
 			minWidth	: '410px',
 			minHeight	: '320px',

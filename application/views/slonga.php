@@ -11,7 +11,6 @@
 			// localStorage.clear();
 		}
 	});
-
 	$(".fancybox").fancybox({
 		openEffect	: 'none',
 		closeEffect	: 'none'

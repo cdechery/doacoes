@@ -11,9 +11,10 @@ html, body {
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased; /* evitar que as fontes sejam automaticamente bold no Mac. */
 	background-color: @azul;
-	&#home {
-		background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
-	}
+}
+
+body#home {
+	background: @azul url('../images/bghome.gif') 0 -50px repeat-x; /* só na home */
 }
 
 /* meu normalize. ver se já não existe isso no normalize.css */
@@ -265,7 +266,6 @@ section#map {
 		.gm-style-iw { /* infowindow google maps, pessoa e instituição */
 			padding: 5px;
 			header {
-				//margin: 0 0 15px;
 				height: 40px;
 				.username {
 					font-weight: 700;
@@ -347,7 +347,7 @@ section#home {
 		font-size: .9em;
 		background-color: @azulescuro;
 		color: #fff;
-		opacity: 0.9;
+		/*opacity: 0.9; opacity tem vários problemas! */
 		#filtro_texto { /* janela localização */
 			z-index: 2000;
 			position: absolute;
@@ -415,8 +415,6 @@ section#home {
 				}
 				&.selected {
 					color: @amarelo;
-					font-weigth: strong;
-					background-color: @azulcaixinha;
 				}
 				> div.checks { /* divs com checkboxes */
 					z-index: 2000;
@@ -787,48 +785,54 @@ header#user_itens {
 /* fancyboxes 'quero item' e 'email instituição' nas 2 etapas (visualizar e enviar email) */
 
 .fancybox-item {
-	h3 {
-		margin:0 0 10px;
-		padding: 0;
-	}
-	h3 + p {
-		margin-top: 0;
-	}
-	.de-para {
-		position: relative;
-		.column(3);
-		margin-top: 10px!important;
-		margin-bottom: 20px!important;
-		img {
-			margin-right: 10px;
+	header {
+		background-color: @azulescuro;
+		padding: 14px 20px;
+		h3 {
+			color: #fff;
+			margin: 0;
+			padding: 0;
 		}
+	}
+	#main {
+		padding: 10px 20px;
+		p:first-child {
+			margin-top: 0;
+		}
+		.de-para {
+			position: relative;
+			.column(3);
+			margin-top: 10px!important;
+			margin-bottom: 20px!important;
+			img {
+				margin-right: 10px;
+			}
 
-	}
-	.de {
-		i {
-			display: inline-block;
+		}
+		.de {
+			i {
+				display: inline-block;
+				position: absolute;
+				top: 15px;
+				right: 10%;
+				color: @azulescuro;
+				font-size: .8em;
+			}
+		}
+		input[type="button"], button {
 			position: absolute;
-			top: 15px;
-			right: 10%;
-			color: @azulescuro;
-			font-size: .8em;
+			bottom: 20px;
+			right: 20px;
+		}
+		.imgs {
+			margin: 20px 0;
+			img {
+				border:1px solid #ccc;
+				margin-right: 10px;
+			}
 		}
 	}
-	input[type="button"], button {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		font-weight: 700;
-		.button-size(10px, 14px, inherited, 12px, 4px);
-		.button-variant(#fff; @verde_botao);
-	}
-	.imgs {
-		margin: 20px 0;
-		img {
-			border:1px solid #ccc;
-			margin-right: 10px;
-		}
-	}
+	/* navegação fancybox */
 	.fancybox-nav {
 		width: 60px;
 		span {
@@ -840,10 +844,10 @@ header#user_itens {
 		}
 	}
 	.fancybox-next {
-		right: -60px;
+		right: -30px;
 	}
 	.fancybox-prev {
-		left: -60px;
+		left: -30px;
 	}
 }
 

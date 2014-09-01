@@ -1,15 +1,17 @@
 /* bot√£o estilo bootstrap */
 /* botao 'Me Interessa' */
 .me_interessa {
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-size: 1em;
   line-height: 1em;
   border-radius: 4px;
   border: none;
+  font-weight: 400;
+  border: 1px solid #2b72a3;
 }
 .me_interessa.active {
-  background-color: #2b72a3 !important;
-  color: #fff!important;
+  background-color: #fff!important;
+  color: #2b72a3 !important;
 }
 .me_interessa.disabled {
   background-color: #eee!important;
@@ -23,18 +25,20 @@ body {
   padding: 0;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
-  /* tamanho padr„o browsers */
+  /* tamanho padr√£o browsers */
+
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   /* evitar que as fontes sejam automaticamente bold no Mac. */
+
   background-color: #d1eaef;
 }
-html#home,
 body#home {
   background: #d1eaef url('../images/bghome.gif') 0 -50px repeat-x;
-  /* sÛ na home */
+  /* s√≥ na home */
+
 }
-/* meu normalize. ver se j· n„o existe isso no normalize.css */
+/* meu normalize. ver se j√° n√£o existe isso no normalize.css */
 div,
 aside,
 h1,
@@ -48,20 +52,23 @@ section,
 footer {
   padding: 0;
   /* evitar margin collapsing */
+
 }
 section h2:first-child,
 section h3:first-of-type {
   margin-top: 0;
   /* normalizando margem do header */
+
 }
-/* padr„o design */
+/* padr√£o design */
 a {
   color: #2b72a3;
   text-decoration: none;
 }
 h2,
 h3 {
-  /* header seÁ„o */
+  /* header se√ß√£o */
+
   color: #2b72a3;
   font-weight: 700;
   text-transform: lowercase;
@@ -87,12 +94,33 @@ body:after {
 }
 /* estilo elementos form (inspira√ß√£o bootstrap)
 http://getbootstrap.com/css/#forms-controls */
+/* bot√£o estilo bootstrap */
+/* botao 'Me Interessa' */
+.me_interessa {
+  padding: 10px 14px;
+  font-size: 1em;
+  line-height: 1em;
+  border-radius: 4px;
+  border: none;
+  font-weight: 400;
+  border: 1px solid #2b72a3;
+}
+.me_interessa.active {
+  background-color: #fff!important;
+  color: #2b72a3 !important;
+}
+.me_interessa.disabled {
+  background-color: #eee!important;
+  color: #666!important;
+}
 .form-group {
   /* container label + input */
+
   margin-bottom: 15px;
 }
 .form-group-horizontal {
   /* inputs alinhados na horizontal */
+
 }
 .form-group-horizontal input[type=text],
 .form-group-horizontal input[type=password] {
@@ -100,6 +128,7 @@ http://getbootstrap.com/css/#forms-controls */
 }
 .submit {
   /* alinhar bot√£o submit √† direita */
+
   text-align: right;
 }
 label {
@@ -174,11 +203,12 @@ input[type=submit] {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
+
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
 }
-/* cols float padr„o (par) */
+/* cols float padr√£o (par) */
 .col {
   display: inline;
   float: left;
@@ -202,20 +232,22 @@ input[type=submit] {
 .wrap960:after {
   clear: both;
 }
-/* box fundo branco com rounded corners padr„o */
+/* box fundo branco com rounded corners padr√£o */
 .roundbox {
   background-color: #fff;
   border-radius: 14px;
   padding: 30px;
   border: 1px solid #ccc;
 }
-/* class section padr„o */
+/* class section padr√£o */
 section.contents {
   width: 100%;
   padding: 25px 0 0;
-  /* tamanho texto padr·o. ver depois.
+  /* tamanho texto padr√°o. ver depois.
 	font-size: 1.2em; */
-  /* entrelinha texto padr„o */
+
+  /* entrelinha texto padr√£o */
+
 }
 section.contents p {
   line-height: 1.5em;
@@ -223,6 +255,7 @@ section.contents p {
 section.contents form h5:first-child {
   display: none;
   /* mensagem de erro. TESTAR ISSO */
+
 }
 /* inicio estilos slonga */
 header#main {
@@ -387,6 +420,7 @@ section#map #welcome #texto_apres .buttons a {
 }
 section#map #map_canvas {
   /* container mapa, alguns estilos passados diretamente pelo controller */
+
   margin: 0 auto;
   border-radius: 16px;
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
@@ -394,7 +428,8 @@ section#map #map_canvas {
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 section#map #map_canvas .gm-style-iw {
-  /* infowindow google maps, pessoa e instituiÁ„o */
+  /* infowindow google maps, pessoa e institui√ß√£o */
+
   padding: 5px;
 }
 section#map #map_canvas .gm-style-iw header {
@@ -414,6 +449,7 @@ section#map #map_canvas .gm-style-iw header img {
 }
 section#map #map_canvas .gm-style-iw a.itembox {
   /* link para imagens de item */
+
   display: inline-block;
   border: 1px solid #ccc;
   margin-right: 10px;
@@ -468,7 +504,8 @@ section#home {
 }
 section#home .wrap960 {
   margin-top: 25px;
-  /* afastar tÌtulo texto do mapa */
+  /* afastar t√≠tulo texto do mapa */
+
 }
 section#home #filtros {
   border-radius: 10px;
@@ -476,10 +513,12 @@ section#home #filtros {
   font-size: .9em;
   background-color: #2b72a3;
   color: #fff;
-  opacity: 0.9;
+  /*opacity: 0.9; opacity tem v√°rios problemas! */
+
 }
 section#home #filtros #filtro_texto {
-  /* janela localizaÁ„o */
+  /* janela localiza√ß√£o */
+
   z-index: 2000;
   position: absolute;
   right: 20px;
@@ -554,11 +593,10 @@ section#home #filtros ul li:hover > div {
 }
 section#home #filtros ul li.selected {
   color: #e8d95c;
-  font-weigth: strong;
-  background-color: #00517f;
 }
 section#home #filtros ul li > div.checks {
   /* divs com checkboxes */
+
   z-index: 2000;
   position: absolute;
   left: -130px;
@@ -583,6 +621,7 @@ section#home #filtros ul li > div.checks .col {
 }
 section#home #filtros ul li > div#filtro_ints {
   /*width: 180px!important;*/
+
 }
 section#home #filtros ul li > div#filtro_itens {
   width: 400px;
@@ -632,6 +671,7 @@ section#home #filtros ul li > div#filtro_itens #sit {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
+
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
@@ -655,6 +695,7 @@ div#link_cadastro a {
   padding: 30px 0 0 50px;
   background-color: #fff;
   /* tirando fundo azul herdado do body */
+
   height: 120px;
 }
 #forgot_pass p {
@@ -702,7 +743,7 @@ div#link_cadastro a {
 #cadastro_window .col:first-of-type {
   margin-left: 0px;
 }
-/* p·gina cadastro */
+/* p√°gina cadastro */
 #cadastro .col1 {
   display: inline;
   float: left;
@@ -771,12 +812,13 @@ header#itens h2 {
   width: 380px;
   margin: 0 10px;
 }
-/* p·gina de itens de usu·rio */
+/* p√°gina de itens de usu√°rio */
 header#user_itens img {
   margin-right: 10px;
 }
 .item_single {
   /* user_item_list e item_list */
+
   background-color: #fff;
   height: 250px;
   margin-bottom: 20px;
@@ -831,6 +873,7 @@ header#user_itens img {
 .item_single .action button.item-status {
   /*background-color: @azul;
 				color: @azulescuro;*/
+
 }
 .item_single .action button.active {
   background-color: #78b03d;
@@ -903,7 +946,7 @@ header#user_itens img {
   background-color: #78b03d;
   border-color: #78b03d;
 }
-/* p·gina sobre */
+/* p√°gina sobre */
 #sobre .col {
   display: inline;
   float: left;
@@ -914,7 +957,7 @@ header#user_itens img {
 #sobre .col:first-of-type {
   margin-left: 40px;
 }
-/* p·gina de contato */
+/* p√°gina de contato */
 #contato form {
   display: inline;
   float: left;
@@ -940,15 +983,27 @@ header#user_itens img {
   text-transform: none;
   font-size: 1em;
 }
-/* fancyboxes 'quero item' e 'email instituiÁ„o' nas 2 etapas (visualizar e enviar email) */
-.fancybox-item h3 {
-  margin: 0 0 10px;
+/* fancyboxes 'quero item' e 'email institui√ß√£o' nas 2 etapas (visualizar e enviar email) */
+.fancybox-item {
+  /* navega√ß√£o fancybox */
+
+}
+.fancybox-item header {
+  background-color: #2b72a3;
+  padding: 14px 20px;
+}
+.fancybox-item header h3 {
+  color: #fff;
+  margin: 0;
   padding: 0;
 }
-.fancybox-item h3 + p {
+.fancybox-item #main {
+  padding: 10px 20px;
+}
+.fancybox-item #main p:first-child {
   margin-top: 0;
 }
-.fancybox-item .de-para {
+.fancybox-item #main .de-para {
   position: relative;
   display: inline;
   float: left;
@@ -957,10 +1012,10 @@ header#user_itens img {
   margin-top: 10px!important;
   margin-bottom: 20px!important;
 }
-.fancybox-item .de-para img {
+.fancybox-item #main .de-para img {
   margin-right: 10px;
 }
-.fancybox-item .de i {
+.fancybox-item #main .de i {
   display: inline-block;
   position: absolute;
   top: 15px;
@@ -968,25 +1023,16 @@ header#user_itens img {
   color: #2b72a3;
   font-size: .8em;
 }
-.fancybox-item input[type="button"],
-.fancybox-item button {
+.fancybox-item #main input[type="button"],
+.fancybox-item #main button {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  font-weight: 700;
-  padding: 10px 14px;
-  font-size: inherited;
-  line-height: 12px;
-  border-radius: 4px;
-  border: none;
-  color: #ffffff;
-  background-color: #78b03d;
-  border-color: #78b03d;
+  bottom: 20px;
+  right: 20px;
 }
-.fancybox-item .imgs {
+.fancybox-item #main .imgs {
   margin: 20px 0;
 }
-.fancybox-item .imgs img {
+.fancybox-item #main .imgs img {
   border: 1px solid #ccc;
   margin-right: 10px;
 }
@@ -1001,10 +1047,10 @@ header#user_itens img {
   opacity: 1;
 }
 .fancybox-item .fancybox-next {
-  right: -60px;
+  right: -30px;
 }
 .fancybox-item .fancybox-prev {
-  left: -60px;
+  left: -30px;
 }
 /* footer */
 footer {
