@@ -263,9 +263,10 @@ section#map {
 		-moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 		.gm-style-iw { /* infowindow google maps, pessoa e instituição */
-			padding: 10px;
+			padding: 5px;
 			header {
-				margin: 0 0 20px;
+				//margin: 0 0 15px;
+				height: 40px;
 				.username {
 					font-weight: 700;
 					font-size: 1.2em;
@@ -275,7 +276,7 @@ section#map {
 					text-decoration: underline;
 				}
 				img {
-					vertical-align: bottom;
+					vertical-align: middle;
 					margin-right: 10px;
 				}
 			}
@@ -297,6 +298,13 @@ section#map {
 				border: 1px solid @azulescuro;
 				font-weight: 700;
 				border-radius: 4px;
+				&:hover {
+					background-color: @azulescuro;
+					color: #fff;
+					> a {
+						color: #fff;
+					}
+				}
 				a {
 					color: @azulescuro;
 					border: none!important;
@@ -339,6 +347,7 @@ section#home {
 		font-size: .9em;
 		background-color: @azulescuro;
 		color: #fff;
+		opacity: 0.9;
 		#filtro_texto { /* janela localização */
 			z-index: 2000;
 			position: absolute;
@@ -404,6 +413,11 @@ section#home {
 						display: block!important; 
 					}
 				}
+				&.selected {
+					color: @amarelo;
+					font-weigth: strong;
+					background-color: @azulcaixinha;
+				}
 				> div.checks { /* divs com checkboxes */
 					z-index: 2000;
 					position: absolute;
@@ -447,7 +461,7 @@ section#home {
 
 #login-page {
 	width: 420px;
-	margin: 10% auto 30px;
+	margin: 5% auto 30px;
 	#erromsg {
 		text-align: center;
 		margin: 20px 0;
@@ -541,7 +555,7 @@ div#link_cadastro {
 			}
 		}
 		&:first-of-type {
-			margin-left: 0;
+			margin-left: 0px;
 		}
 	}
 }
@@ -551,14 +565,14 @@ div#link_cadastro {
 #cadastro {
 	.col1 {
 		.column(6);
-		margin-left:0;
+		margin-left:0px;
 	}
 	.col2 {
 		.column(5);
 	}
 	.form-group .form-group-col {
 		.column(3);
-		margin:0;
+		margin:0px;
 	}
 	#foto {
 		border: red;
@@ -661,7 +675,7 @@ header#user_itens {
 				color: @azulescuro;*/
 			}
 			&.active {
-				background-color: @verde_botao!important;
+				background-color: @verde_botao;
 				color: #fff!important;
 			}
 			&.disabled {
@@ -712,7 +726,7 @@ header#user_itens {
 		.button-size(6px, 12px, 14px, 1.2em, 4px);
 		.button-variant(@cobre, @amarelo_botao);
 		&.activ_interesse_btn {
-			background-color: @azulescuro;
+			background-color: @azulescuro!important;
 			color:#fff;
 		}
 		&.blue {
@@ -735,9 +749,9 @@ header#user_itens {
 #sobre {
 	.col {
 		.column(5);
-		padding-right: 40px;
+		padding-right: 0px;
 		&:first-of-type {
-			margin-left: 0;
+			margin-left: 40px;
 		}
 	}
 }
@@ -855,3 +869,4 @@ footer {
 	clear: both;
 	visibility: hidden;
 }
+

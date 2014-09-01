@@ -36,7 +36,7 @@
 			$out_inters .= " e <a href='#' id='iw_inters' title='".$tooltip_inters."'>outros</a>";
 		}
 	} else {
-		$out_inters = "Interessado em: <u>não determinado</u>";
+		$out_inters = "Interessado em: não determinado";
 	}
 
 	$para_doar = "";
@@ -51,11 +51,9 @@
 ?>
 
 <header>
-	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
+	<img src="<?php echo $avatar?>" align="left"><span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
 </header>
-
 <p><?php echo $out_inters?></p>
-
 <?php
 	
 	// $numItems = 0;

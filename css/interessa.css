@@ -23,21 +23,18 @@ body {
   padding: 0;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
-  /* tamanho padr√£o browsers */
-
+  /* tamanho padr„o browsers */
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   /* evitar que as fontes sejam automaticamente bold no Mac. */
-
   background-color: #d1eaef;
 }
 html#home,
 body#home {
   background: #d1eaef url('../images/bghome.gif') 0 -50px repeat-x;
-  /* s√≥ na home */
-
+  /* sÛ na home */
 }
-/* meu normalize. ver se j√° n√£o existe isso no normalize.css */
+/* meu normalize. ver se j· n„o existe isso no normalize.css */
 div,
 aside,
 h1,
@@ -51,23 +48,20 @@ section,
 footer {
   padding: 0;
   /* evitar margin collapsing */
-
 }
 section h2:first-child,
 section h3:first-of-type {
   margin-top: 0;
   /* normalizando margem do header */
-
 }
-/* padr√£o design */
+/* padr„o design */
 a {
   color: #2b72a3;
   text-decoration: none;
 }
 h2,
 h3 {
-  /* header se√ß√£o */
-
+  /* header seÁ„o */
   color: #2b72a3;
   font-weight: 700;
   text-transform: lowercase;
@@ -93,31 +87,12 @@ body:after {
 }
 /* estilo elementos form (inspira√ß√£o bootstrap)
 http://getbootstrap.com/css/#forms-controls */
-/* bot√£o estilo bootstrap */
-/* botao 'Me Interessa' */
-.me_interessa {
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1em;
-  border-radius: 4px;
-  border: none;
-}
-.me_interessa.active {
-  background-color: #2b72a3 !important;
-  color: #fff!important;
-}
-.me_interessa.disabled {
-  background-color: #eee!important;
-  color: #666!important;
-}
 .form-group {
   /* container label + input */
-
   margin-bottom: 15px;
 }
 .form-group-horizontal {
   /* inputs alinhados na horizontal */
-
 }
 .form-group-horizontal input[type=text],
 .form-group-horizontal input[type=password] {
@@ -125,7 +100,6 @@ http://getbootstrap.com/css/#forms-controls */
 }
 .submit {
   /* alinhar bot√£o submit √† direita */
-
   text-align: right;
 }
 label {
@@ -200,12 +174,11 @@ input[type=submit] {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
-
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
 }
-/* cols float padr√£o (par) */
+/* cols float padr„o (par) */
 .col {
   display: inline;
   float: left;
@@ -229,22 +202,20 @@ input[type=submit] {
 .wrap960:after {
   clear: both;
 }
-/* box fundo branco com rounded corners padr√£o */
+/* box fundo branco com rounded corners padr„o */
 .roundbox {
   background-color: #fff;
   border-radius: 14px;
   padding: 30px;
   border: 1px solid #ccc;
 }
-/* class section padr√£o */
+/* class section padr„o */
 section.contents {
   width: 100%;
   padding: 25px 0 0;
-  /* tamanho texto padr√°o. ver depois.
+  /* tamanho texto padr·o. ver depois.
 	font-size: 1.2em; */
-
-  /* entrelinha texto padr√£o */
-
+  /* entrelinha texto padr„o */
 }
 section.contents p {
   line-height: 1.5em;
@@ -252,7 +223,6 @@ section.contents p {
 section.contents form h5:first-child {
   display: none;
   /* mensagem de erro. TESTAR ISSO */
-
 }
 /* inicio estilos slonga */
 header#main {
@@ -417,7 +387,6 @@ section#map #welcome #texto_apres .buttons a {
 }
 section#map #map_canvas {
   /* container mapa, alguns estilos passados diretamente pelo controller */
-
   margin: 0 auto;
   border-radius: 16px;
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
@@ -425,12 +394,11 @@ section#map #map_canvas {
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 section#map #map_canvas .gm-style-iw {
-  /* infowindow google maps, pessoa e institui√ß√£o */
-
-  padding: 10px;
+  /* infowindow google maps, pessoa e instituiÁ„o */
+  padding: 5px;
 }
 section#map #map_canvas .gm-style-iw header {
-  margin: 0 0 20px;
+  height: 40px;
 }
 section#map #map_canvas .gm-style-iw header .username {
   font-weight: 700;
@@ -441,12 +409,11 @@ section#map #map_canvas .gm-style-iw header a {
   text-decoration: underline;
 }
 section#map #map_canvas .gm-style-iw header img {
-  vertical-align: bottom;
+  vertical-align: middle;
   margin-right: 10px;
 }
 section#map #map_canvas .gm-style-iw a.itembox {
   /* link para imagens de item */
-
   display: inline-block;
   border: 1px solid #ccc;
   margin-right: 10px;
@@ -464,6 +431,13 @@ section#map #map_canvas .gm-style-iw #envia-msg {
   border: 1px solid #2b72a3;
   font-weight: 700;
   border-radius: 4px;
+}
+section#map #map_canvas .gm-style-iw #envia-msg:hover {
+  background-color: #2b72a3;
+  color: #fff;
+}
+section#map #map_canvas .gm-style-iw #envia-msg:hover > a {
+  color: #fff;
 }
 section#map #map_canvas .gm-style-iw #envia-msg a {
   color: #2b72a3;
@@ -494,8 +468,7 @@ section#home {
 }
 section#home .wrap960 {
   margin-top: 25px;
-  /* afastar t√≠tulo texto do mapa */
-
+  /* afastar tÌtulo texto do mapa */
 }
 section#home #filtros {
   border-radius: 10px;
@@ -503,10 +476,10 @@ section#home #filtros {
   font-size: .9em;
   background-color: #2b72a3;
   color: #fff;
+  opacity: 0.9;
 }
 section#home #filtros #filtro_texto {
-  /* janela localiza√ß√£o */
-
+  /* janela localizaÁ„o */
   z-index: 2000;
   position: absolute;
   right: 20px;
@@ -579,9 +552,13 @@ section#home #filtros ul li:hover {
 section#home #filtros ul li:hover > div {
   display: block!important;
 }
+section#home #filtros ul li.selected {
+  color: #e8d95c;
+  font-weigth: strong;
+  background-color: #00517f;
+}
 section#home #filtros ul li > div.checks {
   /* divs com checkboxes */
-
   z-index: 2000;
   position: absolute;
   left: -130px;
@@ -606,7 +583,6 @@ section#home #filtros ul li > div.checks .col {
 }
 section#home #filtros ul li > div#filtro_ints {
   /*width: 180px!important;*/
-
 }
 section#home #filtros ul li > div#filtro_itens {
   width: 400px;
@@ -622,7 +598,7 @@ section#home #filtros ul li > div#filtro_itens #sit {
 /* view login */
 #login-page {
   width: 420px;
-  margin: 10% auto 30px;
+  margin: 5% auto 30px;
 }
 #login-page #erromsg {
   text-align: center;
@@ -656,7 +632,6 @@ section#home #filtros ul li > div#filtro_itens #sit {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
-
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
@@ -680,7 +655,6 @@ div#link_cadastro a {
   padding: 30px 0 0 50px;
   background-color: #fff;
   /* tirando fundo azul herdado do body */
-
   height: 120px;
 }
 #forgot_pass p {
@@ -726,15 +700,15 @@ div#link_cadastro a {
   font-weight: bold;
 }
 #cadastro_window .col:first-of-type {
-  margin-left: 0;
+  margin-left: 0px;
 }
-/* p√°gina cadastro */
+/* p·gina cadastro */
 #cadastro .col1 {
   display: inline;
   float: left;
   width: 460px;
   margin: 0 10px;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #cadastro .col2 {
   display: inline;
@@ -747,7 +721,7 @@ div#link_cadastro a {
   float: left;
   width: 220px;
   margin: 0 10px;
-  margin: 0;
+  margin: 0px;
 }
 #cadastro #foto {
   border: red;
@@ -797,13 +771,12 @@ header#itens h2 {
   width: 380px;
   margin: 0 10px;
 }
-/* p√°gina de itens de usu√°rio */
+/* p·gina de itens de usu·rio */
 header#user_itens img {
   margin-right: 10px;
 }
 .item_single {
   /* user_item_list e item_list */
-
   background-color: #fff;
   height: 250px;
   margin-bottom: 20px;
@@ -858,10 +831,9 @@ header#user_itens img {
 .item_single .action button.item-status {
   /*background-color: @azul;
 				color: @azulescuro;*/
-
 }
 .item_single .action button.active {
-  background-color: #78b03d !important;
+  background-color: #78b03d;
   color: #fff!important;
 }
 .item_single .action button.disabled {
@@ -913,7 +885,7 @@ header#user_itens img {
   border-color: #e8d95c;
 }
 #interesses button.activ_interesse_btn {
-  background-color: #2b72a3;
+  background-color: #2b72a3 !important;
   color: #fff;
 }
 #interesses button.blue {
@@ -931,18 +903,18 @@ header#user_itens img {
   background-color: #78b03d;
   border-color: #78b03d;
 }
-/* p√°gina sobre */
+/* p·gina sobre */
 #sobre .col {
   display: inline;
   float: left;
   width: 380px;
   margin: 0 10px;
-  padding-right: 40px;
+  padding-right: 0px;
 }
 #sobre .col:first-of-type {
-  margin-left: 0;
+  margin-left: 40px;
 }
-/* p√°gina de contato */
+/* p·gina de contato */
 #contato form {
   display: inline;
   float: left;
@@ -968,7 +940,7 @@ header#user_itens img {
   text-transform: none;
   font-size: 1em;
 }
-/* fancyboxes 'quero item' e 'email institui√ß√£o' nas 2 etapas (visualizar e enviar email) */
+/* fancyboxes 'quero item' e 'email instituiÁ„o' nas 2 etapas (visualizar e enviar email) */
 .fancybox-item h3 {
   margin: 0 0 10px;
   padding: 0;

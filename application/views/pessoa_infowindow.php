@@ -27,7 +27,7 @@
 <header>
 	<img src="<?php echo $avatar?>"> <span class="username"><?php echo $udata['nome']?></span> <?php echo $para_doar?>
 </header>
-
+<br/>
 <?php
 	
 	$numItems = 0;

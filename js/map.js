@@ -153,7 +153,7 @@ function showAllActive() {
 	}
 }
 
-// funções menu mostrar
+// funcoes menu mostrar
 function showAll() {
 	$('.checks').hide();
 	activeMarkers = markers_settings;
@@ -192,7 +192,7 @@ function showInstitutions() {
 }
 
 
-// funções menu filtrar
+// funcoes menu filtrar
 function showFilterItem() {
 	$('.checks').hide();
 	$('#filtro_itens').toggle();
@@ -286,12 +286,21 @@ $(document).ready(function(){
 	// mostrar
 	$('#show-all').click(function(){
 		showAll();
+		$(this).addClass('selected');
+		$('#show-pessoas').removeClass('selected');	
+		$('#show-inst').removeClass('selected');	
 	});
 	$('#show-pessoas').click(function(){
 		showPeople();
+		$(this).addClass('selected');
+		$('#show-all').removeClass('selected');	
+		$('#show-inst').removeClass('selected');	
 	});
 	$('#show-inst').click(function(){
 		showInstitutions();
+		$(this).addClass('selected');
+		$('#show-pessoas').removeClass('selected');	
+		$('#show-all').removeClass('selected');	
 	});
 	
 	// filtrar
