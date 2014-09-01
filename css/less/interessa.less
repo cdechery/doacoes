@@ -426,24 +426,24 @@ section#home {
 
 #login-page {
 	width: 420px;
-	padding: 20px 30px;
-	background-color: @azulescuro;
 	margin: 10% auto 30px;
-	border-radius: 16px;
 	#erromsg {
 		text-align: center;
 		margin: 20px 0;
 		font-weight: 700;
-		color: @amarelo;
+		color: red;
 	}
 	label {
 		font-size: 1em;
-		color:#fff;
 		text-transform: none!important;
 	}
 	header {
-		text-align: center;
-		margin: 0 0 30px;
+		margin: 0 0 20px;
+		h3 {
+			text-align: center;
+			font-size: 2em; 
+			font-weight: strong;
+		}
 	}
 	input[type=text], input[type=password] {
 		width: 100%;
@@ -453,13 +453,13 @@ section#home {
 	input[type=submit] {
 		width: 100%;
 		.button-size(16px, 16px, 1.4em, 12px, 8px);
-		.button-variant(#fff; @verde_botao);
+		.button-variant(#fff; @azulescuro);
 		font-weight: 400;
 	}
 	#lembrasenha {
+		margin: 10px 0 20px;
 		a:first-child {
 			float: right;
-			color:#fff;
 		}
 	}
 }
@@ -474,9 +474,15 @@ div#link_cadastro {
 
 /* fancybox lembrar senha */
 #forgot_pass {
+	padding: 30px 0 0 50px;
 	background-color: #fff; /* tirando fundo azul herdado do body */
-	h4 {
+	height: 150px;
+	input[type=text] {
+		display: inline-block;
+	}
+	p {
 		margin: 0 0 20px;
+		font-weight: 700;
 	}
 }
 

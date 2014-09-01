@@ -1,6 +1,6 @@
 <form id="forgot_pass" method="post" action="<?php echo base_url()?>usuario/reset_password">
 
-	<h4 class="<?php echo $status?>"><?php echo $msg?></h4>
+	<p class="<?php echo $status?>"><?php echo $msg?></p>
 
 	<input type="hidden" name="action" value="<?php echo $action?>">	
 
@@ -8,7 +8,7 @@
 	if( $status!="success" ) {
 ?>
 	<div class="form-group">
-		<input type="text" name="email" style="display: inline-block">
+		<input type="text" name="email">
 		<input type="submit" value="Ok">
 	</div>
 

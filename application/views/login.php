@@ -3,8 +3,8 @@ $(document).ready(function() {
 	// esqueceu senha
 	$("#lembrasenha a").fancybox({
 		fitToView	: false,
-		width		: '300px',
-		height		: '100px',
+		width		: '400px',
+		height		: '150px',
 		autoSize	: false,
 		closeClick	: false,
 		openEffect	: 'none',
@@ -24,10 +24,10 @@ $(document).ready(function() {
 });
 </script>
 
-<div id="login-page">
+<div id="login-page" class="roundbox">
 
 	<header>
-			<span style="text-align: center; color: white; font-size:2em; font-weight: strong;">Login</span>
+		<h3>Login</h3>
 	</header>
 	
 	<div id="erromsg"><?php echo $msg?></div>
