@@ -207,7 +207,7 @@ header#main {
 section#map {
 	width: 100%;
 	position: relative;
-	#texto_apres_cont {
+	#welcome {
 		position: absolute;
 		z-index: 4;
 		width: 100%;
@@ -220,7 +220,8 @@ section#map {
 			color: #fff;
 			position: relative;
 			h3 {
-				color: #fff;
+				font-size: 1.4em;
+				color:#fff;
 			}
 			#close {
 				position: absolute;
@@ -238,15 +239,19 @@ section#map {
 			}
 			#texto {
 				position: relative;
-				top: 110px;
+				top: 90px;
 				margin: 0 auto;
 				width: 50%;
+				a {
+					color:@amarelo;
+				}
 			}
 			.buttons {
 				margin-top: 30px;
-				input[type=button] {
-					.button-size(6px, 12px, .8em, 12px, 8px);
-					.button-variant(#000; @amarelo_botao);
+				a {
+					color:@amarelo;
+					font-size: 1.2em;
+					font-weight: 700;
 				}
 			}
 		}
@@ -423,8 +428,12 @@ section#home {
 					/*width: 180px!important;*/
 				}
 				> div#filtro_itens {
+					width: 400px;
 					height: 220px!important;
 					top: -220px!important;
+					.col {
+						width: 160px!important;
+					}
 					#sit {
 						margin-top: 20px;
 					}
@@ -491,7 +500,6 @@ div#link_cadastro {
 	height: 120px;
 	p {
 		margin: 0 0 20px;
-		font-weight: 700;
 	}
 }
 
@@ -768,6 +776,9 @@ header#user_itens {
 	h3 {
 		margin:0 0 10px;
 		padding: 0;
+	}
+	h3 + p {
+		margin-top: 0;
 	}
 	.de-para {
 		position: relative;

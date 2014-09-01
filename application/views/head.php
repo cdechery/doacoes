@@ -104,6 +104,8 @@
 	$fbReg = $this->input->cookie('FbRegPending');
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
+	// para forçar exibição. comitar comentado
+	// $enableFB = true;
 	
 	$runFB = $enableFB && false == $fbLogin &&
 		false == $login_data['logged_in'] && false == $fbReg;

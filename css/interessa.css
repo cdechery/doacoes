@@ -115,6 +115,10 @@ http://getbootstrap.com/css/#forms-controls */
 
   margin-bottom: 15px;
 }
+.form-group-horizontal {
+  /* inputs alinhados na horizontal */
+
+}
 .form-group-horizontal input[type=text],
 .form-group-horizontal input[type=password] {
   display: inline-block;
@@ -362,12 +366,12 @@ section#map {
   width: 100%;
   position: relative;
 }
-section#map #texto_apres_cont {
+section#map #welcome {
   position: absolute;
   z-index: 4;
   width: 100%;
 }
-section#map #texto_apres_cont #texto_apres {
+section#map #welcome #texto_apres {
   width: 90%;
   height: 500px;
   margin: 0 auto;
@@ -376,10 +380,11 @@ section#map #texto_apres_cont #texto_apres {
   color: #fff;
   position: relative;
 }
-section#map #texto_apres_cont #texto_apres h3 {
+section#map #welcome #texto_apres h3 {
+  font-size: 1.4em;
   color: #fff;
 }
-section#map #texto_apres_cont #texto_apres #close {
+section#map #welcome #texto_apres #close {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -390,27 +395,25 @@ section#map #texto_apres_cont #texto_apres #close {
   font-size: 1.4em;
   cursor: pointer;
 }
-section#map #texto_apres_cont #texto_apres #close:hover {
+section#map #welcome #texto_apres #close:hover {
   color: #000;
 }
-section#map #texto_apres_cont #texto_apres #texto {
+section#map #welcome #texto_apres #texto {
   position: relative;
-  top: 110px;
+  top: 90px;
   margin: 0 auto;
   width: 50%;
 }
-section#map #texto_apres_cont #texto_apres .buttons {
+section#map #welcome #texto_apres #texto a {
+  color: #e8d95c;
+}
+section#map #welcome #texto_apres .buttons {
   margin-top: 30px;
 }
-section#map #texto_apres_cont #texto_apres .buttons input[type=button] {
-  padding: 6px 12px;
-  font-size: 0.8em;
-  line-height: 12px;
-  border-radius: 8px;
-  border: none;
-  color: #000000;
-  background-color: #e8d95c;
-  border-color: #e8d95c;
+section#map #welcome #texto_apres .buttons a {
+  color: #e8d95c;
+  font-size: 1.2em;
+  font-weight: 700;
 }
 section#map #map_canvas {
   /* container mapa, alguns estilos passados diretamente pelo controller */
@@ -606,8 +609,12 @@ section#home #filtros ul li > div#filtro_ints {
 
 }
 section#home #filtros ul li > div#filtro_itens {
+  width: 400px;
   height: 220px!important;
   top: -220px !important;
+}
+section#home #filtros ul li > div#filtro_itens .col {
+  width: 160px!important;
 }
 section#home #filtros ul li > div#filtro_itens #sit {
   margin-top: 20px;
@@ -678,7 +685,6 @@ div#link_cadastro a {
 }
 #forgot_pass p {
   margin: 0 0 20px;
-  font-weight: 700;
 }
 /* fancybox cadastro */
 #cadastro_window p:first-child {
@@ -966,6 +972,9 @@ header#user_itens img {
 .fancybox-item h3 {
   margin: 0 0 10px;
   padding: 0;
+}
+.fancybox-item h3 + p {
+  margin-top: 0;
 }
 .fancybox-item .de-para {
   position: relative;

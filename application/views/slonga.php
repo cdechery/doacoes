@@ -4,9 +4,11 @@
 			if( !localStorage.welcomeShown ) {
 				localStorage.setItem('welcomeShown', 1);
 				setTimeout( function() {
-					$('#texto_apres_cont').fadeIn('slow');
+					$('#welcome').fadeIn('slow');
 				}, 1000);
 			}
+			// para forçar exibição. comitar comentado
+			// localStorage.clear();
 		}
 	});
 
@@ -20,7 +22,7 @@
 
 	<section id="map">
 		
-		<div id="texto_apres_cont" style="display: none">
+		<div id="welcome" style="display: none">
 			<div id="texto_apres">
 				<div id="close">X</div>
 				<div id="texto">
@@ -29,8 +31,8 @@
 					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
 					<p>Se já quiser se cadastrar use os botões abaixo:</p>
 					<div class="buttons">
-						<button class="escolhetipo_box active fancybox.ajax" href="<?php echo base_url('usuario/escolhe_tipo')?>">Cadastrar</button>&nbsp;&nbsp;
-						ou&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="large" data-show-faces="false"></a>
+						<a class="escolhetipo_box active fancybox.ajax" href="<?php echo base_url('usuario/escolhe_tipo')?>">cadastre-se agora</a>&nbsp;&nbsp;
+						ou entre pelo&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
 					</div>
 				</div>
 			</div>

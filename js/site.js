@@ -105,8 +105,8 @@ function img_preload( arrayOfImages ) {
 
 $(function() {
 
-	$('#texto_apres_cont #close').on('click', function(){
-		$('#map #texto_apres_cont').hide();
+	$('#welcome #close').on('click', function(){
+		$('#map #welcome').hide();
 	});
 
 	$('#user-btn').on('mouseover', function(){

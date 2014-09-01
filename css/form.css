@@ -22,6 +22,10 @@ http://getbootstrap.com/css/#forms-controls */
 
   margin-bottom: 15px;
 }
+.form-group-horizontal {
+  /* inputs alinhados na horizontal */
+
+}
 .form-group-horizontal input[type=text],
 .form-group-horizontal input[type=password] {
   display: inline-block;
