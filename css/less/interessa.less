@@ -786,6 +786,7 @@ header#user_itens {
 
 .fancybox-item {
 	header {
+		border-radius: 4px 4px 0 0;
 		background-color: @azulescuro;
 		padding: 14px 20px;
 		h3 {
@@ -829,6 +830,14 @@ header#user_itens {
 			img {
 				border:1px solid #ccc;
 				margin-right: 10px;
+			}
+		}
+		#email_queroitem, 
+		#email_contato_inst {
+			input[type=text],
+			input[type=password],
+			textarea { 
+				min-width: 100%!important;
 			}
 		}
 	}

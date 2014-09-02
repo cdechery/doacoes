@@ -989,6 +989,7 @@ header#user_itens img {
 
 }
 .fancybox-item header {
+  border-radius: 4px 4px 0 0;
   background-color: #2b72a3;
   padding: 14px 20px;
 }
@@ -1035,6 +1036,14 @@ header#user_itens img {
 .fancybox-item #main .imgs img {
   border: 1px solid #ccc;
   margin-right: 10px;
+}
+.fancybox-item #main #email_queroitem input[type=text],
+.fancybox-item #main #email_contato_inst input[type=text],
+.fancybox-item #main #email_queroitem input[type=password],
+.fancybox-item #main #email_contato_inst input[type=password],
+.fancybox-item #main #email_queroitem textarea,
+.fancybox-item #main #email_contato_inst textarea {
+  min-width: 100%!important;
 }
 .fancybox-item .fancybox-nav {
   width: 60px;
