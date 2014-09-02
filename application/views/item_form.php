@@ -122,9 +122,11 @@
 	  var len = $(this).val().length;
 	  if (len >= max) {
 	    $('#charNum').text('Tamanho máximo atingido!');
+		$(this).val( $(this).val().substring(0, max-1) );
 	  } else {
 	    var char = max - len;
 	    $('#charNum').text('Você ainda tem '+char+' caracteres');
+	    return true;
 	  }
 	});
 

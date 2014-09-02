@@ -20,7 +20,7 @@
 			if( $btn_data['iqtd'] >= $btn_data['uqtd'] ) {
 				$tooltip = "Esse Item já recebeu o máximo de mensagens de Interessados";
 				$href = "";
-				$class .= "me_interessa disabled";
+				$class = "me_interessa disabled";
 				$icon = "<i class='fa fa-meh-o'></i>&nbsp;";
 			} else {
 				if( $btn_data['iqtd']==1 ) {
