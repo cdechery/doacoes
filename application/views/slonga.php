@@ -87,7 +87,10 @@
 				<li id="filter-item">
 					Itens
 					<div id="filtro_itens" class="checks" style="display:none;" class="clearfix">
-						<h4>Categorias</h4>
+						<div class="limpar">
+							<button onClick="limparFiltroItem();">Limpar</button>
+						</div>
+						<h4>Estas Categorias:</h4>
 						<div class="col">
 							<?php
 								foreach ($categorias as $cat) {
@@ -108,7 +111,7 @@
 						</div>
 						<br clear="all">
 						<div id="sit">
-							<h4>Situações</h4>
+							<h4>E nestas Situações:</h4>
 							<?php
 								foreach ($situacoes as $sit) {
 									echo "<input class='filterItemSit' type=checkbox name=sit".$sit->id." value=".$sit->id." onClick='filterItem();'>&nbsp;&nbsp;".$sit->descricao."&nbsp;&nbsp;&nbsp;";
@@ -120,7 +123,10 @@
 				<li id="filter-inst">
 					Interesses
 					<div id="filtro_ints" class="checks" style="display: none;" class="clearfix">
-						<h4>Interessado em</h4>
+						<h4>Apenas interessados em:</h4>
+						<div class="limpar">
+							<button onClick="limparFiltroInts();">Limpar</button>
+						</div>
 						<div class="col">
 							<?php
 								foreach ($categorias as $cat) {

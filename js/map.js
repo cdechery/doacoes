@@ -217,7 +217,10 @@ function filterItem() {
 
 	if( checkedCats.length==0 && checkedSits.length==0 ) {
 		showAllActive();
+		$('#filtro_itens .limpar').hide();
 		return;
+	} else {
+		$('#filtro_itens .limpar').show();
 	}
 
 	for(var i=0; i<activeMarkers.length; i++) {
@@ -239,7 +242,10 @@ function filterInt() {
 
 	if( checkedCats.length==0 ) {
 		showAllActive();
+		$('#filtro_ints .limpar').hide();
 		return;
+	} else {
+		$('#filtro_ints .limpar').show();
 	}
 
 	for(var i=0; i<activeMarkers.length; i++) {
@@ -312,4 +318,15 @@ $(document).ready(function(){
 	});
 
 });
+
+function limparFiltroItem( ) {
+	$('.filterItemCat').prop('checked', false);
+	$('.filterItemSit').prop('checked', false);
+	filterItem();
+}
+
+function limparFiltroInts( btn ) {
+	$('.filtroInstCat').prop('checked', false);
+	filterInt();
+}
 

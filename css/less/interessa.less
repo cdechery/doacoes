@@ -438,7 +438,20 @@ section#home {
 					}
 				}
 				> div#filtro_ints {
-					/*width: 180px!important;*/
+					.limpar {
+						display: none;
+						position: absolute;
+						margin-left: 230px;
+						margin-top: -27px;
+						button {
+							border: 1px solid @azulescuro!important;
+							.button-size(4px, 8px, 0.9em, 12px, 4px);
+							.button-variant(@azul; @azulescuro);
+							&:hover {
+								border: 1px solid @azul!important;
+							}
+						}
+					}
 				}
 				> div#filtro_itens {
 					width: 400px;
@@ -449,6 +462,19 @@ section#home {
 					}
 					#sit {
 						margin-top: 20px;
+					}
+					.limpar {
+						display: none;
+						position: absolute;
+						margin-left: 270px;
+						button {
+							border: 1px solid @azulescuro!important;
+							.button-size(4px, 8px, 0.9em, 12px, 4px);
+							.button-variant(@azul; @azulescuro);
+							&:hover {
+								border: 1px solid @azul!important;
+							}
+						}
 					}
 				}
 			}
