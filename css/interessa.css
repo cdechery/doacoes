@@ -593,6 +593,7 @@ section#home #filtros ul li:hover > div {
 }
 section#home #filtros ul li.selected {
   color: #e8d95c;
+  font-weight: 700;
 }
 section#home #filtros ul li > div.checks {
   /* divs com checkboxes */
