@@ -3,24 +3,21 @@
 </header>
 <div id="main">
 	<p><?php echo nl2br(wordwrap($idata['descricao'],60))?></p>
+	<?php if( isset($imgdata) && count($imgdata)>0 ): ?>
 	<div class="imgs">
-	<?php
-		if( isset($imgdata) && count($imgdata)>0 ) {
-			foreach ($imgdata as $img) {
-	?>
+		<?php foreach ($imgdata as $img): ?>
 		<a href="<?php echo user_img_url($img->nome_arquivo)?>" class="fancybox" rel="<?php echo $idata['id']?>" title="<?php echo $idata['titulo']?>"><img src="<?php echo item_image($img->nome_arquivo, 120)?>"></a>
-	<?php
-			}
-		}
-	?>
+		<?php endforeach; ?>
 	</div>
+	<?php endif; ?>
 	<?php if( $login_data['logged_in'] ): ?>
-	<div style="height: 30px;" class="clearfix">
+	<div style="height: 30px;">
 		<?php echo meinteressa_button( $idata['id'] ); ?>
 	</div>
 	<?php endif; ?>
 </div>
 <script type="text/javascript">
-$.fancybox.reposition();
-$.fancybox.update();
+$(document).ready( function() {
+	$.fancybox.update();
+});
 </script>
