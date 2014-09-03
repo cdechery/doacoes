@@ -1,3 +1,11 @@
+<div id="beta">
+	Nosso site ainda está em beta. Isso significa que ele está em fase de testes e pode apresentar alguns problemas. <br>
+	Se você tiver qualquer problema ou dificuldade na utilização, ou mesmo se quiser dar uma sugestão, utilize esse formulário.</p>
+	<p><a href="https://docs.google.com/forms/d/1NRheGssYWttaqhB_MOUU3qVt47P0_VUyEvA0ASUv1xg/viewform?usp=send_form" target="_blank">https://docs.google.com/forms/d/1NRheGssYWttaqhB_MOUU3qVt47P0_VUyEvA0ASUv1xg/viewform?usp=send_form</a></p> 
+</div>
+
+<br>
+
 <div id="sobre" class="roundbox">
 
 	<h2>O que é?</h2>
