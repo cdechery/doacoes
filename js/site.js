@@ -261,7 +261,7 @@ $(function() {
 				var interesseData = $.get( site_root +'interesse/get_single/'+json.user+'/'+json.cat );
                 interesseData.success(function(data) {
                 	$('#interesses_none').hide();
-                    $('#interesses table').append(data);
+                    $('#interesse-view table').append(data);
                 });
 			} else {
 				msg_error( json.msg );
