@@ -14,7 +14,7 @@
 .me_interessa.disabled {
   background-color: #eee!important;
   color: #666!important;
-  border: 1px solid #2b72a3 !important;
+  border: 1px solid #ccc!important;
 }
 /* body */
 html,
@@ -337,6 +337,10 @@ header#main nav#top #user-menu > ul li {
 header#main nav#top #user-menu > ul li a {
   color: #2b72a3;
   font-size: .9em;
+}
+header#main nav#top #user-menu > ul li a:hover {
+  text-decoration: none;
+  font-weight: bold!important;
 }
 header#main nav#top #user-menu > ul li i {
   margin-right: 10px;
