@@ -15,8 +15,12 @@
 	?>
 	</div>
 	<?php if( $login_data['logged_in'] ): ?>
-	<div style="height: 30px;">
+	<div style="height: 30px;" class="clearfix">
 		<?php echo meinteressa_button( $idata['id'] ); ?>
 	</div>
 	<?php endif; ?>
 </div>
+<script type="text/javascript">
+$.fancybox.reposition();
+$.fancybox.update();
+</script>
