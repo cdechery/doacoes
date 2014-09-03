@@ -14,7 +14,7 @@ $(document).ready(function() {
 		padding		: 25,
 		fitToView	: false,
 		width		: '630px',
-		height		: '310px',
+		height		: '330px',
 		autoSize	: false,
 		type		: 'ajax',
 		closeClick	: false,

@@ -2,7 +2,7 @@
 	$divClass = $colWidth = "";
 	if( isset($page) ) {
 		$divClass = "class='roundbox clearfix'";
-		$colWidth = "style='width:400px'";
+		$colWidth = "style='width:430px'";
 	}
 ?>
 
@@ -12,13 +12,13 @@
 	<div class="col" <?php echo $colWidth?>>
 		<img src="<?php echo img_url('pixel.gif')?>" id="pessoa">
 		<h3>Pessoa</h3>
-		<p>Para fazer e receber doações. Só aparecem no mapa Pessoas com Itens para doar.</p>
+		<p>Para fazer e receber doações - foco em <b>fazer</b>. Só aparecem no mapa Pessoas com Itens disponíveis para doar.</p>
 		<div class="go"><a href="<?php echo base_url('usuario/novo/P')?>">Faça seu cadastro como Pessoa >></a></div>
 	</div>
 	<div class="col" <?php echo $colWidth?>>
 		<img src="<?php echo img_url('pixel.gif')?>" id="instit">
 		<h3>Instituição</h3>
-		<p>Para fazer e receber doações. Todas aparecem no mapa, independente de ter Itens ou não.</p>
+		<p>Para fazer e receber doações - foco em <b>receber</b>. Todas aparecem no mapa, independente de Itens para doar. Os itens de Instituições não aparecem no mapa, apenas na listagem.</p>
 		<div class="go"><a href="<?php echo base_url('usuario/novo/I')?>">Faça seu cadastro como Instituição >></a></div>
 	</div>
 </div>

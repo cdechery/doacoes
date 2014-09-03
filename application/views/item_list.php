@@ -42,6 +42,19 @@
 ?>	
 </div>
 <script type="text/javascript">
+	$(".itembox").fancybox({
+		wrapCSS		: 'fancybox-item',
+		padding		: 0,
+		fitToView	: false,
+		minWidth	: '500px',
+		minHeight	: '350px',
+		autoSize	: true,
+		type		: 'ajax',
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+
 	$(".fancybox").fancybox({
 		openEffect	: 'none',
 		closeEffect	: 'none'

@@ -18,8 +18,8 @@ class Slonga extends MY_Controller {
 		$config['cluster'] = FALSE;
 		$config['sensor'] = TRUE;
 		$config['places'] = TRUE;
-		$config['https'] = TRUE;
 		if( ENVIRONMENT=='production') {
+			$config['https'] = TRUE;
 			$config['apiKey'] = 'AIzaSyBh29Uw40WRIA-lVdyM0xVIVqgDVdEpp10';
 		}
 		$config['disableMapTypeControl'] = TRUE;

@@ -1,12 +1,11 @@
-<div id="beta" class="roundbox">
+<div id="beta" class="roundbox" width="80%" style="display: none;">
 	Nosso site ainda está em beta. Isso significa que ele está em fase de testes e pode apresentar alguns problemas. <br>
 	Se você tiver qualquer problema ou dificuldade na utilização, ou mesmo se quiser dar uma sugestão, utilize <a href="https://docs.google.com/forms/d/1NRheGssYWttaqhB_MOUU3qVt47P0_VUyEvA0ASUv1xg/viewform?usp=send_form" target="_blank">esse formulário.</a>
 </div>
 
 <br>
 
-<div id="sobre" style="width: 80%;">
-
+<div id="sobre" width="80%">
 	<h2>O que é?</h2>
 	<p>O Interessa.org é um site para facilitar a doação, especialmente entre pessoas, daquelas coisas que não queremos mais, estão entulhando nossas casas mas pode interessar a alguém. As doações podem ser para e entre instituições também, tais como ONGs, orfanatos, asilos, etc. Mas esse não é um site com foco na caridade, e sim numa alternativa ao desperdício e combate a <a href="http://pt.wikipedia.org/wiki/Obsolesc%C3%AAncia">obsolescência planejada</a> - com o foco na redução do consumo e reuso.
 
@@ -30,3 +29,7 @@
 	<h3>Alguma dúvida?</h3>
 	<p>Para maiores detalhes sobre as regras de funcionamento, recomendamos que leia nossos <a href="<?php echo static_url('termos')?>">Termos de Serviço</a>. Se mesmo assim ainda restar alguma dúvida ou se quiser entrar em contato conosco por outro motivo, <a href='<?php echo static_url('contato')?>'>nos escreva</a>. Teremos prazer em responder.</p>
 </div>
+<script type="text/javascript">
+	function showBeta() { $('#beta').fadeIn('slow'); }
+	setInterval( function() {showBeta()}, 2000);
+</script>

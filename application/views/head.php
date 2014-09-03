@@ -71,21 +71,6 @@
 		var wh = Number(dh - hh - fh); //this is the height for the wrapper
 		$('section.contents').css('min-height', wh); //set the height for the wrapper div
 	});
-
-	$(document).ready(function() {
-		$(".itembox").fancybox({
-			wrapCSS		: 'fancybox-item',
-			padding		: 0,
-			fitToView	: false,
-			minWidth	: '500px',
-			minHeight	: '350px',
-			autoSize	: true,
-			type		: 'ajax',
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
-		});
-	});
 </script>
 </head>
 <body <?php echo $bodyId?>>
