@@ -24,7 +24,7 @@ body {
   padding: 0;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
-  /* tamanho padrão browsers */
+  /* tamanho padr�o browsers */
 
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -34,10 +34,10 @@ body {
 }
 body#home {
   background: #d1eaef url('../images/bghome.gif') 0 -50px repeat-x;
-  /* só na home */
+  /* s� na home */
 
 }
-/* meu normalize. ver se já não existe isso no normalize.css */
+/* meu normalize. ver se j� n�o existe isso no normalize.css */
 div,
 aside,
 h1,
@@ -59,18 +59,21 @@ section h3:first-of-type {
   /* normalizando margem do header */
 
 }
-/* padrão design */
+/* padr�o design */
 a {
   color: #2b72a3;
   text-decoration: none;
 }
 h2,
 h3 {
-  /* header seção */
+  /* header se��o */
 
   color: #2b72a3;
-  font-weight: 700;
+  font-weight: 900;
   text-transform: lowercase;
+}
+h2 {
+  font-size: 1.6em;
 }
 h2:first-child,
 h3:first-child {
@@ -206,7 +209,7 @@ input[type=submit] {
   background-color: #2b72a3;
   border-color: #2b72a3;
 }
-/* cols float padrão (par) */
+/* cols float padr�o (par) */
 .col {
   display: inline;
   float: left;
@@ -230,21 +233,24 @@ input[type=submit] {
 .wrap960:after {
   clear: both;
 }
-/* box fundo branco com rounded corners padrão */
+/* box fundo branco com rounded corners padr�o */
 .roundbox {
   background-color: #fff;
   border-radius: 14px;
   padding: 30px;
   border: 1px solid #ccc;
 }
-/* class section padrão */
+.roundbox p:first-child {
+  margin-top: 0;
+}
+/* class section padr�o */
 section.contents {
   width: 100%;
   padding: 25px 0 0;
-  /* tamanho texto padráo. ver depois.
+  /* tamanho texto padr�o. ver depois.
 	font-size: 1.2em; */
 
-  /* entrelinha texto padrão */
+  /* entrelinha texto padr�o */
 
 }
 section.contents p {
@@ -426,7 +432,7 @@ section#map #map_canvas {
   box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 section#map #map_canvas .gm-style-iw {
-  /* infowindow google maps, pessoa e instituição */
+  /* infowindow google maps, pessoa e institui��o */
 
   padding: 5px;
 }
@@ -502,7 +508,7 @@ section#home {
 }
 section#home .wrap960 {
   margin-top: 25px;
-  /* afastar título texto do mapa */
+  /* afastar t�tulo texto do mapa */
 
 }
 section#home #filtros {
@@ -511,11 +517,11 @@ section#home #filtros {
   font-size: .9em;
   background-color: #2b72a3;
   color: #fff;
-  /*opacity: 0.9; opacity tem vários problemas! */
+  /*opacity: 0.9; opacity tem v�rios problemas! */
 
 }
 section#home #filtros #filtro_texto {
-  /* janela localização */
+  /* janela localiza��o */
 
   z-index: 2000;
   position: absolute;
@@ -777,7 +783,7 @@ div#link_cadastro a {
 #cadastro_window .col:first-of-type {
   margin-left: 0px;
 }
-/* página cadastro */
+/* p�gina cadastro */
 #cadastro .col1 {
   display: inline;
   float: left;
@@ -846,7 +852,7 @@ header#itens h2 {
   width: 380px;
   margin: 0 10px;
 }
-/* página de itens de usuário */
+/* p�gina de itens de usu�rio */
 header#user_itens img {
   margin-right: 10px;
 }
@@ -929,29 +935,43 @@ header#user_itens img {
   margin-left: 20px;
 }
 /* interesses */
-#interesses {
+#interesse-head h2 {
+  margin-top: 0;
+}
+#interesse-head form {
+  float: right;
+}
+#interesses_none {
+  margin: 30px 0 0;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#interesse-view {
   margin: 30px 0;
   background-color: #fff;
 }
-#interesses table {
+#interesse-view table {
   width: 100%;
 }
-#interesses table thead {
+#interesse-view table thead {
   text-align: left;
   color: #000;
+  font-weight: 400;
 }
-#interesses table td {
+#interesse-view table td {
   color: #000;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
-#interesses table tr.disabled td {
+#interesse-view table tr.disabled td {
   color: #ccc;
 }
-#interesses table tr:last-child td {
+#interesse-view table tr:last-child td {
   border-bottom: none;
 }
-#interesses button {
+#interesse-view button {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.2em;
@@ -961,11 +981,11 @@ header#user_itens img {
   background-color: #e8d95c;
   border-color: #e8d95c;
 }
-#interesses button.activ_interesse_btn {
+#interesse-view button.activ_interesse_btn {
   background-color: #2b72a3 !important;
   color: #fff;
 }
-#interesses button.blue {
+#interesse-view button.blue {
   background-color: #d1eaef !important;
   color: #2b72a3 !important;
 }
@@ -980,7 +1000,16 @@ header#user_itens img {
   background-color: #78b03d;
   border-color: #78b03d;
 }
-/* página sobre */
+/* p�gina sobre */
+#beta {
+  background-color: #78b03d;
+  border: none;
+  color: #fff;
+}
+#beta a {
+  color: #e8d95c;
+  font-weight: 700;
+}
 #sobre .col {
   display: inline;
   float: left;
@@ -991,7 +1020,7 @@ header#user_itens img {
 #sobre .col:first-of-type {
   margin-left: 40px;
 }
-/* página de contato */
+/* p�gina de contato */
 #contato form {
   display: inline;
   float: left;
@@ -1017,9 +1046,9 @@ header#user_itens img {
   text-transform: none;
   font-size: 1em;
 }
-/* fancyboxes 'quero item' e 'email instituição' nas 2 etapas (visualizar e enviar email) */
+/* fancyboxes 'quero item' e 'email institui��o' nas 2 etapas (visualizar e enviar email) */
 .fancybox-item {
-  /* navegação fancybox */
+  /* navega��o fancybox */
 
 }
 .fancybox-item header {
@@ -1031,6 +1060,7 @@ header#user_itens img {
   color: #fff;
   margin: 0;
   padding: 0;
+  font-weight: 400;
 }
 .fancybox-item #main {
   padding: 10px 20px;

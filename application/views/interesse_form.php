@@ -20,18 +20,39 @@
 
 ?>
 
-<div class="roundbox">
-
+<header id="interesse-head">
+	<form method="post" id="interesse_insert" action="<?php echo base_url()?>interesse/insert">
+		<label>Categoria</label>
+		<select name="categ">
+			<?php
+				foreach ($categorias as $cat) {
+					echo '<option value="'.$cat->id.'">'.$cat->nome.'</option>';
+				}
+			?>
+		</select>&nbsp;&nbsp;
+		<label>Distância</label>
+		<select name="raio" style="width: 100px;">
+			<?php
+				foreach($raios as $raio => $desc) {
+					echo '<option value="'.$raio.'">'.$desc.'</option>';
+				}
+			?>
+		</select>&nbsp;&nbsp;
+		<button><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>
+	</form>
 	<h2>Meus Interesses</h2>
+</header>
+
+<div class="roundbox">
 
 	<p>Interesses são válidos por <?php echo $validade?> dias após a data de seu cadastro.<br>
 	Após esse período serão excluídos automaticamente - podendo ser cadastrados novamente sem problemas.</p>
 
-	<div align="center" id="interesses_none" style="display:<?php echo $display_inter_none?>;">
+	<div id="interesses_none" style="display:<?php echo $display_inter_none?>;">
 		Não há nenhum Interesse cadastrado.
 	</div>
 
-	<div id="interesses">
+	<div id="interesse-view">
 
 		<table>
 			
@@ -81,26 +102,5 @@
 		</table>
 
 	</div>
-
-	<form method="post" id="interesse_insert" action="<?php echo base_url()?>interesse/insert">
-		<h3>Incluir novo:</h3>
-		<label>Categoria</label>
-		<select name="categ">
-			<?php
-				foreach ($categorias as $cat) {
-					echo '<option value="'.$cat->id.'">'.$cat->nome.'</option>';
-				}
-			?>
-		</select>&nbsp;&nbsp;
-		<label>Distância</label>
-		<select name="raio" style="width: 100px;">
-			<?php
-				foreach($raios as $raio => $desc) {
-					echo '<option value="'.$raio.'">'.$desc.'</option>';
-				}
-			?>
-		</select>&nbsp;&nbsp;
-		<button><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>
-	</form>
 
 </div>
