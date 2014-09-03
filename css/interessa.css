@@ -1,6 +1,8 @@
 /* botão estilo bootstrap */
 /* botao 'Me Interessa' */
 .me_interessa {
+  /* fazer alguma magica aqui pro botao funcionar em todos os
+	lugares e possibilitar o fancybox de item ter altura variavel */
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1em;
@@ -978,6 +980,9 @@ header#user_itens img {
 }
 #sobre .col:first-of-type {
   margin-left: 40px;
+}
+#sobre ul {
+  line-height: 150%;
 }
 /* p?gina de contato */
 #contato form {

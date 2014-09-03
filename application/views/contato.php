@@ -41,7 +41,7 @@
 	</form>
 
 	<aside>
-		<p>Se tiver qualquer dúvida sobre o funcionamento do site, tente primeiro procurar <a href="<?php echo static_url('sobre')?>">aqui</a> ou <a href="<?php echo static_url('termos')?>">aqui</a>.</p>
+		<p>Se tiver qualquer dúvida sobre o funcionamento do site, tente primeiro procurar <a href="<?php echo base_url('sobre')?>">aqui</a> ou <a href="<?php echo base_url('termos')?>">aqui</a>.</p>
 		<p>Ainda não temos uma seção de ajuda formatada, então não se acanhe se sua dúvida for simples. Prometo que não demoramos pra responder.</p>
 		<p>Nem tudo na vida são flores e pode ser que o site apresente problemas. Por favor, nos ajude sempre a melhorar nos avisando e fornecendo o máximo de informações.</p>
 		<p>Sugestões e elogios são bem-vindos também, é claro. =]</p>

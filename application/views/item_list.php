@@ -47,16 +47,11 @@
 		padding		: 0,
 		fitToView	: false,
 		minWidth	: '500px',
-		minHeight	: '350px',
+		minHeight	: '220px',
 		autoSize	: true,
 		type		: 'ajax',
 		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
-
-	$(".fancybox").fancybox({
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});	
 </script>
