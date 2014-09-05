@@ -78,9 +78,9 @@
 				array_shift($params['raios_busca']);
 			?>
 			<div id="botoes">
-				<button id="local">Mudar localização</button>
+				<button id="local"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;Mudar localização</button>
 				<?php if( $login_data['logged_in'] ): ?>
-					<button id="raios" title="<?php echo implode(" > ", $params['raios_busca'])?>">Mostrar/esconder raios</button>
+					<button id="raios" title="<?php echo implode(" > ", $params['raios_busca'])?>"><i class="fa fa-bullseye"></i>&nbsp;&nbsp;Exibir Raios</button>
 				<?php endif; ?>
 			</div>
 			<script type="text/javascript">

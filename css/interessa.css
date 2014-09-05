@@ -502,7 +502,6 @@ section#home #filtros {
   font-size: .9em;
   background-color: #2b72a3;
   color: #fff;
-  /*opacity: 0.9; opacity tem v?rios problemas! */
 }
 section#home #filtros #filtro_texto {
   /* janela localiza??o */
@@ -532,7 +531,7 @@ section#home #filtros #botoes {
   padding: 7px 0 0;
 }
 section#home #filtros #botoes button {
-  padding: 6px 12px;
+  padding: 6px 10px;
   font-size: 0.8em;
   line-height: 12px;
   border-radius: 8px;
@@ -540,12 +539,15 @@ section#home #filtros #botoes button {
   color: #ffffff;
   background-color: #78b03d;
   border-color: #78b03d;
-  font-weight: 300;
+  font-weight: 350;
   text-transform: uppercase;
-  font-size: .6em;
+  font-size: .8em;
+}
+section#home #filtros #botoes button > i {
+  font-size: 1.1em;
 }
 section#home #filtros > h4 {
-  margin: 0 14px 0 0;
+  margin: 0 12px 0 0;
   padding: 0;
   display: inline-block;
   text-transform: uppercase;

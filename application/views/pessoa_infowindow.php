@@ -1,5 +1,5 @@
 <?php
-	$maxItems = 3;
+	$maxItems = 2;
 
 	$avatar = user_avatar( $udata['avatar'], 40 );
 
@@ -32,9 +32,17 @@
 	
 	$numItems = 0;
 	$nodisplay = "";
+	$plusShown = false;
 	foreach ($arrItems as $item_id => $item) {
 		$numItems++;
-		if( $numItems>$maxItems ) $nodisplay = "style='display:none;'";
+		if( $numItems>$maxItems ) {
+			if( !$plusShown ) {
+				echo "<a style='border: 0px' href='".base_url('item/map_view/'.$item_id)."' class='itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens' title='".$item['titulo']."'><img class=\"plus\" title=\"Ver mais itens...\" src='".img_url('plus.png')."'></a>";
+				$plusShown = true;
+				continue;
+			}
+			$nodisplay = "style='display:none;'";
+		}
 		if( isset($item['imagens']) ) {
 			$thumb = thumb_filename($item['imagens'][0], 60);
 			echo "<a ".$nodisplay." href='".base_url('item/map_view/'.$item_id)."' class='foto_item itembox fancybox.ajax' data-itemid='".$item_id."' rel='pessoas_itens' title='".$item['titulo']."'><img src='".user_img_url($thumb)."''></a>";
@@ -43,11 +51,11 @@
 		}
 	}
 ?>
-
 <nav>
 	<a href="#" onClick="nextMarker();">próximo&nbsp;&nbsp;<i class="fa fa-angle-right"></i></a>
 	<a href="#" onClick="prevMarker();"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;anterior</a>
 </nav>
 <script type="text/javascript">
 	$('.foto_item').tipsy( {opacity: 1});
+	$('.plus').tipsy( {opacity: 1});
 </script>
