@@ -1,5 +1,5 @@
 <?php
-	$maxItems = 2;
+	$maxItems = 3;
 
 	$avatar = user_avatar( $udata['avatar'], 40 );
 

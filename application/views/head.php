@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="<?php echo $this->config->item('charset');?>"/>
+<meta property="og:title" content="Interessa.org" />
+<meta property="og:description" content="Somos um site que ajuda aqueles que querem doar aquilo que está sobrando em casa a encontrar interessados. Pessoas e instiuições podem se cadastrar para disponibilizar itens para doação ou para procurarem aquilo que está disponível, em uma interface de mapa amigável e intuitiva." />
+<meta property="og:image" content="<?php echo img_url('site_icon.png')?>" />
 <?php
 	if( !isset($title) ) {
 		echo "ERROR: Title not defined!";
@@ -160,7 +163,7 @@
 						</li>
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
-					<li id="facebook">
+					<li id="facebook" style="text-align: middle;">
 						Faça login pelo&nbsp;&nbsp;
 						<a class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
 					</li>
