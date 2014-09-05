@@ -1,6 +1,6 @@
 <header id="itens" class="clearfix">
 	<h2>Itens</h2>
-	<a href="#" class="item-novo" onClick="location.href='<?php echo base_url('item/novo')?>';"><i class="fa fa-plus"></i>&nbsp;&nbsp;adicionar</a>
+	<?php echo adicionar_button("float: right;", base_url('item/novo') )?>
 </header>
 
 <div id="show_itens" class="clearfix">

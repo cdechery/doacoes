@@ -38,7 +38,7 @@
 				}
 			?>
 		</select>&nbsp;&nbsp;
-		<button><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>
+		<?php echo adicionar_button()?>
 	</form>
 	<h2>Meus Interesses</h2>
 </header>

@@ -1,3 +1,8 @@
+<script type="text/javascript">
+$(document).ready( function() {
+	$.fancybox.update();
+});
+</script>
 <header>
 	<h3><?php echo $idata['titulo']?></h3>
 </header>
@@ -16,8 +21,3 @@
 	</div>
 	<?php endif; ?>
 </div>
-<script type="text/javascript">
-$(document).ready( function() {
-	$.fancybox.update();
-});
-</script>

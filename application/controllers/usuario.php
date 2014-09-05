@@ -7,6 +7,7 @@ class Usuario extends MY_Controller {
 		$this->load->model('usuario_model');
 		$this->load->helper('xlang');
 		$this->load->helper('cookie');
+		$this->load->helper('html_assets');
 	}
 
 	public function logout() {

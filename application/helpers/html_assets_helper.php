@@ -36,4 +36,15 @@
 
 		return $ret;
 	}
+
+	function adicionar_button($css="", $href="") {
+		if( !empty($css) ) {
+			$css = " style='".$css."'";
+		}
+
+		if( !empty($href) ) {
+			$href = " href=\"#\" onClick=\"location.href='".$href."'\"";
+		}
+		return '<button class="adicionar"'.$css.''.$href.'><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>';
+	}
  ?>
