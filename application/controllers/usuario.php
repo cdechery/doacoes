@@ -7,7 +7,6 @@ class Usuario extends MY_Controller {
 		$this->load->model('usuario_model');
 		$this->load->helper('xlang');
 		$this->load->helper('cookie');
-		$this->load->helper('html_assets');
 	}
 
 	public function logout() {
@@ -113,7 +112,7 @@ class Usuario extends MY_Controller {
 		echo json_encode( array('status'=>$status, 'msg'=>$msg) );
 	}
 
-	public function escolhe_tipo($windowed = "") {
+	public function escolhe_tipo( $windowed = "" ) {
 		$this->session->unset_userdata('tipo_cadastro');
 
 		if( $windowed==="" ) {

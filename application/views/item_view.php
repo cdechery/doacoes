@@ -7,7 +7,7 @@ $(document).ready( function() {
 	<h3><?php echo $idata['titulo']?></h3>
 </header>
 <div id="main">
-	<p><?php echo nl2br(wordwrap($idata['descricao'],60))?></p>
+	<p style="min-height: 40px;"><?php echo nl2br(wordwrap($idata['descricao'],60))?></p>
 	<?php if( isset($imgdata) && count($imgdata)>0 ): ?>
 	<div class="imgs">
 		<?php foreach ($imgdata as $img): ?>

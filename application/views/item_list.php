@@ -47,7 +47,6 @@
 		padding		: 0,
 		fitToView	: false,
 		minWidth	: '500px',
-		minHeight	: '220px',
 		autoSize	: true,
 		type		: 'ajax',
 		closeClick	: false,

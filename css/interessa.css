@@ -27,6 +27,25 @@
   background-color: #2b72a3 !important;
   color: #fff!important;
 }
+.signup.btn {
+  border: 1px solid #d1eaef !important;
+  padding: 4px 12px;
+  font-size: 1em;
+  line-height: 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: inherit;
+  color: #fff!important;
+}
+.signup.btn > i {
+  font-size: 1.2em;
+}
+.signup.btn:hover {
+  color: #d1eaef !important;
+}
+.signup.link:hover {
+  text-decoration: underline!important;
+}
 /* body */
 html,
 body {
@@ -36,14 +55,17 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   /* tamanho padr?o browsers */
+
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   /* evitar que as fontes sejam automaticamente bold no Mac. */
+
   background-color: #d1eaef;
 }
 body#home {
   background: #d1eaef url('../images/bghome.gif') 0 -50px repeat-x;
   /* s? na home */
+
 }
 /* meu normalize. ver se j? n?o existe isso no normalize.css */
 div,
@@ -59,11 +81,13 @@ section,
 footer {
   padding: 0;
   /* evitar margin collapsing */
+
 }
 section h2:first-child,
 section h3:first-of-type {
   margin-top: 0;
   /* normalizando margem do header */
+
 }
 /* padr?o design */
 a {
@@ -73,6 +97,7 @@ a {
 h2,
 h3 {
   /* header se??o */
+
   color: #2b72a3;
   font-weight: 900;
   text-transform: lowercase;
@@ -103,10 +128,12 @@ body:after {
 http://getbootstrap.com/css/#forms-controls */
 .form-group {
   /* container label + input */
+
   margin-bottom: 15px;
 }
 .form-group-horizontal {
   /* inputs alinhados na horizontal */
+
 }
 .form-group-horizontal input[type=text],
 .form-group-horizontal input[type=password] {
@@ -114,6 +141,7 @@ http://getbootstrap.com/css/#forms-controls */
 }
 .submit {
   /* alinhar botão submit à direita */
+
   text-align: right;
 }
 label {
@@ -193,6 +221,7 @@ input[type=submit] {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
+
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
@@ -237,7 +266,9 @@ section.contents {
   padding: 25px 0 0;
   /* tamanho texto padr?o. ver depois.
 	font-size: 1.2em; */
+
   /* entrelinha texto padr?o */
+
 }
 section.contents p {
   line-height: 1.5em;
@@ -245,6 +276,7 @@ section.contents p {
 section.contents form h5:first-child {
   display: none;
   /* mensagem de erro. TESTAR ISSO */
+
 }
 /* inicio estilos slonga */
 header#main {
@@ -413,6 +445,7 @@ section#map #welcome #texto_apres .buttons a {
 }
 section#map #map_canvas {
   /* container mapa, alguns estilos passados diretamente pelo controller */
+
   margin: 0 auto;
   border-radius: 16px;
   -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
@@ -421,6 +454,7 @@ section#map #map_canvas {
 }
 section#map #map_canvas .gm-style-iw {
   /* infowindow google maps, pessoa e institui??o */
+
   padding: 5px;
 }
 section#map #map_canvas .gm-style-iw header {
@@ -440,6 +474,7 @@ section#map #map_canvas .gm-style-iw header img {
 }
 section#map #map_canvas .gm-style-iw a.itembox {
   /* link para imagens de item */
+
   display: inline-block;
   border: 1px solid #ccc;
   margin-right: 10px;
@@ -495,6 +530,7 @@ section#home {
 section#home .wrap960 {
   margin-top: 25px;
   /* afastar t?tulo texto do mapa */
+
 }
 section#home #filtros {
   border-radius: 10px;
@@ -505,6 +541,7 @@ section#home #filtros {
 }
 section#home #filtros #filtro_texto {
   /* janela localiza??o */
+
   z-index: 2000;
   position: absolute;
   right: 20px;
@@ -586,6 +623,7 @@ section#home #filtros ul li.selected {
 }
 section#home #filtros ul li > div.checks {
   /* divs com checkboxes */
+
   z-index: 2000;
   position: absolute;
   left: -130px;
@@ -695,6 +733,7 @@ section#home #filtros ul li > div#filtro_itens .limpar button:hover {
   border-radius: 4px;
   border: none;
   /* padding vertical, padding horizontal, font-size, line-height e border-radius */
+
   color: #ffffff;
   background-color: #2b72a3;
   border-color: #2b72a3;
@@ -718,6 +757,7 @@ div#link_cadastro a {
   padding: 30px 0 0 50px;
   background-color: #fff;
   /* tirando fundo azul herdado do body */
+
   height: 120px;
 }
 #forgot_pass p {
@@ -841,6 +881,7 @@ header#user_itens img {
 }
 .item_single {
   /* user_item_list e item_list */
+
   background-color: #fff;
   height: 250px;
   margin-bottom: 20px;
@@ -895,6 +936,7 @@ header#user_itens img {
 .item_single .action button.item-status {
   /*background-color: @azul;
 				color: @azulescuro;*/
+
 }
 .item_single .action button.active {
   background-color: #78b03d;
@@ -1033,6 +1075,7 @@ header#user_itens img {
 /* fancyboxes 'quero item' e 'email institui??o' nas 2 etapas (visualizar e enviar email) */
 .fancybox-item {
   /* navega??o fancybox */
+
 }
 .fancybox-item header {
   border-radius: 4px 4px 0 0;

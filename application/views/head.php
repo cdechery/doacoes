@@ -93,7 +93,7 @@
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
 	// para forçar exibição. comitar comentado
-	// $enableFB = true;
+	//$enableFB = true;
 	
 	$runFB = $enableFB && false == $fbLogin &&
 		false == $login_data['logged_in'] && false == $fbReg;
@@ -122,6 +122,10 @@
 			}
 		});
 	};
+
+	function fb_login() {
+	    FB.login( function() {}, { scope: 'email,public_profile' } );
+	}
 
 	(function(d){
 		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -165,8 +169,7 @@
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
 					<li id="facebook" style="text-align: middle;">
-						Faça login pelo&nbsp;&nbsp;
-						<a class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
+						<?php echo fblogin_button() ?>
 					</li>
 				<?php endif; // if logged_in ?> 
 			</ul>

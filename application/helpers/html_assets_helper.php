@@ -47,4 +47,12 @@
 		}
 		return '<button class="adicionar"'.$css.''.$href.'><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;adicionar</button>';
 	}
+
+	function fblogin_button($text = "") {
+		if( empty($text) ) {
+			$text = "Fazer login com";
+		}
+
+		return "<button class=\"signup btn\" onClick=\"fb_login();\">".$text." <i class=\"fa fa-facebook-square\"></i></button>";
+	}
  ?>
