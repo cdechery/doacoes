@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="description" content="Site dedicado a ajudar pessoas a encontrar interessados naquilo que tem para doar numa interface de mapa intuitiva">
+<meta name="keywords" content="doação,doacao,doacoes,doações">
 <meta charset="<?php echo $this->config->item('charset');?>"/>
 <meta property="og:title" content="Interessa.org" />
-<meta property="og:description" content="Somos um site que ajuda aqueles que querem doar aquilo que está sobrando em casa a encontrar interessados. Pessoas e instiuições podem se cadastrar para disponibilizar itens para doação ou para procurarem aquilo que está disponível, em uma interface de mapa amigável e intuitiva." />
+<meta property="og:description" content="Somos um site que ajuda aqueles que querem doar o que está sobrando em casa (ou no trabalho) a encontrar interessados. Pessoas e instiuições podem se cadastrar para disponibilizar itens para doação ou para procurarem aquilo que está disponível, em uma interface de mapa amigável e intuitiva." />
 <meta property="og:image" content="<?php echo img_url('site_icon.png')?>" />
 <?php
 	if( !isset($title) ) {
