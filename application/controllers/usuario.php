@@ -127,6 +127,7 @@ class Usuario extends MY_Controller {
 	}
 
 	public function novo($tipo = NULL) {
+
 		$this->load->helper('image_helper');
 		$this->load->helper('form');
 	
@@ -157,6 +158,13 @@ class Usuario extends MY_Controller {
 			$data['sobrenome'] = $fbdata['last_name'];
 			$data['email'] = $fbdata['email'];
 			$data['avatar'] = $fbdata['avatar'];
+			if( array_key_exists('gender', $fbdata) ) {
+				if( $fbdata['gender']=='male' ) {
+					$data['sexo'] = 'M';
+				} else if ( $fbdata['gender']=='female' ) {
+					$data['sexo'] = 'F';
+				}
+			}
 		}
 
 		$this->load->view('user_form', array('data'=>$data,
