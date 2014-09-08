@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--[if lt IE 9]>
+	<script type="text/javascript">window.location = 'http://www.updateyourbrowser.net/pt/';</script>
+<![endif]-->
 <meta name="description" content="Site dedicado a ajudar pessoas a encontrar interessados naquilo que tem para doar numa interface de mapa intuitiva">
 <meta name="keywords" content="doação,doacao,doacoes,doações">
 <meta charset="<?php echo $this->config->item('charset');?>"/>
@@ -50,7 +53,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo static_url('min/g='.$min_template.'_css'.$min_debug)?>"/>
 <link rel="shortcut icon" href="<?php echo img_url('favicon.ico')?>" type="image/x-icon">
 <link rel="icon" href="<?php echo img_url('favicon.ico')?>" type="image/x-icon">
-<!--[if lt IE 9]>
+<!--[if lte IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <?php

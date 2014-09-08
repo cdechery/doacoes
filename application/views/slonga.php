@@ -39,9 +39,9 @@
 				<div id="close">X</div>
 				<div id="texto">
 					<h3>Bem-vindo ao Interessa.org</h3>
-					<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
+					<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade também para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
 					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
-					<p>Se já quiser se começar a usar acesse as opções abaixo:</p>
+					<p>Se já quiser começar a usar acesse as opções abaixo:</p>
 					<div class="buttons">
 						<a class="escolhetipo_box active fancybox.ajax signup link" href="<?php echo base_url('usuario/escolhe_tipo')?>">cadastre-se agora</a>&nbsp;&nbsp;
 						ou &nbsp;&nbsp;<a class="signup link" href="#" onClick="fb_login();">entre pelo <i class="fa fa-facebook-square"></i></a>

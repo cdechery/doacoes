@@ -50,11 +50,11 @@
 		</div>
 		<div class="form-group">
 			<label>Nome do item:</label>
-			<input type="text" name="titulo" value="<?php echo $titulo ?>" title="Título" />
+			<input type="text" name="titulo" value="<?php echo htmlspecialchars($titulo) ?>" title="Título" />
 		</div>
 		<div class="form-group">
 			<label>Descrição:</label>
-			<textarea name="desc" id="item_desc" title="Descrição" rows="6" cols="50"/><?php echo $descricao?></textarea>
+			<textarea name="desc" id="item_desc" title="Descrição" rows="6" cols="50"/><?php echo htmlspecialchars($descricao)?></textarea>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="<?php echo $actions[ $action ]; ?>"/>
