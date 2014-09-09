@@ -94,9 +94,10 @@ class Slonga extends MY_Controller {
 			$user_location = $marker['position'];
 
 			$marker['infowindow_content'] = 'Você';
-			$marker['clickable'] = false;
+			//$marker['clickable'] = true;
+			$marker['title'] = 'Esse é você! :)';
 
-			if( $row->tipo=='P' ) {
+			if( $user_data['tipo'] == 'P' ) {
 				$marker['icon'] = img_url('active_pessoa.png');
 			} else {
 				$marker['icon'] = img_url('active_inst.png');
