@@ -56,6 +56,13 @@
 <!--[if lte IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<!--[if gt IE 9]>
+<script>
+	$(document).ready( function() {
+		msg_error('Estamos tendo alguns problemas com o <b>Internet Explorer 10 e 11</b> - mas já estamos correndo pra resolver.<br><br>Recomendamos que use outro browser para acessar ou você não conseguirá usar o site direito. Pedimos desculpas pelo incômodo', 'Atenção');
+	});
+</script>
+<![endif]-->
 <?php
 	if( !empty($cust_js) ) {
 ?>
@@ -98,7 +105,7 @@
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
 	// para forçar exibição. comitar comentado
-	//$enableFB = true;
+	$enableFB = true;
 	
 	$runFB = $enableFB && false == $fbLogin &&
 		false == $login_data['logged_in'] && false == $fbReg;
@@ -173,8 +180,9 @@
 						</li>
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
-					<li id="facebook" style="text-align: middle;">
-						<?php echo fblogin_button() ?>
+					<li id="facebook" style="vertical-align: middle;">
+						<a class="fb-login-button"  scope="email,public_profile" data-size="medium" data-show-faces="false"></a>
+						<?php //echo fblogin_button() ?>
 					</li>
 				<?php endif; // if logged_in ?> 
 			</ul>
