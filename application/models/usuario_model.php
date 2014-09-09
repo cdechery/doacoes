@@ -128,17 +128,24 @@ class Usuario_model extends MY_Model {
 		return $this->db->get('usuario')->result();
 	}
 
-	public function update_lat_long($id, $lat, $long) {
+	public function exists_lat_long($lat, $long, $id = 0) {
 		if( empty($lat) || empty($long) ) {
 			return false;
 		}
 
-		$upd_data = array(
-			'lat' => $lat,
-			'lng' => $long
-		);
+		$this->db->select('id');
+		$this->db->where('round(lat,5) = round('.$lat.', 5)',
+			NULL, FALSE);
+		$this->db->where('round(lng,5) = round('.$long.', 5)',
+			NULL, FALSE);
 
-		return( $this->db->update('usuario', $upd_data, array('id' => $id)) );
+		if( $id != 0 ) {
+			$this->db->where('id !=', $id);
+		}
+
+		$ret = $this->db->get('usuario')->result();
+
+		return count( $ret ) > 0;
 	}
 
 	public function update_password($email, $new_pwd) {
@@ -170,3 +177,4 @@ class Usuario_model extends MY_Model {
 	}
 }
 ?>
+

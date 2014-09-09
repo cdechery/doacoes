@@ -46,6 +46,7 @@ var placesAutocomplete;
 function updateFormLatLng(lat, lng) {
 	document.userData.lat.value = lat;
 	document.userData.lng.value = lng;
+	document.userData.pos.value = "1";
 }
 
 function createMarker( markerOptions ) {
@@ -101,7 +102,17 @@ function initialize() {
 	map.setCenter( myLatlng );
 <?php		
 	} 
+
+	foreach ($map as $row) {
+		if( $row->user_id == $id) continue;
 ?>
+	var marker = new google.maps.Marker( {map: map,
+		position: new google.maps.LatLng(<?php echo $row->lat?>, <?php echo $row->lng?>),
+		icon: "<?php echo img_url('yellow-dot.png')?>" } );
+<?php
+	}
+?>
+
 } // initialize
 
 window.onload = initialize;
@@ -143,6 +154,7 @@ window.onload = initialize;
 		<input type="hidden" name="id" value="<?php echo $id ?>">
 		<input type="hidden" name="lat" value="<?php echo $lat ?>">
 		<input type="hidden" name="lng" value="<?php echo $lng ?>">
+		<input type="hidden" name="pos" value="">
 		<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
 			<div class="form-group">
 				<label>Login</label>
@@ -199,10 +211,11 @@ window.onload = initialize;
 		
 			<div id="loc" class="form-group">
 				<label>Localização</label>
-				<input type="text" id="myPlaceTextBox" placeholder="Digite sua localização"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax'><i class="fa fa-question-circle"></i></a> 
+				<input type="text" id="myPlaceTextBox" placeholder="Sua rua ou bairro"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url('usuario/ajuda_localizacao')?>" class='locationbox fancybox.ajax'><i class="fa fa-question-circle"></i></a> 
+				<span style="color: gray; font-size: 0.8em">Dica: procure não colocar sua localização muito próxima a pontos existentes. Arraste o marcador se necessário.</span>
+				<div id="map_canvas"></div>
 			</div>
 			
-			<div id="map_canvas"></div>
 
 		</div>
 

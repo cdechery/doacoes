@@ -167,8 +167,11 @@ class Usuario extends MY_Controller {
 			}
 		}
 
+		$this->load->model('mapa_model');
+		$map_result = $this->mapa_model->get_all();
+
 		$this->load->view('user_form', array('data'=>$data,
-				'tipo'=>$tipo) );
+				'tipo'=>$tipo, 'map'=>$map_result) );
 		$this->load->view('foot');
 	}
 
@@ -195,7 +198,7 @@ class Usuario extends MY_Controller {
 		}
 		$this->form_validation->set_rules('password', 'Senha', 'required|min_length[6]|max_length[8]');
 		$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'required|matches[password]');
-		$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
+		$this->form_validation->set_rules('pos', 'Localização (no Mapa)', 'required|callback_location_check');
 
 		if ($this->form_validation->run() == FALSE) {
 			$status = "ERROR";
@@ -239,7 +242,11 @@ class Usuario extends MY_Controller {
 			$user_data['avatar'] = $user_data['avatar'];
 		}
 
-		$this->load->view('user_form', array('data'=>$user_data) );
+		$this->load->model('mapa_model');
+		$map_result = $this->mapa_model->get_all();
+
+		$this->load->view('user_form',
+			array('data'=>$user_data, 'map'=>$map_result) );
 		$this->load->view('foot');
 	}
 
@@ -262,7 +269,7 @@ class Usuario extends MY_Controller {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
 			$this->form_validation->set_rules('password', 'Senha', 'min_length[6]|max_length[8]');
 			$this->form_validation->set_rules('password_2', 'Confirmação de senha', 'matches[password]');
-			$this->form_validation->set_rules('lat', 'Localização (no Mapa)', 'required');
+			$this->form_validation->set_rules('pos', 'Localização', 'required|callback_location_check');
 
 			if( $user_data['tipo']=='P' ) { // Pessoa
 				$this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[3]|max_length[40]');
@@ -345,6 +352,20 @@ class Usuario extends MY_Controller {
 	public function email_check( $email ) {
 		if( $this->usuario_model->email_exists($email, $this->login_data['user_id']) ) {
 			$this->form_validation->set_message('email_check', xlang('dist_upduser_email') );
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	public function location_check( $ignore_arg ) {
+		$lat = $this->input->post('lat');
+		$long = $this->input->post('lng');
+		$user_id = ($this->login_data['logged_in'])?$this->login_data['user_id']:0;
+
+		if( $this->usuario_model->exists_lat_long( $lat, $long, $user_id ) ) {
+			$this->form_validation->set_message('location_check',
+				'Já existe um marcador nessa localização. Arraste sua localização para um local não marcado no mapa');
 			return FALSE;
 		} else {
 			return TRUE;
