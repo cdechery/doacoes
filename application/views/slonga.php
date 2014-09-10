@@ -1,20 +1,25 @@
 <script type="text/javascript">
 	$(document).ready( function() {
+		// para forçar exibição. comitar comentado
+		//localStorage.clear();
 		if( typeof(Storage) !== "undefined" ) {
 			if( !localStorage.welcomeShown ) {
 				localStorage.setItem('welcomeShown', 1);
 				setTimeout( function() {
 					$('#welcome').fadeIn('slow');
 				}, 1000);
+			} else if( !localStorage.legendaShown ) {
+				setTimeout( function() {
+					$('#legenda').fadeIn('slow');
+				}, 1000);
 			}
-			// para forçar exibição. comitar comentado
-			//localStorage.clear();
 		}
 	});
-	$(".fancybox").fancybox({
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
+
+	function hideLegenda() {
+		$('#legenda').fadeOut('fast');
+		localStorage.setItem('legendaShown', 1);
+	}
 
 	$(".itembox").fancybox({
 		wrapCSS		: 'fancybox-item',
@@ -34,7 +39,7 @@
 
 	<section id="map">
 		
-		<div id="welcome" style="display: none">
+		<div id="welcome" style="display: none;">
 			<div id="texto_apres">
 				<div id="close">X</div>
 				<div id="texto">
@@ -50,41 +55,48 @@
 			</div>
 		</div>
 
-		<form name="__map">
-			<?php echo $map['js']; ?>
-			<?php echo $map['html']; ?>
-		</form>
-
-	</section>
-	
-	<div class="wrap960">
+		<div id="legenda" style="display: none;">
+			<h1>Legenda:</h1>
+			<p><img src="<?php echo img_url('pessoa.png')?>"> Pessoa</p>
+			<p><img src="<?php echo img_url('inst.png')?>"> Instituição</p>
+			<div align="center"><button onClick="hideLegenda();">Entendi</button></div>
+		</div>
 		
-		<div id="filtros">
-
-			<div id="filtro_texto" class="checks" style="display: none;">
-				<?php
-					$centro = $params['mapa']['default_loc_name'];
-					if( $login_data['logged_in'] ) {
-						$centro = "Sua localização";
-				} ?>
-				<p>Exibindo: <span id="exibindo_mapa"><?php echo $centro?></span></p>
-				<input type="text" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
-				<?php if( $login_data['logged_in']) : ?>
-					<p>Retornar para <a href="#" onClick="map.setCenter( user_location ); $('#exibindo_mapa').html('Sua localização');">sua localização</a></p>
-				<?php endif; ?>
-			</div>
-			<?php
-				array_shift($params['raios_busca']);
-			?>
-			<div id="botoes">
-				<button id="local"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;Mudar localização</button>
-				<?php if( $login_data['logged_in'] ): ?>
-					<button id="raios" title="<?php echo implode(" > ", $params['raios_busca'])?>"><i class="fa fa-bullseye"></i>&nbsp;&nbsp;Exibir Raios</button>
-				<?php endif; ?>
-			</div>
-			<script type="text/javascript">
-				$('#raios').tipsy({ gravity: 's', opacity: 0.9});
-			</script>
+				<form name="__map">
+					<?php echo $map['js']; ?>
+					<?php echo $map['html']; ?>
+				</form>
+		
+			</section>
+			
+			<div class="wrap960">
+				
+				<div id="filtros">
+		
+					<div id="filtro_texto" class="checks" style="display: none;">
+						<?php
+							$centro = $params['mapa']['default_loc_name'];
+							if( $login_data['logged_in'] ) {
+								$centro = "Sua localização";
+						} ?>
+						<p>Exibindo: <span id="exibindo_mapa"><?php echo $centro?></span></p>
+						<input type="text" placeholder="Digite aqui uma cidade ou bairro" id="mapCenterTextBox">
+						<?php if( $login_data['logged_in']) : ?>
+							<p>Retornar para <a href="#" onClick="map.setCenter( user_location ); $('#exibindo_mapa').html('Sua localização');">sua localização</a></p>
+						<?php endif; ?>
+					</div>
+					<?php
+						array_shift($params['raios_busca']);
+					?>
+					<div id="botoes">
+						<button id="local"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;Mudar localização</button>
+						<?php if( $login_data['logged_in'] ): ?>
+						<button id="raios" title="<?php echo implode(" > ", $params['raios_busca'])?>"><i class="fa fa-bullseye"></i>&nbsp;&nbsp;Exibir Raios</button>
+						<script type="text/javascript">
+							$('#raios').tipsy({ gravity: 's', opacity: 0.9});
+						</script>
+						<?php endif; ?>
+					</div>
 
 			<h4>Filtrar resultados</h4>
 

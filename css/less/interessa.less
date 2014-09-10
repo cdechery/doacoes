@@ -338,6 +338,37 @@ section#map {
 			}
 		}
 	}
+	#legenda {
+		z-index: 4;
+		border-radius: 5px;
+		background-image: url('../images/bg_filtros.png');
+		position: absolute;
+		right: 80px;
+		top: 300px;
+		width: 150px;
+		height: 180px;
+		padding-left: 12px;
+		h1 {
+			color: #fff;
+			font-size: 1em;
+		}
+		p {
+			color: #fff;
+			font-size: 0.8em;
+		}
+		img {
+			vertical-align: middle;
+			margin: 2px;
+		}
+		button {
+			.button-size(5px, 12px, 0.8em, 12px, 4px);
+			background-color: @azulescuro;
+			color: #fff;
+			&:hover {
+				color: @azul;
+			}
+		}
+	}
 }
 
 /* drop-down do google places */
