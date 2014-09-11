@@ -48,9 +48,9 @@
 					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>
 					<p>Se já quiser começar a usar acesse as opções abaixo:</p>
 					<div class="buttons">
-						<a class="escolhetipo_box active fancybox.ajax signup link" href="<?php echo base_url('usuario/escolhe_tipo')?>">cadastre-se agora</a>&nbsp;&nbsp;
-						ou &nbsp;&nbsp;<a class="signup link" href="#" onClick="fb_login();">entre pelo <i class="fa fa-facebook-square"></i></a>
-					</div>
+						<a class="escolhetipo_box active fancybox.ajax" href="<?php echo base_url('usuario/escolhe_tipo')?>">cadastre-se agora</a>&nbsp;&nbsp;
+						ou entre pelo&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
+					</div>					
 				</div>
 			</div>
 		</div>
