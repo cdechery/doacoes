@@ -12,12 +12,16 @@
 	<h3>Como funciona?</h3>
 
 	<ul><h4>para pessoas:</h4>
-	<p>Se você estiver procurando alguém interessado em algo que você não precisa ou não usa mais, basta você se cadastrar, depois incluir os itens que tem aí sobrando e acumulando pó. No mapa você consegue filtrar as pessoas interessadas nas categorias de item que você cadastrou. Se elas tiverem <i>Interesses</i> cadastrados, serão avisadas automaticamente das coisas que você cadastrar.</p>
+	<p>Se você estiver procurando alguém interessado em algo que você não precisa ou não usa mais, basta você se cadastrar, depois incluir os itens que tem aí sobrando e acumulando pó. Se elas tiverem <i>Interesses</i> cadastrados, serão avisadas automaticamente das coisas que você cadastrar. Além disso, você pode navegar no mapa e verificar Insitiuições para quem você pode entrar em contato e oferecer diretamente e também procurar por itens que lhe interessem. Apenas pessoas que tem itens disponíveis aparecem no mapa.</p>
 	</ul>
 
 	<ul>
 	<h4>para instituições:</h4>
-	<p>Usuários cadastrados como <i>Instituições</i> podem cadastrar Itens e Interesses da mesma forma que Pessoas. A diferença é que a validade dos Interesses é maior, e, como o foco da Instiuição é mais em receber itens do que doar, todas são exibidas no mapa independente de ter algo a doar ou não - dessa forma fica mais fácil achar alguma Interessada em receber aquilo que você quer doar.</p>
+	<p>Usuários cadastrados como <i>Instituições</i> podem cadastrar Itens e Interesses da mesma forma que Pessoas. A diferença é que a validade dos Interesses é maior, e, como o foco da Instiuição é mais em receber itens do que doar, todas são exibidas no mapa independente de ter algo a doar ou não - dessa forma fica mais fácil para doadores alguma Interessada em receber aquilo que você quer doar.</p>
+	</ul>
+
+	<h3>Aonde?</h3>
+	<ul>A abrangência do site é nacional, mas como é necessário exibir <i>algum lugar</i> no momento que o usuário acessa o site pela primeira vez, esse local é o Rio de Janeiro (local onde vivem os criadores do site). A partir do momento que o usuário se cadastra, o mapa sempre irá abrir centrado em sua localização, que pode ser que não tenha mais ninguém. O site precisa que os usuários se engajem para que cada região do Brasil tenha usuários suficientes com itens para doar para que o mapa fique cheio de marcadores. =)
 	</ul>
 
 	<h3>Contato para doações</h3>

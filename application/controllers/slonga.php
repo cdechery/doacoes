@@ -11,7 +11,7 @@ class Slonga extends MY_Controller {
 		$this->load->library('googlemaps');
 		$config = array();
 		$config['center'] = $this->params['mapa']['default_loc'];
-		$config['zoom'] = 'auto';	
+		$config['zoom'] = '11';	
 		$config['geocodeCaching'] = FALSE;
 		$config['minifyJS'] = TRUE;
 		$config['places'] = FALSE;
@@ -31,9 +31,14 @@ class Slonga extends MY_Controller {
 		$config['map_width'] = '90%';
 		$config['map_height'] = '500px';
 
+		$user_data = NULL;
+		if( $this->is_user_logged_in ) {
+			$this->load->model('usuario_model');
+			$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
+		}
+
 		$this->load->model('mapa_model');
-		$map_result = $this->mapa_model->get_all();
-		//var_dump($map_result);
+		$map_result = $this->mapa_model->get_all( $user_data, TRUE );
 
 		$custom_js_global = "";
 		$custom_js_init = "";
@@ -85,16 +90,14 @@ class Slonga extends MY_Controller {
 		}
 
 		$user_location = "";
-		if( $this->is_user_logged_in ) {
-			$this->load->model('usuario_model');
-			$user_data = $this->usuario_model->get_data( $this->login_data['user_id'] );
-
+		if( $user_data ) {
 			$marker = array();
 			$marker['position'] = $user_data['lat'].', '.$user_data['lng'];
 			$user_location = $marker['position'];
 
 			$marker['infowindow_content'] = 'Você';
-			//$marker['clickable'] = true;
+			$marker['clickable'] = true;
+			$marker['onclick'] = 'void(0);';
 			$marker['title'] = 'Esse é você! :)';
 
 			if( $user_data['tipo'] == 'P' ) {
