@@ -44,7 +44,6 @@
 
   ga('create', 'UA-54303875-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 <?php endif; ?>
 <script type="application/javascript" src="<?php echo static_url('javascript')?>"></script>
@@ -78,6 +77,17 @@
 ?>
 <title><?php echo $title; ?></title>
 <script>
+	img_preload([
+		'<?php echo img_url("connecting.gif")?>'
+		'<?php echo img_url("ajax-loader.gif")?>',
+		'<?php echo img_url("ajax-loader-80.gif")?>',
+		'<?php echo img_url("ajax-loader-120.gif")?>',
+		'<?php echo img_url("ajax-loader-200.gif")?>',
+		'<?php echo img_url("ajax-loader-small.gif")?>',
+	]);
+
+	$(".fancybox").fancybox();
+
 	$(document).ready(function(){
 		/* 'sticky footer' */
 		var dh = $(document).height(); //document height here
@@ -90,14 +100,6 @@
 </head>
 <body <?php echo $bodyId?>>
 <script type="text/javascript">
-	img_preload([
-		'<?php echo img_url("ajax-loader.gif")?>',
-		'<?php echo img_url("ajax-loader-80.gif")?>',
-		'<?php echo img_url("ajax-loader-120.gif")?>',
-		'<?php echo img_url("ajax-loader-200.gif")?>',
-		'<?php echo img_url("ajax-loader-small.gif")?>',
-		'<?php echo img_url("connecting.gif")?>'
-	]);
 </script>
 <?php
 	$wait_img = img_url('connecting.gif');
