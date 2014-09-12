@@ -78,12 +78,12 @@
 <title><?php echo $title; ?></title>
 <script>
 	img_preload([
-		'<?php echo img_url("connecting.gif")?>'
+		'<?php echo img_url("connecting.gif")?>',
 		'<?php echo img_url("ajax-loader.gif")?>',
 		'<?php echo img_url("ajax-loader-80.gif")?>',
 		'<?php echo img_url("ajax-loader-120.gif")?>',
 		'<?php echo img_url("ajax-loader-200.gif")?>',
-		'<?php echo img_url("ajax-loader-small.gif")?>',
+		'<?php echo img_url("ajax-loader-small.gif")?>'
 	]);
 
 	$(".fancybox").fancybox();
