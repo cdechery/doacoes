@@ -86,7 +86,9 @@
 		'<?php echo img_url("ajax-loader-small.gif")?>'
 	]);
 
-	$(".fancybox").fancybox();
+	if( typeof $.fancybox!='undefined' ) {
+		$(".fancybox").fancybox();
+	}
 
 	$(document).ready(function(){
 		/* 'sticky footer' */
@@ -162,6 +164,9 @@
 				</li>
 				<li>
 					<a href="<?php echo base_url('contato')?>">Contato</a>
+				</li>
+				<li>
+					<a href="<?php echo base_url('ajuda')?>">Ajuda</a>
 				</li>
 					<?php if( $login_data["logged_in"] ) : ?>
 						<li id="user-btn">
