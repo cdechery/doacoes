@@ -188,7 +188,7 @@
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
 					<li id="facebook" style="vertical-align: middle;">
-						<a class="fb-login-button"  scope="email,public_profile" data-size="medium" data-show-faces="false"></a>
+						<a class="fb-login-button"  scope="email,public_profile,user_birthday" data-size="medium" data-show-faces="false"></a>
 						<?php //echo fblogin_button() ?>
 					</li>
 				<?php endif; // if logged_in ?> 

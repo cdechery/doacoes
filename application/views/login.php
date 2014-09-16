@@ -56,6 +56,6 @@ $(document).ready(function() {
 </div>
 
 <div id="link_cadastro">
-	Novo por aqui?<br><a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="signup link escolhetipo_box fancybox.ajax">Preencha o cadastro</a> ou Conecte-se pelo <a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
+	Novo por aqui?<br><a href="<?php echo base_url('usuario/escolhe_tipo/w')?>" class="signup link escolhetipo_box fancybox.ajax">Preencha o cadastro</a> ou Conecte-se pelo <a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile,user_birthday" data-size="icon" data-show-faces="false"></a>
 </div>
 

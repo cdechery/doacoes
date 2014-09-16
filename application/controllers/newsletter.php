@@ -28,7 +28,7 @@ class Newsletter extends MY_Controller {
 		if( empty($emails) ) {
 			$list = $this->usuario_model->get_newsletter();
 		} else {
-			$arrEmails = explode("\r\n", $emails);
+			$arrEmails = explode(";", $emails);
 			$list = $this->usuario_model->get_newsletter( $arrEmails ); 
 		}
 

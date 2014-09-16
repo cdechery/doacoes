@@ -14,6 +14,12 @@
 			return false;
 		}
 
+		if( form.emails.value.indexOf('\n')!= -1 ||
+			form.emails.value.indexOf('\r')!= -1 ) {
+			alert('Separe os emails com ; !!!');
+			return false;
+		}
+
 		form.submit.disabled = true;
 		form.submit.value = 'Enviando, aguarde...';			
 
@@ -32,7 +38,7 @@ De: <select name="from">
 Corpo da mensagem (sem "olá" ou "um abraço"):
 <textarea name="msg" rows="4" cols="40">
 </textarea>
-Enviar apenas para estes (emails, um por linha):
+Enviar apenas para estes (separado por ;):
 <textarea name="emails" rows="4" cols="40"></textarea>
 <input name="submit" type="submit" value="Enviar">
 <p><a href="<?php echo base_url('newsletter')?>">Enviar outra?</a></p>

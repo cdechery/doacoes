@@ -158,11 +158,18 @@ class Usuario extends MY_Controller {
 			$data['sobrenome'] = $fbdata['last_name'];
 			$data['email'] = $fbdata['email'];
 			$data['avatar'] = $fbdata['avatar'];
+
 			if( array_key_exists('gender', $fbdata) ) {
 				if( $fbdata['gender']=='male' ) {
 					$data['sexo'] = 'M';
 				} else if ( $fbdata['gender']=='female' ) {
 					$data['sexo'] = 'F';
+				}
+			}
+			if( array_key_exists('birthday', $fbdata) ) {
+				if( !empty($fbdata['birthday']) ) {
+					$nasc = explode('/', $fbdata['birthday']);
+					$data['data_nascimento'] = $nasc[2]."-".$nasc[0]."-".$nasc[1];
 				}
 			}
 		}

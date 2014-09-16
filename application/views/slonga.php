@@ -50,7 +50,7 @@
 					<p>Se já quiser começar a usar acesse as opções abaixo:</p>
 					<div class="buttons">
 						<a class="escolhetipo_box active fancybox.ajax" href="<?php echo base_url('usuario/escolhe_tipo')?>">cadastre-se agora</a>&nbsp;&nbsp;
-						ou entre pelo&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile" data-size="icon" data-show-faces="false"></a>
+						ou entre pelo&nbsp;&nbsp;<a style="vertical-align: bottom" class="fb-login-button" scope="email,public_profile,user_birthday" data-size="icon" data-show-faces="false"></a>
 					</div>					
 				</div>
 			</div>
