@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	$(document).ready( function() {
 		// para forçar exibição. comitar comentado
-		//localStorage.clear();
+		// localStorage.clear();
 		if( typeof(Storage) !== "undefined" ) {
 			if( !localStorage.welcomeShown ) {
 				localStorage.setItem('welcomeShown', 1);
@@ -43,6 +43,7 @@
 			<div id="texto_apres">
 				<div id="close">X</div>
 				<div id="texto">
+					<img src="<?php echo img_url('boneco_gde_transp.gif')?>" align="left">
 					<h3>Bem-vindo ao Interessa.org</h3>
 					<p>Se você tem algo sobrando na sua casa e está procurando para quem doar, esse é o lugar para você. Fique a vontade também para procurar tudo que estiver disponível para doação e entrar em contato com o doador. <br><br>O objetivo aqui é facilitar a vida de pessoas e instituições a se encontrarem e doar o que não mais serve para quem Interessa.</p>
 					<p>Para saber melhor como funciona e como você pode participar clique <a href="<?php echo base_url('sobre')?>">aqui</a>.</p>

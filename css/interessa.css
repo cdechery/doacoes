@@ -417,7 +417,7 @@ section#map #welcome #texto_apres #texto {
   position: relative;
   top: 90px;
   margin: 0 auto;
-  width: 50%;
+  width: 80%;
 }
 section#map #welcome #texto_apres #texto a {
   color: #e8d95c;
@@ -429,6 +429,10 @@ section#map #welcome #texto_apres .buttons a {
   color: #e8d95c;
   font-size: 1.2em;
   font-weight: 700;
+}
+section#map #welcome #texto_apres > img {
+  margin-right: 10px;
+  vertical-align: middle;
 }
 section#map #map_canvas {
   /* container mapa, alguns estilos passados diretamente pelo controller */
