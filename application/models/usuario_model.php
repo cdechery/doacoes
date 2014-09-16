@@ -122,10 +122,17 @@ class Usuario_model extends MY_Model {
 			$upd_data, array('id' => $user_id) ) );
 	}
 
-	public function get_emails_newsletter() {
+	public function get_newsletter( $filter_emails = NULL ) {
 		$this->db->select('nome, email');
 		$this->db->where('fg_geral_email = \'S\'');
-		return $this->db->get('usuario')->result();
+
+		if( $filter_emails ) {
+			$this->db->where_in('email', $filter_emails);
+		}
+
+		$r = $this->db->get('usuario')->result();
+
+		return $r;
 	}
 
 	public function exists_lat_long($lat, $long, $id = 0) {

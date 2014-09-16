@@ -8,7 +8,7 @@ class Newsletter extends MY_Controller {
 	}
 
 	public function index() {
-		$this->load->view('newsletter');
+		$this->load_iframe('newsletter');
 	}
 
 	public function enviar() {
@@ -21,8 +21,16 @@ class Newsletter extends MY_Controller {
 
 		$msg = $this->input->post('msg');
 		$assunto = $this->input->post('assunto');
+		$from = $this->input->post('from');
+		$emails = $this->input->post('emails');
 
-		$list = $this->usuario_model->get_emails_newsletter();
+		$list = null;
+		if( empty($emails) ) {
+			$list = $this->usuario_model->get_newsletter();
+		} else {
+			$arrEmails = explode("\r\n", $emails);
+			$list = $this->usuario_model->get_newsletter( $arrEmails ); 
+		}
 
 		$count = 0;
 		$countErr = 0;
@@ -34,7 +42,7 @@ class Newsletter extends MY_Controller {
 			$params = array(
 				'to_email'=> $dest->email,
 				'to_name'=> $dest->nome,
-				'from_email'=> 'noreply@interessa.org',
+				'from_email'=> $from.'@interessa.org',
 				'from_name'=> 'Interessa.org',
 				'subject'=>$assunto,
 				'body'=>$corpo
