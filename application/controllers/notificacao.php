@@ -58,7 +58,7 @@ class Notificacao extends MY_Controller {
 				$mail_sent = false;
 
 				if( $fg_notif ) {
-					output_log(		'Enviando email para $user_email, '.count($user_itens).' itens');
+					output_log(		'Enviando email para '.$user_email.', '.count($user_itens).' itens');
 
 					$params = $this->monta_email( $user_email, $name, $user_itens);
 					$mail_sent = send_email( $params );
@@ -85,7 +85,7 @@ class Notificacao extends MY_Controller {
 
 		
 		if( $fg_notif ) {
-			output_log('Enviando email para $user_email, '.count($user_itens).' itens');
+			output_log('Enviando email para '.$user_email.', '.count($user_itens).' itens');
 
 			$params = $this->monta_email( $user_email, $name, $user_itens);
 			$mail_sent = send_email( $params );

@@ -1,7 +1,5 @@
 <script type="text/javascript">
 	$(document).ready( function() {
-		// para forçar exibição. comitar comentado
-		// localStorage.clear();
 		if( typeof(Storage) !== "undefined" ) {
 			if( !localStorage.welcomeShown ) {
 				localStorage.setItem('welcomeShown', 1);
@@ -58,8 +56,8 @@
 
 		<div id="legenda" style="display: none;">
 			<h1>Legenda:</h1>
-			<p><img src="<?php echo img_url('pessoa.png')?>"> Pessoa</p>
-			<p><img src="<?php echo img_url('inst.png')?>"> Instituição</p>
+			<p><img src="<?php echo img_url('pessoa.png')?>" align="left"><b>Pessoa</b> com item(ns) para doar</p>
+			<p><img src="<?php echo img_url('inst.png')?>" align="left"><b>Instituição</b> com ou sem item(ns)</p>
 			<div align="center"><button onClick="hideLegenda();">Entendi</button></div>
 		</div>
 		

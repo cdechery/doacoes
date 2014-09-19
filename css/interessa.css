@@ -514,9 +514,10 @@ section#map #legenda {
   position: absolute;
   right: 80px;
   top: 300px;
-  width: 150px;
+  width: 200px;
   height: 180px;
-  padding-left: 12px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 section#map #legenda h1 {
   color: #fff;
@@ -528,7 +529,7 @@ section#map #legenda p {
 }
 section#map #legenda img {
   vertical-align: middle;
-  margin: 2px;
+  margin: 5px;
 }
 section#map #legenda button {
   padding: 5px 12px;
