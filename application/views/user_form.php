@@ -31,8 +31,10 @@
 	}
 
 	$lblTipo = "Pessoa";
+	$lblNome = "";
 	if( $tipo=="I" ) { // Instituicao
 		$lblTipo = "Instituição";
+		$lblNome = " da Instituição";
 	}
 ?>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places"></script>
@@ -172,13 +174,13 @@ window.onload = initialize;
 				<input type="text" class="largeplus" name="email" value="<?php echo $email?>" title="Email" placeholder="Seu email" />
 			</div>
 			<div class="form-group">
-				<label>Nome</label>
+				<label>Nome<?php echo $lblNome?></label>
 				<div class="form-group">
 					<?php if( $tipo=="P") : ?>
 						<input type="text" class="horizontal" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
 						<input type="text" class="horizontal" name="sobrenome" value="<?php echo $sobrenome; ?>" title="Sobrenome" placeholder="Seu sobrenome" />
 					<?php else: ?>
-						<input type="text" class="largeplus" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Seu nome" />
+						<input type="text" class="largeplus" name="nome" value="<?php echo $nome ?>" title="Nome" placeholder="Não utilize seu nome próprio" />
 					<?php endif; ?>
 				</div>
 			</div>
