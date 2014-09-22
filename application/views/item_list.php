@@ -1,7 +1,7 @@
 <?php if( !empty($user) ): ?>
 	<header id="user_itens" class="clearfix">
 		<h3><img style="vertical-align: middle" src="<?php echo user_avatar($user['avatar'], 80) ?>">
-		mostrando itens disponíveis de <i><?php echo $user['nome']?></i></h3>
+		mostrando os itens disponíveis de <i><?php echo $user['nome']?></i></h3>
 	</header>
 <?php endif; ?>
 
@@ -25,14 +25,14 @@
 						echo "<div style='text-align: center;'>Sem imagens</div>";
 				} ?>
 			</div>
-			<h3><?php echo $item['data']->titulo ?></h3>
+			<h3><?php echo $item['data']->titulo ?> <button class="situacao"><?php echo $item['data']->sit?></button></h3>
 			<p class="data-cadastro">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 			<div class="descricao"><?php echo nl2br(wordwrap($item['data']->descricao,70)) ?></div>
 			<div class="action">
 				<?php if ($item['data']->status == 'D'): { ?>
 					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				<?php } elseif ( $login_data['logged_in'] ) : ?>
-					<?php echo meinteressa_button( $item['data']->item_id ) ?>
+					<?php echo meinteressa_button( $item_id ) ?>
 				<?php endif; ?>
 				
 			</div>

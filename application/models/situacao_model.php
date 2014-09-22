@@ -12,7 +12,7 @@ class Situacao_model extends MY_Model {
 	}
 
 	public function get_by_id( $sit_id ) {
-		$sits = $this->db->get_where('situacao', array('id'=>$sit_id))->result();
+		$sits = $this->db->get_where('situacao', array('id'=>$sit_id))->row_array();
 		return $sits;
 	}
 }

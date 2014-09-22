@@ -20,7 +20,7 @@
 						echo "<div style='text-align: center;'>Sem imagens</div>";
 				} ?>
 			</div>
-			<h3><?php echo $item['data']->titulo ?></h3>
+			<h3><?php echo $item['data']->titulo ?> <button class="situacao"><?php echo $item['data']->sit?></button></h3>
 			<p class="data-cadastro">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 			<div class="descricao"><?php echo nl2br(wordwrap($item['data']->descricao,70)) ?></div class="descricao">
 			<div class="action">

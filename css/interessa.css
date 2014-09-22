@@ -974,6 +974,16 @@ header#user_itens img {
 .item_single .thumbs img {
   margin-left: 20px;
 }
+.item_single .situacao {
+  border: 1px solid #d1eaef !important;
+  padding: 4px 10px;
+  font-size: 1em;
+  line-height: 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.8em;
+  cursor: inherit;
+}
 /* interesses */
 #interesse-head h2 {
   margin-top: 0;
@@ -1103,6 +1113,17 @@ header#user_itens img {
   margin: 0;
   padding: 0;
   font-weight: 400;
+}
+.fancybox-item .situacao {
+  border: 1px solid #d1eaef !important;
+  padding: 4px 10px;
+  font-size: 1em;
+  line-height: 12px;
+  border-radius: 4px;
+  border: none;
+  color: #2b72a3;
+  font-size: 0.8em;
+  cursor: inherit;
 }
 .fancybox-item #main {
   padding: 10px 20px;

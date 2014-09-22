@@ -4,7 +4,7 @@ $(document).ready( function() {
 });
 </script>
 <header>
-	<h3><?php echo $idata['titulo']?></h3>
+	<h3><?php echo $idata['titulo']?>&nbsp;&nbsp;<button class="situacao"><?php echo $sit?></button></h3>
 </header>
 <div id="main">
 	<p style="min-height: 40px;"><?php echo nl2br(wordwrap($idata['descricao'],60))?></p>

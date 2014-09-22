@@ -257,8 +257,11 @@ class Item extends MY_Controller {
 		$item_data = $this->item_model->get( $item_id );
 		$img_data = $this->get_images( $item_id );
 
-		$this->load_ajax('item_view', 
-			array('idata'=>$item_data, 'imgdata'=>$img_data));
+		$this->load->model('situacao_model');
+		$sit = $this->situacao_model->get_by_id( $item_data['situacao_id'] );
+
+		$this->load_ajax('item_view', array('idata'=>$item_data,
+			'imgdata'=>$img_data, 'sit'=>$sit['descricao']) );
 	}
 
 	public function listar() {
