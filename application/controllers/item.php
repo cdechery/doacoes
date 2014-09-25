@@ -279,8 +279,12 @@ class Item extends MY_Controller {
 			}
 		}
 
+		$cust_js = array('js/jquery.tipsy.js');
+		$cust_css = array('css/tipsy.css');
+
 		$head_data = array('min_template'=>'image_upload',
-			"title"=>"Listar Itens");
+			"title"=>"Listar Itens",
+			'cust_css'=>$cust_css, 'cust_js'=>$cust_js 	);
 		$this->load->view('head', $head_data);
 
 		$this->load->helper('image_helper');
