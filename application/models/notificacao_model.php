@@ -38,8 +38,10 @@ class Notificacao_model extends MY_Model {
 			FROM controle_notif_email n, item i, interesse t, usuario u, usuario o
 			WHERE n.item_id = i.id
 			AND i.usuario_id = o.id
+			AND t.fg_ativo = \'S\'
 			AND i.categoria_id = t.categoria_id
 			AND t.usuario_id = u.id
+			AND o.id <> u.id
 			AND (
 				((ACOS(SIN(u.lat * PI() / 180) * SIN(o.lat * PI() / 180) + 
          		COS(u.lat * PI() / 180) * COS(o.lat * PI() / 180) * COS((u.lng - o.lng) * 
@@ -68,7 +70,7 @@ class Notificacao_model extends MY_Model {
 		$this->db->join('usuario u', 'u.id=c.usuario_id');
 		$this->db->where('c.usuario_id !=', '-1');
 		$this->db->where('c.fg_email_enviado', 'N');
-		$this->db->order_by('c.usuario_id', 'desc');
+		$this->db->group_by(array('c.usuario_id', 'c.item_id'));
 		return $this->db->get()->result();
 	}
 }
