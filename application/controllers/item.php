@@ -271,6 +271,7 @@ class Item extends MY_Controller {
 		$item_ids = func_get_args();
 
 		$sharefb = FALSE;
+		$title = "Listar Itens";
 		if( count($item_ids)==2 && $item_ids[1]=="fb" ) {
 			$sharefb = TRUE;
 		}
@@ -298,6 +299,7 @@ class Item extends MY_Controller {
 			$head_data['sharefb'] = "1";
 			$head_data['items'] = $arrItems;
 			$head_data['item_id'] = $item_ids[0];
+			$head_data['title'] = "Item para doação";
 		}
 
 		$this->load->view('head', $head_data);

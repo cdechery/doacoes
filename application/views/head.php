@@ -131,7 +131,7 @@
 	$fbLogin = $this->session->userdata('FbLoginPending');
 	$enableFB = (ENVIRONMENT=='production');
 	// para forçar exibição. comitar comentado
-	// $enableFB = true;
+	//$enableFB = true;
 	
 	$runFB = $enableFB && false == $fbLogin &&
 		false == $login_data['logged_in'] && false == $fbReg;
@@ -152,7 +152,7 @@
 		});
 
 		function fb_login() {
-		    FB.login( function() {}, { scope: 'email,public_profile' } );
+		    FB.login( function() {}, { scope: 'email,public_profile,user_birthday' } );
 		}
 <?php
 	 } // runFB
@@ -201,7 +201,7 @@
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
 					<li id="facebook" style="vertical-align: middle;">
-						<a class="fb-login-button"  scope="email,public_profile,user_birthday,publish_actions" data-size="medium" data-show-faces="false"></a>
+						<a class="fb-login-button"  scope="email,public_profile,user_birthday" data-size="medium" data-show-faces="false"></a>
 						<?php //echo fblogin_button() ?>
 					</li>
 				<?php endif; // if logged_in ?> 

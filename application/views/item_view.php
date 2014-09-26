@@ -1,6 +1,7 @@
 <script type="text/javascript">
 $(document).ready( function() {
 	$.fancybox.update();
+	FB.XFBML.parse();
 });
 </script>
 <header>
@@ -15,7 +16,7 @@ $(document).ready( function() {
 		<?php endforeach; ?>
 	</div>
 	<?php endif; ?>
-	<div style="height: 30px;">
-		<?php echo meinteressa_button( $idata['id'] ); ?>
+	<div style="height: 30px; margin-bottom: 3px;">
+		<?php echo meinteressa_button( $idata['id'] ); ?>&nbsp;<div class="fb-share-button" data-layout="button" data-href="<?php echo base_url('sharefb/'.$idata['id'])?>"></div>
 	</div>
 </div>

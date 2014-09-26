@@ -32,7 +32,19 @@
 		}
 
 		$ret = "<button id='btnitem".$item_id."' class='".$class."' ".$href." title='".$tooltip."' onClick='$(this).tipsy(\"hide\"); return false;'>".$icon."Me interessa!".$strqtd."</button>\n";
-		$ret .= "<script type='text/javascript'>$('#btnitem".$item_id."').tipsy( {gravity: 's', opacity: 1 } );</script>";
+		$ret .= "
+			<script type='text/javascript'>
+			// function share() { 
+			// 	FB.ui({
+			// 	  method: 'share_open_graph',
+			// 	  action_type: 'og.likes',
+			// 	  action_properties: JSON.stringify({
+			// 	      object:'http://www.interessa.org/item/sharefb/47',
+			// 	  })
+			// 	}, function(response){});
+			// }
+			$('#btnitem".$item_id."').tipsy( {gravity: 's', opacity: 1 } );
+			</script>";
 
 		return $ret;
 	}
