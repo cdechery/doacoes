@@ -17,6 +17,6 @@ $(document).ready( function() {
 	</div>
 	<?php endif; ?>
 	<div style="height: 30px; margin-bottom: 3px;">
-		<?php echo meinteressa_button( $idata['id'] ); ?>&nbsp;<div class="fb-share-button" data-layout="button" data-href="<?php echo base_url('sharefb/'.$idata['id'])?>"></div>
+		<?php echo meinteressa_button( $idata['id'] ); ?>&nbsp;<div class="fb-share-button" data-layout="button" data-href="<?php echo base_url('item/sharefb/'.$idata['id'])?>"></div>
 	</div>
 </div>

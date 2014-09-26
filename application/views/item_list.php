@@ -32,7 +32,7 @@
 				<?php if ($item['data']->status == 'D'): ?>
 					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
 				<?php else: ?>
-					<?php echo meinteressa_button( $item_id ) ?> &nbsp;<div class="fb-share-button" data-href="<?php echo base_url('sharefb/'.$item_id)?>"></div>
+					<?php echo meinteressa_button( $item_id ) ?> &nbsp;<div class="fb-share-button" data-href="<?php echo base_url('item/sharefb/'.$item_id)?>"></div>
 				<?php endif; ?>
 				
 			</div>
