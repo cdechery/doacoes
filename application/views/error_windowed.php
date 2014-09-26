@@ -15,7 +15,7 @@ code {
 }
 
 h6 {
-	color: #444;
+	color: red;
 	background-color: transparent;
 	border-bottom: 1px solid #D0D0D0;
 	font-size: 19px;
@@ -36,7 +36,7 @@ p {
 </style>
 </head>
 	<div id="error_container" style="background-color: #f0f0f0;">
-		<h6><?php echo $heading; ?></h6>
+		<h6><i class="fa fa-warning"></i>&nbsp;&nbsp;<?php echo $heading; ?></h6>
 <?php
 	if( is_array($message) ) {
 		echo "<p>\n";

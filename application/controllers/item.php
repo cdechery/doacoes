@@ -8,22 +8,21 @@ class Item extends MY_Controller {
 		$this->load->helper('xlang');
 	}
 
-	public function get_single($item_id) {
-		$item = $this->item_model->get( $item_id );
-		$imagens = $this->get_images( $item_id );
+	// public function get_single( $item_id ) {
+	// 	$item = $this->item_model->get( $item_id );
+	// 	$imagens = $this->get_images( $item_id );
 
-		$arrImgs = array();
-		foreach ($imagens as $img) {
-			$arrImgs[] = $img->nome_arquivo;
-		}
+	// 	$arrImgs = array();
+	// 	foreach ($imagens as $img) {
+	// 		$arrImgs[] = $img->nome_arquivo;
+	// 	}
 
-		// converto o result de array para objeto
-		$itemObj = json_decode(json_encode($item), FALSE);
+	// 	// converto o result de array para objeto
+	// 	$itemObj = json_decode(json_encode($item), FALSE);
 
-		$this->load->view( 'item_single', array('data'=>$itemObj, 
-			'imagens'=>$arrImgs) );
-
-	}
+	// 	$this->load->view( 'item_single', array('data'=>$itemObj, 
+	// 		'imagens'=>$arrImgs) );
+	// }
 
 	public function get_categorias() {
 		$this->load->model('categoria_model');
@@ -264,8 +263,17 @@ class Item extends MY_Controller {
 			'imgdata'=>$img_data, 'sit'=>$sit['descricao']) );
 	}
 
+	public function sharefb( $item_id ) {
+		$this->listar( $item_id, "fb" );
+	}
+
 	public function listar() {
 		$item_ids = func_get_args();
+
+		$sharefb = FALSE;
+		if( count($item_ids)==2 && $item_ids[1]=="fb" ) {
+			$sharefb = TRUE;
+		}
 
 		$items = $this->item_model->get_list( $item_ids );
 
@@ -284,7 +292,14 @@ class Item extends MY_Controller {
 
 		$head_data = array('min_template'=>'image_upload',
 			"title"=>"Listar Itens",
-			'cust_css'=>$cust_css, 'cust_js'=>$cust_js 	);
+			'cust_css'=>$cust_css, 'cust_js'=>$cust_js);
+
+		if( $sharefb ) {
+			$head_data['sharefb'] = "1";
+			$head_data['items'] = $arrItems;
+			$head_data['item_id'] = $item_ids[0];
+		}
+
 		$this->load->view('head', $head_data);
 
 		$this->load->helper('image_helper');

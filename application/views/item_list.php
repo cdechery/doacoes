@@ -29,9 +29,9 @@
 			<p class="data-cadastro">Cadastrado em: <?php echo $item['data']->dtinc_format?></p>
 			<div class="descricao"><?php echo nl2br(wordwrap($item['data']->descricao,70)) ?></div>
 			<div class="action">
-				<?php if ($item['data']->status == 'D'): { ?>
+				<?php if ($item['data']->status == 'D'): ?>
 					<button class="item-list disabled"><i class="fa fa-check-square-o"></i>&nbsp;Este item já foi Doado (em <?php echo $item['data']->dtdoa_format?>)</button>
-				<?php } elseif ( $login_data['logged_in'] ) : ?>
+				<?php else: ?>
 					<?php echo meinteressa_button( $item_id ) ?>
 				<?php endif; ?>
 				

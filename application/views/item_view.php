@@ -15,9 +15,7 @@ $(document).ready( function() {
 		<?php endforeach; ?>
 	</div>
 	<?php endif; ?>
-	<?php if( $login_data['logged_in'] ): ?>
 	<div style="height: 30px;">
 		<?php echo meinteressa_button( $idata['id'] ); ?>
 	</div>
-	<?php endif; ?>
 </div>

@@ -1,3 +1,14 @@
+<?php
+	$og_title = "Interessa.org";
+	$og_desc = "Somos um site que ajuda aqueles que querem doar o que está sobrando em casa (ou no trabalho) a encontrar interessados. Pessoas e instiuições podem se cadastrar para disponibilizar itens para doação ou para procurarem aquilo que está disponível, em uma interface de mapa amigável e intuitiva.";
+	$og_img = img_url('site_icon.png');
+
+	if( isset($sharefb) ) {
+		$og_title = $items[$item_id]['data']->titulo;
+		$og_desc = $items[$item_id]['data']->descricao;
+		$og_img = user_img_url($items[$item_id]['imagens'][0]);
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +18,9 @@
 <meta name="description" content="Site dedicado a ajudar pessoas a encontrar interessados naquilo que tem para doar numa interface de mapa intuitiva">
 <meta name="keywords" content="doação,doacao,doacoes,doações">
 <meta charset="<?php echo $this->config->item('charset');?>"/>
-<meta property="og:title" content="Interessa.org" />
-<meta property="og:description" content="Somos um site que ajuda aqueles que querem doar o que está sobrando em casa (ou no trabalho) a encontrar interessados. Pessoas e instiuições podem se cadastrar para disponibilizar itens para doação ou para procurarem aquilo que está disponível, em uma interface de mapa amigável e intuitiva." />
-<meta property="og:image" content="<?php echo img_url('site_icon.png')?>" />
+<meta property="og:title" content="<?php echo $og_title?>" />
+<meta property="og:description" content="<?php echo $og_desc?>" />
+<meta property="og:image" content="<?php echo $og_img?>" />
 <?php
 	if( !isset($title) ) {
 		echo "ERROR: Title not defined!";
@@ -34,18 +45,20 @@
 		$bodyId = "id='home'";
 	}
 
+	if( ENVIRONMENT=='production') {
 ?>
-<?php if( ENVIRONMENT=='production'): ?>
 <script async>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-54303875-1', 'auto');
-  ga('send', 'pageview');
+	ga('create', 'UA-54303875-1', 'auto');
+	ga('send', 'pageview');
 </script>
-<?php endif; ?>
+<?php
+	} // if ENV
+?>
 <script type="application/javascript" src="<?php echo static_url('javascript')?>"></script>
 <script type="application/javascript" src="<?php echo static_url('min/g='.$min_template.'_js'.$min_debug)?>"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
@@ -101,21 +114,7 @@
 </script>
 </head>
 <body <?php echo $bodyId?>>
-<script type="text/javascript">
-</script>
-<?php
-	$wait_img = img_url('connecting.gif');
-	$fbReg = $this->input->cookie('FbRegPending');
-	$fbLogin = $this->session->userdata('FbLoginPending');
-	$enableFB = (ENVIRONMENT=='production');
-	// para forçar exibição. comitar comentado
-	//$enableFB = true;
-	
-	$runFB = $enableFB && false == $fbLogin &&
-		false == $login_data['logged_in'] && false == $fbReg;
-
-	if( $runFB ) {
-?>
+<div id="fb-root"></div>
 <script>
 	window.fbAsyncInit = function() {	
 		FB.init({
@@ -125,6 +124,20 @@
 			xfbml      : true,  // parse XFBML
 			version	   : 'v2.0'
 		});
+		
+<?php
+	$wait_img = img_url('connecting.gif');
+	$fbReg = $this->input->cookie('FbRegPending');
+	$fbLogin = $this->session->userdata('FbLoginPending');
+	$enableFB = (ENVIRONMENT=='production');
+	// para forçar exibição. comitar comentado
+	// $enableFB = true;
+	
+	$runFB = $enableFB && false == $fbLogin &&
+		false == $login_data['logged_in'] && false == $fbReg;
+
+	if( $runFB ) {
+?>
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
 				new Messi('Estamos fazendo seu login no Facebook, aguarde '+
@@ -137,11 +150,14 @@
 				FB.login();
 			}
 		});
-	};
 
-	function fb_login() {
-	    FB.login( function() {}, { scope: 'email,public_profile' } );
-	}
+		function fb_login() {
+		    FB.login( function() {}, { scope: 'email,public_profile' } );
+		}
+<?php
+	 } // runFB
+?>
+	}; // FB ini
 
 	(function(d){
 		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -151,9 +167,6 @@
 		ref.parentNode.insertBefore(js, ref);
 	}(document));
 </script>
-<?php
-	 }
-?>
 <header id="main">
 	<div class="wrap960">
 		<h1><a href="<?php echo base_url();?>">Interessa ?</a></h1>
@@ -188,7 +201,7 @@
 					<?php endif; // if logged_in ?> 
 				<?php if( $runFB ) : ?>
 					<li id="facebook" style="vertical-align: middle;">
-						<a class="fb-login-button"  scope="email,public_profile,user_birthday" data-size="medium" data-show-faces="false"></a>
+						<a class="fb-login-button"  scope="email,public_profile,user_birthday,publish_actions" data-size="medium" data-show-faces="false"></a>
 						<?php //echo fblogin_button() ?>
 					</li>
 				<?php endif; // if logged_in ?> 
