@@ -9,7 +9,7 @@
 		foreach ($items as $item_id => $item) {
 	?>
 		<div class="item_single">
-			<button class="itemdel" data-itemid="<?php echo $item_id; ?>"><i class="fa fa-times"></i></button>
+			<button class="itemdel" id="itemdel_<?php echo $item_id; ?>"><i class="fa fa-times"></i></button>
 			<div class="thumbs">
 				<?php if( count($item['imagens']) ) {
 					foreach ($item['imagens'] as $file) {
@@ -43,7 +43,7 @@
 					<?php } ?>
 				
 				<?php } ?>
-				
+				&nbsp;<div class="fb-share-button" data-href="<?php echo base_url('item/sharefb/'.$item_id)?>"></div>
 			</div>
 		</div>
 	<?php

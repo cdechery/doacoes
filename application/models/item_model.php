@@ -17,7 +17,7 @@ class Item_model extends MY_Model {
 			it.data_inclusao, it.data_doacao, s.descricao as sit,
 			it.descricao, it.categoria_id, im.id imagem_id,
 			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtinc_format,
-			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtdoa_format,
+			date_format(it.data_doacao, \'%d/%m/%Y\') as dtdoa_format,
 			im.nome_arquivo', FALSE);
 		$this->db->from('item it');
 		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
@@ -66,7 +66,7 @@ class Item_model extends MY_Model {
 			it.descricao, it.status, it.categoria_id,
 			it.data_inclusao, it.data_doacao, , s.descricao as sit,
 			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtinc_format,
-			date_format(it.data_inclusao, \'%d/%m/%Y\') as dtdoa_format,
+			date_format(it.data_doacao, \'%d/%m/%Y\') as dtdoa_format,
 			im.id imagem_id, im.nome_arquivo', FALSE);
 		$this->db->from('item it');
 		$this->db->join('imagem im', 'it.id = im.item_id', 'left');
